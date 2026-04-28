@@ -159,6 +159,7 @@
     <li><a href="#forms">Forms</a></li>
     <li><a href="#tabs">Tabs</a></li>
     <li><a href="#alerts">Alerts</a></li>
+    <li><a href="#modal">Modal</a></li>
     <li><a href="#callouts">Callouts</a></li>
     <li><a href="#avatars">Avatars</a></li>
     <li><a href="#cards">Cards</a></li>
@@ -343,6 +344,40 @@
     </div>
   </section>
 
+  <section class="ds-section" id="modal">
+    <h2>Modal</h2>
+    <p>Native <code>&lt;dialog&gt;</code> with the framework's chrome. <code>data-modal-open="ID"</code> on any clickable opens the dialog with that id; <code>data-modal-close</code> closes the surrounding dialog. ESC closes for free; clicking the backdrop closes via <code>modal.js</code>.</p>
+
+    <div class="ds-example">
+      <button class="button button-primary" data-modal-open="ds-modal-demo">Open modal</button>
+
+      <dialog id="ds-modal-demo" class="modal">
+        <header class="modal-header">
+          <p class="modal-title">Add member</p>
+          <button class="modal-close" data-modal-close aria-label="Close">×</button>
+        </header>
+        <div class="modal-body">
+          <div class="row">
+            <label class="row-label" for="ds-modal-name">Find by name</label>
+            <input id="ds-modal-name" type="text" placeholder="Type to search…">
+          </div>
+          <div class="row">
+            <label class="row-label" for="ds-modal-role">Role</label>
+            <select id="ds-modal-role">
+              <option>Editor</option>
+              <option>Admin</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button class="button" data-modal-close>Cancel</button>
+          <button class="button button-primary" data-modal-close>Add</button>
+        </footer>
+      </dialog>
+    </div>
+  </section>
+
   <section class="ds-section" id="callouts">
     <h2>Callouts</h2>
     <p>GitHub-flavoured callouts rendered from <code>&gt; [!TYPE]</code> blockquotes in markdown. Five variants share the shape and differ by color role.</p>
@@ -476,6 +511,7 @@
 
 </div>
 
+<script src="../static/modal.js" defer></script>
 <script>
   // Apply data-theme on <html> from the radio toggle. Tokens.css hangs
   // some variables off [data-theme="..."] selectors that can't be

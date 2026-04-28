@@ -156,6 +156,28 @@ Pure-CSS, radio-driven. Up to four tabs out of the box; extend the selector pair
 
 Inline message block. Variants: `.alert-error`, `.alert-success`. Always left-aligned (won't inherit `.text-center`). Use `.alert-success` as a one-shot banner after a redirect — same shape, no separate primitive needed.
 
+### `.modal`
+
+Dialog box on top of a backdrop. Built on the native `<dialog>` element — ESC closes, click on backdrop closes (wired by `modal.js`), focus trapped, no scroll-lock gymnastics. Three sub-zones: header / body / footer.
+
+```html
+<button class="button" data-modal-open="add-member">+ Add member</button>
+
+<dialog id="add-member" class="modal">
+  <header class="modal-header">
+    <p class="modal-title">Add member</p>
+    <button class="modal-close" data-modal-close aria-label="Close">×</button>
+  </header>
+  <div class="modal-body">…form fields…</div>
+  <footer class="modal-footer">
+    <button class="button" data-modal-close>Cancel</button>
+    <button class="button button-primary">Add</button>
+  </footer>
+</dialog>
+```
+
+`data-modal-open="ID"` on any clickable opens the dialog with that id. `data-modal-close` on any clickable inside the dialog closes it. Load `/static/modal.js` once on the page.
+
 ### `.callout`
 
 GitHub-flavoured callouts (`> [!NOTE]` rendered from markdown). Variants: `.callout-note`, `.callout-tip`, `.callout-important`, `.callout-warning`, `.callout-caution`. Wrap the title in `.callout-title` with an icon.
@@ -278,8 +300,9 @@ License: outline icons are Lucide / Feather (ISC + MIT subset). Brand icons are 
 
 - `theme.js` — wires every `[data-theme-set]` button. Writes a `theme` cookie (`light` / `dark` / blank for auto), applies `data-theme` on `<html>` immediately, updates `aria-pressed` on the buttons. Server is responsible for reading the cookie on each request and emitting `<html data-theme="…">` on the initial render to avoid flash.
 - `copy.js` — wires every `.copy-btn` inside a `.url-pill`. Copies the `<code>` value to clipboard, swaps the button label to `data-label-copied`, then back after 1500ms. Localised labels stay in templates, not in JS.
+- `modal.js` — wires `[data-modal-open="ID"]` triggers and `[data-modal-close]` close-buttons. Uses native `<dialog>.showModal()` / `.close()`; adds click-on-backdrop-to-close on top of what the platform gives you for free.
 
-Both scripts are zero-dependency, ~30 lines each, safe to load with `defer`.
+All three are zero-dependency, ~30 lines each, safe to load with `defer`.
 
 ## Adding a component
 
@@ -327,6 +350,7 @@ stratum/
 │   ├── icons.{svg,txt,LICENSE.txt}
 │   ├── theme.js
 │   ├── copy.js
+│   ├── modal.js
 │   └── css/
 │       ├── base/{tokens,reset,typography,layout}.css
 │       ├── components/*.css
