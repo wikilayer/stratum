@@ -53,9 +53,8 @@
 
     .ds-main { min-width: 0; }
     .ds-main > .ds-intro p { color: var(--fg-muted); margin: 0 0 var(--space-4); max-width: 40em; }
-    .ds-section { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border-muted); }
-    .ds-section:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
-    .ds-section > h2 { padding-bottom: var(--space-2); border-bottom: 1px solid var(--border); }
+    .ds-section { margin-top: var(--space-7); }
+    .ds-section:first-child { margin-top: 0; }
     .ds-section > p { color: var(--fg-muted); margin: 0 0 var(--space-5); max-width: 40em; }
 
     /* Examples carry no frame of their own — every primitive shown
@@ -171,7 +170,7 @@
   <p class="ds-side-link">
     <a href="https://github.com/wikilayer/stratum">
       <svg class="icon" aria-hidden="true"><use href="#github"/></svg>
-      github.com/wikilayer/stratum
+      GitHub
     </a>
   </p>
 </aside>
@@ -179,7 +178,7 @@
 <div class="ds-main">
 
   <div class="ds-intro">
-    <h1 class="h-rule">stratum</h1>
+    <h1>stratum</h1>
     <p>
       A minimal CSS framework designed to embed into Go projects. This page
       is the spec — every primitive lives below. If you can't build a new
