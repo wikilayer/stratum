@@ -1,0 +1,51 @@
+name: Deploy design-system to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      # Build dist/ so the design-system page works under the /stratum/
+      # Pages root with no path-rewriting:
+      #   /                   → tiny redirect to /design-system/
+      #   /design-system/     → design-system/index.html
+      #   /static/            → static/ (the relative ../static/ links resolve)
+      - name: Build dist
+        run: |
+          mkdir -p dist
+          cp -r design-system dist/design-system
+          cp -r static        dist/static
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>stratum — design system</title>
+          <meta http-equiv="refresh" content="0; url=design-system/">
+          <link rel="canonical" href="design-system/">
+          HTML
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
