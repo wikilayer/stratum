@@ -1,9 +1,3 @@
-/* Page header — h1 on the left, an icon-tab strip on the right of
- * the same baseline. The strip's bottom-border lines up with the
- * h1's underline, so the active tab simply sits on the same line
- * with a thicker accent-coloured stroke. Used by every wiki/page
- * surface (content / history / manage). */
-
 @layer components {
     .page-head {
         display: flex;
@@ -13,13 +7,9 @@
         border-bottom: 1px solid var(--border-muted);
         margin-bottom: var(--space-5);
     }
-    /* H1 inside .page-head loses its own underline + bottom margin —
-     * the header owns those now (its own border-bottom). The padding-
-     * bottom keeps the H1's baseline above the shared border line. */
     .page-head h1 {
         margin: 0;
         padding: 0 0 var(--space-2) 0;
-        border-bottom: 0;
     }
 
     .page-tabs {

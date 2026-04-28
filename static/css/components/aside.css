@@ -1,5 +1,3 @@
-/* Right-rail widgets on a wiki page: TOC + Recent edits. */
-
 @layer components {
     .content > aside h3 {
         font-size: var(--text-xs);

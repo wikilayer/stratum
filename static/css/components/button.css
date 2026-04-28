@@ -1,6 +1,3 @@
-/* Button primitive — every clickable that isn't a plain inline link.
- * Modifiers stack: `.button .button-primary .button-sm` is fine. */
-
 @layer components {
     .button {
         display: inline-flex;

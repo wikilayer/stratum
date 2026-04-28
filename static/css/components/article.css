@@ -1,8 +1,13 @@
-/* Rules that apply only inside the wiki article body — addressable
- * <section class="block"> wrappers, the gutter id anchor, the
- * external-link arrow icon, and tables rendered from markdown. */
-
 @layer components {
+    /* Long-form <article> body — rendered prose carries the
+     * Wikipedia/MDN baseline rule on h1/h2 without needing a class
+     * on each heading (markdown emits plain <h1>/<h2>). */
+    article > h1,
+    article > h2 {
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--border);
+    }
+
     .block {
         position: relative;
         scroll-margin-top: calc(var(--header-h) + var(--space-3));

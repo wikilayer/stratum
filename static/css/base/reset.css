@@ -1,7 +1,3 @@
-/* Minimal reset — the only "opinionated" part is collapsing the
- * default heading/paragraph margins so vertical rhythm is owned
- * entirely by the typography rules. */
-
 @layer reset {
     *, *::before, *::after { box-sizing: border-box; }
 

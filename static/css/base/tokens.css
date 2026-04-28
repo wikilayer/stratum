@@ -1,7 +1,3 @@
-/* Design-system tokens. Anything new (colour / spacing / radius) lives
- * here FIRST and is referenced via var(--…) elsewhere. Hardcoded
- * values in component rules are a smell — extend the tokens instead. */
-
 @layer tokens {
     :root {
         /* Colour — semantic, themed. */

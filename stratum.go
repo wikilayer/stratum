@@ -1,3 +1,18 @@
+// Package stratum is a minimal CSS framework designed to embed into
+// Go projects. Tokens, a layered cascade, ~20 components, an icon
+// sprite, and two tiny vanilla-JS helpers — vendored as a Go module
+// so a server gets a styled UI by mounting one fs.FS and linking one
+// stylesheet. No npm, no build step, no preprocessor.
+//
+// Wire it up:
+//
+//	import "github.com/wikilayer/stratum"
+//
+//	http.Handle("/static/*", http.StripPrefix("/static/",
+//	    http.FileServer(http.FS(stratum.Static))))
+//
+// Then link /static/style.css from your template. See README and the
+// design-system reference at https://wikilayer.github.io/stratum/.
 package stratum
 
 import (

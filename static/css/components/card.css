@@ -1,9 +1,3 @@
-/* Bordered surface for grouped content. Pair with .card-grid for a
- * responsive grid of equal cards (home/owner wiki lists, future
- * "members" / "create wiki" CTAs). Add .card-link when the whole
- * card is one clickable link — it gets the flex-row layout and the
- * accent border on hover. */
-
 @layer components {
     .card {
         background: var(--bg-elevated);

@@ -1,8 +1,3 @@
-/* Feed — flat list of timestamped activity entries with an actor
- * avatar, a coloured action tag, and a target label. Used by the
- * wiki-level edit history; reusable for any "what happened, when,
- * who, on what" timeline. */
-
 @layer components {
     .feed {
         list-style: none;

@@ -1,9 +1,3 @@
-/* Dropdown menu — a <details> wrapper hosts a clickable trigger and
- * a floating panel of items. The header avatar + theme/lang picker is
- * the canonical use; reusable for any "click to reveal a menu" need.
- * Also defines .segmented (a horizontal radio-like control) which
- * lives inside the dropdown today but applies anywhere. */
-
 @layer components {
     .menu-host { position: relative; }
     .menu-toggle {

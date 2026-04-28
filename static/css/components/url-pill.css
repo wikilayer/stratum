@@ -1,6 +1,3 @@
-/* Code/URL block + Copy button row. Used by /settings tokens (when it
- * existed) and the empty-home MCP onboarding card. */
-
 @layer components {
     .url-pill {
         display: flex;

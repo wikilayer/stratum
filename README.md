@@ -1,12 +1,16 @@
 # stratum
 
-A small, opinionated UI framework — CSS primitives, vanilla JS helpers, an icon sprite, and a standalone design-system reference. Embeddable as a Go module: import once, mount the static FS under `/static/`, link `style.css` from your template.
+### → [Live design-system reference](https://wikilayer.github.io/stratum/)
 
-No preprocessors. No build step. No dependencies. Native CSS Custom Properties + `@layer` + a sprinkle of `color-mix()`. Works in any browser that ships `@layer` (Chrome 99 / Firefox 97 / Safari 15.4 — 2022+).
+**A minimal CSS framework designed to embed into Go projects.**
+
+Tokens, a layered cascade, ~20 components, an icon sprite, and two tiny vanilla-JS helpers — vendored as a single Go module. A Go server gets a styled UI by importing the package, mounting one `fs.FS`, and linking one stylesheet. No npm, no build step, no preprocessor.
+
+Native CSS Custom Properties + `@layer` + a sprinkle of `color-mix()`. Works in any browser that ships `@layer` (Chrome 99 / Firefox 97 / Safari 15.4 — 2022+).
 
 ## Why it exists
 
-Most CSS frameworks are either huge (Bootstrap, Tailwind) or single-stylesheet drop-ins (Pico, Simple.css). Stratum sits in between: roughly two dozen tiny components, plus tokens and utilities, sized for an internal app with a handful of templates. The design-system page is the spec — if you can't build a new page out of what's documented there, the answer is to add a primitive, not a page-specific class.
+Most CSS frameworks are either heavy (Bootstrap, Tailwind — with their own toolchain) or drop-in single-stylesheet kits (Pico, Simple.css) that stop short of components. Stratum sits in between: ~20 tiny components, plus tokens and utilities, sized for an internal app or a side-project where shipping a Node toolchain alongside a single Go binary is wrong. The design-system page is the spec — if you can't build a new page out of what's documented there, the answer is to add a primitive, not a page-specific class.
 
 ## Install (Go)
 
@@ -150,7 +154,7 @@ Pure-CSS, radio-driven. Up to four tabs out of the box; extend the selector pair
 
 ### `.alert`
 
-Inline message. Variants: `.alert-error`, `.alert-success`. Always left-aligned (don't inherit `.text-center`).
+Inline message block. Variants: `.alert-error`, `.alert-success`. Always left-aligned (won't inherit `.text-center`). Use `.alert-success` as a one-shot banner after a redirect — same shape, no separate primitive needed.
 
 ### `.callout`
 
@@ -172,7 +176,7 @@ Round chip with initials, or `<img class="avatar">` for a Gravatar.
 
 ### `.url-pill`
 
-Code-or-URL block paired with a `.copy-btn` (wired by `copy.js`).
+Copy-this-code block — a `<code>` value paired with a compact `.copy-btn` (wired by `copy.js`). The name says URL because that's the canonical use, but the body is a generic `<code>` and works for any short string the user needs to paste somewhere.
 
 ```html
 <div class="url-pill">
@@ -195,10 +199,6 @@ Title plus an icon-tab strip on the same baseline. The active tab's underline re
   <span class="current">Current</span>
 </nav>
 ```
-
-### `.flash`
-
-One-shot success banner (e.g. shown via `?flash=<key>` after a redirect). Disappears on next navigation.
 
 ### `.menu-host`, `.menu-toggle`, `.dropdown`
 
@@ -251,6 +251,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.cluster`       | horizontal flex with gap and wrap |
 | `.inline-form`   | `display: inline` for inline POST forms |
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
+| `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>` |
 
 ## Icons
 
@@ -334,7 +335,3 @@ stratum/
 └── cmd/
     └── icons/              ← icon-sprite generator (Lucide + Simple Icons)
 ```
-
-## License
-
-MIT for the framework code itself. Bundled icon licences (Lucide ISC, Feather MIT, Simple Icons CC0) are in `static/icons.LICENSE.txt`.

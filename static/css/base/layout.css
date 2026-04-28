@@ -1,7 +1,3 @@
-/* Page chrome — header, content frame, sticky aside, brand link, plus
- * the article-body H1/H2 underline rule that's specific to long-form
- * pages (`main`-scoped so it doesn't bleed into login/settings). */
-
 @layer layout {
     /* Site chrome — scoped to direct child of body so a <header>
      * nested inside main (e.g. the .page-head with h1 + actions)

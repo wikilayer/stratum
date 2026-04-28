@@ -1,6 +1,3 @@
-/* Generic admin / settings table. Body-text tables (rendered from
- * markdown inside <main>) are styled separately in article.css. */
-
 @layer components {
     .data-table {
         width: 100%;

@@ -48,11 +48,15 @@
         font-size: var(--text-sm);
     }
     .ds-side a:hover { color: var(--fg); background: var(--bg-hover); text-decoration: none; }
+    .ds-side-link { margin: var(--space-5) 0 0; padding-top: var(--space-3); border-top: 1px solid var(--border-muted); font-size: var(--text-sm); }
+    .ds-side-link a { display: inline-flex; align-items: center; gap: var(--space-2); padding: 0; }
 
     .ds-main { min-width: 0; }
     .ds-main > .ds-intro p { color: var(--fg-muted); margin: 0 0 var(--space-4); max-width: 40em; }
-    .ds-section { margin-top: 5rem; }
-    .ds-section > p { color: var(--fg-muted); margin: 0 0 var(--space-6); max-width: 40em; }
+    .ds-section { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border-muted); }
+    .ds-section:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+    .ds-section > h2 { padding-bottom: var(--space-2); border-bottom: 1px solid var(--border); }
+    .ds-section > p { color: var(--fg-muted); margin: 0 0 var(--space-5); max-width: 40em; }
 
     /* Examples carry no frame of their own — every primitive shown
      * inside already has its own shape (border on .alert, frame on
@@ -159,22 +163,28 @@
     <li><a href="#callouts">Callouts</a></li>
     <li><a href="#avatars">Avatars</a></li>
     <li><a href="#cards">Cards</a></li>
-    <li><a href="#url-pill">URL pill</a></li>
+    <li><a href="#url-pill">Copy block</a></li>
     <li><a href="#page-head">Page header</a></li>
     <li><a href="#breadcrumb">Breadcrumb</a></li>
-    <li><a href="#flash">Flash banner</a></li>
     <li><a href="#icons">Icons</a></li>
   </ul>
+  <p class="ds-side-link">
+    <a href="https://github.com/wikilayer/stratum">
+      <svg class="icon" aria-hidden="true"><use href="#github"/></svg>
+      github.com/wikilayer/stratum
+    </a>
+  </p>
 </aside>
 
 <div class="ds-main">
 
   <div class="ds-intro">
-    <h1>stratum</h1>
+    <h1 class="h-rule">stratum</h1>
     <p>
-      Reference for every shared primitive. Open this file directly in a
-      browser — no server needed. If you can't build a new page out of these
-      blocks, add a primitive. Don't introduce a page-specific class.
+      A minimal CSS framework designed to embed into Go projects. This page
+      is the spec — every primitive lives below. If you can't build a new
+      page out of these blocks, add a primitive. Don't introduce a
+      page-specific class.
     </p>
   </div>
 
@@ -198,7 +208,7 @@
 
   <section class="ds-section" id="typography">
     <h2>Typography</h2>
-    <p>Six heading levels. h1 and h2 carry a thin baseline underline — the published-doc convention from Wikipedia / MDN. Components that want clean headings (e.g. <code>.page-head</code>) drop it locally.</p>
+    <p>Six heading levels. Plain by default — opt into a Wikipedia / MDN baseline rule with <code>.h-rule</code>, or apply globally inside an <code>&lt;article&gt;</code> for rendered prose.</p>
 
     <div class="ds-example">
       <h1>Heading 1</h1>
@@ -207,6 +217,12 @@
       <h4>Heading 4</h4>
       <h5>Heading 5</h5>
       <h6>Heading 6</h6>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">With <code>.h-rule</code> on each heading.</p>
+      <h1 class="h-rule">Heading 1</h1>
+      <h2 class="h-rule">Heading 2</h2>
     </div>
 
     <div class="ds-example">
@@ -320,7 +336,7 @@
 
   <section class="ds-section" id="alerts">
     <h2>Alerts</h2>
-    <p>Inline message blocks. Same shape, color role per variant.</p>
+    <p>Inline message blocks. Same shape, color role per variant. Use <code>.alert-success</code> as a one-shot success banner after a redirect — same primitive, no separate "flash" component.</p>
 
     <div class="ds-example">
       <p class="alert alert-error">Wrong username or password.</p>
@@ -389,8 +405,8 @@
   </section>
 
   <section class="ds-section" id="url-pill">
-    <h2>URL pill</h2>
-    <p>Copy-this-URL block. Used on the MCP setup page for the connection URL and elsewhere we need a one-click copy.</p>
+    <h2>Copy block</h2>
+    <p>Inline <code>&lt;code&gt;</code> with a one-click <em>Copy</em> button. Class is <code>.url-pill</code> for historical reasons — the body is generic, anything you need the user to paste somewhere works (URLs, tokens, prompts).</p>
 
     <div class="ds-example">
       <div class="url-pill">
@@ -430,15 +446,6 @@
         <span class="sep">/</span>
         <span class="current">Heathrow</span>
       </nav>
-    </div>
-  </section>
-
-  <section class="ds-section" id="flash">
-    <h2>Flash banner</h2>
-    <p>One-shot success message shown after a redirect via <code>?flash=&lt;key&gt;</code>. Disappears on next navigation.</p>
-
-    <div class="ds-example">
-      <div class="flash">Wiki settings saved.</div>
     </div>
   </section>
 

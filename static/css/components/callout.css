@@ -1,7 +1,3 @@
-/* GitHub-flavored callouts. Source markdown opens with `> [!TYPE]`,
- * post-processed in Go to a typed div. Colour comes from per-type
- * --callout-{kind} tokens. */
-
 @layer components {
     .callout {
         margin: var(--space-4) 0;
