@@ -1,0 +1,33 @@
+/* GitHub-flavored callouts. Source markdown opens with `> [!TYPE]`,
+ * post-processed in Go to a typed div. Colour comes from per-type
+ * --callout-{kind} tokens. */
+
+@layer components {
+    .callout {
+        margin: var(--space-4) 0;
+        padding: var(--space-3) var(--space-4);
+        border-left: 4px solid;
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        background: color-mix(in srgb, currentColor 8%, transparent);
+    }
+    .callout > .callout-title {
+        margin: 0 0 var(--space-2) 0;
+        font-weight: var(--weight-semibold);
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        line-height: 1.2;
+    }
+    .callout > p:not(.callout-title) {
+        margin: var(--space-2) 0;
+        color: var(--fg);
+    }
+    .callout > p:not(.callout-title):first-of-type { margin-top: 0; }
+    .callout > p:not(.callout-title):last-child { margin-bottom: 0; }
+
+    .callout-note      { border-color: var(--callout-note);      color: var(--callout-note); }
+    .callout-tip       { border-color: var(--callout-tip);       color: var(--callout-tip); }
+    .callout-important { border-color: var(--callout-important); color: var(--callout-important); }
+    .callout-warning   { border-color: var(--callout-warning);   color: var(--callout-warning); }
+    .callout-caution   { border-color: var(--callout-caution);   color: var(--callout-caution); }
+}

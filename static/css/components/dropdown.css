@@ -1,0 +1,99 @@
+/* Dropdown menu — a <details> wrapper hosts a clickable trigger and
+ * a floating panel of items. The header avatar + theme/lang picker is
+ * the canonical use; reusable for any "click to reveal a menu" need.
+ * Also defines .segmented (a horizontal radio-like control) which
+ * lives inside the dropdown today but applies anywhere. */
+
+@layer components {
+    .menu-host { position: relative; }
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        cursor: pointer;
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-pill);
+        list-style: none;
+        user-select: none;
+    }
+    .menu-toggle::-webkit-details-marker,
+    .menu-toggle::marker { display: none; }
+    .menu-toggle:hover { background: var(--bg-hover); }
+    .menu-host[open] .menu-toggle { background: var(--bg-hover); }
+
+    .caret {
+        color: var(--fg-muted);
+        font-size: 0.7em;
+        line-height: 1;
+    }
+
+    .dropdown {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 6px);
+        min-width: 240px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        z-index: 20;
+    }
+    .dropdown .item {
+        display: block;
+        padding: var(--space-2) var(--space-4);
+        color: var(--fg);
+        font-size: var(--text-sm);
+    }
+    .dropdown .item:hover {
+        background: var(--bg-hover);
+        text-decoration: none;
+    }
+    .dropdown-section {
+        border-top: 1px solid var(--border-muted);
+        padding: var(--space-3) var(--space-4);
+    }
+    .dropdown-section .label {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--fg-muted);
+        margin-bottom: var(--space-2);
+    }
+
+    .segmented {
+        display: flex;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        width: 100%;
+    }
+    .segmented button,
+    .segmented a {
+        flex: 1;
+        border: 0;
+        border-right: 1px solid var(--border);
+        background: transparent;
+        color: var(--fg-muted);
+        padding: var(--space-1) var(--space-2);
+        font-size: var(--text-xs);
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .segmented > *:last-child { border-right: 0; }
+    .segmented button:hover,
+    .segmented a:hover { color: var(--fg); text-decoration: none; }
+    .segmented button[aria-pressed="true"],
+    .segmented a[aria-pressed="true"] {
+        background: var(--bg-active);
+        color: var(--fg);
+    }
+    /* Icon-only segmented buttons (theme picker). The default font-
+     * size is text-xs which makes 1em icons unreadably small; bump to
+     * ~1rem when the button has nothing but an icon inside. */
+    .segmented .icon { width: 1.1rem; height: 1.1rem; }
+}

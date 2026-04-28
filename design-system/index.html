@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stratum — design system</title>
+
+  <!-- Standalone reference. Pulls the framework stylesheet directly;
+       open this file in a browser, no server needed. -->
+  <link rel="stylesheet" href="../static/style.css">
+
+  <style>
+    /* Page-only scaffolding — sidebar layout, section spacing, the
+     * preview frames around each example. None of this is a primitive;
+     * pages don't copy these rules. */
+    body {
+        display: grid;
+        grid-template-columns: 14rem 1fr;
+        gap: var(--space-7);
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: var(--space-5);
+    }
+
+    .ds-side {
+        position: sticky;
+        top: var(--space-5);
+        align-self: start;
+        max-height: calc(100vh - var(--space-7));
+        overflow-y: auto;
+        border-right: 1px solid var(--border-muted);
+        padding-right: var(--space-4);
+    }
+    .ds-side h1 {
+        font-size: var(--text-base);
+        margin: 0 0 var(--space-3);
+        padding: 0;
+        border-bottom: 0;
+    }
+    .ds-side h1 small { display: block; font-size: var(--text-xs); color: var(--fg-muted); font-weight: var(--weight-medium); }
+    .ds-side ul { list-style: none; padding: 0; margin: var(--space-4) 0 0; }
+    .ds-side li + li { margin-top: var(--space-1); }
+    .ds-side a {
+        display: block;
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-sm);
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+    }
+    .ds-side a:hover { color: var(--fg); background: var(--bg-hover); text-decoration: none; }
+
+    .ds-main { min-width: 0; }
+    .ds-main > .ds-intro p { color: var(--fg-muted); margin: 0 0 var(--space-4); max-width: 40em; }
+    .ds-section { margin-top: 5rem; }
+    .ds-section > p { color: var(--fg-muted); margin: 0 0 var(--space-6); max-width: 40em; }
+
+    /* Examples carry no frame of their own — every primitive shown
+     * inside already has its own shape (border on .alert, frame on
+     * .callout, etc.). The only structural rule is vertical rhythm
+     * between examples and between the helper-label and what it
+     * describes. */
+    .ds-example + .ds-example { margin-top: var(--space-6); }
+    .ds-example > * + * { margin-top: var(--space-3); }
+    .ds-example > p:first-child.muted { margin: 0 0 var(--space-3); }
+
+    /* When an example wraps content in <main> to get article-style
+     * underlines on h1/h2, neutralise the page-shell padding that
+     * <main> picks up from layout.css — we want the heading flush
+     * with the example column. */
+    .ds-example main { padding: 0; flex: none; }
+
+    .ds-cluster { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+
+    .ds-icons {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+        gap: var(--space-3);
+    }
+    .ds-icon {
+        display: flex; flex-direction: column; align-items: center; gap: var(--space-2);
+        padding: var(--space-3);
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-md);
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+    }
+    .ds-icon .icon { width: 24px; height: 24px; color: var(--fg); }
+
+    /* Theme toggle — sits next to the page title. */
+    .ds-theme-toggle { display: inline-flex; gap: var(--space-1); padding: var(--space-1); border: 1px solid var(--border); border-radius: var(--radius-md); }
+    .ds-theme-toggle label { padding: var(--space-1) var(--space-3); cursor: pointer; border-radius: var(--radius-sm); color: var(--fg-muted); font-size: var(--text-sm); }
+    .ds-theme-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+    .ds-theme-toggle input:checked + label { background: var(--bg-active); color: var(--fg); }
+
+    .ds-intro-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap; }
+
+    /* Layout-section frames so we can show the app's chrome (header,
+     * content, aside) without it taking over the whole page. */
+    .ds-frame {
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        background: var(--bg);
+    }
+    .ds-frame .frame-header {
+        padding: var(--space-3) var(--space-5);
+        background: var(--header-bg);
+        border-bottom: 1px solid var(--border-muted);
+        display: flex; align-items: center; justify-content: space-between;
+    }
+    .ds-frame .frame-body { padding: var(--space-5); }
+
+    @media (max-width: 60rem) {
+        body { grid-template-columns: 1fr; }
+        .ds-side { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--border-muted); padding-right: 0; padding-bottom: var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Inline icon sprite. Mirrors ../static/icons.svg so the guide
+     works with file:// (external <use href> is unreliable under
+     file:// in Chromium). Re-paste the <symbol> tags below when the
+     sprite regenerates. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol>
+  <symbol id="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></symbol>
+  <symbol id="info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></symbol>
+  <symbol id="lightbulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></symbol>
+  <symbol id="triangle-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></symbol>
+  <symbol id="octagon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16h.01" /><path d="M12 8v4" /><path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" /></symbol>
+  <symbol id="circle-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" /></symbol>
+  <symbol id="copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol>
+  <symbol id="history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /><path d="M12 7v5l4 2" /></symbol>
+  <symbol id="settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /><circle cx="12" cy="12" r="3" /></symbol>
+  <symbol id="archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1" /><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" /><path d="M10 12h4" /></symbol>
+  <symbol id="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></symbol>
+  <symbol id="github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></symbol>
+  <symbol id="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></symbol>
+  <symbol id="monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></symbol>
+</svg>
+
+<aside class="ds-side">
+  <h1>stratum<small>design system</small></h1>
+  <div class="ds-theme-toggle">
+    <input type="radio" name="ds-theme" id="ds-theme-dark" checked>
+    <label for="ds-theme-dark">Dark</label>
+    <input type="radio" name="ds-theme" id="ds-theme-light">
+    <label for="ds-theme-light">Light</label>
+  </div>
+  <ul>
+    <li><a href="#layout">Layout</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#buttons">Buttons</a></li>
+    <li><a href="#forms">Forms</a></li>
+    <li><a href="#tabs">Tabs</a></li>
+    <li><a href="#alerts">Alerts</a></li>
+    <li><a href="#callouts">Callouts</a></li>
+    <li><a href="#avatars">Avatars</a></li>
+    <li><a href="#cards">Cards</a></li>
+    <li><a href="#url-pill">URL pill</a></li>
+    <li><a href="#page-head">Page header</a></li>
+    <li><a href="#breadcrumb">Breadcrumb</a></li>
+    <li><a href="#flash">Flash banner</a></li>
+    <li><a href="#icons">Icons</a></li>
+  </ul>
+</aside>
+
+<div class="ds-main">
+
+  <div class="ds-intro">
+    <h1>stratum</h1>
+    <p>
+      Reference for every shared primitive. Open this file directly in a
+      browser — no server needed. If you can't build a new page out of these
+      blocks, add a primitive. Don't introduce a page-specific class.
+    </p>
+  </div>
+
+  <section class="ds-section" id="layout">
+    <h2>Layout</h2>
+    <p>The app shell: top bar with the brand and profile menu; a content frame underneath; an optional aside on the right of long-form pages.</p>
+
+    <div class="ds-example">
+      <p class="muted">Top bar — <code>body &gt; header</code> with <code>.brand</code> and a profile menu (here without a signed-in user).</p>
+      <div class="ds-frame">
+        <div class="frame-header">
+          <a class="brand" href="#">your-app.example</a>
+          <span class="muted" style="font-size: var(--text-sm)">(profile menu when signed in)</span>
+        </div>
+        <div class="frame-body">
+          <p class="muted">Page content goes here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="typography">
+    <h2>Typography</h2>
+    <p>Six heading levels. h1 and h2 carry a thin baseline underline — the published-doc convention from Wikipedia / MDN. Components that want clean headings (e.g. <code>.page-head</code>) drop it locally.</p>
+
+    <div class="ds-example">
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+    </div>
+
+    <div class="ds-example">
+      <p>A regular paragraph carries the body color. The quick brown fox jumps over the lazy dog.</p>
+      <p class="muted">A <code>.muted</code> paragraph uses the secondary foreground color.</p>
+      <p class="fine-print">A <code>.fine-print</code> paragraph: small, muted, with underlined inline links — for disclaimers below a CTA. Read our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+      <p class="empty">An <code>.empty</code> paragraph: italic, muted — placeholder when a section has no content.</p>
+      <p>Inline <code>code</code> with backticks; a regular <a href="#">link</a> in flowing text.</p>
+    </div>
+  </section>
+
+  <section class="ds-section" id="buttons">
+    <h2>Buttons</h2>
+    <p>One base class, stackable variants. Use <code>&lt;a class="button"&gt;</code> for navigation, <code>&lt;button&gt;</code> for actions. Modifiers: <code>.button-primary</code>, <code>.button-secondary</code>, <code>.button-ghost</code>, <code>.button-danger</code>, <code>.button-sm</code>.</p>
+
+    <div class="ds-example">
+      <div class="ds-cluster">
+        <a class="button button-primary" href="#">Primary</a>
+        <a class="button button-secondary" href="#">Secondary</a>
+        <a class="button button-ghost" href="#">Ghost</a>
+        <a class="button button-danger" href="#">Danger</a>
+      </div>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Compact size — <code>.button-sm</code>.</p>
+      <div class="ds-cluster">
+        <a class="button button-primary button-sm" href="#">Primary sm</a>
+        <a class="button button-secondary button-sm" href="#">Secondary sm</a>
+      </div>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">With an icon — <code>&lt;svg class="icon"&gt;</code> alongside the label.</p>
+      <div class="ds-cluster">
+        <a class="button button-primary" href="#"><svg class="icon" aria-hidden="true"><use href="#github"/></svg>Sign in with GitHub</a>
+        <a class="button button-secondary" href="#"><svg class="icon" aria-hidden="true"><use href="#copy"/></svg>Copy URL</a>
+      </div>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Disabled state.</p>
+      <div class="ds-cluster">
+        <button class="button button-primary" disabled>Disabled primary</button>
+        <button class="button button-secondary" disabled>Disabled secondary</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="forms">
+    <h2>Forms</h2>
+    <p>One <code>.row</code> per labelled control. Wrap a stack of rows in <code>&lt;form class="stack"&gt;</code> to space them; cap with a button.</p>
+
+    <div class="ds-example">
+      <p class="muted">Stacked form — text, password, email, select, submit.</p>
+      <form class="stack" onsubmit="return false">
+        <div class="row">
+          <label class="row-label" for="ds-text">Text input</label>
+          <input id="ds-text" type="text" placeholder="Type here">
+        </div>
+        <div class="row">
+          <label class="row-label" for="ds-pwd">Password</label>
+          <input id="ds-pwd" type="password" placeholder="••••••••">
+        </div>
+        <div class="row">
+          <label class="row-label" for="ds-email">Email</label>
+          <input id="ds-email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="row">
+          <label class="row-label" for="ds-select">Visibility</label>
+          <select id="ds-select">
+            <option>Public</option>
+            <option>Private</option>
+            <option>Archive</option>
+          </select>
+        </div>
+        <button type="submit" class="button button-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Read-only fact list — <code>.row-inline-list</code>.</p>
+      <dl class="row-inline-list">
+        <div class="row-inline"><dt>Email:</dt><dd>maxim.oransky@gmail.com</dd></div>
+        <div class="row-inline"><dt>ID:</dt><dd>42</dd></div>
+        <div class="row-inline"><dt>Account created:</dt><dd>4 January 2026</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="ds-section" id="tabs">
+    <h2>Tabs</h2>
+    <p>Pure-CSS, radio-driven. Convention: radio ids <code>tab-1</code>, <code>tab-2</code>, …; matching panels <code>tab-panel-1</code>, etc. Up to four out of the box.</p>
+
+    <div class="ds-example">
+      <div class="tabs">
+        <input type="radio" id="tab-1" name="ds-tabs" checked>
+        <input type="radio" id="tab-2" name="ds-tabs">
+        <input type="radio" id="tab-3" name="ds-tabs">
+        <div class="tabs-bar" role="tablist">
+          <label for="tab-1" role="tab">First</label>
+          <label for="tab-2" role="tab">Second</label>
+          <label for="tab-3" role="tab">Third</label>
+        </div>
+        <div class="tab-panel-1" role="tabpanel"><p>Panel one. Click a tab to switch.</p></div>
+        <div class="tab-panel-2" role="tabpanel"><p>Panel two.</p></div>
+        <div class="tab-panel-3" role="tabpanel"><p>Panel three.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="alerts">
+    <h2>Alerts</h2>
+    <p>Inline message blocks. Same shape, color role per variant.</p>
+
+    <div class="ds-example">
+      <p class="alert alert-error">Wrong username or password.</p>
+      <p class="alert alert-success">Settings saved.</p>
+    </div>
+  </section>
+
+  <section class="ds-section" id="callouts">
+    <h2>Callouts</h2>
+    <p>GitHub-flavoured callouts rendered from <code>&gt; [!TYPE]</code> blockquotes in markdown. Five variants share the shape and differ by color role.</p>
+
+    <div class="ds-example">
+      <div class="callout callout-note">
+        <p class="callout-title"><svg class="icon" aria-hidden="true"><use href="#info"/></svg>Note</p>
+        <p>Background context the reader can skip.</p>
+      </div>
+      <div class="callout callout-tip">
+        <p class="callout-title"><svg class="icon" aria-hidden="true"><use href="#lightbulb"/></svg>Tip</p>
+        <p>A recommendation that helps the reader.</p>
+      </div>
+      <div class="callout callout-important">
+        <p class="callout-title"><svg class="icon" aria-hidden="true"><use href="#circle-alert"/></svg>Important</p>
+        <p>Something the reader should not miss.</p>
+      </div>
+      <div class="callout callout-warning">
+        <p class="callout-title"><svg class="icon" aria-hidden="true"><use href="#triangle-alert"/></svg>Warning</p>
+        <p>Something that often goes wrong.</p>
+      </div>
+      <div class="callout callout-caution">
+        <p class="callout-title"><svg class="icon" aria-hidden="true"><use href="#octagon-alert"/></svg>Caution</p>
+        <p>Destructive consequence if ignored.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="avatars">
+    <h2>Avatars</h2>
+    <p>Round chip with user initials (or a Gravatar via <code>img.avatar</code>). Two sizes — default 30px header chip, <code>.avatar-lg</code> 160px for profile pages.</p>
+
+    <div class="ds-example">
+      <div class="ds-cluster">
+        <span class="avatar">MO</span>
+        <span class="avatar">AB</span>
+        <span class="avatar">XY</span>
+        <span class="avatar">?</span>
+      </div>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Large size for the profile page.</p>
+      <span class="avatar avatar-lg">MO</span>
+    </div>
+  </section>
+
+  <section class="ds-section" id="cards">
+    <h2>Cards</h2>
+    <p>Bordered container for grouped content.</p>
+
+    <div class="ds-example">
+      <div class="card">
+        <h3 style="margin-top: 0">Card title</h3>
+        <p>Card body. Quick brown fox jumps over the lazy dog.</p>
+        <a class="button button-secondary button-sm" href="#">Open</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="url-pill">
+    <h2>URL pill</h2>
+    <p>Copy-this-URL block. Used on the MCP setup page for the connection URL and elsewhere we need a one-click copy.</p>
+
+    <div class="ds-example">
+      <div class="url-pill">
+        <code>https://your-app.example/mcp</code>
+        <button class="copy-btn" type="button">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="page-head">
+    <h2>Page header</h2>
+    <p>Title plus an icon-tab strip — eye / clock / gear — for the three sections every wiki/page surface shares: content, history, manage. Active tab gets the accent underline.</p>
+
+    <div class="ds-example">
+      <header class="page-head">
+        <h1>Sample page title</h1>
+        <nav class="page-tabs" aria-label="Page sections">
+          <a href="#" aria-current="page" title="Content"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg></a>
+          <a href="#" title="History"><svg class="icon" aria-hidden="true"><use href="#history"/></svg></a>
+          <a href="#" title="Manage"><svg class="icon" aria-hidden="true"><use href="#settings"/></svg></a>
+        </nav>
+      </header>
+    </div>
+  </section>
+
+  <section class="ds-section" id="breadcrumb">
+    <h2>Breadcrumb</h2>
+    <p>Navigation crumbs above the page-head. The last segment is the current location and is non-clickable.</p>
+
+    <div class="ds-example">
+      <nav class="breadcrumb" aria-label="breadcrumb">
+        <a href="#">home</a>
+        <span class="sep">/</span>
+        <a href="#">Maxim Oranskiy</a>
+        <span class="sep">/</span>
+        <a href="#">London Airports</a>
+        <span class="sep">/</span>
+        <span class="current">Heathrow</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="ds-section" id="flash">
+    <h2>Flash banner</h2>
+    <p>One-shot success message shown after a redirect via <code>?flash=&lt;key&gt;</code>. Disappears on next navigation.</p>
+
+    <div class="ds-example">
+      <div class="flash">Wiki settings saved.</div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="icons">
+    <h2>Icons</h2>
+    <p>From <code>static/icons.txt</code>. Run <code>make icons-sync</code> to fetch from Lucide / Simple Icons. Re-paste the resulting <code>&lt;symbol&gt;</code>s into the inline sprite at the top of this file when the manifest changes.</p>
+
+    <div class="ds-example">
+      <div class="ds-icons">
+        <div class="ds-icon"><svg class="icon"><use href="#lock"/></svg><span>lock</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#globe"/></svg><span>globe</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#info"/></svg><span>info</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#lightbulb"/></svg><span>lightbulb</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#triangle-alert"/></svg><span>triangle-alert</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#octagon-alert"/></svg><span>octagon-alert</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#circle-alert"/></svg><span>circle-alert</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#copy"/></svg><span>copy</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#history"/></svg><span>history</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#settings"/></svg><span>settings</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#archive"/></svg><span>archive</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#eye"/></svg><span>eye</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#sun"/></svg><span>sun</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#moon"/></svg><span>moon</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#monitor"/></svg><span>monitor</span></div>
+        <div class="ds-icon"><svg class="icon"><use href="#github"/></svg><span>github</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Apply data-theme on <html> from the radio toggle. Tokens.css hangs
+  // some variables off [data-theme="..."] selectors that can't be
+  // reached from a child :has(); the JS is three lines and avoids
+  // duplicating every token rule.
+  document.querySelectorAll('input[name="ds-theme"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.documentElement.dataset.theme = r.id === 'ds-theme-light' ? 'light' : 'dark';
+    });
+  });
+</script>
+
+</body>
+</html>

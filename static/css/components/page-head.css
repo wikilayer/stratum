@@ -1,0 +1,55 @@
+/* Page header — h1 on the left, an icon-tab strip on the right of
+ * the same baseline. The strip's bottom-border lines up with the
+ * h1's underline, so the active tab simply sits on the same line
+ * with a thicker accent-coloured stroke. Used by every wiki/page
+ * surface (content / history / manage). */
+
+@layer components {
+    .page-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: var(--space-3);
+        border-bottom: 1px solid var(--border-muted);
+        margin-bottom: var(--space-5);
+    }
+    /* H1 inside .page-head loses its own underline + bottom margin —
+     * the header owns those now (its own border-bottom). The padding-
+     * bottom keeps the H1's baseline above the shared border line. */
+    .page-head h1 {
+        margin: 0;
+        padding: 0 0 var(--space-2) 0;
+        border-bottom: 0;
+    }
+
+    .page-tabs {
+        display: flex;
+        gap: var(--space-1);
+        flex-shrink: 0;
+        /* Pull the strip down so each tab's own bottom-border can
+         * overlap the page-head's 1px border — the underline of the
+         * active tab then *replaces* the muted line locally. */
+        margin-bottom: -1px;
+    }
+    .page-tabs a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        color: var(--fg-muted);
+        border-bottom: 2px solid transparent;
+    }
+    .page-tabs a:hover {
+        color: var(--fg);
+        text-decoration: none;
+    }
+    .page-tabs a[aria-current="page"] {
+        color: var(--fg);
+        border-bottom-color: var(--accent);
+    }
+    .page-tabs .icon {
+        width: 18px;
+        height: 18px;
+    }
+}

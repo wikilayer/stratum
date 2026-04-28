@@ -1,0 +1,53 @@
+/* Tabs — pure-CSS radio-driven switcher. Equal-width labels with an
+ * accent underline on the active tab. Up to four tabs out of the
+ * box; extend the selector pairs below if a use case ever needs
+ * five. See /design-system for the markup convention. */
+
+@layer components {
+    .tabs {
+        display: block;
+    }
+    .tabs > input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .tabs-bar {
+        display: flex;
+        border-bottom: 1px solid var(--border-muted);
+        margin-bottom: var(--space-5);
+    }
+    .tabs-bar > label {
+        flex: 1;
+        text-align: center;
+        padding: var(--space-2) var(--space-3);
+        margin-bottom: -1px;
+        border-bottom: 2px solid transparent;
+        color: var(--fg-muted);
+        cursor: pointer;
+        font-weight: var(--weight-medium);
+        transition: color var(--duration-fast) var(--easing-out),
+                    border-bottom-color var(--duration-fast) var(--easing-out);
+    }
+    .tabs-bar > label:hover { color: var(--fg); }
+
+    /* Active tab marker: highlight the label whose `for=` matches the
+     * checked radio. Up to four tabs (extend if needed). */
+    .tabs > #tab-1:checked ~ .tabs-bar > label[for="tab-1"],
+    .tabs > #tab-2:checked ~ .tabs-bar > label[for="tab-2"],
+    .tabs > #tab-3:checked ~ .tabs-bar > label[for="tab-3"],
+    .tabs > #tab-4:checked ~ .tabs-bar > label[for="tab-4"] {
+        color: var(--fg);
+        border-bottom-color: var(--accent);
+    }
+
+    /* Panels are hidden by default; the matching one is revealed via
+     * a sibling selector when its radio is checked. */
+    .tabs > [class^="tab-panel-"] { display: none; }
+    .tabs > #tab-1:checked ~ .tab-panel-1,
+    .tabs > #tab-2:checked ~ .tab-panel-2,
+    .tabs > #tab-3:checked ~ .tab-panel-3,
+    .tabs > #tab-4:checked ~ .tab-panel-4 {
+        display: block;
+    }
+}

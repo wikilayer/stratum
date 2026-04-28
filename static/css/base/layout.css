@@ -1,0 +1,103 @@
+/* Page chrome — header, content frame, sticky aside, brand link, plus
+ * the article-body H1/H2 underline rule that's specific to long-form
+ * pages (`main`-scoped so it doesn't bleed into login/settings). */
+
+@layer layout {
+    /* Site chrome — scoped to direct child of body so a <header>
+     * nested inside main (e.g. the .page-head with h1 + actions)
+     * doesn't inherit the sticky-top, fixed-height, padded-row look. */
+    body > header {
+        height: var(--header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--space-5);
+        background: var(--header-bg);
+        backdrop-filter: saturate(180%) blur(8px);
+        -webkit-backdrop-filter: saturate(180%) blur(8px);
+        border-bottom: 1px solid var(--border-muted);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .brand {
+        font-weight: var(--weight-bold);
+        font-size: var(--text-lg);
+        color: var(--fg);
+        letter-spacing: -0.01em;
+    }
+    .brand:hover { text-decoration: none; }
+
+    .content {
+        display: flex;
+        min-height: calc(100vh - var(--header-h));
+        max-width: var(--content-max);
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    main {
+        flex: 1;
+        min-width: 0;
+        padding: var(--space-6) var(--space-6) var(--space-7);
+    }
+
+    /* Scoped to direct children of .content so an <aside> nested
+     * inside a form (e.g., the avatar slot on /settings) doesn't
+     * inherit the page-rail width / border / sticky positioning. */
+    .content > aside {
+        width: var(--aside-w);
+        border-left: 1px solid var(--border-muted);
+        padding: var(--space-6) var(--space-4);
+        flex-shrink: 0;
+        position: sticky;
+        top: var(--header-h);
+        align-self: flex-start;
+        max-height: calc(100vh - var(--header-h));
+        overflow-y: auto;
+    }
+
+    /* Reading-width columns inside main. Pages that want their own
+     * narrow centred shape (login, consent, legal, MCP onboarding)
+     * pick a size and stop. No page-specific wrapper class. */
+    .column,
+    .column-narrow,
+    .column-wide {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .column        { max-width: 38em; }
+    .column-narrow { max-width: 32em; }
+    .column-wide   { max-width: 720px; }
+
+    /* Two-column split with a fixed-width side rail and a fluid main
+     * column. Used on /owner:N and anywhere else we want a sidebar
+     * left of the content. Below 720px collapses to a single stack
+     * with the side moved on top. */
+    .split {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: var(--space-7);
+        align-items: start;
+        margin-top: var(--space-5);
+    }
+    .split-side {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+    .split-main > h1:first-child,
+    .split-main > h2:first-child { margin-top: 0; }
+
+    @media (max-width: 720px) {
+        .split {
+            grid-template-columns: 1fr;
+            gap: var(--space-5);
+        }
+        .split-side {
+            order: -1;
+            align-items: flex-start;
+        }
+    }
+}

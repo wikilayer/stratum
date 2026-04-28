@@ -1,0 +1,17 @@
+/* Minimal reset — the only "opinionated" part is collapsing the
+ * default heading/paragraph margins so vertical rhythm is owned
+ * entirely by the typography rules. */
+
+@layer reset {
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body, h1, h2, h3, h4, h5, h6,
+    p, ul, ol, dl, dd, figure, blockquote {
+        margin: 0;
+    }
+    ul, ol { padding-left: var(--space-5); }
+
+    button { font: inherit; color: inherit; }
+    input, textarea, select { font: inherit; }
+    img, svg, video { display: block; max-width: 100%; }
+}

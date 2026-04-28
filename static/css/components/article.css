@@ -1,0 +1,60 @@
+/* Rules that apply only inside the wiki article body — addressable
+ * <section class="block"> wrappers, the gutter id anchor, the
+ * external-link arrow icon, and tables rendered from markdown. */
+
+@layer components {
+    .block {
+        position: relative;
+        scroll-margin-top: calc(var(--header-h) + var(--space-3));
+    }
+    .block-id {
+        position: absolute;
+        left: -5em;
+        top: 0.6em;
+        width: 3em;
+        text-align: right;
+        color: var(--fg-muted);
+        font-size: var(--text-xs);
+        font-variant-numeric: tabular-nums;
+        text-decoration: none;
+        opacity: 0.45;
+    }
+    .block-id::before { content: "#"; }
+    .block-id:hover { color: var(--accent); opacity: 1; text-decoration: none; }
+    .block:target > .block-id { color: var(--accent); opacity: 1; }
+
+    /* External-link arrow — mask-image so the icon picks up the
+     * link's currentColor without dark/light SVG variants. */
+    main section.block a[href^="http://"]::after,
+    main section.block a[href^="https://"]::after {
+        content: "";
+        display: inline-block;
+        width: 0.85em;
+        height: 0.85em;
+        margin-left: 0.3em;
+        vertical-align: -0.05em;
+        background-color: currentColor;
+        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='black'><path stroke-linecap='round' stroke-linejoin='round' d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'/></svg>") no-repeat center / contain;
+                mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='black'><path stroke-linecap='round' stroke-linejoin='round' d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'/></svg>") no-repeat center / contain;
+    }
+
+    /* Markdown-rendered tables inside the article body. */
+    main table {
+        border-collapse: collapse;
+        margin: var(--space-4) 0;
+        font-size: var(--text-sm);
+        line-height: var(--leading-snug);
+    }
+    main table th,
+    main table td {
+        border: 1px solid var(--border-muted);
+        padding: var(--space-2) var(--space-3);
+        text-align: left;
+        vertical-align: top;
+    }
+    main table th {
+        background: var(--bg-subtle);
+        font-weight: var(--weight-semibold);
+    }
+    main table tbody tr:nth-child(even) td { background: var(--bg-subtle); }
+}

@@ -1,0 +1,11 @@
+@layer components {
+    .breadcrumb {
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-5);
+    }
+    .breadcrumb a { color: var(--fg-muted); }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 var(--space-2); }
+    .breadcrumb .current { color: var(--fg); }
+}

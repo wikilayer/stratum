@@ -1,0 +1,40 @@
+/* Tiny helpers for one-off needs — nothing here belongs anywhere else
+ * but the rules are too small to grow into their own component. */
+
+@layer utilities {
+    .muted { color: var(--fg-muted); }
+    .empty { color: var(--fg-muted); font-style: italic; }
+    .inline-form { display: inline; }
+    .stack > * + * { margin-top: var(--space-4); }
+
+    /* Horizontal sibling row with gap. Default for button-rows,
+     * actions, and any wrap-friendly inline cluster. */
+    .cluster {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        align-items: center;
+    }
+
+    /* Text-alignment utilities, Bootstrap-style. Apply on the element
+     * whose inline content needs centring; do NOT slap them on a
+     * whole panel that contains a form (inputs inherit text-align). */
+    .text-center { text-align: center; }
+    .text-left   { text-align: left;   }
+    .text-right  { text-align: right;  }
+
+    /* Small muted paragraph for disclaimers, fine-print under a form
+     * or CTA, etc. Pure typography — page CSS handles where it sits.
+     * Inline links inherit the muted colour and gain an underline so
+     * they read as in-text references rather than full-weight CTAs. */
+    .fine-print {
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+        line-height: 1.5;
+    }
+    .fine-print a {
+        color: inherit;
+        text-decoration: underline;
+    }
+    .fine-print a:hover { color: var(--fg); }
+}

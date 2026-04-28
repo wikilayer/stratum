@@ -1,0 +1,40 @@
+/* Bordered surface for grouped content. Pair with .card-grid for a
+ * responsive grid of equal cards (home/owner wiki lists, future
+ * "members" / "create wiki" CTAs). Add .card-link when the whole
+ * card is one clickable link — it gets the flex-row layout and the
+ * accent border on hover. */
+
+@layer components {
+    .card {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-md);
+        padding: var(--space-4);
+        transition: border-color var(--duration-fast) var(--easing-out);
+    }
+
+    .card-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--space-4);
+    }
+
+    /* When the entire card is a link: the <a> wears .card.card-link
+     * directly. Layout becomes a flex row (icon + label), the colour
+     * follows the link, and hover swaps the border to accent. */
+    a.card-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--fg);
+        font-weight: var(--weight-semibold);
+    }
+    a.card-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        text-decoration: none;
+    }
+}

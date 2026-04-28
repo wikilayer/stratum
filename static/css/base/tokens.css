@@ -1,0 +1,181 @@
+/* Design-system tokens. Anything new (colour / spacing / radius) lives
+ * here FIRST and is referenced via var(--…) elsewhere. Hardcoded
+ * values in component rules are a smell — extend the tokens instead. */
+
+@layer tokens {
+    :root {
+        /* Colour — semantic, themed. */
+        --bg:           #ffffff;
+        --bg-elevated:  #ffffff;          /* cards, dropdowns */
+        --bg-subtle:    #f6f8fa;          /* code-block, table-stripe */
+        --bg-hover:     #eef0f3;
+        --bg-active:    #dfe2e5;
+
+        --fg:           #1f2328;
+        --fg-muted:     #59636e;
+        --fg-subtle:    #818b97;
+        --fg-on-accent: #ffffff;
+
+        --border:       #d0d7de;
+        --border-muted: #e1e4e8;
+
+        --accent:       #0969da;
+        --accent-hover: #0860c8;
+        --accent-bg:    #ddf4ff;
+
+        --danger:       #cf222e;
+        --danger-hover: #a40e26;
+        --danger-bg:    #ffebe9;
+        --danger-fg:    #82071e;
+
+        --success-bg:     #dafbe1;
+        --success-fg:     #116329;
+        --success-border: #aceebb;
+
+        --code-bg:      #f6f8fa;
+        --code-fg:      #1f2328;
+
+        --header-bg:    #ffffffe6;        /* translucent for blur backdrop */
+
+        /* GitHub callout palette — instantly recognisable. */
+        --callout-note:      #0969da;
+        --callout-tip:       #1f883d;
+        --callout-important: #8250df;
+        --callout-warning:   #9a6700;
+        --callout-caution:   #cf222e;
+
+        /* Typography — body 17px on 16px-rem html for a measured nudge.
+         * Heading scale ≈1.25 ratio, semibold weight. */
+        --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                     "Inter", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: ui-monospace, "SF Mono", "SFMono-Regular",
+                     "Menlo", "Monaco", "Cascadia Mono",
+                     "Roboto Mono", Consolas, monospace;
+
+        --text-xs:   0.8125rem;           /* 13px */
+        --text-sm:   0.9375rem;           /* 15px */
+        --text-base: 1.0625rem;           /* 17px — body */
+        --text-lg:   1.1875rem;           /* 19px */
+        --text-xl:   1.375rem;            /* 22px */
+        --text-2xl:  1.625rem;            /* 26px */
+        --text-3xl:  2rem;                /* 32px */
+        --text-4xl:  2.375rem;            /* 38px */
+
+        --leading-tight:  1.25;
+        --leading-snug:   1.4;
+        --leading-normal: 1.6;
+
+        --weight-regular:  400;
+        --weight-medium:   500;
+        --weight-semibold: 600;
+        --weight-bold:     700;
+
+        /* Spacing — 4-step ratio in rem so user zoom scales it. */
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.5rem;
+        --space-6: 2rem;
+        --space-7: 3rem;
+        --space-8: 4rem;
+
+        --radius-sm:   4px;
+        --radius-md:   6px;
+        --radius-lg:  10px;
+        --radius-pill: 999px;
+
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+        --shadow-md: 0 6px 18px rgba(0,0,0,0.10);
+
+        --header-h:    56px;
+        --aside-w:     240px;
+        --content-max: 1100px;
+
+        --duration-fast: 120ms;
+        --easing-out:    cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    html[data-theme="dark"] {
+        --bg:           #0d1117;
+        --bg-elevated:  #161b22;
+        --bg-subtle:    #161b22;
+        --bg-hover:     #1f242b;
+        --bg-active:    #30363d;
+
+        --fg:           #e6edf3;
+        --fg-muted:     #9198a1;
+        --fg-subtle:    #6e7681;
+
+        --border:       #30363d;
+        --border-muted: #21262d;
+
+        --accent:       #4493f8;
+        --accent-hover: #58a6ff;
+        --accent-bg:    #0c2d6b;
+
+        --danger:       #f85149;
+        --danger-hover: #ff6a5c;
+        --danger-bg:    #311419;
+        --danger-fg:    #ff7b72;
+
+        --success-bg:     #033a16;
+        --success-fg:     #aff5b4;
+        --success-border: #2ea043;
+
+        --code-bg:      #161b22;
+        --code-fg:      #e6edf3;
+
+        --header-bg:    #0d1117e6;
+
+        --callout-note:      #58a6ff;
+        --callout-tip:       #3fb950;
+        --callout-important: #a371f7;
+        --callout-warning:   #d29922;
+        --callout-caution:   #f85149;
+
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.40);
+        --shadow-md: 0 6px 18px rgba(0,0,0,0.50);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        html:not([data-theme]) {
+            --bg:           #0d1117;
+            --bg-elevated:  #161b22;
+            --bg-subtle:    #161b22;
+            --bg-hover:     #1f242b;
+            --bg-active:    #30363d;
+
+            --fg:           #e6edf3;
+            --fg-muted:     #9198a1;
+            --fg-subtle:    #6e7681;
+
+            --border:       #30363d;
+            --border-muted: #21262d;
+
+            --accent:       #4493f8;
+            --accent-hover: #58a6ff;
+            --accent-bg:    #0c2d6b;
+
+            --danger:       #f85149;
+            --danger-hover: #ff6a5c;
+            --danger-bg:    #311419;
+            --danger-fg:    #ff7b72;
+
+            --success-bg:     #033a16;
+            --success-fg:     #aff5b4;
+            --success-border: #2ea043;
+
+            --code-bg:      #161b22;
+            --code-fg:      #e6edf3;
+
+            --header-bg:    #0d1117e6;
+
+            --callout-note:      #58a6ff;
+            --callout-tip:       #3fb950;
+            --callout-important: #a371f7;
+            --callout-warning:   #d29922;
+            --callout-caution:   #f85149;
+        }
+    }
+}

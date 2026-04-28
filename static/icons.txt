@@ -1,0 +1,27 @@
+# Icons baked into web/static/icons.svg. One per line:
+#   <name>            — fetched from Lucide.
+#   <name> | <url>    — fetched from any URL. Use for brand icons
+#                       Lucide doesn't ship (github, etc.).
+# After editing, run:  make icons-sync
+# Lines starting with # and empty lines are ignored.
+
+lock
+globe
+info
+lightbulb
+triangle-alert
+octagon-alert
+circle-alert
+square-arrow-out-up-right
+copy
+sun
+moon
+monitor
+history
+settings
+archive
+chevron-down
+eye
+
+# Brand icons — Simple Icons (CC0).
+github | https://cdn.jsdelivr.net/npm/simple-icons/icons/github.svg

@@ -1,0 +1,211 @@
+/* Form primitives. .form-layout is a generic two-column form (left:
+ * field stack + actions, right: optional sidebar slot). .row is the
+ * label-on-top + value-or-input shape that works for both editable
+ * and read-only fields. */
+
+@layer components {
+    .form-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 200px;
+        gap: var(--space-7);
+        align-items: start;
+        margin-top: var(--space-5);
+    }
+    .form-layout-main {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+        max-width: 520px;
+    }
+    .form-layout-aside {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+    .form-actions {
+        margin-top: var(--space-2);
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        text-align: left;
+    }
+    .row-label {
+        font-weight: var(--weight-semibold);
+        font-size: var(--text-base);
+        color: var(--fg);
+    }
+    .row-value {
+        margin: 0;
+        font-size: var(--text-base);
+        color: var(--fg);
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+    .row-value .icon { width: 1em; height: 1em; }
+
+    /* Read-only fact list — `Label: value` inline. Labels are dimmed,
+     * values keep the body color. Used on the settings page for
+     * email, id, account-created, and provider. */
+    .row-inline-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        margin: 0;
+    }
+    .row-inline {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-2);
+        font-size: var(--text-base);
+    }
+    .row-inline dt {
+        color: var(--fg-muted);
+        font-weight: var(--weight-medium);
+    }
+    .row-inline dd {
+        margin: 0;
+        color: var(--fg);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+    .row-inline dd .icon { width: 1em; height: 1em; }
+
+    .row input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
+    .row input:not([type]),
+    .row select,
+    .field input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
+    .field input:not([type]),
+    .field select,
+    .input {
+        padding: var(--space-2) var(--space-3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: var(--bg);
+        color: var(--fg);
+        font: inherit;
+        transition: border-color var(--duration-fast) var(--easing-out),
+                    box-shadow var(--duration-fast) var(--easing-out);
+    }
+    .row input:focus,
+    .row select:focus,
+    .field input:focus,
+    .field select:focus,
+    .input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-bg);
+    }
+
+    /* Custom <select> chevron — the native macOS / Chrome chevron is
+     * glued to the right edge with no breathing room. We hide it
+     * (`appearance:none`) and paint our own from two diagonal gradient
+     * stripes; that way the chevron colour follows the CSS variable
+     * (theme-aware) without juggling SVG data-URLs. */
+    .row select,
+    .field select {
+        appearance: none;
+        -webkit-appearance: none;
+        padding-right: calc(var(--space-3) * 2 + 0.5em);
+        background-image:
+            linear-gradient(45deg, transparent 50%, var(--fg-muted) 50%),
+            linear-gradient(135deg, var(--fg-muted) 50%, transparent 50%);
+        background-position:
+            right calc(var(--space-3) + 0.32em) center,
+            right var(--space-3) center;
+        background-size: 0.32em 0.32em;
+        background-repeat: no-repeat;
+    }
+
+    /* .choice-group — fieldset of mutually-exclusive radios where each
+     * option is a clickable card with an icon, a name, and a short
+     * description. Used on /manage for visibility, can be used for any
+     * "pick one with explanation" form. Selected option lifts via
+     * :has(input:checked). Falls back to a plain look on browsers
+     * without :has(), still functional. */
+    .choice-group {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+    .choice-group legend {
+        margin-bottom: var(--space-2);
+        padding: 0;
+    }
+    .choice {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        column-gap: var(--space-3);
+        row-gap: 0;
+        align-items: center;
+        padding: var(--space-3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: border-color var(--duration-fast) var(--easing-out),
+                    background var(--duration-fast) var(--easing-out);
+    }
+    .choice:hover {
+        background: var(--bg-hover);
+    }
+    .choice:has(input:checked) {
+        border-color: var(--accent);
+        background: var(--accent-bg);
+    }
+    .choice > input[type="radio"] {
+        grid-row: 1 / span 2;
+        margin: 0;
+        accent-color: var(--accent);
+    }
+    .choice > .icon {
+        grid-row: 1 / span 2;
+        width: 20px;
+        height: 20px;
+        color: var(--fg-muted);
+    }
+    .choice:has(input:checked) > .icon {
+        color: var(--accent);
+    }
+    .choice-name {
+        font-weight: var(--weight-semibold);
+        color: var(--fg);
+    }
+    .choice-desc {
+        font-size: var(--text-sm);
+        color: var(--fg-muted);
+    }
+
+    /* Compact alternative to .row used when the field doesn't share
+     * a column with read-only siblings. */
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        margin-bottom: var(--space-4);
+        max-width: 460px;
+        text-align: left;
+    }
+    .field-label {
+        font-size: var(--text-sm);
+        font-weight: var(--weight-medium);
+        color: var(--fg-muted);
+    }
+
+    @media (max-width: 720px) {
+        .form-layout {
+            grid-template-columns: 1fr;
+            gap: var(--space-5);
+        }
+        .form-layout-aside {
+            order: -1;
+            align-items: flex-start;
+        }
+    }
+}

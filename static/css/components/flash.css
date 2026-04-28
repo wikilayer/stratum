@@ -1,0 +1,24 @@
+/* One-shot success banner shown via ?flash=<i18n key> on redirect. */
+
+@layer components {
+    .flash {
+        background: var(--success-bg);
+        color: var(--success-fg);
+        border: 1px solid var(--success-border);
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-5);
+        font-size: var(--text-sm);
+    }
+
+    /* Inline icon — used in callouts, button content, headers. Size
+     * tracks current font-size; colour follows currentColor via the
+     * SVG sprite's stroke="currentColor". */
+    .icon {
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        vertical-align: -0.15em;
+        display: inline-block;
+    }
+}

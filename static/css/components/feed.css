@@ -1,0 +1,70 @@
+/* Feed — flat list of timestamped activity entries with an actor
+ * avatar, a coloured action tag, and a target label. Used by the
+ * wiki-level edit history; reusable for any "what happened, when,
+ * who, on what" timeline. */
+
+@layer components {
+    .feed {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .feed-item {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-3);
+        padding: var(--space-3) 0;
+        border-bottom: 1px solid var(--border-muted);
+        font-size: var(--text-sm);
+    }
+    .feed-time {
+        color: var(--fg-muted);
+        white-space: nowrap;
+        min-width: 8em;
+    }
+    .feed-actor {
+        flex-shrink: 0;
+        line-height: 0;
+    }
+    .feed-action {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 1px var(--space-2);
+        border-radius: var(--radius-sm);
+        white-space: nowrap;
+    }
+    /* Action variants keyed by the operation label the data carries —
+     * here that's the Postgres trigger op (INSERT/UPDATE/DELETE). The
+     * .feed-action wrapper is generic; the suffix matches whatever
+     * label the caller wants to colour. */
+    .feed-action-INSERT {
+        background: var(--success-bg);
+        color: var(--success-fg);
+    }
+    .feed-action-UPDATE {
+        background: var(--bg-active);
+        color: var(--fg-muted);
+    }
+    .feed-action-DELETE {
+        background: var(--danger-bg);
+        color: var(--danger-fg);
+    }
+    .feed-target {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    /* Target whose underlying object no longer exists (e.g. a deleted
+     * page). Not a link — clicking it would land on a dead URL. */
+    .feed-target-gone {
+        color: var(--fg-muted);
+        text-decoration: line-through;
+        text-decoration-color: var(--fg-muted);
+    }
+    .feed-more {
+        margin-top: var(--space-5);
+        text-align: center;
+    }
+}

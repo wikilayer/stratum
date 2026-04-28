@@ -1,0 +1,55 @@
+/* Right-rail widgets on a wiki page: TOC + Recent edits. */
+
+@layer components {
+    .content > aside h3 {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--fg-muted);
+        margin: 0 0 var(--space-3) 0;
+        font-weight: var(--weight-semibold);
+    }
+    .content > aside ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
+
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc ul ul { padding-left: var(--space-3); margin-bottom: 0; }
+    .toc-link {
+        display: block;
+        font-size: var(--text-sm);
+        line-height: 1.35;
+        color: var(--fg);
+        padding: var(--space-1) var(--space-2);
+        margin-left: calc(var(--space-2) * -1);
+        border-left: 2px solid transparent;
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .toc-link:hover { background: var(--bg-hover); text-decoration: none; }
+    .toc-link.active {
+        border-left-color: var(--accent);
+        color: var(--accent);
+        background: var(--bg-hover);
+    }
+
+    .recent li { border-radius: var(--radius-sm); }
+    .recent li:hover { background: var(--bg-hover); }
+    .recent a {
+        display: block;
+        padding: var(--space-1) var(--space-2);
+        color: var(--fg);
+    }
+    .recent a:hover { text-decoration: none; }
+    .recent .title {
+        display: block;
+        font-size: var(--text-sm);
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .recent .time {
+        display: block;
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+        margin-top: 1px;
+    }
+}

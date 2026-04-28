@@ -1,0 +1,22 @@
+/* Code/URL block + Copy button row. Used by /settings tokens (when it
+ * existed) and the empty-home MCP onboarding card. */
+
+@layer components {
+    .url-pill {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-md);
+        margin: var(--space-3) 0;
+    }
+    .url-pill code {
+        flex: 1;
+        background: transparent;
+        padding: 0;
+        font-size: var(--text-sm);
+        overflow-wrap: anywhere;
+    }
+}

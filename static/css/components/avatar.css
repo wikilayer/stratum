@@ -1,0 +1,40 @@
+/* User avatar — ONE component for every surface. Default size is the
+ * 30px header chip; `.avatar-lg` enlarges it to 160px for the profile
+ * page. The same neutral palette (bg-active background, fg text)
+ * applies whether the avatar is an <img> (Gravatar) or a <span> with
+ * initials, so it reads as the same chip everywhere on the site. */
+
+@layer components {
+    .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--bg-active);
+        color: var(--fg);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        flex-shrink: 0;
+        font-size: var(--text-xs);
+        font-weight: var(--weight-semibold);
+        letter-spacing: -0.02em;
+        line-height: 1;
+    }
+
+    /* Gravatar variant — <img> tag uses the same .avatar class so the
+     * border-radius / overflow rules apply uniformly. object-fit
+     * keeps non-square sources from squishing. */
+    img.avatar {
+        background: transparent;
+        object-fit: cover;
+    }
+
+    /* Size modifiers. Font-size scales with the circle so initials
+     * look balanced at every size. */
+    .avatar-lg {
+        width: 160px;
+        height: 160px;
+        font-size: 3.75rem;
+    }
+}

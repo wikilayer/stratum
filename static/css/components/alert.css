@@ -1,0 +1,24 @@
+/* Alerts — single-line / short-block messages. Variants share the
+ * shape and differ only by colour role: success (green), error
+ * (red), warning (amber), info (neutral muted). See /design-system
+ * for the available variants. */
+
+@layer components {
+    .alert {
+        padding: var(--space-2) var(--space-3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-3);
+        text-align: left;
+    }
+    .alert-error {
+        border-color: var(--danger, var(--accent));
+        color: var(--danger, var(--accent));
+    }
+    .alert-success {
+        background: var(--success-bg);
+        color: var(--success-fg);
+        border-color: var(--success-border);
+    }
+}
