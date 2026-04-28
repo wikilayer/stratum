@@ -10,6 +10,13 @@
         gap: var(--space-3);
         align-items: center;
     }
+    /* Spread modifier — children pushed to the ends. Pair with
+     * .cluster on a header that holds a title on one side and an
+     * action on the other. */
+    .cluster-spread { justify-content: space-between; }
+    /* Baseline-align modifier — items sit on a shared text baseline
+     * (good for "heading + button" rows where heading is taller). */
+    .cluster-baseline { align-items: baseline; }
 
     .text-center { text-align: center; }
     .text-left   { text-align: left;   }
