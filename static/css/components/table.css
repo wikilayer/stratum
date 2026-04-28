@@ -37,4 +37,30 @@
     .meta dt { color: var(--fg-muted); font-weight: var(--weight-medium); }
     .meta dd { margin: 0; display: flex; align-items: center; gap: var(--space-2); }
     .meta dd .icon { width: 1.1em; height: 1.1em; }
+
+    /* Flex-row list — <ul> rendered as a framed stack of horizontal
+     * rows separated by thin dividers. Each item is a flex row that
+     * can hold avatar / label / meta / actions. Use for member lists,
+     * activity rows, and other "tabular but not <table>" displays. */
+    .row-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+    }
+    .row-list-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 1px solid var(--border-muted);
+    }
+    .row-list-item:last-child { border-bottom: 0; }
+    .row-list-item-meta {
+        margin-left: auto;
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+    }
 }

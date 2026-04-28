@@ -52,4 +52,10 @@
         vertical-align: -0.15em;
         display: inline-block;
     }
+
+    /* Cap on a standalone block's width — matches the form column.
+     * No centring, no flex layer, just a ceiling. Use to keep a
+     * non-form section (members list, fact panel, etc.) from
+     * stretching to the full main column on wide screens. */
+    .measure { max-width: 32em; }
 }
