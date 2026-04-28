@@ -69,7 +69,7 @@ Highlights:
 Sits above tokens, below components. Three files:
 
 - `reset.css` — `box-sizing: border-box`, zero default margins on text blocks, `font: inherit` on form controls, `display: block` on media. Nothing more.
-- `typography.css` — body font, six heading levels with a 1.25-ratio scale, paragraphs with bottom margin, `<code>`/`<pre>`/`<blockquote>`. h1 and h2 carry a thin baseline underline (Wikipedia / MDN convention); components that want clean headings (`.page-head`) drop it locally.
+- `typography.css` — body font, six heading levels with a 1.25-ratio scale, paragraphs with bottom margin, `<code>`/`<pre>`/`<blockquote>`. Headings are clean by default; opt into the Wikipedia / MDN baseline rule per element with `.h-rule`, or globally inside an `<article>`.
 - `layout.css` — page chrome (sticky `body > header`, `.brand`, `.content` frame, optional `<aside>` rail). Plus reusable column primitives (`.column*`) and `.split` for two-column pages.
 
 ## Layout primitives
@@ -251,7 +251,8 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.cluster`       | horizontal flex with gap and wrap |
 | `.inline-form`   | `display: inline` for inline POST forms |
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
-| `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>` |
+| `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>`. Applies automatically to all `h1`/`h2` inside an `<article>` so rendered markdown gets the rule for free |
+| `.eyebrow`       | small uppercase muted label — sidebar section titles, dropdown labels, and other "small caps over a list" places |
 
 ## Icons
 

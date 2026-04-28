@@ -23,12 +23,24 @@
     .fine-print a { color: inherit; text-decoration: underline; }
     .fine-print a:hover { color: var(--fg); }
 
-    /* Heading underline modifier. Apply to a heading that should wear
-     * a thin baseline rule (Wikipedia / MDN convention). Plain h1/h2
-     * stay clean by default. */
-    .h-rule {
+    /* Heading rule. Opt-in baseline border for a heading (Wikipedia /
+     * MDN look) — applied per-element, or globally to long-form prose
+     * inside an <article>. */
+    .h-rule,
+    article > h1,
+    article > h2 {
         padding-bottom: var(--space-2);
         border-bottom: 1px solid var(--border);
+    }
+
+    /* Small uppercase label — sidebar section titles, dropdown labels,
+     * etc. */
+    .eyebrow {
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--fg-muted);
+        font-weight: var(--weight-semibold);
     }
 
     /* Inline icon — 1em square, follows currentColor via the SVG

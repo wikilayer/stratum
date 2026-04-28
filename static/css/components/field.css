@@ -40,7 +40,6 @@
         align-items: center;
         gap: var(--space-2);
     }
-    .row-value .icon { width: 1em; height: 1em; }
 
     /* Read-only fact list — `Label: value` inline. Labels are dimmed,
      * values keep the body color. Used on the settings page for
@@ -68,7 +67,6 @@
         align-items: center;
         gap: var(--space-2);
     }
-    .row-inline dd .icon { width: 1em; height: 1em; }
 
     .row input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
     .row input:not([type]),

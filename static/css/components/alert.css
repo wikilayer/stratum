@@ -8,8 +8,8 @@
         text-align: left;
     }
     .alert-error {
-        border-color: var(--danger, var(--accent));
-        color: var(--danger, var(--accent));
+        border-color: var(--danger);
+        color: var(--danger);
     }
     .alert-success {
         background: var(--success-bg);

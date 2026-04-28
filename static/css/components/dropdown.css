@@ -47,13 +47,7 @@
         border-top: 1px solid var(--border-muted);
         padding: var(--space-3) var(--space-4);
     }
-    .dropdown-section .label {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--fg-muted);
-        margin-bottom: var(--space-2);
-    }
+    .dropdown-section .label { margin-bottom: var(--space-2); }
 
     .segmented {
         display: flex;

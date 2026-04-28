@@ -1,12 +1,5 @@
 @layer components {
-    .content > aside h3 {
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--fg-muted);
-        margin: 0 0 var(--space-3) 0;
-        font-weight: var(--weight-semibold);
-    }
+    .content > aside h3 { margin: 0 0 var(--space-3) 0; }
     .content > aside ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
 
     .toc ul { list-style: none; padding: 0; margin: 0; }

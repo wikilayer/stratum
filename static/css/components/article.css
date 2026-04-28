@@ -1,13 +1,4 @@
 @layer components {
-    /* Long-form <article> body — rendered prose carries the
-     * Wikipedia/MDN baseline rule on h1/h2 without needing a class
-     * on each heading (markdown emits plain <h1>/<h2>). */
-    article > h1,
-    article > h2 {
-        padding-bottom: var(--space-2);
-        border-bottom: 1px solid var(--border);
-    }
-
     .block {
         position: relative;
         scroll-margin-top: calc(var(--header-h) + var(--space-3));
@@ -30,8 +21,8 @@
 
     /* External-link arrow — mask-image so the icon picks up the
      * link's currentColor without dark/light SVG variants. */
-    main section.block a[href^="http://"]::after,
-    main section.block a[href^="https://"]::after {
+    section.block a[href^="http://"]::after,
+    section.block a[href^="https://"]::after {
         content: "";
         display: inline-block;
         width: 0.85em;
@@ -43,23 +34,23 @@
                 mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='black'><path stroke-linecap='round' stroke-linejoin='round' d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'/></svg>") no-repeat center / contain;
     }
 
-    /* Markdown-rendered tables inside the article body. */
-    main table {
+    /* Markdown-rendered tables inside an <article> body. */
+    article table {
         border-collapse: collapse;
         margin: var(--space-4) 0;
         font-size: var(--text-sm);
         line-height: var(--leading-snug);
     }
-    main table th,
-    main table td {
+    article table th,
+    article table td {
         border: 1px solid var(--border-muted);
         padding: var(--space-2) var(--space-3);
         text-align: left;
         vertical-align: top;
     }
-    main table th {
+    article table th {
         background: var(--bg-subtle);
         font-weight: var(--weight-semibold);
     }
-    main table tbody tr:nth-child(even) td { background: var(--bg-subtle); }
+    article table tbody tr:nth-child(even) td { background: var(--bg-subtle); }
 }
