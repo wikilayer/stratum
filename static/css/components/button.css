@@ -63,6 +63,20 @@
         font-size: var(--text-xs);
     }
 
+    /* × dismiss button — close modals, clear a selection chip,
+     * dismiss a toast, etc. Plain background, big × glyph, picks up
+     * fg colour on hover. */
+    .button-close {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        color: var(--fg-muted);
+        font-size: var(--text-xl);
+        line-height: 1;
+    }
+    .button-close:hover { color: var(--fg); }
+
     /* Specialised compact button used inside .url-pill. Different
      * shape (smaller, success-tinted on confirmation) than the
      * primary button shape, so its own component. */

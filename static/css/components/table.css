@@ -63,4 +63,33 @@
         color: var(--fg-muted);
         font-size: var(--text-sm);
     }
+    /* Two-line label inside a row — primary text + small muted
+     * secondary line beneath it (e.g. display name + email).
+     * Wrap the two <span>s in .row-list-item-body. */
+    .row-list-item-body {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+    .row-list-item-secondary {
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+    }
+
+    /* Floating modifier — pulls the list out of normal flow and pins
+     * it just below its (positioned) parent, so an autocomplete list
+     * doesn't push the rest of the form down when results appear.
+     * Capped + scrollable so a long list never overlaps the action
+     * row beneath it. */
+    .row-list-floating {
+        position: absolute;
+        top: calc(100% + var(--space-1));
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background: var(--bg-elevated);
+        box-shadow: var(--shadow-md);
+        max-height: 22em;
+        overflow-y: auto;
+    }
 }

@@ -354,7 +354,7 @@
       <dialog id="ds-modal-demo" class="modal">
         <header class="modal-header">
           <p class="modal-title">Add member</p>
-          <button class="modal-close" data-modal-close aria-label="Close">×</button>
+          <button class="button-close" data-modal-close aria-label="Close">×</button>
         </header>
         <div class="modal-body">
           <div class="row">
@@ -373,6 +373,50 @@
         <footer class="modal-footer">
           <button class="button" data-modal-close>Cancel</button>
           <button class="button button-primary" data-modal-close>Add</button>
+        </footer>
+      </dialog>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Live autocomplete inside a modal — fake in-memory data, no backend. Floating result list (<code>.row-list-floating</code> on a <code>.row-floating</code> parent) appears only while the input is focused. Row layout is supplied via a <code>&lt;template&gt;</code> tag in the HTML, with <code>[data-slot]</code> attributes marking where each field lands and <code>[data-highlight]</code> marking which fields to wrap in <code>&lt;mark&gt;</code> against the search query. Same JS, any layout. The demo picks a city from a generic list.</p>
+      <button class="button button-primary" data-modal-open="ds-autocomplete-demo">Open autocomplete</button>
+
+      <template id="ds-ac-row">
+        <li class="row-list-item">
+          <span class="avatar" data-slot="initials"></span>
+          <div class="row-list-item-body">
+            <span data-slot="title" data-highlight></span>
+            <span class="row-list-item-secondary" data-slot="subtitle" data-highlight></span>
+          </div>
+        </li>
+      </template>
+
+      <template id="ds-ac-selected-row">
+        <li class="row-list-item">
+          <span class="avatar" data-slot="initials"></span>
+          <div class="row-list-item-body">
+            <span data-slot="title"></span>
+            <span class="row-list-item-secondary" data-slot="subtitle"></span>
+          </div>
+          <button type="button" class="button-close ml-auto" data-clear aria-label="Clear">×</button>
+        </li>
+      </template>
+
+      <dialog id="ds-autocomplete-demo" class="modal">
+        <header class="modal-header">
+          <p class="modal-title">Pick a city</p>
+          <button class="button-close" data-modal-close aria-label="Close">×</button>
+        </header>
+        <div class="modal-body">
+          <div class="row row-floating">
+            <input type="text" id="ds-ac-search" autocomplete="off" placeholder="Search a city…">
+            <ul class="row-list row-list-floating" id="ds-ac-results" hidden></ul>
+          </div>
+          <ul class="row-list" id="ds-ac-selected" hidden></ul>
+        </div>
+        <footer class="modal-footer">
+          <button class="button" data-modal-close>Cancel</button>
+          <button class="button button-primary" id="ds-ac-use" data-modal-close disabled>Use</button>
         </footer>
       </dialog>
     </div>
@@ -522,6 +566,152 @@
       document.documentElement.dataset.theme = r.id === 'ds-theme-light' ? 'light' : 'dark';
     });
   });
+
+  // Autocomplete demo — generic <template>-driven row rendering, fake
+  // in-memory data, no backend.
+  (function () {
+    var cities = [
+      { initials: 'TK', title: 'Tokyo',        subtitle: 'Japan' },
+      { initials: 'BL', title: 'Berlin',       subtitle: 'Germany' },
+      { initials: 'MD', title: 'Madrid',       subtitle: 'Spain' },
+      { initials: 'PR', title: 'Paris',        subtitle: 'France' },
+      { initials: 'LD', title: 'London',       subtitle: 'United Kingdom' },
+      { initials: 'NY', title: 'New York',     subtitle: 'United States' },
+      { initials: 'BA', title: 'Buenos Aires', subtitle: 'Argentina' },
+      { initials: 'SY', title: 'Sydney',       subtitle: 'Australia' },
+      { initials: 'CT', title: 'Cape Town',    subtitle: 'South Africa' },
+      { initials: 'IS', title: 'Istanbul',     subtitle: 'Turkey' }
+    ];
+    var input        = document.getElementById('ds-ac-search');
+    var results      = document.getElementById('ds-ac-results');
+    var selectedList = document.getElementById('ds-ac-selected');
+    var useBtn       = document.getElementById('ds-ac-use');
+    var rowTpl       = document.getElementById('ds-ac-row');
+    var selectedTpl  = document.getElementById('ds-ac-selected-row');
+    if (!input) return;
+
+    var minChars = 1;
+    var timer = null, hideTimer = null;
+
+    // Wrap occurrences of q inside text with <mark>. Case-insensitive,
+    // safe against angle-brackets in the source.
+    function highlight(text, q) {
+        var safe = String(text).replace(/[&<>]/g, function (c) {
+            return c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;';
+        });
+        if (!q) return safe;
+        var idx = safe.toLowerCase().indexOf(q.toLowerCase());
+        if (idx < 0) return safe;
+        return safe.slice(0, idx) +
+               '<mark>' + safe.slice(idx, idx + q.length) + '</mark>' +
+               safe.slice(idx + q.length);
+    }
+
+    // Clone a <template>'s content and fill its [data-slot] elements
+    // from data. Slots with [data-highlight] get highlight-wrapped
+    // against q (only meaningful for result rows).
+    function instantiate(tpl, data, q) {
+        var node = tpl.content.cloneNode(true);
+        node.querySelectorAll('[data-slot]').forEach(function (el) {
+            var key = el.dataset.slot;
+            var val = data[key];
+            if (val == null) return;
+            if ('highlight' in el.dataset) {
+                el.innerHTML = highlight(val, q);
+            } else {
+                el.textContent = String(val);
+            }
+        });
+        return node;
+    }
+
+    function hidePopover() { results.hidden = true; results.innerHTML = ''; }
+
+    function showSelected(data) {
+        selectedList.innerHTML = '';
+        var node = instantiate(selectedTpl, data, '');
+        node.querySelectorAll('[data-clear]').forEach(function (btn) {
+            btn.addEventListener('click', clearSelected);
+        });
+        selectedList.appendChild(node);
+        selectedList.hidden = false;
+        input.hidden = true;
+        useBtn.disabled = false;
+        hidePopover();
+    }
+
+    function clearSelected() {
+        selectedList.hidden = true;
+        selectedList.innerHTML = '';
+        input.hidden = false;
+        input.value = '';
+        useBtn.disabled = true;
+        input.focus();
+    }
+
+    function render(hits, q) {
+        results.innerHTML = '';
+        if (hits.length === 0) {
+            var empty = document.createElement('li');
+            empty.className = 'row-list-item muted';
+            empty.textContent = 'No matches.';
+            results.appendChild(empty);
+            return;
+        }
+        hits.forEach(function (data) {
+            var node = instantiate(rowTpl, data, q);
+            var li = node.querySelector('.row-list-item');
+            li.style.cursor = 'pointer';
+            // mousedown fires before the input's blur, so the click
+            // is registered before the popover hides.
+            li.addEventListener('mousedown', function (e) {
+                e.preventDefault();
+                showSelected(data);
+            });
+            results.appendChild(node);
+        });
+    }
+
+    function search(q) {
+        if (q.length < minChars) {
+            hidePopover();
+            return;
+        }
+        var lower = q.toLowerCase();
+        var hits = cities.filter(function (c) {
+            return c.title.toLowerCase().indexOf(lower) !== -1 ||
+                   c.subtitle.toLowerCase().indexOf(lower) !== -1;
+        });
+        render(hits.slice(0, 8), q);
+        results.hidden = false;
+    }
+
+    input.addEventListener('input', function () {
+        useBtn.disabled = true;
+        clearTimeout(timer);
+        timer = setTimeout(function () { search(input.value.trim()); }, 200);
+    });
+    input.addEventListener('focus', function () {
+        clearTimeout(hideTimer);
+        search(input.value.trim());
+    });
+    input.addEventListener('blur', function () {
+        // delay so a click on a result row registers first
+        hideTimer = setTimeout(hidePopover, 150);
+    });
+
+    var dlg = document.getElementById('ds-autocomplete-demo');
+    if (dlg) {
+        dlg.addEventListener('close', function () {
+            input.value = '';
+            input.hidden = false;
+            selectedList.hidden = true;
+            selectedList.innerHTML = '';
+            hidePopover();
+            useBtn.disabled = true;
+        });
+    }
+  })();
 </script>
 
 </body>

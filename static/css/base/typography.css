@@ -90,6 +90,15 @@
         margin: var(--space-4) 0;
     }
 
+    /* Highlight — match-text inside autocomplete results, search hit
+     * snippets, etc. Use the accent tint instead of the browser's
+     * default yellow so it sits inside the theme. No padding —
+     * highlight must not shift surrounding glyphs. */
+    mark {
+        background: var(--accent-bg);
+        color: inherit;
+    }
+
     hr {
         border: 0;
         border-top: 1px solid var(--border);

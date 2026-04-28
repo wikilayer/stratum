@@ -65,4 +65,6 @@
      * non-form section (members list, fact panel, etc.) from
      * stretching to the full main column on wide screens. */
     .measure { max-width: 32em; }
+
+    .ml-auto { margin-left: auto; }
 }
