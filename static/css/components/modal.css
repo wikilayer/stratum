@@ -37,6 +37,7 @@
     .modal-close:hover { color: var(--fg); }
 
     .modal-body   { padding: var(--space-5); }
+    .modal-body > * + * { margin-top: var(--space-4); }
     .modal-footer {
         display: flex;
         justify-content: flex-end;
