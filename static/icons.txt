@@ -21,6 +21,7 @@ history
 settings
 archive
 chevron-down
+chevron-right
 eye
 ellipsis
 loader-circle

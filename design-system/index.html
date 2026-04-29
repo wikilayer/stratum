@@ -139,6 +139,7 @@
   <symbol id="settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" /> <circle cx="12" cy="12" r="3" /></symbol>
   <symbol id="archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1" /> <path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8" /> <path d="M10 12h4" /></symbol>
   <symbol id="chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></symbol>
+  <symbol id="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></symbol>
   <symbol id="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /> <circle cx="12" cy="12" r="3" /></symbol>
   <symbol id="ellipsis" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /> <circle cx="19" cy="12" r="1" /> <circle cx="5" cy="12" r="1" /></symbol>
   <symbol id="loader-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></symbol>
@@ -168,6 +169,7 @@
     <li><a href="#url-pill">Copy block</a></li>
     <li><a href="#page-head">Page header</a></li>
     <li><a href="#breadcrumb">Breadcrumb</a></li>
+    <li><a href="#aside-section">Aside section</a></li>
     <li><a href="#icons">Icons</a></li>
   </ul>
   <p class="ds-side-link">
@@ -610,6 +612,36 @@
     </div>
   </section>
 
+  <section class="ds-section" id="aside-section">
+    <h2>Aside section</h2>
+    <p>Collapsible sidebar block: <code>&lt;details class="aside-section"&gt;</code> wrapping a <code>&lt;summary class="aside-section-summary"&gt;</code> with an <code>.eyebrow</code> heading and chevron. Pair with <code>data-aside-section="NAME"</code> + <code>aside.js</code> to remember per-section open/closed state in a cookie. The server reads the cookie and stamps the <code>open</code> attribute at render time so there's no flash.</p>
+
+    <div class="ds-example" style="max-width: 280px">
+      <details class="aside-section" data-aside-section="ds-backlinks">
+        <summary class="aside-section-summary">
+          <h3 class="eyebrow">Links here</h3>
+          <svg class="icon" aria-hidden="true"><use href="#chevron-right"/></svg>
+        </summary>
+        <ul>
+          <li><a href="#">Background research</a></li>
+          <li><a href="#">Glossary entry</a></li>
+          <li><a href="#">Reading list — Q3</a></li>
+        </ul>
+      </details>
+      <details class="aside-section" data-aside-section="ds-toc" open>
+        <summary class="aside-section-summary">
+          <h3 class="eyebrow">Contents</h3>
+          <svg class="icon" aria-hidden="true"><use href="#chevron-right"/></svg>
+        </summary>
+        <ul>
+          <li><a href="#">First section</a></li>
+          <li><a href="#">Second section</a></li>
+          <li><a href="#">Third section</a></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
   <section class="ds-section" id="icons">
     <h2>Icons</h2>
     <p>From <code>static/icons.txt</code>. Run <code>make icons-sync</code> to fetch from Lucide / Simple Icons. Re-paste the resulting <code>&lt;symbol&gt;</code>s into the inline sprite at the top of this file when the manifest changes.</p>
@@ -640,6 +672,7 @@
 
 <script src="../static/modal.js" defer></script>
 <script src="../static/dropdown.js" defer></script>
+<script src="../static/aside.js" defer></script>
 <script>
   // Apply data-theme on <html> from the radio toggle. Tokens.css hangs
   // some variables off [data-theme="..."] selectors that can't be
