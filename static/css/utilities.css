@@ -67,4 +67,10 @@
     .measure { max-width: 32em; }
 
     .ml-auto { margin-left: auto; }
+
+    /* Spin in place. Pair with an icon for an in-progress indicator. */
+    .spin { animation: stratum-spin 1s linear infinite; }
+}
+@keyframes stratum-spin {
+    to { transform: rotate(360deg); }
 }
