@@ -35,11 +35,13 @@
     }
     /* .item works on both <a> and <button>. The button props peel
      * off UA defaults so the two render identically inside the
-     * panel. */
+     * panel. The left padding reserves room for the check-mark
+     * glyph so current and non-current items stay aligned. */
     .dropdown .item {
+        position: relative;
         display: block;
         width: 100%;
-        padding: var(--space-2) var(--space-4);
+        padding: var(--space-2) var(--space-4) var(--space-2) var(--space-7);
         color: var(--fg);
         font-size: var(--text-sm);
         background: transparent;
@@ -51,6 +53,17 @@
     .dropdown .item:hover {
         background: var(--bg-hover);
         text-decoration: none;
+    }
+    /* aria-current="true" → leading check. The space is already
+     * reserved on every item so toggling current doesn't shift
+     * the label. */
+    .dropdown .item[aria-current="true"]::before {
+        content: "✓";
+        position: absolute;
+        left: var(--space-3);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--fg-muted);
     }
     .dropdown-section {
         border-top: 1px solid var(--border-muted);

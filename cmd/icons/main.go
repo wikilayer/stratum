@@ -1,5 +1,16 @@
-// stratum/cmd/icons regenerates static/icons.svg from the manifest
-// at static/icons.txt.
+// stratum/cmd/icons regenerates static/icons.svg AND the inline
+// sprite block in design-system/index.html from the manifest at
+// static/icons.txt. One run rewrites both — they're guaranteed to
+// stay in sync.
+//
+// Why two outputs:
+//   - static/icons.svg is the production sprite consumers reference
+//     via <use href="/static/icons.svg#NAME"/>.
+//   - design-system/index.html opens via file:// when run via
+//     `make design-system`; <use href="../static/icons.svg#…"> is
+//     unreliable in Chromium under file://. The inline copy lives
+//     between <!-- inline-sprite:begin --> / :end markers and is
+//     rewritten by this tool, not by hand.
 //
 // Manifest line forms:
 //   <name>            — fetched from Lucide via unpkg.
@@ -18,6 +29,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io"
 	"net/http"
@@ -27,9 +39,13 @@ import (
 )
 
 const (
-	manifestPath = "static/icons.txt"
-	spritePath   = "static/icons.svg"
-	lucideBase   = "https://unpkg.com/lucide-static/icons/"
+	manifestPath     = "static/icons.txt"
+	spritePath       = "static/icons.svg"
+	designSystemPath = "design-system/index.html"
+	lucideBase       = "https://unpkg.com/lucide-static/icons/"
+
+	inlineBeginMarker = "<!-- inline-sprite:begin -->"
+	inlineEndMarker   = "<!-- inline-sprite:end -->"
 )
 
 type spec struct {
@@ -46,6 +62,31 @@ func main() {
 		fail("manifest %s is empty", manifestPath)
 	}
 
+	symbols := make([]string, 0, len(specs))
+	for _, s := range specs {
+		body, err := fetch(s.url)
+		if err != nil {
+			fail("fetch %s (%s): %v", s.name, s.url, err)
+		}
+		sym, err := buildSymbol(s.name, body)
+		if err != nil {
+			fail("build %s: %v", s.name, err)
+		}
+		symbols = append(symbols, sym)
+	}
+
+	if err := writeExternalSprite(symbols); err != nil {
+		fail("write external sprite: %v", err)
+	}
+	fmt.Printf("wrote %s — %d icons\n", spritePath, len(symbols))
+
+	if err := writeInlineSprite(symbols); err != nil {
+		fail("write inline sprite: %v", err)
+	}
+	fmt.Printf("wrote inline block in %s\n", designSystemPath)
+}
+
+func writeExternalSprite(symbols []string) error {
 	var sprite strings.Builder
 	sprite.WriteString(`<?xml version="1.0" encoding="UTF-8"?>
 <!--
@@ -65,23 +106,42 @@ func main() {
 -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
 `)
-	for _, s := range specs {
-		body, err := fetch(s.url)
-		if err != nil {
-			fail("fetch %s (%s): %v", s.name, s.url, err)
-		}
-		sym, err := buildSymbol(s.name, body)
-		if err != nil {
-			fail("build %s: %v", s.name, err)
-		}
+	for _, sym := range symbols {
 		sprite.WriteString(sym)
 	}
 	sprite.WriteString("</svg>\n")
+	return os.WriteFile(spritePath, []byte(sprite.String()), 0o644)
+}
 
-	if err := os.WriteFile(spritePath, []byte(sprite.String()), 0o644); err != nil {
-		fail("write sprite: %v", err)
+// writeInlineSprite finds the marker pair in design-system/index.html
+// and rewrites everything between (exclusive) with a fresh
+// <svg style="display:none"> block carrying every symbol. The
+// markers stay put so the next run can find them again.
+func writeInlineSprite(symbols []string) error {
+	src, err := os.ReadFile(designSystemPath)
+	if err != nil {
+		return err
 	}
-	fmt.Printf("wrote %s — %d icons\n", spritePath, len(specs))
+	begin := bytes.Index(src, []byte(inlineBeginMarker))
+	end := bytes.Index(src, []byte(inlineEndMarker))
+	if begin < 0 || end < 0 || end < begin {
+		return fmt.Errorf("markers not found in %s — paste %q and %q around the inline-sprite block once",
+			designSystemPath, inlineBeginMarker, inlineEndMarker)
+	}
+
+	var inline strings.Builder
+	inline.WriteString(inlineBeginMarker)
+	inline.WriteString("\n<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display:none\">\n")
+	for _, sym := range symbols {
+		inline.WriteString(sym)
+	}
+	inline.WriteString("</svg>\n")
+
+	out := make([]byte, 0, len(src))
+	out = append(out, src[:begin]...)
+	out = append(out, []byte(inline.String())...)
+	out = append(out, src[end:]...)
+	return os.WriteFile(designSystemPath, out, 0o644)
 }
 
 func readManifest(path string) ([]spec, error) {
