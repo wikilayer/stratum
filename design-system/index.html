@@ -467,6 +467,34 @@
       <p class="muted">Large size for the profile page.</p>
       <span class="avatar avatar-lg">MO</span>
     </div>
+
+    <div class="ds-example">
+      <p class="muted"><code>.avatar-frame</code> wraps an avatar with a corner overflow menu — upload, replace, clear. Toggle the <code>data-busy</code> attribute on the wrapper to swap the trigger icon (default <code>.toggle-default</code>) for a spinner (<code>.toggle-busy</code>, pair with <code>.spin</code>).</p>
+      <div class="ds-cluster">
+        <div class="avatar-frame">
+          <span class="avatar avatar-lg">MO</span>
+          <details class="menu-host">
+            <summary class="menu-toggle" aria-label="Avatar options">
+              <svg class="icon toggle-default" aria-hidden="true"><use href="../static/icons.svg#ellipsis"/></svg>
+              <svg class="icon toggle-busy spin" aria-hidden="true"><use href="../static/icons.svg#loader-circle"/></svg>
+            </summary>
+            <div class="dropdown" role="menu">
+              <button type="button" class="item" role="menuitem">Upload picture</button>
+              <button type="button" class="item" role="menuitem">Clear</button>
+            </div>
+          </details>
+        </div>
+        <div class="avatar-frame" data-busy>
+          <span class="avatar avatar-lg">MO</span>
+          <details class="menu-host">
+            <summary class="menu-toggle" aria-label="Avatar options">
+              <svg class="icon toggle-default" aria-hidden="true"><use href="../static/icons.svg#ellipsis"/></svg>
+              <svg class="icon toggle-busy spin" aria-hidden="true"><use href="../static/icons.svg#loader-circle"/></svg>
+            </summary>
+          </details>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="ds-section" id="cards">

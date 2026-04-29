@@ -33,11 +33,20 @@
         overflow: hidden;
         z-index: 20;
     }
+    /* .item works on both <a> and <button>. The button props peel
+     * off UA defaults so the two render identically inside the
+     * panel. */
     .dropdown .item {
         display: block;
+        width: 100%;
         padding: var(--space-2) var(--space-4);
         color: var(--fg);
         font-size: var(--text-sm);
+        background: transparent;
+        border: 0;
+        text-align: left;
+        cursor: pointer;
+        font-family: inherit;
     }
     .dropdown .item:hover {
         background: var(--bg-hover);

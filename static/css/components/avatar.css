@@ -55,6 +55,13 @@
         border-radius: 50%;
         justify-content: center;
     }
+}
+
+/* Default vs busy icon swap on the avatar-frame's overflow toggle.
+ * Lives in @layer utilities so it wins over .icon's display rule
+ * (also in utilities) — components layer comes earlier in the
+ * cascade and would lose to it regardless of specificity. */
+@layer utilities {
     .avatar-frame .toggle-busy { display: none; }
     .avatar-frame[data-busy] .toggle-default { display: none; }
     .avatar-frame[data-busy] .toggle-busy { display: inline-block; }
