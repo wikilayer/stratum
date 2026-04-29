@@ -22,6 +22,8 @@ settings
 archive
 chevron-down
 eye
+ellipsis
+loader-circle
 
 # Brand icons — Simple Icons (CC0).
 github | https://cdn.jsdelivr.net/npm/simple-icons/icons/github.svg
