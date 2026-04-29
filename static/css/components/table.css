@@ -48,7 +48,10 @@
         margin: 0;
         border: 1px solid var(--border-muted);
         border-radius: var(--radius-md);
-        overflow: hidden;
+        /* No overflow:hidden — would clip per-row dropdowns and
+         * popovers. Row separators don't reach the rounded corners
+         * (last child has no border-bottom), so removing the clip
+         * is safe visually. */
     }
     .row-list-item {
         display: flex;
@@ -58,10 +61,27 @@
         border-bottom: 1px solid var(--border-muted);
     }
     .row-list-item:last-child { border-bottom: 0; }
-    .row-list-item-meta {
+
+    /* Trailing actions cluster — pushed to the right with auto-
+     * margin, holds whatever the row needs on its tail end:
+     * a meta badge, an overflow .menu-host, both, or neither. Use
+     * this instead of putting margin-left: auto on individual
+     * children — that competes with siblings and the visual
+     * position drifts when a row gains or loses an action. */
+    .row-list-item-actions {
         margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+    .row-list-item-meta {
         color: var(--fg-muted);
         font-size: var(--text-sm);
+    }
+    /* Backwards-compat: if .row-list-item-meta is used outside an
+     * .row-list-item-actions wrapper, it still right-aligns. */
+    .row-list-item > .row-list-item-meta {
+        margin-left: auto;
     }
     /* Two-line label inside a row — primary text + small muted
      * secondary line beneath it (e.g. display name + email).

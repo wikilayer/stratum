@@ -497,6 +497,59 @@
     </div>
   </section>
 
+  <section class="ds-section" id="row-list-actions">
+    <h2>Row list with per-row actions</h2>
+    <p>A <code>.row-list</code> where each row carries an overflow <code>.menu-host</code> on the right (admin lists, member rosters, anything tabular-but-not-table that needs per-row controls). The trailing <code>.row-list-item-actions</code> cluster bundles role label + menu so they line up across rows; <code>&lt;details name="..."&gt;</code> makes opening one menu auto-close the others.</p>
+
+    <div class="ds-example">
+      <ul class="row-list">
+        <li class="row-list-item">
+          <span class="avatar">MO</span>
+          <span>Maxim Oransky</span>
+          <span class="row-list-item-actions">
+            <span class="row-list-item-meta">Owner</span>
+          </span>
+        </li>
+        <li class="row-list-item">
+          <span class="avatar">AB</span>
+          <span>Alice Bridges</span>
+          <span class="row-list-item-actions">
+            <span class="row-list-item-meta">Editor</span>
+            <details class="menu-host" name="ds-row-actions">
+              <summary class="menu-toggle" aria-label="Member actions">
+                <svg class="icon" aria-hidden="true"><use href="../static/icons.svg#ellipsis"/></svg>
+              </summary>
+              <div class="dropdown" role="menu">
+                <button type="button" class="item">Admin</button>
+                <button type="button" class="item" aria-current="true">Editor</button>
+                <button type="button" class="item">Viewer</button>
+                <button type="button" class="item">Remove</button>
+              </div>
+            </details>
+          </span>
+        </li>
+        <li class="row-list-item">
+          <span class="avatar">XY</span>
+          <span>Xander Yi</span>
+          <span class="row-list-item-actions">
+            <span class="row-list-item-meta">Viewer</span>
+            <details class="menu-host" name="ds-row-actions">
+              <summary class="menu-toggle" aria-label="Member actions">
+                <svg class="icon" aria-hidden="true"><use href="../static/icons.svg#ellipsis"/></svg>
+              </summary>
+              <div class="dropdown" role="menu">
+                <button type="button" class="item">Admin</button>
+                <button type="button" class="item">Editor</button>
+                <button type="button" class="item" aria-current="true">Viewer</button>
+                <button type="button" class="item">Remove</button>
+              </div>
+            </details>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="ds-section" id="cards">
     <h2>Cards</h2>
     <p>Bordered container for grouped content.</p>
