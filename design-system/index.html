@@ -501,18 +501,22 @@
 
   <section class="ds-section" id="row-list-actions">
     <h2>Row list with per-row actions</h2>
-    <p>A <code>.row-list</code> where the trailing element on each row is either a static <code>.row-list-item-meta</code> badge (read-only, e.g. owner row) or a <code>&lt;details&gt;</code> menu whose <code>&lt;summary&gt;</code> shows the current value plus a chevron. Clicking the role text itself opens the menu — bigger hit target than an overflow icon, and it makes "this is changeable" visually obvious. <code>&lt;details name="..."&gt;</code> makes opening one row auto-close the others.</p>
+    <p>A <code>.row-list</code> where the trailing element on each row is either a static <code>.row-list-item-meta</code> badge (read-only, e.g. owner row) or a <code>&lt;details&gt;</code> menu whose <code>&lt;summary&gt;</code> shows the current value plus a chevron. Clicking the role text itself opens the menu — bigger hit target than an overflow icon, and it makes "this is changeable" visually obvious. <code>&lt;details name="..."&gt;</code> makes opening one row auto-close the others. The avatar + name are wrapped in <code>.row-list-item-link</code> — an <code>&lt;a&gt;</code> that points at the subject's profile (inherits text colour, underlines on hover, doesn't fight the trailing menu for clicks).</p>
 
     <div class="ds-example">
       <ul class="row-list">
         <li class="row-list-item">
-          <span class="avatar">JM</span>
-          <span>Jamie Morgan</span>
+          <a class="row-list-item-link" href="#">
+            <span class="avatar">JM</span>
+            <span>Jamie Morgan</span>
+          </a>
           <span class="row-list-item-meta">Owner</span>
         </li>
         <li class="row-list-item">
-          <span class="avatar">AB</span>
-          <span>Alice Bridges</span>
+          <a class="row-list-item-link" href="#">
+            <span class="avatar">AB</span>
+            <span>Alice Bridges</span>
+          </a>
           <details class="menu-host" name="ds-row-actions">
             <summary class="menu-toggle">
               Editor
@@ -527,8 +531,10 @@
           </details>
         </li>
         <li class="row-list-item">
-          <span class="avatar">XY</span>
-          <span>Xander Yi</span>
+          <a class="row-list-item-link" href="#">
+            <span class="avatar">XY</span>
+            <span>Xander Yi</span>
+          </a>
           <details class="menu-host" name="ds-row-actions">
             <summary class="menu-toggle">
               Viewer

@@ -61,6 +61,20 @@
         border-bottom: 1px solid var(--border-muted);
     }
     .row-list-item:last-child { border-bottom: 0; }
+    /* The clickable identity head of a row — avatar + name (and
+     * optionally an .row-list-item-body) wrapped in an <a> that
+     * opens the subject's profile / detail page. Inherits the row's
+     * text colour so it doesn't read as "blue link", and underlines
+     * on hover so it's discoverable as a link. */
+    .row-list-item-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        color: inherit;
+        text-decoration: none;
+        min-width: 0;
+    }
+    .row-list-item-link:hover { text-decoration: underline; }
     .row-list-item-meta {
         margin-left: auto;
         color: var(--fg-muted);
