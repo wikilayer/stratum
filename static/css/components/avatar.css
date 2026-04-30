@@ -16,6 +16,25 @@
         line-height: 1;
     }
 
+    /* Coloured initials. Pick .avatar-cN where N = userID % 12 so the
+     * same person always gets the same chip in any list. Hues are
+     * evenly spaced on the OKLCH wheel; lightness/chroma tuned per
+     * theme so foreground text stays at WCAG AA in both. Index 0..11
+     * maps to: warm-pink, peach, amber, lime, mint, cyan, sky, blue,
+     * indigo, lavender, purple, rose. */
+    .avatar-c0  { background: var(--avatar-c0);  color: var(--avatar-fg); }
+    .avatar-c1  { background: var(--avatar-c1);  color: var(--avatar-fg); }
+    .avatar-c2  { background: var(--avatar-c2);  color: var(--avatar-fg); }
+    .avatar-c3  { background: var(--avatar-c3);  color: var(--avatar-fg); }
+    .avatar-c4  { background: var(--avatar-c4);  color: var(--avatar-fg); }
+    .avatar-c5  { background: var(--avatar-c5);  color: var(--avatar-fg); }
+    .avatar-c6  { background: var(--avatar-c6);  color: var(--avatar-fg); }
+    .avatar-c7  { background: var(--avatar-c7);  color: var(--avatar-fg); }
+    .avatar-c8  { background: var(--avatar-c8);  color: var(--avatar-fg); }
+    .avatar-c9  { background: var(--avatar-c9);  color: var(--avatar-fg); }
+    .avatar-c10 { background: var(--avatar-c10); color: var(--avatar-fg); }
+    .avatar-c11 { background: var(--avatar-c11); color: var(--avatar-fg); }
+
     /* Gravatar variant — <img> tag uses the same .avatar class so the
      * border-radius / overflow rules apply uniformly. object-fit
      * keeps non-square sources from squishing. */

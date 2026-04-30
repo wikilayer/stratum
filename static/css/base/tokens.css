@@ -33,6 +33,23 @@
 
         --header-bg:    #ffffffe6;        /* translucent for blur backdrop */
 
+        /* Coloured-initials avatar palette — 12 hues, evenly spaced
+         * on the OKLCH wheel (30° apart). Light-theme variant uses
+         * darker chroma + dark text for AA on light backgrounds. */
+        --avatar-fg: #1f2328;
+        --avatar-c0:  oklch(78% 0.13 25);
+        --avatar-c1:  oklch(80% 0.13 55);
+        --avatar-c2:  oklch(85% 0.13 90);
+        --avatar-c3:  oklch(85% 0.15 130);
+        --avatar-c4:  oklch(82% 0.13 160);
+        --avatar-c5:  oklch(82% 0.10 200);
+        --avatar-c6:  oklch(80% 0.10 230);
+        --avatar-c7:  oklch(78% 0.10 260);
+        --avatar-c8:  oklch(78% 0.10 285);
+        --avatar-c9:  oklch(78% 0.13 310);
+        --avatar-c10: oklch(78% 0.13 340);
+        --avatar-c11: oklch(78% 0.13 5);
+
         /* GitHub callout palette — instantly recognisable. */
         --callout-note:      #0969da;
         --callout-tip:       #1f883d;
@@ -132,6 +149,24 @@
 
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.40);
         --shadow-md: 0 6px 18px rgba(0,0,0,0.50);
+
+        /* Dark-theme avatar palette — same hue indices as light, but
+         * darker backgrounds and white foreground for AA contrast
+         * against deep ui chrome. The same user keeps the same hue
+         * across themes, just shifts to its dark-theme variant. */
+        --avatar-fg: #ffffff;
+        --avatar-c0:  oklch(50% 0.13 25);
+        --avatar-c1:  oklch(50% 0.13 55);
+        --avatar-c2:  oklch(50% 0.13 90);
+        --avatar-c3:  oklch(50% 0.15 130);
+        --avatar-c4:  oklch(50% 0.13 160);
+        --avatar-c5:  oklch(50% 0.10 200);
+        --avatar-c6:  oklch(50% 0.13 230);
+        --avatar-c7:  oklch(50% 0.13 260);
+        --avatar-c8:  oklch(50% 0.13 285);
+        --avatar-c9:  oklch(50% 0.13 310);
+        --avatar-c10: oklch(50% 0.13 340);
+        --avatar-c11: oklch(50% 0.13 5);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -172,6 +207,20 @@
             --callout-important: #a371f7;
             --callout-warning:   #d29922;
             --callout-caution:   #f85149;
+
+            --avatar-fg: #ffffff;
+            --avatar-c0:  oklch(50% 0.13 25);
+            --avatar-c1:  oklch(50% 0.13 55);
+            --avatar-c2:  oklch(50% 0.13 90);
+            --avatar-c3:  oklch(50% 0.15 130);
+            --avatar-c4:  oklch(50% 0.13 160);
+            --avatar-c5:  oklch(50% 0.10 200);
+            --avatar-c6:  oklch(50% 0.13 230);
+            --avatar-c7:  oklch(50% 0.13 260);
+            --avatar-c8:  oklch(50% 0.13 285);
+            --avatar-c9:  oklch(50% 0.13 310);
+            --avatar-c10: oklch(50% 0.13 340);
+            --avatar-c11: oklch(50% 0.13 5);
         }
     }
 }
