@@ -67,6 +67,28 @@
     .column-narrow { max-width: 32em; }
     .column-wide   { max-width: 720px; }
 
+    /* Phone / narrow tablet: stack <main> and the page rail. The
+     * desktop layout is two columns with a sticky sidebar; on a
+     * 430px viewport that leaves the main column too narrow to set
+     * type. We collapse to a single column and demote the rail to a
+     * normal-flow block above the content (order: -1) so navigation
+     * stays at the top, where users expect it on mobile. The rail
+     * itself drops its sticky / sidebar styling via the same query. */
+    @media (max-width: 720px) {
+        .content {
+            flex-direction: column;
+        }
+        .content > aside {
+            order: -1;
+            width: auto;
+            border-left: none;
+            border-bottom: 1px solid var(--border-muted);
+            position: static;
+            max-height: none;
+            padding: var(--space-4);
+        }
+    }
+
     /* Two-column split with a fixed-width side rail and a fluid main
      * column. Used on /owner:N and anywhere else we want a sidebar
      * left of the content. Below 720px collapses to a single stack
