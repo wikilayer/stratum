@@ -19,6 +19,15 @@
     .block-id:hover { color: var(--accent); opacity: 1; text-decoration: none; }
     .block:target > .block-id { color: var(--accent); opacity: 1; }
 
+    /* On mobile main runs edge to edge, so the -5em gutter the
+     * block id lives in is off-screen — the digits poked into the
+     * left margin and looked like garbage. Hide them here; the
+     * anchor still works (id stays on the wrapping <section>), it
+     * just isn't a visible affordance on phones. */
+    @media (max-width: 720px) {
+        .block-id { display: none; }
+    }
+
     /* External-link arrow — mask-image so the icon picks up the
      * link's currentColor without dark/light SVG variants. */
     section.block a[href^="http://"]::after,
