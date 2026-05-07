@@ -13,10 +13,11 @@
         font-size: var(--text-xs);
         font-variant-numeric: tabular-nums;
         text-decoration: none;
+        opacity: 0.45;
     }
     .block-id::before { content: "#"; }
-    .block-id:hover { color: var(--accent); text-decoration: none; }
-    .block:target > .block-id { color: var(--accent); }
+    .block-id:hover { color: var(--accent); opacity: 1; text-decoration: none; }
+    .block:target > .block-id { color: var(--accent); opacity: 1; }
 
     /* On mobile main runs edge to edge, so the -5em gutter the
      * block id lives in is off-screen — the digits poked into the
