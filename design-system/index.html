@@ -164,6 +164,7 @@
     <li><a href="#alerts">Alerts</a></li>
     <li><a href="#modal">Modal</a></li>
     <li><a href="#callouts">Callouts</a></li>
+    <li><a href="#map">Map</a></li>
     <li><a href="#avatars">Avatars</a></li>
     <li><a href="#cards">Cards</a></li>
     <li><a href="#url-pill">Copy block</a></li>
@@ -450,6 +451,18 @@
       <div class="callout callout-caution">
         <p class="callout-title"><svg class="icon" aria-hidden="true"><use href="#octagon-alert"/></svg>Caution</p>
         <p>Destructive consequence if ignored.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="map">
+    <h2>Map</h2>
+    <p>Embedded location iframe rendered from <code>&gt; [!MAP]</code> blockquotes in markdown. The body's first line is <code>lat, lng</code>; remaining lines join into an optional caption.</p>
+
+    <div class="ds-example">
+      <div class="map">
+        <iframe src="https://maps.google.com/maps?q=51.4779,0.0015&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map-caption">Royal Observatory, Greenwich</div>
       </div>
     </div>
   </section>

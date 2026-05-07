@@ -182,6 +182,17 @@ Dialog box on top of a backdrop. Built on the native `<dialog>` element — ESC 
 
 GitHub-flavoured callouts (`> [!NOTE]` rendered from markdown). Variants: `.callout-note`, `.callout-tip`, `.callout-important`, `.callout-warning`, `.callout-caution`. Wrap the title in `.callout-title` with an icon.
 
+### `.map`, `.map-caption`
+
+Embedded location iframe (rendered from `> [!MAP]` blockquotes in markdown). The container clips a single full-width `<iframe>` to a rounded card; an optional `.map-caption` strip sits below.
+
+```html
+<div class="map">
+  <iframe src="https://maps.google.com/maps?q=51.4779,0.0015&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <div class="map-caption">Royal Observatory, Greenwich</div>
+</div>
+```
+
 ### `.card`, `.card-grid`, `.card-link`
 
 Bordered surface for grouped content. `.card-grid` lays cards in a responsive grid. Add `.card-link` to an `<a>` that wraps the whole card — it gets the flex-row layout, link colour, and accent border on hover.
