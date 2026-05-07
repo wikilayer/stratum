@@ -25,6 +25,14 @@
         outline-offset: 2px;
         border-radius: var(--radius-sm);
     }
+    /* Same-document anchor links carry .link-inpage so we can mark
+     * them differently from cross-page links — dotted underline
+     * signals "this jumps inside the article you're already on". */
+    a.link-inpage {
+        text-decoration: underline dotted;
+        text-underline-offset: 0.2em;
+    }
+    a.link-inpage:hover { text-decoration: underline; }
 
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-body);
