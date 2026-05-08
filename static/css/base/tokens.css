@@ -28,7 +28,7 @@
         --success-fg:     #116329;
         --success-border: #aceebb;
 
-        --code-bg:      #f6f8fa;
+        --code-bg:      #eaeef2;
         --code-fg:      #1f2328;
 
         --header-bg:    #ffffffe6;        /* translucent for blur backdrop */
@@ -136,7 +136,7 @@
         --success-fg:     #aff5b4;
         --success-border: #2ea043;
 
-        --code-bg:      #161b22;
+        --code-bg:      #30363d;
         --code-fg:      #e6edf3;
 
         --header-bg:    #0d1117e6;
@@ -197,7 +197,7 @@
             --success-fg:     #aff5b4;
             --success-border: #2ea043;
 
-            --code-bg:      #161b22;
+            --code-bg:      #30363d;
             --code-fg:      #e6edf3;
 
             --header-bg:    #0d1117e6;
