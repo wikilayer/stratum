@@ -27,8 +27,16 @@
         transform: rotate(90deg);
     }
     .aside-section li a {
+        display: block;
         font-size: var(--text-sm);
         line-height: 1.35;
+        padding: var(--space-1) var(--space-2);
+        margin-left: calc(var(--space-2) * -1);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .aside-section li a:hover {
+        background: var(--bg-hover);
+        text-decoration: none;
     }
     .aside-section .empty {
         font-size: var(--text-sm);
