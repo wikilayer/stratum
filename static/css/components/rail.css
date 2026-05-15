@@ -1,9 +1,14 @@
 @layer components {
-    /* Tight spacing for headings + lists in either page rail
-     * (left nav or right aside). Centralised here so callers
-     * don't have to know which rail they're in. */
-    :is(.content > aside, .content > nav.leftnav) h3 { margin: 0 0 var(--space-3) 0; }
-    :is(.content > aside, .content > nav.leftnav) ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
+    /* Tight spacing for headings + lists in either page rail.
+     * Split into two selectors (rather than :is(...)) so the
+     * specificity stays at one class + one element, matching the
+     * .toc ul ul override below — otherwise nav.leftnav's class
+     * specificity bumps the rule above .toc ul ul, and nested TOC
+     * lists render flat. */
+    .content > aside h3,
+    .content > nav.leftnav h3 { margin: 0 0 var(--space-3) 0; }
+    .content > aside ul,
+    .content > nav.leftnav ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
 
     /* Collapsible sidebar block. <details> + <summary> wrapping the
      * eyebrow heading; chevron rotates on open. Pair with rail.js to
