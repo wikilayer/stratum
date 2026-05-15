@@ -40,12 +40,13 @@
         border-bottom: 1px solid var(--border);
     }
 
-    /* Small uppercase label — sidebar section titles, dropdown labels,
-     * etc. */
+    /* Small muted label — sidebar section titles, dropdown labels,
+     * etc. No text-transform: uppercase intentionally — Cyrillic
+     * (and some other scripts) read as shouting in caps, and the
+     * label role is carried clearly by size + weight + colour. */
     .eyebrow {
         font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.02em;
         color: var(--fg-muted);
         font-weight: var(--weight-semibold);
     }
