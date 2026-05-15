@@ -1,12 +1,15 @@
 @layer components {
-    .content > aside h3 { margin: 0 0 var(--space-3) 0; }
-    .content > aside ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
+    /* Tight spacing for headings + lists in either page rail
+     * (left nav or right aside). Centralised here so callers
+     * don't have to know which rail they're in. */
+    :is(.content > aside, .content > nav.leftnav) h3 { margin: 0 0 var(--space-3) 0; }
+    :is(.content > aside, .content > nav.leftnav) ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
 
     /* Collapsible sidebar block. <details> + <summary> wrapping the
-     * eyebrow heading; chevron rotates on open. Pair with aside.js to
+     * eyebrow heading; chevron rotates on open. Pair with rail.js to
      * remember per-section state in a cookie. */
-    .aside-section { margin-bottom: var(--space-5); }
-    .aside-section-summary {
+    .rail-section { margin-bottom: var(--space-5); }
+    .rail-section-summary {
         display: flex;
         align-items: center;
         gap: var(--space-2);
@@ -15,18 +18,18 @@
         user-select: none;
         margin-bottom: var(--space-3);
     }
-    .aside-section-summary::-webkit-details-marker,
-    .aside-section-summary::marker { display: none; }
-    .aside-section-summary .eyebrow { margin: 0; }
-    .aside-section-summary > .icon {
+    .rail-section-summary::-webkit-details-marker,
+    .rail-section-summary::marker { display: none; }
+    .rail-section-summary .eyebrow { margin: 0; }
+    .rail-section-summary > .icon {
         margin-left: auto;
         color: var(--fg-muted);
         transition: transform 0.15s ease;
     }
-    .aside-section[open] > .aside-section-summary > .icon {
+    .rail-section[open] > .rail-section-summary > .icon {
         transform: rotate(90deg);
     }
-    .aside-section li a {
+    .rail-section li a {
         display: block;
         font-size: var(--text-sm);
         line-height: 1.35;
@@ -34,11 +37,11 @@
         margin-left: calc(var(--space-2) * -1);
         border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
-    .aside-section li a:hover {
+    .rail-section li a:hover {
         background: var(--bg-hover);
         text-decoration: none;
     }
-    .aside-section .empty {
+    .rail-section .empty {
         font-size: var(--text-sm);
         color: var(--fg-muted);
         margin: 0;

@@ -95,6 +95,23 @@ Two-column page with a fixed-width side rail and a fluid main column. Below 720p
 </div>
 ```
 
+### `nav.leftnav`
+
+Sticky left rail next to `<main>`, mirror of the right `<aside>` rail. Use for dashboard navigation, section links, anything always-visible left of the content. Stacks above main on mobile. `.rail-section` works inside either rail.
+
+```html
+<div class="content">
+  <nav class="leftnav">
+    <section class="rail-section">
+      <h3 class="eyebrow">Recent</h3>
+      <ul>…</ul>
+    </section>
+  </nav>
+  <main>…</main>
+  <aside>…</aside>
+</div>
+```
+
 ## Components
 
 Every component lives in its own file under `static/css/components/`. Markup conventions below.

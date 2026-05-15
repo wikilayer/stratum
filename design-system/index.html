@@ -170,7 +170,7 @@
     <li><a href="#url-pill">Copy block</a></li>
     <li><a href="#page-head">Page header</a></li>
     <li><a href="#breadcrumb">Breadcrumb</a></li>
-    <li><a href="#aside-section">Aside section</a></li>
+    <li><a href="#rail-section">Rail section</a></li>
     <li><a href="#icons">Icons</a></li>
   </ul>
   <p class="ds-side-link">
@@ -208,6 +208,14 @@
           <p class="muted">Page content goes here.</p>
         </div>
       </div>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Full-window demos — open in a tab and resize across the 720px breakpoint to see the rails collapse:</p>
+      <ul>
+        <li><a href="layout-3-rail.html">3-rail shell</a> — <code>nav.leftnav</code> + <code>&lt;main&gt;</code> + <code>&lt;aside&gt;</code>.</li>
+        <li><a href="layout-2-rail.html">2-rail shell</a> — <code>&lt;main&gt;</code> + <code>&lt;aside&gt;</code> (article layout).</li>
+      </ul>
     </div>
   </section>
 
@@ -647,13 +655,13 @@
     </div>
   </section>
 
-  <section class="ds-section" id="aside-section">
-    <h2>Aside section</h2>
-    <p>Collapsible sidebar block: <code>&lt;details class="aside-section"&gt;</code> wrapping a <code>&lt;summary class="aside-section-summary"&gt;</code> with an <code>.eyebrow</code> heading and chevron. Pair with <code>data-aside-section="NAME"</code> + <code>aside.js</code> to remember per-section open/closed state in a cookie. The server reads the cookie and stamps the <code>open</code> attribute at render time so there's no flash.</p>
+  <section class="ds-section" id="rail-section">
+    <h2>Rail section</h2>
+    <p>Collapsible sidebar block: <code>&lt;details class="rail-section"&gt;</code> wrapping a <code>&lt;summary class="rail-section-summary"&gt;</code> with an <code>.eyebrow</code> heading and chevron. Works in either page rail (left nav or right aside). Pair with <code>data-rail-section="NAME"</code> + <code>rail.js</code> to remember per-section open/closed state in a cookie. The server reads the cookie and stamps the <code>open</code> attribute at render time so there's no flash.</p>
 
     <div class="ds-example" style="max-width: 280px">
-      <details class="aside-section" data-aside-section="ds-backlinks">
-        <summary class="aside-section-summary">
+      <details class="rail-section" data-rail-section="ds-backlinks">
+        <summary class="rail-section-summary">
           <h3 class="eyebrow">Links here</h3>
           <svg class="icon" aria-hidden="true"><use href="#chevron-right"/></svg>
         </summary>
@@ -663,8 +671,8 @@
           <li><a href="#">Reading list — Q3</a></li>
         </ul>
       </details>
-      <details class="aside-section" data-aside-section="ds-toc" open>
-        <summary class="aside-section-summary">
+      <details class="rail-section" data-rail-section="ds-toc" open>
+        <summary class="rail-section-summary">
           <h3 class="eyebrow">Contents</h3>
           <svg class="icon" aria-hidden="true"><use href="#chevron-right"/></svg>
         </summary>
@@ -707,7 +715,7 @@
 
 <script src="../static/modal.js" defer></script>
 <script src="../static/dropdown.js" defer></script>
-<script src="../static/aside.js" defer></script>
+<script src="../static/rail.js" defer></script>
 <script>
   // Apply data-theme on <html> from the radio toggle. Tokens.css hangs
   // some variables off [data-theme="..."] selectors that can't be

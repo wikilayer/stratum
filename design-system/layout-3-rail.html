@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3-rail shell — stratum</title>
+
+  <!-- Real shell, not framed: use this page to see how leftnav +
+       main + aside behave at every viewport. Resize the window to
+       cross the 720px breakpoint and watch both rails stack above
+       main, leftnav first. -->
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+<header>
+  <a class="brand" href="index.html">stratum.example</a>
+  <a class="button button-ghost" href="index.html">Back to index</a>
+</header>
+
+<div class="content">
+
+  <nav class="leftnav" aria-label="Wikis">
+    <section class="rail-section">
+      <h3 class="eyebrow">My recent</h3>
+      <ul>
+        <li><a href="#">Travel notes</a></li>
+        <li><a href="#">Cooking</a></li>
+        <li><a href="#">Reading list</a></li>
+        <li><a href="#">Side project notes</a></li>
+        <li><a href="#">Onboarding draft</a></li>
+      </ul>
+      <a class="muted" href="#">View all</a>
+    </section>
+  </nav>
+
+  <main>
+    <h1 class="h-rule">3-rail shell</h1>
+    <p>
+      This page is the canonical demo for the <code>.content &gt;
+      nav.leftnav</code> rail next to <code>.content &gt; aside</code>.
+      Three sticky rails on desktop; on viewports below 720px both
+      rails stack above <code>&lt;main&gt;</code> — left nav first,
+      aside second.
+    </p>
+    <h2 id="markup">Markup</h2>
+    <pre><code>&lt;div class="content"&gt;
+  &lt;nav class="leftnav"&gt;…&lt;/nav&gt;
+  &lt;main&gt;…&lt;/main&gt;
+  &lt;aside&gt;…&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+    <h2 id="notes">Notes</h2>
+    <ul>
+      <li>Use <code>.rail-section</code> for grouped lists in either rail.</li>
+      <li>Section heading: <code>&lt;h3 class="eyebrow"&gt;</code>.</li>
+      <li>For collapsible sections, wrap in <code>&lt;details&gt;</code>
+        + <code>&lt;summary class="rail-section-summary"&gt;</code> and
+        load <code>rail.js</code> to persist state.</li>
+    </ul>
+    <p>
+      Filler so the main column has room to breathe and the sticky
+      rails stay pinned as you scroll. Praesent commodo cursus magna,
+      vel scelerisque nisl consectetur et. Donec id elit non mi porta
+      gravida at eget metus. Cras justo odio, dapibus ac facilisis in,
+      egestas eget quam.
+    </p>
+    <p>
+      Vestibulum id ligula porta felis euismod semper. Nullam quis
+      risus eget urna mollis ornare vel eu leo. Cum sociis natoque
+      penatibus et magnis dis parturient montes, nascetur ridiculus
+      mus.
+    </p>
+    <p>
+      Aenean lacinia bibendum nulla sed consectetur. Donec id elit non
+      mi porta gravida at eget metus. Praesent commodo cursus magna,
+      vel scelerisque nisl consectetur et.
+    </p>
+  </main>
+
+  <aside>
+    <details class="rail-section toc-section toc" data-rail-section="demo-toc" open>
+      <summary class="rail-section-summary">
+        <h3 class="eyebrow">Contents</h3>
+        <svg class="icon"><use href="#chevron-right"/></svg>
+      </summary>
+      <ul class="toc">
+        <li><a class="toc-link" href="#markup">Markup</a></li>
+        <li><a class="toc-link" href="#notes">Notes</a></li>
+      </ul>
+    </details>
+    <details class="rail-section" data-rail-section="demo-backlinks">
+      <summary class="rail-section-summary">
+        <h3 class="eyebrow">Backlinks</h3>
+        <svg class="icon"><use href="#chevron-right"/></svg>
+      </summary>
+      <ul>
+        <li><a href="#">Adjacent topic A</a></li>
+        <li><a href="#">Adjacent topic B</a></li>
+      </ul>
+    </details>
+  </aside>
+
+</div>
+
+<!-- The same sprite the index uses, inline so this page works
+     without a network. Trimmed to the icons referenced above. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></symbol>
+</svg>
+
+<script src="../static/toc.js" defer></script>
+<script src="../static/rail.js" defer></script>
+</body>
+</html>

@@ -54,6 +54,23 @@
         overflow-y: auto;
     }
 
+    /* Mirror of .content > aside on the opposite side: a sticky
+     * left rail for navigation that lives next to <main>. Hosts
+     * dashboard links, section navigation, anything a page wants
+     * "always visible" to the left of the content. Components
+     * inside (.rail-section etc.) work in either rail. */
+    .content > nav.leftnav {
+        width: var(--leftnav-w);
+        border-right: 1px solid var(--border-muted);
+        padding: var(--space-6) var(--space-4);
+        flex-shrink: 0;
+        position: sticky;
+        top: var(--header-h);
+        align-self: flex-start;
+        max-height: calc(100vh - var(--header-h));
+        overflow-y: auto;
+    }
+
     /* Reading-width columns inside main. Pages that want their own
      * narrow centred shape (login, consent, legal, MCP onboarding)
      * pick a size and stop. No page-specific wrapper class. */
@@ -82,6 +99,19 @@
             order: -1;
             width: auto;
             border-left: none;
+            border-bottom: 1px solid var(--border-muted);
+            position: static;
+            max-height: none;
+            padding: var(--space-4);
+        }
+        /* leftnav sits at the very top on mobile — it's the
+         * navigation rail. Lower order than aside so when both
+         * exist the user lands on links first, then any in-page
+         * TOC, then the content. */
+        .content > nav.leftnav {
+            order: -2;
+            width: auto;
+            border-right: none;
             border-bottom: 1px solid var(--border-muted);
             position: static;
             max-height: none;

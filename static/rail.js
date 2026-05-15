@@ -1,12 +1,12 @@
-// Per-section open/closed state for <details class="aside-section">.
-// Each section names itself with data-aside-section="NAME".
-// Cookie format: aside-state=name1:1,name2:0  (1=open, 0=closed).
+// Per-section open/closed state for <details class="rail-section">.
+// Each section names itself with data-rail-section="NAME".
+// Cookie format: rail-state=name1:1,name2:0  (1=open, 0=closed).
 // Server is expected to read this cookie and set the [open] attribute
 // at render time so there's no flash; this file just keeps the cookie
 // in sync when the user toggles a section.
 
 (function () {
-    var COOKIE = 'aside-state';
+    var COOKIE = 'rail-state';
 
     function readState() {
         var match = document.cookie.match(new RegExp('(?:^|; )' + COOKIE + '=([^;]*)'));
@@ -30,8 +30,8 @@
 
     document.addEventListener('toggle', function (e) {
         var el = e.target;
-        if (!(el instanceof HTMLElement) || !el.classList.contains('aside-section')) return;
-        var name = el.getAttribute('data-aside-section');
+        if (!(el instanceof HTMLElement) || !el.classList.contains('rail-section')) return;
+        var name = el.getAttribute('data-rail-section');
         if (!name) return;
         var state = readState();
         state[name] = el.open;

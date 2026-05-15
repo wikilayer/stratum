@@ -1,8 +1,8 @@
 // Mobile collapse for table-of-contents <details> blocks.
 //
 // Pages with an inline TOC mark it up as
-//   <details class="aside-section toc-section" open>
-//     <summary class="aside-section-summary">…</summary>
+//   <details class="rail-section toc-section" open>
+//     <summary class="rail-section-summary">…</summary>
 //     <nav>…</nav>
 //   </details>
 //
