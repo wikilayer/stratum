@@ -28,6 +28,12 @@
         .block-id { display: none; }
     }
 
+    /* Same reasoning when a left rail eats the gutter: with a
+     * nav.leftnav next to main, the -5em offset overshoots into
+     * the rail and the digits overlap nav links. Anchor still
+     * resolves; we just stop drawing the visible affordance. */
+    .content:has(> nav.leftnav) .block-id { display: none; }
+
     /* External-link arrow — mask-image so the icon picks up the
      * link's currentColor without dark/light SVG variants. */
     section.block a[href^="http://"]::after,
