@@ -245,6 +245,18 @@
       <p class="empty">An <code>.empty</code> paragraph: italic, muted — placeholder when a section has no content.</p>
       <p>Inline <code>code</code> with backticks; a regular <a href="#">link</a> in flowing text.</p>
     </div>
+
+    <div class="ds-example">
+      <p class="muted">Multi-line fenced code block — copy.js injects a copy button on hover.</p>
+      <pre><code>func main() {
+    fmt.Println("hello, world")
+}</code></pre>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Single-line code block — no copy button (single-line snippets read as inline).</p>
+      <pre><code>go run ./cmd/foo</code></pre>
+    </div>
   </section>
 
   <section class="ds-section" id="buttons">
@@ -716,6 +728,7 @@
 <script src="../static/modal.js" defer></script>
 <script src="../static/dropdown.js" defer></script>
 <script src="../static/rail.js" defer></script>
+<script src="../static/copy.js" defer></script>
 <script>
   // Apply data-theme on <html> from the radio toggle. Tokens.css hangs
   // some variables off [data-theme="..."] selectors that can't be

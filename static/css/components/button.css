@@ -99,4 +99,20 @@
         color: var(--success-fg);
         border-color: var(--success-border);
     }
+
+    /* In-block variant: when copy.js injects a copy-btn directly
+     * inside a <pre>, position it absolute top-right and fade it
+     * in only when the reader hovers (or focuses) the block.
+     * Keeping it visible by default would crowd narrow snippets. */
+    pre > .copy-btn {
+        position: absolute;
+        top: var(--space-2);
+        right: var(--space-2);
+        opacity: 0;
+        transition: opacity var(--duration-fast) var(--easing-out),
+                    background var(--duration-fast) var(--easing-out);
+    }
+    pre:hover > .copy-btn,
+    pre > .copy-btn:focus-visible,
+    pre > .copy-btn.copied { opacity: 1; }
 }
