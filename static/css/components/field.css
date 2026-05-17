@@ -194,6 +194,17 @@
         color: var(--fg-muted);
     }
 
+    /* Inline validation message under a field. Caller renders the
+     * <p class="form-error"> conditionally; the colour signals
+     * "this is why the form didn't save", and the text-sm keeps it
+     * a notch quieter than the field label so the eye reads label
+     * first, error second. */
+    .form-error {
+        margin: var(--space-1) 0 0;
+        color: var(--danger);
+        font-size: var(--text-sm);
+    }
+
     @media (max-width: 720px) {
         .form-layout {
             grid-template-columns: 1fr;
