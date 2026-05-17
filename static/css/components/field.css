@@ -97,6 +97,79 @@
         box-shadow: 0 0 0 3px var(--accent-bg);
     }
 
+    /* Invalid state. Caller sets aria-invalid="true" on the
+     * control when validation fails; the red border outlives
+     * the focus ring, and the .form-error message below
+     * carries the wording. */
+    .row input[aria-invalid="true"],
+    .row select[aria-invalid="true"],
+    .field input[aria-invalid="true"],
+    .field select[aria-invalid="true"],
+    .input[aria-invalid="true"] {
+        border-color: var(--danger);
+    }
+    .row input[aria-invalid="true"]:focus,
+    .row select[aria-invalid="true"]:focus,
+    .field input[aria-invalid="true"]:focus,
+    .field select[aria-invalid="true"]:focus,
+    .input[aria-invalid="true"]:focus {
+        border-color: var(--danger);
+        box-shadow: 0 0 0 3px var(--danger-bg);
+    }
+
+    /* .input-group — flex container styled to look like a single
+     * field, with a static prefix on the left and an editable
+     * input on the right. Used for URL-shaped controls where the
+     * prefix is fixed (e.g. wikilayer.org/owner/) and only the
+     * tail is user-editable. The border lives on the group; the
+     * inner input strips its own border so the two visually fuse.
+     * Invalid + focus states propagate up via :has(). */
+    .input-group {
+        display: flex;
+        align-items: stretch;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: var(--bg);
+        overflow: hidden;
+        transition: border-color var(--duration-fast) var(--easing-out),
+                    box-shadow var(--duration-fast) var(--easing-out);
+    }
+    .input-group:focus-within {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-bg);
+    }
+    .input-group:has(input[aria-invalid="true"]) {
+        border-color: var(--danger);
+    }
+    .input-group:has(input[aria-invalid="true"]):focus-within {
+        border-color: var(--danger);
+        box-shadow: 0 0 0 3px var(--danger-bg);
+    }
+    .input-prefix {
+        display: flex;
+        align-items: center;
+        padding: var(--space-2) var(--space-3);
+        background: var(--bg-hover);
+        color: var(--fg-muted);
+        border-right: 1px solid var(--border);
+        white-space: nowrap;
+        user-select: none;
+    }
+    .row .input-group > input,
+    .field .input-group > input,
+    .input-group > input {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        flex: 1;
+        min-width: 0;
+    }
+    .row .input-group > input:focus,
+    .field .input-group > input:focus,
+    .input-group > input:focus {
+        box-shadow: none;
+    }
+
     /* Custom <select> chevron — the native macOS / Chrome chevron is
      * glued to the right edge with no breathing room. We hide it
      * (`appearance:none`) and paint our own from two diagonal gradient
