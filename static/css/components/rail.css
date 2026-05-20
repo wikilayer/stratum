@@ -43,10 +43,21 @@
         padding: var(--space-1) var(--space-2);
         margin-left: calc(var(--space-2) * -1);
         border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        color: var(--fg);
     }
     .rail-section li a:hover {
         background: var(--bg-hover);
         text-decoration: none;
+    }
+    /* Active item — the rail entry that matches the page being
+     * viewed. The caller marks it with aria-current="page" /
+     * aria-current="true"; the rule paints it with the accent
+     * colour and an accent left border that doubles as the
+     * "you're here" cue for the TOC's same-page scroll target.
+     */
+    .rail-section li a[aria-current] {
+        color: var(--accent);
+        background: var(--bg-hover);
     }
     .rail-section .empty {
         font-size: var(--text-sm);
