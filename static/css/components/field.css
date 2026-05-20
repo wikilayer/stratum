@@ -170,6 +170,25 @@
         box-shadow: none;
     }
 
+    /* .input-action — interactive trailing element in an .input-group.
+     * Symmetric to .input-prefix: where the prefix is a static label
+     * on the left, the action is a button (or anchor styled as one)
+     * on the right that submits, clears, or otherwise acts on the
+     * input's value. Drops the button's own border / radius so it
+     * fuses with the group's outer frame; the dividing line is the
+     * group's own seam. Pair with the existing .button class for
+     * baseline button styling. */
+    .input-group > .input-action {
+        border: 0;
+        border-left: 1px solid var(--border);
+        border-radius: 0;
+        flex-shrink: 0;
+    }
+    .input-group > .input-action:focus,
+    .input-group > .input-action:focus-visible {
+        box-shadow: none;
+    }
+
     /* Custom <select> chevron — the native macOS / Chrome chevron is
      * glued to the right edge with no breathing room. We hide it
      * (`appearance:none`) and paint our own from two diagonal gradient

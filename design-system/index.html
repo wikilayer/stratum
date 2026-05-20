@@ -342,6 +342,16 @@
     </div>
 
     <div class="ds-example">
+      <p class="muted">Input with trailing action. Same <code>.input-group</code> wrapper, but the right-hand member is a <code>&lt;button&gt;</code> tagged <code>.input-action</code> instead of a static prefix. Use for forms where typing and submitting belong to one visual unit &mdash; search boxes, signup flows, slug-edit rows. The button keeps the <code>.button</code> baseline plus a left divider that fuses it with the input.</p>
+      <form class="stack" onsubmit="return false">
+        <div class="input-group">
+          <input type="search" placeholder="Search this wiki…">
+          <button type="submit" class="button button-primary input-action">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="ds-example">
       <p class="muted">Invalid state. Set <code>aria-invalid="true"</code> on the control; the red border survives once focus leaves and the <code>.form-error</code> message below the field carries the wording.</p>
       <form class="stack" onsubmit="return false">
         <div class="row">
