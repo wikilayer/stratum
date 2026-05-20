@@ -3,6 +3,16 @@
     .empty { color: var(--fg-muted); font-style: italic; }
     .inline-form { display: inline; }
     .stack > * + * { margin-top: var(--space-4); }
+    /* When .stack carries a list, strip the bullets / numbers and
+     * the user-agent left padding so the items align with the
+     * surrounding prose. Common case is "row per entry" layouts
+     * (search hits, feeds) where the caller wants vertical
+     * rhythm, not a marker column. Lists that genuinely need
+     * markers shouldn't carry .stack. */
+    ol.stack, ul.stack {
+        list-style: none;
+        padding-left: 0;
+    }
 
     .cluster {
         display: flex;

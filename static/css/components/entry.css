@@ -1,0 +1,23 @@
+@layer components {
+    /* .entry — one row in a vertical list of "things with a title
+     * and a body". Search hits use it; a blog-index, an inbox, a
+     * "recent activity" panel would too. The title is an inline
+     * heading (h2/h3/h4) carrying the link to the item; the body
+     * is a short excerpt; a trailing .entry-meta is the muted
+     * timestamp / author / kind line.
+     *
+     * Tightens vertical rhythm: the default prose gap between an
+     * h3 and the paragraph that follows is too much when the
+     * row repeats six times on a page. The fine-print meta sits
+     * flush below the excerpt for the same reason.
+     */
+    .entry > :first-child { margin-top: 0; }
+    .entry > :last-child  { margin-bottom: 0; }
+    .entry h2, .entry h3, .entry h4 { margin-bottom: var(--space-2); }
+    .entry p { margin: 0; }
+    .entry-meta {
+        margin-top: var(--space-2);
+        font-size: var(--text-sm);
+        color: var(--fg-muted);
+    }
+}

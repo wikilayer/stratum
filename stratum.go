@@ -60,6 +60,7 @@ var CSSAssets = []string{
 	"css/components/alert.css",
 	"css/components/modal.css",
 	"css/components/feed.css",
+	"css/components/entry.css",
 	"css/utilities.css",
 }
 
