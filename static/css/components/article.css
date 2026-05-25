@@ -68,4 +68,10 @@
         font-weight: var(--weight-semibold);
     }
     article table tbody tr:nth-child(even) td { background: var(--bg-subtle); }
+
+    /* Thin border so an image doesn't blend into a matching background. */
+    article img {
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+    }
 }
