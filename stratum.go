@@ -46,6 +46,7 @@ var CSSAssets = []string{
 	"css/components/button.css",
 	"css/components/field.css",
 	"css/components/avatar.css",
+	"css/components/tag.css",
 	"css/components/url-pill.css",
 	"css/components/callout.css",
 	"css/components/map.css",
