@@ -4,7 +4,7 @@
         align-items: end;
         justify-content: space-between;
         gap: var(--space-3);
-        border-bottom: 1px solid var(--border-muted);
+        border-bottom: 1px solid var(--border);
         margin-bottom: var(--space-5);
     }
     .page-head h1 {

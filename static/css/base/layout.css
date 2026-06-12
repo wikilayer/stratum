@@ -44,7 +44,7 @@
      * inherit the page-rail width / border / sticky positioning. */
     .content > aside {
         width: var(--aside-w);
-        border-left: 1px solid var(--border-muted);
+        border-left: 1px solid var(--border);
         padding: var(--space-6) var(--space-4);
         flex-shrink: 0;
         position: sticky;
@@ -61,7 +61,7 @@
      * inside (.rail-section etc.) work in either rail. */
     .content > nav.leftnav {
         width: var(--leftnav-w);
-        border-right: 1px solid var(--border-muted);
+        border-right: 1px solid var(--border);
         padding: var(--space-6) var(--space-4);
         flex-shrink: 0;
         position: sticky;
@@ -99,7 +99,7 @@
             order: -1;
             width: auto;
             border-left: none;
-            border-bottom: 1px solid var(--border-muted);
+            border-bottom: 1px solid var(--border);
             position: static;
             max-height: none;
             padding: var(--space-4);
@@ -112,7 +112,7 @@
             order: -2;
             width: auto;
             border-right: none;
-            border-bottom: 1px solid var(--border-muted);
+            border-bottom: 1px solid var(--border);
             position: static;
             max-height: none;
             padding: var(--space-4);
