@@ -224,6 +224,17 @@ Bordered surface for grouped content. `.card-grid` lays cards in a responsive gr
 
 Round chip with initials, or `<img class="avatar">` for a Gravatar.
 
+### `.tag`, `.tag-cN`, `.tag-row`
+
+Small coloured label (a node tag, a status marker). `.tag` is the shape; `.tag-cN` (N = 0..7) picks one of 8 palette hues. The hue is the ink for text and border, the fill is a themed tint of it, so a tag stays legible in both themes with no per-tag override. Wrap a trailing cluster in `.tag-row` to sit it beside a heading.
+
+```html
+<h3>How we write code<span class="tag-row">
+  <span class="tag tag-c0">for-agent</span>
+  <span class="tag tag-c1">checklist</span>
+</span></h3>
+```
+
 ### `.url-pill`
 
 Copy-this-code block — a `<code>` value paired with a compact `.copy-btn` (wired by `copy.js`). The name says URL because that's the canonical use, but the body is a generic `<code>` and works for any short string the user needs to paste somewhere.

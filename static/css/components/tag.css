@@ -1,0 +1,42 @@
+@layer components {
+    /* Small coloured label. .tag sets the shape; .tag-cN picks a
+     * palette hue (N = 0..7, matching the server-assigned slot). The
+     * hue (--tag-color) is the ink for text and border; the fill is a
+     * --tag-bg-mix tint of it over the page background, so a tag stays
+     * legible in light and dark themes without per-tag overrides. */
+    .tag {
+        --tag-color: var(--fg-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        padding: 0 var(--space-2);
+        font-size: var(--text-xs);
+        font-weight: var(--weight-medium);
+        line-height: 1.5;
+        white-space: nowrap;
+        border-radius: var(--radius-pill);
+        color: var(--tag-color);
+        background: color-mix(in oklch, var(--tag-color) var(--tag-bg-mix), var(--bg));
+        border: 1px solid color-mix(in oklch, var(--tag-color) 30%, transparent);
+    }
+
+    .tag-c0 { --tag-color: var(--tag-c0); }
+    .tag-c1 { --tag-color: var(--tag-c1); }
+    .tag-c2 { --tag-color: var(--tag-c2); }
+    .tag-c3 { --tag-color: var(--tag-c3); }
+    .tag-c4 { --tag-color: var(--tag-c4); }
+    .tag-c5 { --tag-color: var(--tag-c5); }
+    .tag-c6 { --tag-color: var(--tag-c6); }
+    .tag-c7 { --tag-color: var(--tag-c7); }
+
+    /* A trailing cluster of tags, e.g. after a heading. Wraps, small
+     * gap, baseline-centred so it sits beside the title text rather
+     * than pushing the line height around. */
+    .tag-row {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: var(--space-1);
+        margin-left: var(--space-2);
+        vertical-align: middle;
+    }
+}

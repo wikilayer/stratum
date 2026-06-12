@@ -50,6 +50,20 @@
         --avatar-c10: oklch(78% 0.13 340);
         --avatar-c11: oklch(78% 0.13 5);
 
+        /* Tag palette. Each --tag-cN is the ink (text + border) for a
+         * coloured label; the fill is a --tag-bg-mix tint of it over
+         * --bg (see components/tag.css). 8 slots, hue-spaced; slot N
+         * matches the server-assigned tag colour. */
+        --tag-c0: oklch(53% 0.18 25);
+        --tag-c1: oklch(55% 0.15 55);
+        --tag-c2: oklch(50% 0.09 100);
+        --tag-c3: oklch(52% 0.15 150);
+        --tag-c4: oklch(52% 0.09 210);
+        --tag-c5: oklch(53% 0.16 255);
+        --tag-c6: oklch(53% 0.18 300);
+        --tag-c7: oklch(55% 0.20 350);
+        --tag-bg-mix: 12%;
+
         /* GitHub callout palette — instantly recognisable. */
         --callout-note:      #0969da;
         --callout-tip:       #1f883d;
@@ -168,6 +182,16 @@
         --avatar-c9:  oklch(50% 0.13 310);
         --avatar-c10: oklch(50% 0.13 340);
         --avatar-c11: oklch(50% 0.13 5);
+
+        --tag-c0: oklch(78% 0.16 25);
+        --tag-c1: oklch(80% 0.13 55);
+        --tag-c2: oklch(82% 0.11 100);
+        --tag-c3: oklch(80% 0.15 150);
+        --tag-c4: oklch(80% 0.09 210);
+        --tag-c5: oklch(78% 0.13 255);
+        --tag-c6: oklch(78% 0.15 300);
+        --tag-c7: oklch(80% 0.16 350);
+        --tag-bg-mix: 22%;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -222,6 +246,16 @@
             --avatar-c9:  oklch(50% 0.13 310);
             --avatar-c10: oklch(50% 0.13 340);
             --avatar-c11: oklch(50% 0.13 5);
+
+            --tag-c0: oklch(78% 0.16 25);
+            --tag-c1: oklch(80% 0.13 55);
+            --tag-c2: oklch(82% 0.11 100);
+            --tag-c3: oklch(80% 0.15 150);
+            --tag-c4: oklch(80% 0.09 210);
+            --tag-c5: oklch(78% 0.13 255);
+            --tag-c6: oklch(78% 0.15 300);
+            --tag-c7: oklch(80% 0.16 350);
+            --tag-bg-mix: 22%;
         }
     }
 }
