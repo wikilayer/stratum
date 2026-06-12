@@ -41,13 +41,17 @@
         gap: var(--space-1);
         margin-left: 0.4em;
         vertical-align: super;
-        font-size: 0.55em;
+        font-size: 0.42em;
     }
 
     /* Inside the row, pills follow the row's scaled size rather than
      * the fixed standalone --text-xs, so a tag stays proportional on
-     * an h1 and an h6 alike. */
+     * an h1 and an h6 alike. Padding is em-based and the weight drops
+     * to regular so the badge reads as a quiet label, not a second
+     * heading competing with the title. */
     .tag-row .tag {
         font-size: inherit;
+        padding: 0.05em 0.5em;
+        font-weight: var(--weight-regular);
     }
 }
