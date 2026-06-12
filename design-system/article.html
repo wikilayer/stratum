@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Article — stratum</title>
 
-  <!-- Article context: content wrapped in <article> with one
-       <section class="block"> per node, mirroring a wiki page. The
-       article-scoped styles only fire here: section-level h2 carries
-       the baseline rule, tag badges ride as a superscript, block ids
-       sit in the gutter, external links pick up the arrow glyph. -->
+  <!-- A natural long-form article in the 2-rail shell: <main> with an
+       <article> body and a sticky table-of-contents <aside>. Shows the
+       article-scoped styles in a realistic setting: the h2 section
+       rule, tag superscripts on headings, tables, callouts, code,
+       lists, blockquotes, and a bordered image. -->
   <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
@@ -20,48 +20,199 @@
 </header>
 
 <div class="content">
-  <main class="column">
+
+  <main>
     <article>
-      <section class="block" id="block-1">
-        <a class="block-id" href="#block-1">1</a>
-        <h2>Roles<sup class="tag-row"><span class="tag tag-c0">for-agent</span></sup></h2>
-        <p>Section-level headings (h2) inside an <code>&lt;article&gt;</code> carry a baseline rule, Wikipedia / MDN style. Subsection headings below stay quiet. An <a href="https://example.com">external link</a> picks up the arrow glyph.</p>
+      <h1>Lighthouse<sup class="tag-row"><span class="tag tag-c5">navigation</span></sup></h1>
 
-        <section class="block" id="block-2">
-          <a class="block-id" href="#block-2">2</a>
-          <h3>The agent as journalist</h3>
-          <p>h3 is a subsection: no rule, just a heading. Body text flows as normal prose with <code>inline code</code> and lists.</p>
+      <p>
+        A <strong>lighthouse</strong> is a tower or other structure that
+        emits light from a system of lamps and lenses to serve as a
+        navigational aid for maritime pilots at sea or on inland
+        waterways. Lighthouses mark dangerous coastlines, hazardous
+        shoals and reefs, and safe entries to harbours; they also assist
+        in <em>aerial</em> navigation. Once ubiquitous, their number has
+        fallen with the rise of electronic navigation systems.
+      </p>
+
+      <h2 id="history">History<sup class="tag-row"><span class="tag tag-c2">heritage</span></sup></h2>
+
+      <p>
+        The most famous lighthouse of antiquity was the
+        <a href="https://en.wikipedia.org/wiki/Lighthouse_of_Alexandria">Pharos of Alexandria</a>,
+        built in the 3rd century BC and counted among the Seven Wonders
+        of the Ancient World. It stood for more than a millennium before
+        earthquakes brought it down. The word for lighthouse in several
+        Romance languages still derives from its name.
+      </p>
+
+      <blockquote>
+        The Pharos gave its light to sailors far out at sea, and its
+        flame, it was said, could be seen from a day's voyage away.
+      </blockquote>
+
+      <figure>
+        <img src="lighthouse.svg" alt="An idealised masonry lighthouse tower" width="200">
+        <figcaption>An idealised masonry tower with the banded daymark of a wave-swept light.</figcaption>
+      </figure>
+
+      <h3>The age of Fresnel</h3>
+
+      <p>
+        The decisive leap came in 1822, when the French physicist
+        Augustin-Jean Fresnel introduced the lens that bears his name. By
+        replacing a solid lens with a set of concentric prismatic rings,
+        the <a href="#optics">Fresnel lens</a> captured far more of a
+        lamp's light and threw it in a tight, far-reaching beam. A single
+        oil flame could suddenly be seen tens of kilometres away.
+      </p>
+
+      <h2 id="construction">Construction<sup class="tag-row"><span class="tag tag-c3">engineering</span></sup></h2>
+
+      <p>
+        Where a lighthouse sits decides how it is built. On firm headland
+        a simple masonry tower suffices; on a reef awash at high tide,
+        engineers face one of the hardest problems in civil engineering.
+      </p>
+
+      <h3>Wave-swept towers</h3>
+
+      <p>
+        The classic answer is the interlocking stone tower, pioneered at
+        the Eddystone and perfected at the Bell Rock. Each granite block
+        is dovetailed to its neighbours so the whole tower behaves as a
+        single monolith against the sea.
+      </p>
+
+      <p>Common building materials, roughly in order of adoption:</p>
+
+      <ul>
+        <li>Wood and rubble, for early and temporary lights</li>
+        <li>Dressed stone and granite, for wave-swept towers
           <ul>
-            <li>Has agency</li>
-            <li>Owns hygiene</li>
-            <li>Defends the source</li>
+            <li>Dovetailed courses for interlock</li>
+            <li>A solid base storey for ballast</li>
           </ul>
-        </section>
-      </section>
+        </li>
+        <li>Cast iron, bolted in prefabricated plates</li>
+        <li>Reinforced concrete, in the modern era</li>
+      </ul>
 
-      <section class="block" id="block-3">
-        <a class="block-id" href="#block-3">3</a>
-        <h2>Before write<sup class="tag-row"><span class="tag tag-c1">checklist</span></sup></h2>
-        <p>Another section. The tag rides as a superscript on the title; the rule runs the full measure beneath it.</p>
-        <table>
-          <thead>
-            <tr><th>Step</th><th>Why</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Read by outline</td><td>map the wiki before writing</td></tr>
-            <tr><td>Re-scan parent</td><td>avoid creating a duplicate</td></tr>
-          </tbody>
-        </table>
-      </section>
+      <p>A wave-swept tower is raised in stages:</p>
 
-      <section class="block" id="block-4">
-        <a class="block-id" href="#block-4">4</a>
-        <h2>Anti-patterns<sup class="tag-row"><span class="tag tag-c2">gotcha</span></sup></h2>
-        <blockquote>Known mistakes belong here so the next pass does not repeat them.</blockquote>
-      </section>
+      <ol>
+        <li>Survey the rock and cut a level foundation socket</li>
+        <li>Land and dress each numbered block on shore</li>
+        <li>Set the courses, dovetailing every block to the last</li>
+        <li>Fit the lantern room and install the optic</li>
+      </ol>
+
+      <p>A few notable towers, by height:</p>
+
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Country</th><th>Height</th><th>Completed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jeddah Light</td><td>Saudi Arabia</td><td>133 m</td><td>1990</td></tr>
+          <tr><td>Île Vierge</td><td>France</td><td>82.5 m</td><td>1902</td></tr>
+          <tr><td>Bell Rock</td><td>Scotland</td><td>35 m</td><td>1810</td></tr>
+          <tr><td>Eddystone (current)</td><td>England</td><td>49 m</td><td>1882</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="optics">Optics and characteristic</h2>
+
+      <p>
+        Every lighthouse flashes a distinct pattern, its
+        <em>characteristic</em>, so a navigator can tell one light from
+        the next. The pattern is written in a compact shorthand on charts;
+        for example a light that flashes white twice every ten seconds is
+        noted as:
+      </p>
+
+      <pre><code>Fl(2) W 10s 40m 18M</code></pre>
+
+      <p>
+        read as <code>Fl(2)</code> two flashes, <code>W</code> white,
+        every <code>10s</code>, with the lamp <code>40m</code> above the
+        sea and a nominal range of <code>18M</code> (nautical miles). The
+        elements of a characteristic are:
+      </p>
+
+      <ul>
+        <li><strong>Rhythm</strong> — fixed, flashing, occulting, or isophase</li>
+        <li><strong>Colour</strong> — white, red, or green</li>
+        <li><strong>Period</strong> — the seconds for one full cycle</li>
+      </ul>
+
+      <div class="callout callout-note">
+        <p class="callout-title">Note</p>
+        <p>Range depends on both the light's intensity and the height of the observer's eye, so the charted range is only nominal.</p>
+      </div>
+
+      <div class="callout callout-tip">
+        <p class="callout-title">Tip</p>
+        <p>Red sectors are often used to warn of a specific hazard: see red, and you are standing into danger.</p>
+      </div>
+
+      <div class="callout callout-warning">
+        <p class="callout-title">Warning</p>
+        <p>Never navigate on a single light alone; cross-check the characteristic against the chart and a second mark.</p>
+      </div>
+
+      <h2 id="decline">Automation and decline</h2>
+
+      <p>
+        Through the late twentieth century, keepers were replaced by
+        automatic lamps, sun switches, and remote monitoring. The last
+        manned light in many countries was automated in the 1990s, ending
+        a profession that had passed through families for generations.
+      </p>
+
+      <blockquote>
+        The light keeps its watch whether anyone keeps the light.
+      </blockquote>
+
+      <hr>
+
+      <h2 id="see-also">See also</h2>
+
+      <p>The authoritative list of lights for a region is the relevant volume of the Admiralty List of Lights:</p>
+
+      <div class="url-pill">
+        <code>https://www.admiralty.co.uk/list-of-lights</code>
+        <button class="copy-btn" type="button" data-label-copy="Copy" data-label-copied="Copied">Copy</button>
+      </div>
     </article>
   </main>
+
+  <aside>
+    <details class="rail-section toc-section toc" data-rail-section="article-toc" open>
+      <summary class="rail-section-summary">
+        <h3 class="eyebrow">Contents</h3>
+        <svg class="icon"><use href="#chevron-right"/></svg>
+      </summary>
+      <ul class="toc">
+        <li><a class="toc-link" href="#history">History</a></li>
+        <li><a class="toc-link" href="#construction">Construction</a></li>
+        <li><a class="toc-link" href="#optics">Optics and characteristic</a></li>
+        <li><a class="toc-link" href="#decline">Automation and decline</a></li>
+        <li><a class="toc-link" href="#see-also">See also</a></li>
+      </ul>
+    </details>
+  </aside>
+
 </div>
 
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="lightbulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6M10 22h4"/></symbol>
+  <symbol id="triangle-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+</svg>
+
+<script src="../static/toc.js" defer></script>
+<script src="../static/rail.js" defer></script>
 </body>
 </html>

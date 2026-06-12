@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320" width="240" height="320" role="img" aria-label="An idealised masonry lighthouse">
+  <rect width="240" height="320" fill="#0b1b2b"/>
+
+  <!-- light beams -->
+  <g fill="#ffd76a" opacity="0.35">
+    <path d="M120 60 L20 20 L20 50 Z"/>
+    <path d="M120 60 L220 20 L220 50 Z"/>
+  </g>
+
+  <!-- sea -->
+  <path d="M0 268 q60 -14 120 0 t120 0 V320 H0 Z" fill="#10324d"/>
+  <path d="M0 286 q60 -12 120 0 t120 0 V320 H0 Z" fill="#0c2740"/>
+
+  <!-- rock -->
+  <path d="M70 272 q50 -34 100 0 q-12 18 -50 18 t-50 -18 Z" fill="#2a3138"/>
+
+  <!-- tower -->
+  <polygon points="102,96 138,96 152,272 88,272" fill="#f4f6f8"/>
+  <!-- red bands -->
+  <polygon points="104,116 136,116 138,140 102,140" fill="#cf3a2e"/>
+  <polygon points="98,176 142,176 145,200 95,200" fill="#cf3a2e"/>
+  <polygon points="92,236 148,236 151,260 89,260" fill="#cf3a2e"/>
+
+  <!-- gallery -->
+  <rect x="96" y="88" width="48" height="9" rx="2" fill="#3a4751"/>
+  <!-- lantern room -->
+  <rect x="106" y="62" width="28" height="28" rx="2" fill="#ffd76a"/>
+  <rect x="106" y="62" width="28" height="28" rx="2" fill="none" stroke="#3a4751" stroke-width="3"/>
+  <line x1="120" y1="62" x2="120" y2="90" stroke="#3a4751" stroke-width="2"/>
+  <!-- dome -->
+  <path d="M104 62 q16 -22 32 0 Z" fill="#3a4751"/>
+  <circle cx="120" cy="36" r="3" fill="#cf3a2e"/>
+</svg>
