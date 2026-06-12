@@ -29,14 +29,25 @@
     .tag-c6 { --tag-color: var(--tag-c6); }
     .tag-c7 { --tag-color: var(--tag-c7); }
 
-    /* A trailing cluster of tags, e.g. after a heading. Wraps, small
-     * gap, baseline-centred so it sits beside the title text rather
-     * than pushing the line height around. */
+    /* A trailing cluster of tags as a superscript on a heading. Use
+     * a <sup class="tag-row"> so the badges ride high next to the
+     * title text. font-size is relative (em) so the pills scale with
+     * the heading they trail, staying proportional from h1 to h6;
+     * vertical-align: super lifts them clear of the baseline without
+     * stretching the line. */
     .tag-row {
         display: inline-flex;
         flex-wrap: wrap;
         gap: var(--space-1);
-        margin-left: var(--space-2);
-        vertical-align: middle;
+        margin-left: 0.4em;
+        vertical-align: super;
+        font-size: 0.55em;
+    }
+
+    /* Inside the row, pills follow the row's scaled size rather than
+     * the fixed standalone --text-xs, so a tag stays proportional on
+     * an h1 and an h6 alike. */
+    .tag-row .tag {
+        font-size: inherit;
     }
 }
