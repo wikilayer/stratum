@@ -44,12 +44,11 @@
      * MDN look) — applied per-element, globally to long-form prose
      * inside an <article>, or to a section heading in a .block (where
      * the heading is one level down from the article, not a direct
-     * child). Only h1/h2 get the rule, so deeper subsection headings
-     * stay quiet. */
+     * child). Only the section level (h2) gets the rule in a block, so
+     * deeper subsection headings stay quiet. */
     .h-rule,
     article > h1,
     article > h2,
-    .block > h1,
     .block > h2 {
         padding-bottom: var(--space-2);
         border-bottom: 1px solid var(--border);

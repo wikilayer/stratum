@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Article — stratum</title>
+
+  <!-- Article context: content wrapped in <article> with one
+       <section class="block"> per node, mirroring a wiki page. The
+       article-scoped styles only fire here: section-level h2 carries
+       the baseline rule, tag badges ride as a superscript, block ids
+       sit in the gutter, external links pick up the arrow glyph. -->
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+<header>
+  <a class="brand" href="index.html">stratum.example</a>
+  <a class="button button-ghost" href="index.html">Back to index</a>
+</header>
+
+<div class="content">
+  <main class="column">
+    <article>
+      <section class="block" id="block-1">
+        <a class="block-id" href="#block-1">1</a>
+        <h2>Roles<sup class="tag-row"><span class="tag tag-c0">for-agent</span></sup></h2>
+        <p>Section-level headings (h2) inside an <code>&lt;article&gt;</code> carry a baseline rule, Wikipedia / MDN style. Subsection headings below stay quiet. An <a href="https://example.com">external link</a> picks up the arrow glyph.</p>
+
+        <section class="block" id="block-2">
+          <a class="block-id" href="#block-2">2</a>
+          <h3>The agent as journalist</h3>
+          <p>h3 is a subsection: no rule, just a heading. Body text flows as normal prose with <code>inline code</code> and lists.</p>
+          <ul>
+            <li>Has agency</li>
+            <li>Owns hygiene</li>
+            <li>Defends the source</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="block" id="block-3">
+        <a class="block-id" href="#block-3">3</a>
+        <h2>Before write<sup class="tag-row"><span class="tag tag-c1">checklist</span></sup></h2>
+        <p>Another section. The tag rides as a superscript on the title; the rule runs the full measure beneath it.</p>
+        <table>
+          <thead>
+            <tr><th>Step</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Read by outline</td><td>map the wiki before writing</td></tr>
+            <tr><td>Re-scan parent</td><td>avoid creating a duplicate</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block" id="block-4">
+        <a class="block-id" href="#block-4">4</a>
+        <h2>Anti-patterns<sup class="tag-row"><span class="tag tag-c2">gotcha</span></sup></h2>
+        <blockquote>Known mistakes belong here so the next pass does not repeat them.</blockquote>
+      </section>
+    </article>
+  </main>
+</div>
+
+</body>
+</html>
