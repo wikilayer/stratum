@@ -42,4 +42,18 @@
         width: 18px;
         height: 18px;
     }
+
+    /* A .menu-host toggle (e.g. a share panel) dropped into the tab
+     * strip aligns to the icon tabs instead of the pill-shaped default. */
+    .page-tabs .menu-toggle {
+        width: 36px;
+        height: 36px;
+        justify-content: center;
+        padding: 0;
+        border-radius: var(--radius-sm);
+    }
+    .page-tabs .menu-toggle .icon {
+        width: 18px;
+        height: 18px;
+    }
 }

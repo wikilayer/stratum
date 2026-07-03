@@ -76,8 +76,11 @@
         border: 1px solid var(--border);
         border-radius: var(--radius-md);
         overflow: hidden;
-        width: 100%;
+        width: auto;
     }
+    /* Full-width inside a dropdown panel (the theme picker), where it
+     * should fill the narrow column; standalone it stays content-width. */
+    .dropdown .segmented { width: 100%; }
     .segmented button,
     .segmented a {
         flex: 1;

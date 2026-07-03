@@ -113,16 +113,13 @@
     }
     .ds-frame .frame-body { padding: var(--space-5); }
 
-    /* Switch + share-panel examples. The narrow wrapper keeps the
-     * space-between switch from stretching label and track apart; the
-     * static panels render the .dropdown inline so both states show
-     * without a click; ds-views lays the eye-count icon beside its
-     * number. Page-only scaffolding — not framework rules. */
+    /* Switch + share-panel examples: page-only scaffolding. .ds-narrow
+     * keeps the switch demo compact; .ds-static-panel renders the
+     * .dropdown inline so both states show without a click. The panel
+     * body spacing uses the real .stack utility and the eye-count is a
+     * plain .icon in a .muted line, not demo helpers. */
     .ds-narrow { max-width: 20rem; display: flex; flex-direction: column; gap: var(--space-4); }
-    .ds-panel-body { display: flex; flex-direction: column; gap: var(--space-3); }
-    .ds-panel-body .url-pill { margin: 0; }
     .ds-static-panel .dropdown { position: static; box-shadow: none; }
-    .ds-views { display: flex; align-items: center; gap: var(--space-2); }
 
     @media (max-width: 60rem) {
         body { grid-template-columns: 1fr; }
@@ -779,7 +776,7 @@
 
   <section class="ds-section" id="share-panel">
     <h2>Share panel</h2>
-    <p>A composition, not a new primitive: a <code>.switch</code> and a <code>.url-pill</code> inside a <code>.dropdown</code> under a share-icon <code>.menu-toggle</code>. Off shows only the toggle; on reveals the link and a muted view count. Drop the <code>.menu-host</code> into a <code>.page-tabs</code> strip to give a page an admin-only Share action.</p>
+    <p>A composition, not a new primitive: a <code>.switch</code> and a <code>.url-pill</code> stacked with <code>.stack</code> inside a <code>.dropdown</code> under a share-icon <code>.menu-toggle</code>, with a muted view count (an <code>.icon</code> beside the number). Off shows only the toggle; on reveals the link and count. Drop the <code>.menu-host</code> into a <code>.page-tabs</code> strip to give a page an admin-only Share action.</p>
 
     <div class="ds-example">
       <p class="muted">Live. Click to open (built on <code>.menu-host</code> + <code>dropdown.js</code>):</p>
@@ -788,7 +785,7 @@
           <svg class="icon" aria-hidden="true"><use href="#share-2"/></svg>
         </summary>
         <div class="dropdown" role="menu">
-          <div class="dropdown-section ds-panel-body">
+          <div class="dropdown-section stack">
             <label class="switch">
               <span class="switch-label">Public link</span>
               <input type="checkbox" class="switch-input" checked>
@@ -798,7 +795,7 @@
               <code>example.com/s/8f3a9c2e</code>
               <button class="copy-btn" type="button">Copy</button>
             </div>
-            <p class="ds-views muted"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg> 42 views</p>
+            <p class="muted"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg> 42 views</p>
           </div>
         </div>
       </details>
@@ -810,7 +807,7 @@
         <div class="ds-static-panel">
           <p class="muted">Off</p>
           <div class="dropdown">
-            <div class="dropdown-section ds-panel-body">
+            <div class="dropdown-section stack">
               <label class="switch">
                 <span class="switch-label">Public link</span>
                 <input type="checkbox" class="switch-input">
@@ -823,7 +820,7 @@
         <div class="ds-static-panel">
           <p class="muted">On</p>
           <div class="dropdown">
-            <div class="dropdown-section ds-panel-body">
+            <div class="dropdown-section stack">
               <label class="switch">
                 <span class="switch-label">Public link</span>
                 <input type="checkbox" class="switch-input" checked>
@@ -833,7 +830,7 @@
                 <code>example.com/s/8f3a9c2e</code>
                 <button class="copy-btn" type="button">Copy</button>
               </div>
-              <p class="ds-views muted"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg> 42 views</p>
+              <p class="muted"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg> 42 views</p>
             </div>
           </div>
         </div>
