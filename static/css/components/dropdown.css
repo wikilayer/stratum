@@ -26,6 +26,10 @@
         right: 0;
         top: calc(100% + 6px);
         min-width: 240px;
+        /* Cap the width so a long value (a share URL) truncates via the
+         * .url-pill ellipsis instead of stretching the panel across the
+         * viewport; stays within a phone screen. */
+        max-width: min(28rem, calc(100vw - var(--space-5)));
         background: var(--bg-elevated);
         border: 1px solid var(--border);
         border-radius: var(--radius-md);
