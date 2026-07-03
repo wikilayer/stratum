@@ -9,11 +9,19 @@
         border-radius: var(--radius-md);
         margin: var(--space-3) 0;
     }
+    /* One line, truncated with an ellipsis: the value is meant to be
+     * copied, not read in full, so a long URL or token stays on a
+     * single row instead of growing the pill. min-width:0 lets the flex
+     * item shrink below its content width so the ellipsis engages; the
+     * copy button reads the full textContent regardless. */
     .url-pill code {
         flex: 1;
+        min-width: 0;
         background: transparent;
         padding: 0;
         font-size: var(--text-sm);
-        overflow-wrap: anywhere;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
