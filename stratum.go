@@ -54,6 +54,7 @@ var CSSAssets = []string{
 	"css/components/table.css",
 	"css/components/breadcrumb.css",
 	"css/components/dropdown.css",
+	"css/components/switch.css",
 	"css/components/rail.css",
 	"css/components/article.css",
 	"css/components/page-head.css",

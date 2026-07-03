@@ -282,6 +282,20 @@ Click-to-reveal menu built on `<details>`. The header avatar dropdown is the can
 
 Horizontal radio-style picker (button-group). Use `aria-pressed="true"` to mark the active option.
 
+### `.switch`
+
+Labelled on/off toggle. A native `<input type="checkbox">` carries the state and keyboard handling; `.switch-track` and `.switch-thumb` are its skin. The `.switch-label` comes first in source order so it renders left of the track, keeping the value clear of a tapping thumb. Works with no JavaScript; the checkbox is the state. Add `checked`/`disabled` to the input as usual.
+
+```html
+<label class="switch">
+  <span class="switch-label">Public link</span>
+  <input type="checkbox" class="switch-input" checked>
+  <span class="switch-track"><span class="switch-thumb"></span></span>
+</label>
+```
+
+Canonical composition: drop a `.switch` and a `.url-pill` into a `.dropdown` under a share-icon `.menu-toggle` to build a reveal-a-link share panel (see the design-system reference).
+
 ### `.feed`, `.feed-item`, `.feed-time`, `.feed-actor`, `.feed-action`, `.feed-target`
 
 Flat list of timestamped activity entries. `.feed-action` carries a coloured tag — variants by suffix (`feed-action-INSERT`, `…-UPDATE`, `…-DELETE`; rename in your CSS if your domain uses different verbs). `.feed-target-gone` strikes through a target whose object no longer exists.

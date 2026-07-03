@@ -113,6 +113,17 @@
     }
     .ds-frame .frame-body { padding: var(--space-5); }
 
+    /* Switch + share-panel examples. The narrow wrapper keeps the
+     * space-between switch from stretching label and track apart; the
+     * static panels render the .dropdown inline so both states show
+     * without a click; ds-views lays the eye-count icon beside its
+     * number. Page-only scaffolding — not framework rules. */
+    .ds-narrow { max-width: 20rem; display: flex; flex-direction: column; gap: var(--space-4); }
+    .ds-panel-body { display: flex; flex-direction: column; gap: var(--space-3); }
+    .ds-panel-body .url-pill { margin: 0; }
+    .ds-static-panel .dropdown { position: static; box-shadow: none; }
+    .ds-views { display: flex; align-items: center; gap: var(--space-2); }
+
     @media (max-width: 60rem) {
         body { grid-template-columns: 1fr; }
         .ds-side { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--border-muted); padding-right: 0; padding-bottom: var(--space-4); }
@@ -144,6 +155,7 @@
   <symbol id="ellipsis" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /> <circle cx="19" cy="12" r="1" /> <circle cx="5" cy="12" r="1" /></symbol>
   <symbol id="loader-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></symbol>
   <symbol id="search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /></symbol>
+  <symbol id="share-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3" /> <circle cx="6" cy="12" r="3" /> <circle cx="18" cy="19" r="3" /> <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /> <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" /></symbol>
   <symbol id="github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
 </svg>
 <!-- inline-sprite:end -->
@@ -171,6 +183,8 @@
     <li><a href="#tags">Tags</a></li>
     <li><a href="#cards">Cards</a></li>
     <li><a href="#url-pill">Copy block</a></li>
+    <li><a href="#switch">Switch</a></li>
+    <li><a href="#share-panel">Share panel</a></li>
     <li><a href="#page-head">Page header</a></li>
     <li><a href="#breadcrumb">Breadcrumb</a></li>
     <li><a href="#rail-section">Rail section</a></li>
@@ -346,10 +360,10 @@
       <p class="muted">Input with prefix. <code>.input-group</code> wraps an <code>.input-prefix</code> and a regular <code>&lt;input&gt;</code>. Use when a portion of the value is fixed by the system (a URL prefix, a protocol, a currency) and only the tail is user-editable.</p>
       <form class="stack" onsubmit="return false">
         <div class="row">
-          <label class="row-label" for="ds-slug">Wiki URL</label>
+          <label class="row-label" for="ds-slug">Page URL</label>
           <div class="input-group">
-            <span class="input-prefix">wikilayer.org/1-maxim/</span>
-            <input id="ds-slug" type="text" placeholder="2982-apakabar-cash">
+            <span class="input-prefix">example.com/</span>
+            <input id="ds-slug" type="text" placeholder="getting-started">
           </div>
         </div>
       </form>
@@ -359,7 +373,7 @@
       <p class="muted">Input with trailing action. Same <code>.input-group</code> wrapper, but the right-hand member is a <code>&lt;button&gt;</code> tagged <code>.input-action</code> instead of a static prefix. Use for forms where typing and submitting belong to one visual unit &mdash; search boxes, signup flows, slug-edit rows. The button keeps the <code>.button</code> baseline plus a left divider that fuses it with the input.</p>
       <form class="stack" onsubmit="return false">
         <div class="input-group">
-          <input type="search" placeholder="Search this wiki…">
+          <input type="search" placeholder="Search…">
           <button type="submit" class="button button-primary input-action">Search</button>
         </div>
       </form>
@@ -369,17 +383,17 @@
       <p class="muted">Invalid state. Set <code>aria-invalid="true"</code> on the control; the red border survives once focus leaves and the <code>.form-error</code> message below the field carries the wording.</p>
       <form class="stack" onsubmit="return false">
         <div class="row">
-          <label class="row-label" for="ds-bad">Wiki URL</label>
+          <label class="row-label" for="ds-bad">Page URL</label>
           <div class="input-group">
-            <span class="input-prefix">wikilayer.org/1-maxim/</span>
+            <span class="input-prefix">example.com/</span>
             <input id="ds-bad" type="text" value="Bad Slug!" aria-invalid="true">
           </div>
-          <p class="form-error">Только латинские строчные буквы, цифры, точки и дефисы.</p>
+          <p class="form-error">Lowercase Latin letters, digits, dots and hyphens only.</p>
         </div>
         <div class="row">
           <label class="row-label" for="ds-bad-plain">Plain field</label>
           <input id="ds-bad-plain" type="text" value="x" aria-invalid="true">
-          <p class="form-error">Минимум 2 символа.</p>
+          <p class="form-error">At least 2 characters.</p>
         </div>
       </form>
     </div>
@@ -738,9 +752,98 @@
     </div>
   </section>
 
+  <section class="ds-section" id="switch">
+    <h2>Switch</h2>
+    <p>Labelled on/off toggle on a native checkbox: keyboard- and screen-reader-ready, no JavaScript needed. The label leads in source order so it renders left of the track and the value never hides under a tapping thumb. <code>.switch-label</code> + <code>.switch-input</code> + <code>.switch-track</code> (holding <code>.switch-thumb</code>).</p>
+
+    <div class="ds-example">
+      <div class="ds-narrow">
+        <label class="switch">
+          <span class="switch-label">Off by default</span>
+          <input type="checkbox" class="switch-input">
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+        </label>
+        <label class="switch">
+          <span class="switch-label">On</span>
+          <input type="checkbox" class="switch-input" checked>
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+        </label>
+        <label class="switch">
+          <span class="switch-label">Disabled</span>
+          <input type="checkbox" class="switch-input" disabled>
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-section" id="share-panel">
+    <h2>Share panel</h2>
+    <p>A composition, not a new primitive: a <code>.switch</code> and a <code>.url-pill</code> inside a <code>.dropdown</code> under a share-icon <code>.menu-toggle</code>. Off shows only the toggle; on reveals the link and a muted view count. Drop the <code>.menu-host</code> into a <code>.page-tabs</code> strip to give a page an admin-only Share action.</p>
+
+    <div class="ds-example">
+      <p class="muted">Live. Click to open (built on <code>.menu-host</code> + <code>dropdown.js</code>):</p>
+      <details class="menu-host">
+        <summary class="menu-toggle" aria-label="Share">
+          <svg class="icon" aria-hidden="true"><use href="#share-2"/></svg>
+        </summary>
+        <div class="dropdown" role="menu">
+          <div class="dropdown-section ds-panel-body">
+            <label class="switch">
+              <span class="switch-label">Public link</span>
+              <input type="checkbox" class="switch-input" checked>
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+            <div class="url-pill">
+              <code>example.com/s/8f3a9c2e</code>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <p class="ds-views muted"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg> 42 views</p>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Both states of the panel body:</p>
+      <div class="ds-cluster" style="align-items: flex-start">
+        <div class="ds-static-panel">
+          <p class="muted">Off</p>
+          <div class="dropdown">
+            <div class="dropdown-section ds-panel-body">
+              <label class="switch">
+                <span class="switch-label">Public link</span>
+                <input type="checkbox" class="switch-input">
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+              </label>
+              <p class="muted">Off. Turn on to get a read-only link anyone can open.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ds-static-panel">
+          <p class="muted">On</p>
+          <div class="dropdown">
+            <div class="dropdown-section ds-panel-body">
+              <label class="switch">
+                <span class="switch-label">Public link</span>
+                <input type="checkbox" class="switch-input" checked>
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+              </label>
+              <div class="url-pill">
+                <code>example.com/s/8f3a9c2e</code>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <p class="ds-views muted"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg> 42 views</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="ds-section" id="page-head">
     <h2>Page header</h2>
-    <p>Title plus an icon-tab strip — eye / clock / gear — for the three sections every wiki/page surface shares: content, history, manage. Active tab gets the accent underline.</p>
+    <p>Title plus an icon-tab strip — eye / clock / gear — for the three sections every page surface shares: content, history, manage. Active tab gets the accent underline.</p>
 
     <div class="ds-example">
       <header class="page-head">

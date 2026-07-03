@@ -120,7 +120,7 @@
     /* .input-group — flex container styled to look like a single
      * field, with a static prefix on the left and an editable
      * input on the right. Used for URL-shaped controls where the
-     * prefix is fixed (e.g. wikilayer.org/owner/) and only the
+     * prefix is fixed (e.g. example.com/owner/) and only the
      * tail is user-editable. The border lives on the group; the
      * inner input strips its own border so the two visually fuse.
      * Invalid + focus states propagate up via :has(). */
