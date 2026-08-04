@@ -63,6 +63,15 @@
         font-size: var(--text-xs);
     }
 
+    /* Full-width variant for a vertical list of equal choices (sign-in
+     * providers, a single action closing a narrow form). Block display
+     * is what makes the buttons stack: the inline-flex default keeps
+     * them on one line, where .stack's margin-top does nothing. */
+    .button-block {
+        display: flex;
+        width: 100%;
+    }
+
     /* × dismiss button — close modals, clear a selection chip,
      * dismiss a toast, etc. Plain background, big × glyph, picks up
      * fg colour on hover. */

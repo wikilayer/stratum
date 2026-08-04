@@ -128,6 +128,15 @@ Every component lives in its own file under `static/css/components/`. Markup con
 
 Modifiers stack. Use `<a>` for navigation, `<button>` for actions. Icons go inline before the label.
 
+`.button-block` makes a button fill its container, which is also what stacks a list of them: buttons are inline-flex by default and sit on one line, so a `.stack` of plain buttons gets no vertical rhythm.
+
+```html
+<div class="stack">
+  <a class="button button-primary button-block"   href="…">Sign in with GitHub</a>
+  <a class="button button-secondary button-block" href="…">Sign in with Google</a>
+</div>
+```
+
 ### `.row`, `.field`, `.input`, `.choice-group`
 
 Form primitives.
@@ -320,7 +329,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 |------------------|--------|
 | `.muted`         | secondary foreground colour |
 | `.empty`         | italic + muted, for "no data" placeholders |
-| `.fine-print`    | small + muted text, for disclaimers under forms |
+| `.fine-print`    | small + muted text with balanced line lengths, for disclaimers under forms |
 | `.text-center`, `.text-left`, `.text-right` | `text-align` |
 | `.stack > * + *` | vertical rhythm via margin-top (lobotomized owl) |
 | `.cluster`       | horizontal flex with gap and wrap |

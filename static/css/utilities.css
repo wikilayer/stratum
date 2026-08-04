@@ -36,6 +36,10 @@
         color: var(--fg-muted);
         font-size: var(--text-sm);
         line-height: 1.5;
+        /* Even out the lines: a legal footnote is a couple of lines of
+         * centred text, where the default greedy wrap leaves a long
+         * line above a stub. */
+        text-wrap: balance;
     }
     .fine-print a { color: inherit; text-decoration: underline; }
     .fine-print a:hover { color: var(--fg); }
