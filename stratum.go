@@ -52,6 +52,7 @@ var CSSAssets = []string{
 	"css/components/map.css",
 	"css/components/card.css",
 	"css/components/table.css",
+	"css/components/scroll-x.css",
 	"css/components/breadcrumb.css",
 	"css/components/dropdown.css",
 	"css/components/switch.css",

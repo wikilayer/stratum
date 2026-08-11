@@ -22,6 +22,41 @@
     }
     .data-table tr.is-revoked td { color: var(--fg-muted); }
 
+    /* Lead column that stays put while a wide table scrolls sideways
+     * inside a .scroll-x, so the row keeps its label. Pinned cells
+     * need an opaque fill of their own, since the default is
+     * transparent and the scrolled content would read through them.
+     * Borders have to separate too: a collapsed border belongs to the
+     * table, not to the cell, so it stays behind while the cell sticks
+     * and the scrolled text shows through that 1px seam. */
+    .sticky-lead {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .sticky-lead :is(th, td):first-child {
+        position: sticky;
+        left: 0;
+        background: var(--row-fill, var(--bg));
+        border-right: 1px solid var(--border);
+    }
+
+    /* Modifier for tables whose first column is a row number: pin the
+     * second column as well, since a bare number doesn't tell the
+     * reader which row they are on. Fixing the number column's width
+     * is what lets the second one know where to stick. */
+    .sticky-lead-2 { --lead-w: 3.5rem; }
+    .sticky-lead-2 :is(th, td):first-child {
+        width: var(--lead-w);
+        min-width: var(--lead-w);
+        border-right: 0;
+    }
+    .sticky-lead-2 :is(th, td):nth-child(2) {
+        position: sticky;
+        left: var(--lead-w);
+        background: var(--row-fill, var(--bg));
+        border-right: 1px solid var(--border);
+    }
+
     /* Definition-list "meta" — used by the read-only metadata block
      * (provider/created) on Settings. */
     .meta {

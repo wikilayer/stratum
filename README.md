@@ -313,6 +313,30 @@ Flat list of timestamped activity entries. `.feed-action` carries a coloured tag
 
 Generic admin / settings table. `.meta` is the same idea but for a `<dl>` of read-only `Label: value` facts.
 
+### `.scroll-x`
+
+Wrapper for content that cannot be made narrower than its column, a wide table above all. Without it the child overflows its flex column and paints over whatever sits beside it, typically the page rail.
+
+```html
+<div class="scroll-x">
+  <table>…</table>
+</div>
+```
+
+The box scrolls sideways on its own; the page never does. Where the browser supports scroll-driven animation, the right edge fades while there is more to scroll and sharpens once the end is reached, so the fade never advertises columns that aren't there. Elsewhere the scrollbar and the cut-off column carry that message alone.
+
+### `.sticky-lead`, `.sticky-lead-2`
+
+Modifiers on a `<table>` inside a `.scroll-x`: the lead column stays pinned while the rest scrolls sideways, so a row keeps its label when the reader is five columns deep. Add `.sticky-lead-2` as well when the first column is a row number: a bare number doesn't say which row it is, so the second column pins too, and the number column takes the fixed `--lead-w` width the second one sticks against.
+
+```html
+<div class="scroll-x">
+  <table class="sticky-lead sticky-lead-2">…</table>
+</div>
+```
+
+Pinned cells paint an opaque fill because a transparent one would let the scrolled content read through: `--row-fill` if the row declares one (that is how `article table` carries its header and zebra shading), `--bg` otherwise. The table also switches to separated borders: a collapsed border belongs to the table rather than the cell, so it would stay behind while the cell sticks and leave a 1px seam for the scrolled text to show through.
+
 ### `.toc`, `.toc-link`, `.recent`
 
 Right-rail widgets — table of contents with active-link highlight, recent-activity list with title + relative time.

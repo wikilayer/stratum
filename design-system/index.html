@@ -713,6 +713,31 @@
     </div>
   </section>
 
+  <section class="ds-section" id="scroll-x">
+    <h2>Wide table that scrolls sideways</h2>
+    <p>A table that cannot be made narrower goes inside <code>.scroll-x</code>, which scrolls it sideways on its own so it never spills over the page rail and never drags the whole page with it. <code>.sticky-lead</code> pins the lead column so a row keeps its label at column ten; add <code>.sticky-lead-2</code> when the first column is a row number, and the name column beside it pins too. Where scroll-driven animation is supported, the right edge fades while there is more to reach and sharpens at the end. Scroll the table below to see both.</p>
+
+    <div class="ds-example">
+      <div class="scroll-x">
+        <table class="data-table sticky-lead sticky-lead-2">
+          <thead>
+            <tr>
+              <th>№</th><th>Station</th><th>Country</th><th>Sea</th><th>Tower</th>
+              <th>Height</th><th>Focal plane</th><th>Range</th><th>Optic</th>
+              <th>Character</th><th>Built</th><th>Automated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Bell Rock</td><td>Scotland</td><td>North Sea</td><td>granite</td><td>35 m</td><td>28 m</td><td>18 M</td><td>Fresnel</td><td>Fl W 5s</td><td>1810</td><td>1988</td></tr>
+            <tr><td>2</td><td>Île Vierge</td><td>France</td><td>Atlantic</td><td>granite</td><td>82.5 m</td><td>77 m</td><td>27 M</td><td>Fresnel</td><td>Fl W 5s</td><td>1902</td><td>2010</td></tr>
+            <tr><td>3</td><td>Kõpu</td><td>Estonia</td><td>Baltic</td><td>masonry</td><td>36 m</td><td>102 m</td><td>26 M</td><td>catadioptric</td><td>Fl W 10s</td><td>1531</td><td>1963</td></tr>
+            <tr><td>4</td><td>Jeddah Light</td><td>Saudi Arabia</td><td>Red Sea</td><td>steel</td><td>133 m</td><td>133 m</td><td>25 M</td><td>rotating</td><td>Fl W 7s</td><td>1990</td><td>1990</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="ds-section" id="entry">
     <h2>Entry</h2>
     <p>One row in a vertical list of titled excerpts &mdash; search hit, blog index, inbox item. Title is a heading (h3 or h4) carrying a link, body is a short paragraph, <code>.entry-meta</code> is the muted timestamp / kind / author line below. Pair with <code>&lt;ol class="stack"&gt;</code> or <code>&lt;ul class="stack"&gt;</code> for the surrounding list (the <code>.stack</code> on a list strips bullets and the user-agent left padding).</p>

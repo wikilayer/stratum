@@ -49,25 +49,33 @@
                 mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.8' stroke='black'><path stroke-linecap='round' stroke-linejoin='round' d='M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25'/></svg>") no-repeat center / contain;
     }
 
-    /* Markdown-rendered tables inside an <article> body. */
+    /* Markdown-rendered tables inside an <article> body. Cells carry
+     * their right and bottom edge only, the table draws the outer top
+     * and left: that way the 1px grid looks the same whether the table
+     * collapses its borders or, as .sticky-lead needs, separates them. */
     article table {
         border-collapse: collapse;
+        border-top: 1px solid var(--border-muted);
+        border-left: 1px solid var(--border-muted);
         margin: var(--space-4) 0;
         font-size: var(--text-sm);
         line-height: var(--leading-snug);
     }
     article table th,
     article table td {
-        border: 1px solid var(--border-muted);
+        border-right: 1px solid var(--border-muted);
+        border-bottom: 1px solid var(--border-muted);
         padding: var(--space-2) var(--space-3);
         text-align: left;
         vertical-align: top;
     }
-    article table th {
-        background: var(--bg-subtle);
-        font-weight: var(--weight-semibold);
-    }
-    article table tbody tr:nth-child(even) td { background: var(--bg-subtle); }
+    article table th { font-weight: var(--weight-semibold); }
+    /* Header and zebra fills live on the row through --row-fill, not on
+     * the cell, so a pinned .sticky-lead cell can pick the same fill up
+     * instead of guessing at it. */
+    article table tr { background: var(--row-fill, transparent); }
+    article table thead tr,
+    article table tbody tr:nth-child(even) { --row-fill: var(--bg-subtle); }
 
     /* Thin border so an image doesn't blend into a matching background. */
     article img {

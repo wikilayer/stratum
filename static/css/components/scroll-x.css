@@ -1,0 +1,40 @@
+/* Registered so the fade width can be animated; @property takes no
+ * part in the cascade, so it sits outside the layer. */
+@property --scroll-x-fade {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@layer components {
+    /* Sideways escape hatch for content with an irreducible minimum
+     * width, wide tables above all. Without it such a child spills
+     * out of its column and paints over whatever sits beside it. */
+    .scroll-x {
+        overflow-x: auto;
+        max-width: 100%;
+        overscroll-behavior-x: contain;
+        scrollbar-width: thin;
+    }
+
+    /* Fade on the right edge saying "there is more this way", tied to
+     * the scroll position so a fully scrolled table stops advertising
+     * columns that aren't there. Enhancement only: where scroll-driven
+     * animation is missing, the scrollbar and the cut-off column carry
+     * the message on their own. Left edge stays sharp, since a fade
+     * there would eat the pinned lead column of a .sticky-lead table. */
+    @supports (animation-timeline: scroll(self inline)) {
+        .scroll-x {
+            --scroll-x-fade-width: var(--space-6);
+            mask-image: linear-gradient(to left, transparent 0, black var(--scroll-x-fade));
+            animation: scroll-x-fade linear both;
+            animation-timeline: scroll(self inline);
+            animation-range: calc(100% - var(--scroll-x-fade-width)) 100%;
+        }
+    }
+}
+
+@keyframes scroll-x-fade {
+    from { --scroll-x-fade: var(--scroll-x-fade-width); }
+    to   { --scroll-x-fade: 0px; }
+}
