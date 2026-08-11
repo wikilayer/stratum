@@ -29,6 +29,12 @@
     .cluster-baseline { align-items: baseline; }
 
     .text-center { text-align: center; }
+    /* Logical pair, and the default choice: they follow the writing
+     * direction, so one class reads correctly on an RTL page too.
+     * Reach for .text-left / .text-right only where the alignment is
+     * genuinely physical, such as a column of figures. */
+    .text-start  { text-align: start;  }
+    .text-end    { text-align: end;    }
     .text-left   { text-align: left;   }
     .text-right  { text-align: right;  }
 

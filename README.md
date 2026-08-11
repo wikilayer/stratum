@@ -354,7 +354,8 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.muted`         | secondary foreground colour |
 | `.empty`         | italic + muted, for "no data" placeholders |
 | `.fine-print`    | small + muted text with balanced line lengths, for disclaimers under forms |
-| `.text-center`, `.text-left`, `.text-right` | `text-align` |
+| `.text-center`, `.text-start`, `.text-end` | `text-align`, the logical pair following writing direction (RTL-safe) |
+| `.text-left`, `.text-right` | `text-align`, physical, for alignment that must not flip in RTL |
 | `.stack > * + *` | vertical rhythm via margin-top (lobotomized owl) |
 | `.cluster`       | horizontal flex with gap and wrap |
 | `.inline-form`   | `display: inline` for inline POST forms |
