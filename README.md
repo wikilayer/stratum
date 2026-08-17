@@ -419,8 +419,9 @@ License: outline icons are Lucide / Feather (ISC + MIT subset). Brand icons are 
 - `theme.js` — wires every `[data-theme-set]` button. Writes a `theme` cookie (`light` / `dark` / blank for auto), applies `data-theme` on `<html>` immediately, updates `aria-pressed` on the buttons. Server is responsible for reading the cookie on each request and emitting `<html data-theme="…">` on the initial render to avoid flash.
 - `copy.js` — wires every `.copy-btn` inside a `.url-pill`. Copies the `<code>` value to clipboard, swaps the button label to `data-label-copied`, then back after 1500ms. Localised labels stay in templates, not in JS.
 - `modal.js` — wires `[data-modal-open="ID"]` triggers and `[data-modal-close]` close-buttons. Uses native `<dialog>.showModal()` / `.close()`; adds click-on-backdrop-to-close on top of what the platform gives you for free.
+- `autosubmit.js` — submits a `form[data-autosubmit]` as soon as a `select`, checkbox or radio inside it changes, so a one-field setting needs no Save button. Text inputs are ignored on purpose: every keystroke is a change. The changed control is disabled while the page navigates, so a second choice cannot race the first.
 
-All three are zero-dependency, ~30 lines each, safe to load with `defer`.
+All are zero-dependency, ~30 lines each, safe to load with `defer`.
 
 ## Adding a component
 
