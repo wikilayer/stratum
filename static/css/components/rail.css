@@ -14,6 +14,10 @@
      * eyebrow heading; chevron rotates on open. Pair with rail.js to
      * remember per-section state in a cookie. */
     .rail-section { margin-bottom: var(--space-5); }
+    /* The gap belongs between sections, so the last one does not
+     * pay for it: on a phone the rail is a band above the page,
+     * and a trailing margin reads as an empty strip under it. */
+    .rail-section:last-child { margin-bottom: 0; }
     .rail-section-summary {
         display: flex;
         align-items: center;
@@ -21,8 +25,11 @@
         cursor: pointer;
         list-style: none;
         user-select: none;
-        margin-bottom: var(--space-3);
     }
+    /* The heading separates itself from the list only while the
+     * list is there; closed, the same margin is a hole under a
+     * one-line section. */
+    .rail-section[open] > .rail-section-summary { margin-bottom: var(--space-3); }
     .rail-section-summary::-webkit-details-marker,
     .rail-section-summary::marker { display: none; }
     .rail-section-summary .eyebrow { margin: 0; }
