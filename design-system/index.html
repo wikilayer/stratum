@@ -362,6 +362,14 @@
       </form>
     </div>
 
+    <p><code>.input-expand</code> costs an icon's width until someone wants it. Click the magnifier, or tab to it: the label focuses the input with no script, and a typed query keeps the field open.</p>
+    <div class="ds-example">
+      <form class="input-expand" role="search" action="#forms">
+        <label for="ds-expand"><svg class="icon" aria-hidden="true"><use href="#search"/></svg><span class="visually-hidden">Search</span></label>
+        <input id="ds-expand" type="search" name="q" placeholder="Search" autocomplete="off">
+      </form>
+    </div>
+
     <div class="ds-example">
       <p class="muted">Input with prefix. <code>.input-group</code> wraps an <code>.input-prefix</code> and a regular <code>&lt;input&gt;</code>. Use when a portion of the value is fixed by the system (a URL prefix, a protocol, a currency) and only the tail is user-editable.</p>
       <form class="stack" onsubmit="return false">

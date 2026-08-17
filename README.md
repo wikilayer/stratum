@@ -161,6 +161,15 @@ Form primitives.
 
 Inputs / selects inside `.row` and `.field` get the framework's text-input look automatically. Custom `<select>` chevron is painted with two CSS gradients so it follows the theme.
 
+`.input-expand` is a field that costs an icon's width until someone wants it, for a bar with room for an icon but not for an input. Wrap a `<label for=>` holding the icon and the input; the label focuses the input with no script, `:focus-within` opens it, and a typed query keeps it open so a result page still shows what was asked. Give the label a `.visually-hidden` name, since an icon alone names nothing.
+
+```html
+<form class="input-expand" role="search" action="/search">
+  <label for="q"><svg class="icon"><use href="/static/icons.svg#search"/></svg><span class="visually-hidden">Search</span></label>
+  <input id="q" type="search" name="q" placeholder="Search" autocomplete="off">
+</form>
+```
+
 ### `.tabs`
 
 Pure-CSS, radio-driven. Up to four tabs out of the box; extend the selector pairs in `tabs.css` for more.
@@ -381,6 +390,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
 | `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>`. Applies automatically to all `h1`/`h2` inside an `<article>` so rendered markdown gets the rule for free |
 | `.eyebrow`       | small uppercase muted label — sidebar section titles, dropdown labels, and other "small caps over a list" places |
+| `.visually-hidden` | there for a screen reader, gone for the eye. The name of a control whose visible label is an icon |
 | `.nowrap`        | keep a line unbroken and clip the overflow with an ellipsis. For a bar of fixed height, whose contents would otherwise wrap into the page below |
 | `.wide-only`, `.narrow-only` | show one of a pair either side of the 720px breakpoint. Put both variants in the markup and let the width choose; the canonical use is a control in a fixed-height bar that needs a full label where there is room and an abbreviation where there is not |
 

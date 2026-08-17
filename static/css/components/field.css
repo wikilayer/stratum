@@ -301,6 +301,42 @@
         font-size: var(--text-sm);
     }
 
+    /* A field that costs an icon's width until it is wanted. The label
+     * carries the icon and is what gets clicked; being a <label for=>,
+     * that click focuses the input with no script, and :focus-within is
+     * what opens it, so the pattern works with JavaScript off. A typed
+     * query keeps it open, so a result page still shows what was asked.
+     * For bars with room for an icon but not for an input. */
+    .input-expand {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+    }
+    .input-expand > label {
+        display: inline-flex;
+        cursor: pointer;
+        color: var(--fg-muted);
+        padding: var(--space-2);
+    }
+    .input-expand:hover > label,
+    .input-expand:focus-within > label { color: var(--fg); }
+    .input-expand > input {
+        width: 0;
+        min-width: 0;
+        padding-inline: 0;
+        border-color: transparent;
+        background: transparent;
+        transition: width var(--duration-fast) var(--easing-out),
+                    padding-inline var(--duration-fast) var(--easing-out);
+    }
+    .input-expand:focus-within > input,
+    .input-expand > input:not(:placeholder-shown) {
+        width: min(16rem, 40vw);
+        padding-inline: var(--space-3);
+        border-color: var(--border);
+        background: var(--bg);
+    }
+
     @media (max-width: 720px) {
         .form-layout {
             grid-template-columns: 1fr;
