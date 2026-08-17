@@ -17,6 +17,17 @@
         z-index: 10;
     }
 
+    /* The bar has no second line to wrap into: a group that wraps
+     * inside it is laid out taller than the bar and spills over the
+     * page above and below it. So groups keep to one line, and the
+     * trail is the one that gives up width, because its tail can be
+     * read off the page itself while a clipped control cannot be
+     * pressed. What the trail drops before it clips is the page's
+     * call; see .wide-only. */
+    body > header > * { flex-wrap: nowrap; }
+    body > header > .breadcrumb { min-width: 0; }
+    body > header > :last-child { flex-shrink: 0; }
+
     .brand {
         font-weight: var(--weight-bold);
         font-size: var(--text-lg);
