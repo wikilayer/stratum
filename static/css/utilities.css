@@ -96,6 +96,18 @@
 
     /* Spin in place. Pair with an icon for an in-progress indicator. */
     .spin { animation: stratum-spin 1s linear infinite; }
+
+    /* One of a pair, picked by viewport. Put both variants in the
+     * markup and let the width choose: a control in a fixed-height bar
+     * needs a full label where there is room and an abbreviation where
+     * there is not, and a bar cannot grow a second line. The queries
+     * complement each other exactly, so no width falls through both. */
+    @media (max-width: 720px) {
+        .wide-only { display: none; }
+    }
+    @media not all and (max-width: 720px) {
+        .narrow-only { display: none; }
+    }
 }
 @keyframes stratum-spin {
     to { transform: rotate(360deg); }

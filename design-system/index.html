@@ -950,6 +950,24 @@
     </div>
   </section>
 
+  <section class="ds-section" id="responsive-labels">
+    <h2>One of a pair, by viewport</h2>
+    <p><code>.wide-only</code> and <code>.narrow-only</code> hide their element on the other side of the 720px breakpoint. Put both variants in the markup and let the width choose. A control in a fixed-height bar needs the full label where there is room and an abbreviation where there is not, and a bar cannot grow a second line. Narrow this window past 720px to see the pair swap.</p>
+
+    <div class="ds-example">
+      <details class="menu-host">
+        <summary class="menu-toggle">
+          <span class="wide-only">Українська</span><span class="narrow-only">UK</span>
+          <span class="caret" aria-hidden="true">▾</span>
+        </summary>
+        <div class="dropdown" role="menu">
+          <a class="item" href="#responsive-labels" aria-current="true">Українська</a>
+          <a class="item" href="#responsive-labels">English</a>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <section class="ds-section" id="rail-section">
     <h2>Rail section</h2>
     <p>Collapsible sidebar block: <code>&lt;details class="rail-section"&gt;</code> wrapping a <code>&lt;summary class="rail-section-summary"&gt;</code> with an <code>.eyebrow</code> heading and chevron. Works in either page rail (left nav or right aside). Pair with <code>data-rail-section="NAME"</code> + <code>rail.js</code> to remember per-section open/closed state in a cookie. The server reads the cookie and stamps the <code>open</code> attribute at render time so there's no flash.</p>

@@ -379,6 +379,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
 | `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>`. Applies automatically to all `h1`/`h2` inside an `<article>` so rendered markdown gets the rule for free |
 | `.eyebrow`       | small uppercase muted label — sidebar section titles, dropdown labels, and other "small caps over a list" places |
+| `.wide-only`, `.narrow-only` | show one of a pair either side of the 720px breakpoint. Put both variants in the markup and let the width choose; the canonical use is a control in a fixed-height bar that needs a full label where there is room and an abbreviation where there is not |
 
 ## Icons
 
