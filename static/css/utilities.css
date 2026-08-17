@@ -97,6 +97,17 @@
     /* Spin in place. Pair with an icon for an in-progress indicator. */
     .spin { animation: stratum-spin 1s linear infinite; }
 
+    /* Never break this line. A bar of fixed height cannot grow a
+     * second row, so its contents wrap into the page instead of
+     * pushing it taller. Pair with an ellipsis or with .wide-only on
+     * the parts that may go. */
+    .nowrap {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     /* One of a pair, picked by viewport. Put both variants in the
      * markup and let the width choose: a control in a fixed-height bar
      * needs a full label where there is room and an abbreviation where
