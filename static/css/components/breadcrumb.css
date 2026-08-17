@@ -1,8 +1,10 @@
 @layer components {
+    /* Carries no outer margin: a crumb trail is as much at home in a
+     * fixed-height bar, where a bottom margin would push it off centre,
+     * as it is above a page body. Spacing belongs to whatever places it. */
     .breadcrumb {
         color: var(--fg-muted);
         font-size: var(--text-sm);
-        margin-bottom: var(--space-5);
     }
     .breadcrumb a { color: var(--fg-muted); }
     .breadcrumb a:hover { color: var(--accent); }

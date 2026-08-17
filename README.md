@@ -279,6 +279,8 @@ A `.menu-host` disclosure may sit in the strip alongside the links, for a view t
 
 ### `.breadcrumb`
 
+Carries no outer margin, so it sits equally well above a page body or inside a fixed-height bar where a bottom margin would push it off centre. Whatever places it owns the spacing.
+
 ```html
 <nav class="breadcrumb">
   <a href="/">home</a><span class="sep">/</span>
