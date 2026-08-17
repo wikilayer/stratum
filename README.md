@@ -449,7 +449,7 @@ If you add a primitive and don't add an example here, future-you will reinvent i
 Things this framework deliberately doesn't do:
 
 - **No preprocessors.** Native CSS only. If you reach for Sass, the rule isn't generic enough.
-- **No build step.** A single static folder, served as-is.
+- **No build step.** A single static folder. Stylesheets are minified in memory when the package initialises, so the comments explaining each rule cost their editor nothing and the browser nothing either; every other asset is served exactly as it sits on disk. Nothing to run, nothing generated to keep in sync.
 - **No JavaScript framework.** Two tiny `.js` files, both vanilla, both optional.
 - **No `!important`, no `id` selectors, no deep nesting.** Specificity stays flat so utilities reliably override components.
 - **No page-specific classes.** If a name only fits one page (`.login`, `.profile-grid`, `.consent-actions`), it's the wrong abstraction. Compose pages from the primitives above.
@@ -458,7 +458,8 @@ Things this framework deliberately doesn't do:
 
 ```
 stratum/
-├── stratum.go              ← the only Go file: exports Static fs.FS
+├── stratum.go              ← exports Static fs.FS and the asset manifest
+├── minify.go               ← strips CSS comments on the way out
 ├── go.mod
 ├── Makefile                ← icons-sync, design-system targets
 ├── README.md

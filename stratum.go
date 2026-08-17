@@ -27,7 +27,11 @@ var embedded embed.FS
 // /static/ (or wherever) on your HTTP server, and link the produced
 // URLs from your templates: /static/style.css, /static/icons.svg,
 // /static/theme.js, /static/copy.js.
-var Static = mustSub(embedded, "static")
+//
+// Stylesheets are served minified: the sources carry the reasoning
+// behind each rule, which is worth its bytes to whoever edits them and
+// nothing at all to a browser.
+var Static = newMinifiedFS(mustSub(embedded, "static"))
 
 // CSSAssets lists every CSS file in the bundle in cascade order. Hosts
 // can either link static/style.css (one request that chains N more

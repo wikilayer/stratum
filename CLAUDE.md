@@ -24,7 +24,8 @@ When you reach for a new class name, ask: "what would this be called if the same
 
 ```
 stratum/
-├── stratum.go              ← exports Static fs.FS — the only Go file
+├── stratum.go              ← exports Static fs.FS + the asset manifest
+├── minify.go               ← CSS goes out without its prose
 ├── go.mod
 ├── Makefile                ← icons-sync, design-system targets
 ├── README.md               ← user-facing docs
@@ -71,7 +72,7 @@ In templates: `<svg class="icon"><use href="/static/icons.svg#<name>"/></svg>`.
 - Don't introduce CSS classes named after a single consumer page (`.login`, `.consent-actions`, `.profile-grid`, etc.). See the prime directive.
 - Don't use `!important`, `id` selectors, or deep nesting. Keep specificity flat so utilities reliably override components.
 - Don't hand-edit `static/icons.svg` — it's regenerated from the manifest.
-- Don't add a build step, npm package, or CSS preprocessor. Native everything.
+- Don't add a build step, npm package, or CSS preprocessor. Native everything. Stylesheets are minified in memory at package init (`minify.go`), which is why comments in CSS cost nothing at runtime and why there is no generated copy to keep in sync.
 - Don't write Russian (or any non-English) in committed files. Public repo, English only.
 
 ## How consumers wire it up
