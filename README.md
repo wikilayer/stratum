@@ -390,6 +390,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
 | `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>`. Applies automatically to all `h1`/`h2` inside an `<article>` so rendered markdown gets the rule for free |
 | `.eyebrow`       | small uppercase muted label — sidebar section titles, dropdown labels, and other "small caps over a list" places |
+| `.section-title` | heading of a section on a working page (settings, a roster, a panel of controls). The `h1..h6` scale is set for prose, where an `h2` introduces paragraphs; on a page of forms it lands within a few pixels of the `h1` and everything reads as equals. Keep the heading element for the outline, add this for the size |
 | `.visually-hidden` | there for a screen reader, gone for the eye. The name of a control whose visible label is an icon |
 | `.nowrap`        | keep a line unbroken and clip the overflow with an ellipsis. For a bar of fixed height, whose contents would otherwise wrap into the page below |
 | `.wide-only`, `.narrow-only` | show one of a pair either side of the 720px breakpoint. Put both variants in the markup and let the width choose; the canonical use is a control in a fixed-height bar that needs a full label where there is room and an abbreviation where there is not |

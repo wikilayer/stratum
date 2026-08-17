@@ -76,6 +76,21 @@
         font-weight: var(--weight-semibold);
     }
 
+    /* Heading of a section on a working page: settings, a roster, a
+     * panel of controls. The h1..h6 scale is set for prose, where a
+     * heading introduces paragraphs and earns its size; on a page of
+     * forms the same h2 lands within a few pixels of the h1 and the
+     * page reads as a pile of equals. This keeps the element and its
+     * place in the outline, and takes the size of the content it
+     * introduces rather than of an article's section. */
+    .section-title {
+        font-size: var(--text-xl);
+        font-weight: var(--weight-semibold);
+        letter-spacing: normal;
+        margin-top: var(--space-6);
+        margin-bottom: var(--space-3);
+    }
+
     /* Inline icon — 1em square, follows currentColor via the SVG
      * sprite's stroke="currentColor". */
     .icon {
