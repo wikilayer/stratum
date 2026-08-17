@@ -4,6 +4,12 @@
      * it carries a label, an icon, or both. */
     .nav-tabs {
         display: flex;
+        /* A strip narrower than its tabs takes a second row rather
+         * than running off the screen with its last tab unreachable.
+         * Scrolling it sideways is the other answer, and the wrong
+         * one here: the strip hosts dropdown menus, and the clipping
+         * box a scroll container creates would cut them off. */
+        flex-wrap: wrap;
         gap: var(--space-1);
         border-bottom: 1px solid var(--border);
     }
