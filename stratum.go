@@ -59,6 +59,7 @@ var CSSAssets = []string{
 	"css/components/rail.css",
 	"css/components/article.css",
 	"css/components/page-head.css",
+	"css/components/nav-tabs.css",
 	"css/components/tabs.css",
 	"css/components/alert.css",
 	"css/components/modal.css",

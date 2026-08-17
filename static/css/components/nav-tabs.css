@@ -1,0 +1,44 @@
+@layer components {
+    /* Navigation tabs: links to views of one subject, the current one
+     * marked with aria-current="page". A tab sizes to its content, so
+     * it carries a label, an icon, or both. */
+    .nav-tabs {
+        display: flex;
+        gap: var(--space-1);
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-tabs a,
+    .nav-tabs .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        color: var(--fg-muted);
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        /* Overlap the strip's own line so an active tab's underline
+         * replaces it rather than stacking below it. */
+        margin-bottom: -1px;
+    }
+    .nav-tabs a:hover,
+    .nav-tabs .menu-toggle:hover {
+        color: var(--fg);
+        text-decoration: none;
+    }
+    .nav-tabs a[aria-current="page"] {
+        color: var(--fg);
+        border-bottom-color: var(--accent);
+    }
+
+    /* Square targets for tabs whose whole label is an icon. */
+    .nav-tabs-icon a,
+    .nav-tabs-icon .menu-toggle {
+        aspect-ratio: 1;
+        padding: var(--space-2);
+    }
+
+    /* Drop the strip's own line where it sits directly beneath
+     * something that already draws one. */
+    .nav-tabs-flush { border-bottom: 0; }
+}

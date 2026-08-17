@@ -256,9 +256,26 @@ Copy-this-code block — a `<code>` value paired with a compact `.copy-btn` (wir
 </div>
 ```
 
-### `.page-head`, `.page-tabs`
+### `.page-head`
 
-Title plus an icon-tab strip on the same baseline. The active tab's underline replaces the page-head's bottom border locally. Ideal for "this page has a Content / History / Settings switcher" layouts.
+A title row that draws the line under itself, so whatever shares the row sits on that line. Pair it with `.nav-tabs.nav-tabs-flush`, or with any other cluster of controls.
+
+### `.nav-tabs`, `.nav-tabs-icon`, `.nav-tabs-flush`
+
+Links to views of one subject. `aria-current="page"` marks the current view and is what draws the underline; nothing else has to change per view. A tab sizes to its content, so it carries a label, an icon, or both, and a strip survives a label translated into a longer word.
+
+Add `.nav-tabs-icon` for a strip whose whole label is an icon: it squares the targets. An icon alone names nothing, so give every such tab a `title` and an `aria-label`.
+
+Add `.nav-tabs-flush` where the strip shares a row with a heading and the row already draws the line, as in `.page-head`. Without it the strip draws its own, which is what a strip on its own row wants.
+
+A `.menu-host` disclosure may sit in the strip alongside the links, for a view that opens a panel rather than navigating.
+
+```html
+<nav class="nav-tabs" aria-label="Views">
+  <a href="/x" aria-current="page">Content</a>
+  <a href="/x/history">History</a>
+</nav>
+```
 
 ### `.breadcrumb`
 

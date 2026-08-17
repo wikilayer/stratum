@@ -414,9 +414,54 @@
     </div>
   </section>
 
+  <section class="ds-section" id="nav-tabs">
+    <h2>Navigation tabs</h2>
+    <p>Links to views of one subject. Mark the current view with <code>aria-current="page"</code>; that is what draws the underline. A tab sizes to its content, so it holds a label, an icon, or both, and the strip keeps working when a label is translated into a longer word.</p>
+
+    <div class="ds-example">
+      <nav class="nav-tabs" aria-label="Views">
+        <a href="#nav-tabs" aria-current="page">Content</a>
+        <a href="#nav-tabs">History</a>
+        <a href="#nav-tabs">Share</a>
+      </nav>
+    </div>
+
+    <p>With icons alongside the labels.</p>
+    <div class="ds-example">
+      <nav class="nav-tabs" aria-label="Views with icons">
+        <a href="#nav-tabs" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg>Content</a>
+        <a href="#nav-tabs"><svg class="icon" aria-hidden="true"><use href="#history"/></svg>History</a>
+        <a href="#nav-tabs"><svg class="icon" aria-hidden="true"><use href="#share-2"/></svg>Share</a>
+      </nav>
+    </div>
+
+    <p><code>.nav-tabs-icon</code> squares the targets for a strip whose whole label is an icon. Give every tab a <code>title</code> and an <code>aria-label</code>: an icon alone names nothing.</p>
+    <div class="ds-example">
+      <nav class="nav-tabs nav-tabs-icon" aria-label="Views, icons only">
+        <a href="#nav-tabs" aria-current="page" title="Content" aria-label="Content"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg></a>
+        <a href="#nav-tabs" title="History" aria-label="History"><svg class="icon" aria-hidden="true"><use href="#history"/></svg></a>
+        <details class="menu-host">
+          <summary class="menu-toggle" title="Share" aria-label="Share"><svg class="icon" aria-hidden="true"><use href="#share-2"/></svg></summary>
+          <div class="dropdown" role="menu"><div class="dropdown-section"><p class="muted">A panel opened from inside the strip.</p></div></div>
+        </details>
+      </nav>
+    </div>
+
+    <p><code>.nav-tabs-flush</code> drops the strip's own line for a strip sharing a row with a heading, where the row already draws one. The active tab's underline then replaces that line locally instead of stacking a second one under it.</p>
+    <div class="ds-example">
+      <header class="page-head">
+        <h3>A subject</h3>
+        <nav class="nav-tabs nav-tabs-icon nav-tabs-flush" aria-label="Views, in a page head">
+          <a href="#nav-tabs" aria-current="page" title="Content" aria-label="Content"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg></a>
+          <a href="#nav-tabs" title="History" aria-label="History"><svg class="icon" aria-hidden="true"><use href="#history"/></svg></a>
+        </nav>
+      </header>
+    </div>
+  </section>
+
   <section class="ds-section" id="tabs">
     <h2>Tabs</h2>
-    <p>Pure-CSS, radio-driven. Convention: radio ids <code>tab-1</code>, <code>tab-2</code>, …; matching panels <code>tab-panel-1</code>, etc. Up to four out of the box.</p>
+    <p>Pure-CSS, radio-driven. Switches panels in place without navigating, which is what separates it from <a href="#nav-tabs">navigation tabs</a>. Convention: radio ids <code>tab-1</code>, <code>tab-2</code>, …; matching panels <code>tab-panel-1</code>, etc. Up to four out of the box.</p>
 
     <div class="ds-example">
       <div class="tabs">
@@ -874,15 +919,15 @@
 
   <section class="ds-section" id="page-head">
     <h2>Page header</h2>
-    <p>Title plus an icon-tab strip — eye / clock / gear — for the three sections every page surface shares: content, history, manage. Active tab gets the accent underline.</p>
+    <p>A title row that draws the line under itself, so whatever shares the row sits on that line. Pair it with <a href="#nav-tabs">navigation tabs</a> carrying <code>.nav-tabs-flush</code>, or with any other cluster of controls.</p>
 
     <div class="ds-example">
       <header class="page-head">
         <h1>Sample page title</h1>
-        <nav class="page-tabs" aria-label="Page sections">
-          <a href="#" aria-current="page" title="Content"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg></a>
-          <a href="#" title="History"><svg class="icon" aria-hidden="true"><use href="#history"/></svg></a>
-          <a href="#" title="Manage"><svg class="icon" aria-hidden="true"><use href="#settings"/></svg></a>
+        <nav class="nav-tabs nav-tabs-icon nav-tabs-flush" aria-label="Page sections">
+          <a href="#" aria-current="page" title="Content" aria-label="Content"><svg class="icon" aria-hidden="true"><use href="#eye"/></svg></a>
+          <a href="#" title="History" aria-label="History"><svg class="icon" aria-hidden="true"><use href="#history"/></svg></a>
+          <a href="#" title="Manage" aria-label="Manage"><svg class="icon" aria-hidden="true"><use href="#settings"/></svg></a>
         </nav>
       </header>
     </div>

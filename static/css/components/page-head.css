@@ -1,4 +1,6 @@
 @layer components {
+    /* Title row: the subject on one side, controls on the other, with
+     * the line drawn under both so a flush tab strip can overlap it. */
     .page-head {
         display: flex;
         align-items: end;
@@ -10,50 +12,5 @@
     .page-head h1 {
         margin: 0;
         padding: 0 0 var(--space-2) 0;
-    }
-
-    .page-tabs {
-        display: flex;
-        gap: var(--space-1);
-        flex-shrink: 0;
-        /* Pull the strip down so each tab's own bottom-border can
-         * overlap the page-head's 1px border — the underline of the
-         * active tab then *replaces* the muted line locally. */
-        margin-bottom: -1px;
-    }
-    .page-tabs a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        color: var(--fg-muted);
-        border-bottom: 2px solid transparent;
-    }
-    .page-tabs a:hover {
-        color: var(--fg);
-        text-decoration: none;
-    }
-    .page-tabs a[aria-current="page"] {
-        color: var(--fg);
-        border-bottom-color: var(--accent);
-    }
-    .page-tabs .icon {
-        width: 18px;
-        height: 18px;
-    }
-
-    /* A .menu-host toggle (e.g. a share panel) dropped into the tab
-     * strip aligns to the icon tabs instead of the pill-shaped default. */
-    .page-tabs .menu-toggle {
-        width: 36px;
-        height: 36px;
-        justify-content: center;
-        padding: 0;
-        border-radius: var(--radius-sm);
-    }
-    .page-tabs .menu-toggle .icon {
-        width: 18px;
-        height: 18px;
     }
 }
