@@ -95,9 +95,14 @@
         .content {
             flex-direction: column;
         }
+        /* align-self returns to stretch: the desktop rule pins the
+         * rail to the top of a row, and left as flex-start in a
+         * column it would shrink to its text, leaving a stub of a
+         * section and a border that stops mid-screen. */
         .content > aside {
             order: -1;
             width: auto;
+            align-self: stretch;
             border-left: none;
             border-bottom: 1px solid var(--border);
             position: static;
@@ -111,6 +116,7 @@
         .content > nav.leftnav {
             order: -2;
             width: auto;
+            align-self: stretch;
             border-right: none;
             border-bottom: 1px solid var(--border);
             position: static;
