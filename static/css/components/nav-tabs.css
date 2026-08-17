@@ -1,7 +1,8 @@
 @layer components {
     /* Navigation tabs: links to views of one subject, the current one
-     * marked with aria-current="page". A tab sizes to its content, so
-     * it carries a label, an icon, or both. */
+     * marked with aria-current ("page" for a view of the page you are
+     * on, "true" for a section you are inside). A tab sizes to its
+     * content, so it carries a label, an icon, or both. */
     .nav-tabs {
         display: flex;
         /* A strip narrower than its tabs takes a second row rather
@@ -32,7 +33,10 @@
         color: var(--fg);
         text-decoration: none;
     }
-    .nav-tabs a[aria-current="page"] {
+    /* Any aria-current marks the tab, not only "page": a strip whose
+     * tabs stand for sections rather than pages says "true", and the
+     * reader has to see the same underline either way. */
+    .nav-tabs a[aria-current] {
         color: var(--fg);
         border-bottom-color: var(--accent);
     }

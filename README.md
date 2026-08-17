@@ -271,7 +271,7 @@ A title row that draws the line under itself, so whatever shares the row sits on
 
 ### `.nav-tabs`, `.nav-tabs-icon`, `.nav-tabs-flush`
 
-Links to views of one subject. `aria-current="page"` marks the current view and is what draws the underline; nothing else has to change per view. A tab sizes to its content, so it carries a label, an icon, or both, and a strip survives a label translated into a longer word.
+Links to views of one subject. `aria-current` marks the current view and is what draws the underline; nothing else has to change per view. Use `page` for a view of the page you are on and `true` for a section you are inside, such as a gear leading to settings you already have open. A tab sizes to its content, so it carries a label, an icon, or both, and a strip survives a label translated into a longer word. Given a column narrower than its tabs, the strip takes a second row rather than running off the screen.
 
 Add `.nav-tabs-icon` for a strip whose whole label is an icon: it squares the targets. An icon alone names nothing, so give every such tab a `title` and an `aria-label`.
 
