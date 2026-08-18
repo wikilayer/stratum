@@ -351,22 +351,6 @@ A flex row of its own with a tight gap: the separator is a hairline between two 
 </nav>
 ```
 
-### `.link-broken`, `.link-missing`
-
-Two states a reference can be in, both told before the click.
-
-`.link-broken` points at something that no longer resolves at all. Render it as a `<span>`, not an anchor: a dead link that looks live is worse than a visibly broken one, because the reader clicks, nothing happens, and the author never learns it needs fixing.
-
-`.link-missing` is a live link to something that does not exist in the place it names — the red link of a wiki. An entry in a list of languages, editions or regions that the current subject has no version in. It still leads somewhere real, so it stays an anchor; the colour is what says the version is not there, and saves the reader the trip. Colour reaches no one who cannot see it, so pair it with a `title` or a `.visually-hidden` label.
-
-```html
-<span class="link-broken" title="Target no longer exists">Ash beneath the Garbitus</span>
-
-<a class="link-missing" href="/wiki/en" title="Not translated">
-  English<span class="visually-hidden">, not translated</span>
-</a>
-```
-
 ### `.menu-host`, `.menu-toggle`, `.dropdown`
 
 Click-to-reveal menu built on `<details>`. The header avatar dropdown is the canonical use; the panel inside hosts `.dropdown .item` rows and optional `.dropdown-section` blocks.
@@ -473,6 +457,22 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.visually-hidden` | there for a screen reader, gone for the eye. The name of a control whose visible label is an icon |
 | `.nowrap`        | keep a line unbroken and clip the overflow with an ellipsis. For a bar of fixed height, whose contents would otherwise wrap into the page below |
 | `.wide-only`, `.narrow-only` | show one of a pair either side of the 720px breakpoint. Put both variants in the markup and let the width choose; the canonical use is a control in a fixed-height bar that needs a full label where there is room and an abbreviation where there is not |
+
+### `.link-broken`, `.link-missing`
+
+Two states a reference can be in, both told before the click.
+
+`.link-broken` points at something that no longer resolves at all. Render it as a `<span>`, not an anchor: a dead link that looks live is worse than a visibly broken one, because the reader clicks, nothing happens, and the author never learns it needs fixing.
+
+`.link-missing` is a live link to something that does not exist in the place it names — the red link of a wiki. An entry in a list of languages, editions or regions that the current subject has no version in. It still leads somewhere real, so it stays an anchor; the colour is what says the version is not there, and saves the reader the trip. Colour reaches no one who cannot see it, so pair it with a `title` or a `.visually-hidden` label.
+
+```html
+<span class="link-broken" title="Target no longer exists">Ash beneath the Garbitus</span>
+
+<a class="link-missing" href="/wiki/en" title="Not translated">
+  English<span class="visually-hidden">, not translated</span>
+</a>
+```
 
 ## Icons
 

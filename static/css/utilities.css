@@ -116,6 +116,37 @@
      * instead of to whatever the column happens to be. */
     .measure-prose { max-width: var(--measure-prose); }
 
+    /* Two states a reference can be in, both told before the click.
+     *
+     * .link-broken points at something that no longer resolves at all.
+     * Render it as a span rather than an anchor: a dead link that looks
+     * live is worse than a visibly broken one, because the reader
+     * clicks, nothing happens, and the author never learns it needs
+     * fixing.
+     *
+     * .link-missing is a live link to something that does not exist in
+     * the place it names, the red link of a wiki: an entry in a list of
+     * languages, editions or regions the current subject has no version
+     * in. It leads somewhere real, so it stays an anchor; the colour is
+     * what says the version is not there, and saves the reader the
+     * trip. Colour reaches no one who cannot see it, so pair it with a
+     * title or a hidden label.
+     *
+     * Utilities rather than components: the state has to hold wherever
+     * the link is put, and a list that colours its own rows would
+     * otherwise out-specify it. */
+    .link-broken {
+        color: var(--danger-fg);
+        text-decoration: underline wavy;
+        text-decoration-color: var(--danger);
+        text-underline-offset: 0.2em;
+        cursor: help;
+    }
+    .link-missing,
+    .link-missing:hover {
+        color: var(--danger-fg);
+    }
+
     /* Push one item to the end of its row, leaving the rest where they
      * are. Logical, not left-and-right: in a right-to-left script the
      * end of the row is its left edge, and a control that means "at
