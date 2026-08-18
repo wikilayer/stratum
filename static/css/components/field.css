@@ -87,10 +87,6 @@
         transition: border-color var(--duration-fast) var(--easing-out),
                     box-shadow var(--duration-fast) var(--easing-out);
     }
-    .row input:focus,
-    .row select:focus,
-    .field input:focus,
-    .field select:focus,
     /* Compact field for a bar or a toolbar, where the row's height is
      * fixed and a full-size input would crowd it. Same look, one step
      * down in padding and type. */
@@ -98,6 +94,11 @@
         padding: var(--space-1) var(--space-3);
         font-size: var(--text-sm);
     }
+
+    .row input:focus,
+    .row select:focus,
+    .field input:focus,
+    .field select:focus,
     .input:focus {
         outline: none;
         border-color: var(--accent);
