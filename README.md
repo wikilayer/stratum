@@ -175,6 +175,8 @@ Form primitives.
 
 Inputs / selects inside `.row` and `.field` get the framework's text-input look automatically. Custom `<select>` chevron is painted with two CSS gradients so it follows the theme.
 
+`.input-sm` is the same field one step down in padding and type, for a bar or a toolbar whose row height is fixed.
+
 `.input-expand` is a field that costs an icon's width until someone wants it, for a bar with room for an icon but not for an input. Wrap a `<label for=>` holding the icon and the input; the label focuses the input with no script, `:focus-within` opens it, and a typed query keeps it open so a result page still shows what was asked. Give the label a `.visually-hidden` name, since an icon alone names nothing.
 
 ```html
