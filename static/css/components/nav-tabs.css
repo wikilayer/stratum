@@ -18,12 +18,9 @@
          * on the strip's own rule. */
         margin-bottom: var(--space-5);
     }
-    /* In a bar the strip is one control among several on a fixed-height
-     * row, and a bottom margin there would push it off centre. In the
-     * page's head it is the last thing in the row, and the columns
-     * below already keep their own distance from it: left to both, the
-     * gap under the rule is twice what anything else on the page gets.
-     */
+    /* In a bar the margin would push the strip off centre; in the page's
+     * head the columns below already keep their distance, and both
+     * together double the gap under the rule. */
     body > header .nav-tabs,
     .page-head-row .nav-tabs { margin-bottom: 0; }
     .nav-tabs a,

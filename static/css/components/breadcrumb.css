@@ -1,17 +1,8 @@
 @layer components {
-    /* Carries no outer margin: a crumb trail is as much at home in a
-     * fixed-height bar, where a bottom margin would push it off centre,
-     * as it is above a page body. Spacing belongs to whatever places it.
-     *
-     * The gap is tight on purpose: the separator is a hairline between
-     * two names, not a word of its own, and a trail set with word-wide
-     * gaps reads as a row of unrelated links.
-     *
-     * Colour is inherited by the links rather than set on them, so where
-     * the trail sits decides how loudly it speaks: an address at the top
-     * of the screen is read at full strength, while the same trail
-     * labelling a row in a list stays out of the way of the row's own
-     * name. Only the separators step back on their own. */
+    /* No outer margin: whatever places the trail owns its spacing, and a
+     * bottom margin would push it off centre in a fixed-height bar.
+     * Links inherit the colour rather than set one, so the place decides
+     * how loudly the trail speaks. */
     .breadcrumb {
         display: flex;
         flex-wrap: wrap;
@@ -24,8 +15,7 @@
     .breadcrumb a:hover { color: var(--accent); }
     .breadcrumb .sep { color: var(--fg-subtle); }
     .breadcrumb .current { color: var(--fg); }
-    /* The brand as the trail's first crumb: the site is named once and
-     * the trail continues from it. Heavier, not larger — a line whose
-     * parts differ in size jumps in height as the eye runs along it. */
+    /* Heavier, not larger: a line whose parts differ in size jumps in
+     * height as the eye runs along it. */
     .breadcrumb .brand { font-size: inherit; }
 }

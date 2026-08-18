@@ -110,31 +110,19 @@
      * non-form section (members list, fact panel, etc.) from
      * stretching to the full main column on wide screens. */
     .measure { max-width: 32em; }
-    /* The reading measure an <article> already keeps. For a block of
-     * running text outside one — a list of search hits, a feed — so it
-     * sets to the same line length as the prose elsewhere on the site
-     * instead of to whatever the column happens to be. */
+    /* The reading measure an <article> keeps, for running text outside
+     * one: a list of search hits, a feed. */
     .measure-prose { max-width: var(--measure-prose); }
 
-    /* Two states a reference can be in, both told before the click.
+    /* Two states of a reference, both told before the click.
+     * .link-broken no longer resolves at all, so render it as a span: a
+     * dead link that looks live never gets reported. .link-missing does
+     * not exist where it is named but leads somewhere real, so it stays
+     * an anchor. Colour reaches no one who cannot see it: pair both with
+     * a title or a hidden label.
      *
-     * .link-broken points at something that no longer resolves at all.
-     * Render it as a span rather than an anchor: a dead link that looks
-     * live is worse than a visibly broken one, because the reader
-     * clicks, nothing happens, and the author never learns it needs
-     * fixing.
-     *
-     * .link-missing is a live link to something that does not exist in
-     * the place it names, the red link of a wiki: an entry in a list of
-     * languages, editions or regions the current subject has no version
-     * in. It leads somewhere real, so it stays an anchor; the colour is
-     * what says the version is not there, and saves the reader the
-     * trip. Colour reaches no one who cannot see it, so pair it with a
-     * title or a hidden label.
-     *
-     * Utilities rather than components: the state has to hold wherever
-     * the link is put, and a list that colours its own rows would
-     * otherwise out-specify it. */
+     * Utilities rather than components, so a list that colours its own
+     * rows cannot out-specify them. */
     .link-broken {
         color: var(--danger-fg);
         text-decoration: underline wavy;

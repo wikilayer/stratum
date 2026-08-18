@@ -81,10 +81,8 @@
         padding: var(--space-3) var(--space-4);
     }
     .dropdown-section .label { margin-bottom: var(--space-2); }
-    /* A section that is only its label introduces the items after it,
-     * and the section's own padding is already the space between them.
-     * Keeping the label's margin as well leaves the heading floating
-     * away from the list it names. */
+    /* The section's padding is already the gap to what the label names;
+     * its own margin on top leaves the label floating. */
     .dropdown-section > .label:only-child { margin-bottom: 0; }
 
     .segmented {

@@ -72,16 +72,10 @@
         width: 100%;
     }
 
-    /* A lone control in a bar whose whole label is an icon: a gear
-     * beside the name of what it configures, a toolbar action. Not a
-     * tab — a tab belongs to a strip of alternatives and is underlined
-     * to say which of them you are in, and a single control has nothing
-     * to be one of. So being the current place is said in colour, and
-     * the icon never grows a line under it.
-     *
-     * Square target, quiet by default, full strength once it is hovered
-     * or is where the reader already is. Give it an aria-label: an icon
-     * on its own names nothing. */
+    /* A lone control whose whole label is an icon: a gear beside the
+     * name of what it configures, a toolbar action. Not a tab, so being
+     * the current place is said in colour: an underline would claim it
+     * is one of several. Give it an aria-label. */
     .icon-link {
         display: inline-flex;
         align-items: center;

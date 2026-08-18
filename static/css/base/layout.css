@@ -7,11 +7,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* The bar lines up with the column below it: same outer edge as
-         * the content, same inner edge as the text inside it. Without
-         * this the brand sits at the window's edge while the title it
-         * belongs over starts a hundred pixels in, and nothing in the
-         * bar can be aligned to anything on the page. */
+        /* Same outer edge as the content and same inner edge as the text
+         * inside it, so anything in the bar can align to the page. */
         padding-block: 0;
         padding-inline: max(var(--space-5), calc((100% - var(--content-max)) / 2 + var(--space-6)));
         background: var(--header-bg);
@@ -32,10 +29,9 @@
      * call; see .wide-only. */
     body > header > * { flex-wrap: nowrap; }
     body > header > :last-child { flex-shrink: 0; }
-    /* The trail in the bar is the page's address rather than a caption
-     * on something else: read at full strength and at body size, with
-     * only the separators stepping back. Elsewhere the same trail
-     * labels something that outranks it and stays small. */
+    /* The trail in the bar is the page's address, not a caption on
+     * something else: full strength, body size, separators stepping
+     * back. */
     body > header .breadcrumb {
         flex-wrap: nowrap;
         min-width: 0;
@@ -60,22 +56,17 @@
     }
     .brand:hover { text-decoration: none; }
 
-    /* The page's own head: its title and the strip of views, above
-     * both columns rather than inside the left one. The sidebar holds
-     * what is about this page, so it has to start under that strip;
-     * starting level with the title makes it read as a column of the
-     * whole wiki standing beside the page. Same width and inner edge
-     * as the content below it. */
+    /* The page's title and the strip of views, above both columns and
+     * at the width of the content below. A sidebar starting level with
+     * the title reads as a column of the whole site beside the page. */
     .page-head-row {
         max-width: var(--content-max);
         margin: 0 auto;
         padding: var(--space-6) var(--space-6) 0;
     }
-    /* The head has already spaced itself from the columns, so both of
-     * them start on the same line under it. Left to their own padding
-     * the sidebar's first entry sits lower than the article's first
-     * line, and two columns that begin at different heights read as
-     * two unrelated pages. */
+    /* Both columns start on the same line under the head. Left to their
+     * own padding they begin at different heights and read as two
+     * unrelated pages. */
     .page-head-row + .content > :where(main, aside, nav.leftnav) {
         padding-top: var(--space-5);
     }
@@ -93,10 +84,9 @@
         min-width: 0;
         padding: var(--space-6) var(--space-6) var(--space-7);
     }
-    /* How far the content starts from the top of the column is the
-     * column's own padding to decide. A first child that also carries a
-     * top margin of its own doubles that distance, and does it only on
-     * the pages whose content happens to open with such an element. */
+    /* The column's padding decides where its content starts. A first
+     * child carrying its own top margin doubles that distance, and only
+     * on the pages that happen to open with such an element. */
     main > :first-child { margin-top: 0; }
 
     /* Scoped to direct children of .content so an <aside> nested
@@ -105,10 +95,9 @@
     .content > aside {
         width: var(--aside-w);
         border-left: 1px solid var(--border);
-        /* Small gap off the dividing line, the page's own gutter on the
-         * outside: the rail is the last column, so its outer edge is
-         * the page's edge and has to line up with everything else that
-         * ends there. */
+        /* Small gap off the dividing line, the page's gutter outside:
+         * the rail is the last column, so its outer edge is the page's
+         * and lines up with everything else ending there. */
         padding-block: var(--space-6);
         padding-inline: var(--space-4) var(--space-6);
         flex-shrink: 0;

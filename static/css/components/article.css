@@ -1,11 +1,7 @@
 @layer components {
-    /* Prose has a comfortable line length whatever the page around it
-     * does. Without this, an article is as wide as its column, so the
-     * same text reads at 90 characters beside a sidebar and at 130
-     * without one: the reader's eye loses the start of the next line,
-     * and the page looks different depending on whether a table of
-     * contents happened to exist. Tables and figures inside opt out,
-     * because their width is their content's, not the prose's. */
+    /* One line length whatever the page around it does: without this the
+     * same text runs at 90 characters beside a sidebar and 130 without
+     * one. Tables and figures opt out, sized by their content. */
     article {
         max-width: var(--measure-prose);
     }

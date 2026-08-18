@@ -33,15 +33,12 @@
     /* Anchor for absolutely-positioned children (e.g. floating
      * autocomplete results sitting under the input). */
     .row-floating { position: relative; }
-    /* Carries no margin of its own: a section's heading can wear this
-     * to sit in a column of fields as one of them, and the prose
-     * margins an h2 brings would stack on top of the row's gap. */
+    /* Margin and line box of its own, so a heading can wear this and sit
+     * in a column of fields as one of them: an h2's prose margins would
+     * stack on the row's gap, and its tighter leading would lift the
+     * field under it above its neighbour. */
     .row-label {
         margin: 0;
-        /* Its own line box, not the one the element it is worn by would
-         * have had: a heading sets tighter leading than a label, and a
-         * field labelled by one would then sit a few pixels higher than
-         * the field beside it. */
         line-height: var(--leading-normal);
         font-weight: var(--weight-semibold);
         font-size: var(--text-base);
@@ -107,11 +104,9 @@
         font-size: var(--text-sm);
     }
 
-    /* A field sized by the room it is given rather than by the browser's
-     * default twenty-odd characters: for a search box in a bar, where
-     * what should set the width is the space between the controls on
-     * either side of it. The cap stops it from swallowing a wide bar.
-     * Goes on the wrapper (the <form>, usually), not on the input. */
+    /* A field sized by the room its row leaves it rather than by the
+     * browser's default width, capped so it cannot swallow a wide bar.
+     * Goes on the wrapper, usually the <form>, not on the input. */
     .input-fill {
         display: flex;
         flex: 1;
