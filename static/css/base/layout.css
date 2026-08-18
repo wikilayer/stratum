@@ -33,12 +33,14 @@
     body > header > * { flex-wrap: nowrap; }
     body > header > :last-child { flex-shrink: 0; }
     /* The trail in the bar is the page's address rather than a caption
-     * on something else, so it is read at full strength and only the
-     * separators step back. */
+     * on something else: read at full strength and at body size, with
+     * only the separators stepping back. Elsewhere the same trail
+     * labels something that outranks it and stays small. */
     body > header .breadcrumb {
         flex-wrap: nowrap;
         min-width: 0;
         color: var(--fg);
+        font-size: var(--text-base);
     }
 
     /* A group in the bar that ends where the main column ends, so a
