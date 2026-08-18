@@ -53,6 +53,12 @@
         border-bottom-color: var(--accent);
     }
 
+    /* A menu in the strip is a flex box of its own so its summary
+     * stretches to the row's height. Left to itself the summary is as
+     * tall as its content, so a menu labelled by an icon alone sits
+     * higher than one labelled by a word beside it. */
+    .nav-tabs .menu-host { display: flex; }
+
     /* Square targets for tabs whose whole label is an icon. */
     .nav-tabs-icon a,
     .nav-tabs-icon .menu-toggle {
