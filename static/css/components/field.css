@@ -30,7 +30,11 @@
     /* Anchor for absolutely-positioned children (e.g. floating
      * autocomplete results sitting under the input). */
     .row-floating { position: relative; }
+    /* Carries no margin of its own: a section's heading can wear this
+     * to sit in a column of fields as one of them, and the prose
+     * margins an h2 brings would stack on top of the row's gap. */
     .row-label {
+        margin: 0;
         font-weight: var(--weight-semibold);
         font-size: var(--text-base);
         color: var(--fg);
