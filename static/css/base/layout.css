@@ -93,6 +93,11 @@
         min-width: 0;
         padding: var(--space-6) var(--space-6) var(--space-7);
     }
+    /* How far the content starts from the top of the column is the
+     * column's own padding to decide. A first child that also carries a
+     * top margin of its own doubles that distance, and does it only on
+     * the pages whose content happens to open with such an element. */
+    main > :first-child { margin-top: 0; }
 
     /* Scoped to direct children of .content so an <aside> nested
      * inside a form (e.g., the avatar slot on /settings) doesn't
