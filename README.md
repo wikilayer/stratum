@@ -351,6 +351,22 @@ A flex row of its own with a tight gap: the separator is a hairline between two 
 </nav>
 ```
 
+### `.link-broken`, `.link-missing`
+
+Two states a reference can be in, both told before the click.
+
+`.link-broken` points at something that no longer resolves at all. Render it as a `<span>`, not an anchor: a dead link that looks live is worse than a visibly broken one, because the reader clicks, nothing happens, and the author never learns it needs fixing.
+
+`.link-missing` is a live link to something that does not exist in the place it names — the red link of a wiki. An entry in a list of languages, editions or regions that the current subject has no version in. It still leads somewhere real, so it stays an anchor; the colour is what says the version is not there, and saves the reader the trip. Colour reaches no one who cannot see it, so pair it with a `title` or a `.visually-hidden` label.
+
+```html
+<span class="link-broken" title="Target no longer exists">Ash beneath the Garbitus</span>
+
+<a class="link-missing" href="/wiki/en" title="Not translated">
+  English<span class="visually-hidden">, not translated</span>
+</a>
+```
+
 ### `.menu-host`, `.menu-toggle`, `.dropdown`
 
 Click-to-reveal menu built on `<details>`. The header avatar dropdown is the canonical use; the panel inside hosts `.dropdown .item` rows and optional `.dropdown-section` blocks.

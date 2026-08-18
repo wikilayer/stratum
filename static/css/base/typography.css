@@ -34,18 +34,6 @@
     }
     a.link-inpage:hover { text-decoration: underline; }
 
-    /* A reference whose target no longer resolves. Rendered as a span
-     * rather than an anchor, because a dead link that looks live is
-     * worse than a visibly broken one: the reader clicks and nothing
-     * happens, and the author never learns it needs fixing. */
-    .link-broken {
-        color: var(--danger-fg);
-        text-decoration: underline wavy;
-        text-decoration-color: var(--danger);
-        text-underline-offset: 0.2em;
-        cursor: help;
-    }
-
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-body);
         font-weight: var(--weight-semibold);

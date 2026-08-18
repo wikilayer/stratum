@@ -1,0 +1,32 @@
+@layer components {
+    /* Two states a reference can be in, both told before the click.
+     *
+     * .link-broken points at something that no longer resolves at all.
+     * Rendered as a span rather than an anchor, because a dead link
+     * that looks live is worse than a visibly broken one: the reader
+     * clicks and nothing happens, and the author never learns it needs
+     * fixing.
+     *
+     * .link-missing is a live link to something that does not exist in
+     * the place it names, the red link of a wiki: an entry in a list of
+     * languages, editions, or regions that the current subject has no
+     * version in. It still leads somewhere real, so it stays an anchor;
+     * the colour is what says the version is not there, and saves the
+     * reader the trip. Pair it with a title or a hidden label: colour
+     * alone reaches no one who cannot see it.
+     *
+     * They live here rather than with the base link styles so a list
+     * component (a menu, a table of rows) cannot out-specify them by
+     * colouring its own items. */
+    .link-broken {
+        color: var(--danger-fg);
+        text-decoration: underline wavy;
+        text-decoration-color: var(--danger);
+        text-underline-offset: 0.2em;
+        cursor: help;
+    }
+    .link-missing,
+    .link-missing:hover {
+        color: var(--danger-fg);
+    }
+}

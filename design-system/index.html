@@ -271,6 +271,12 @@
     </div>
 
     <div class="ds-example">
+      <p class="muted">Two states a reference can be in, both told before the click. <code>.link-broken</code> points at something that no longer resolves, and is a <code>&lt;span&gt;</code> so it cannot be clicked. <code>.link-missing</code> is the red link of a wiki: the subject has no version in the place named, but the link still leads somewhere real, so it stays an anchor. Colour reaches no one who cannot see it, so both carry a title or a hidden label.</p>
+      <p>The sixth book is <span class="link-broken" title="Target no longer exists">Ash beneath the Garbitus</span>, and the archive holds it in
+        <a class="link-missing" href="#typography" title="Not translated">English<span class="visually-hidden">, not translated</span></a> only in fragments.</p>
+    </div>
+
+    <div class="ds-example">
       <p class="muted">Multi-line fenced code block — copy.js injects a copy button on hover.</p>
       <pre><code>func main() {
     fmt.Println("hello, world")
