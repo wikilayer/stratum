@@ -1,10 +1,13 @@
 @layer components {
+    /* No top margin: a form is normally the first thing in its column,
+     * and how far that starts from the top is the column's padding to
+     * decide. See `main > :first-child` in layout.css, which cannot
+     * reach this one from an earlier layer. */
     .form-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr) 200px;
         gap: var(--space-7);
         align-items: start;
-        margin-top: var(--space-5);
     }
     .form-layout-main {
         display: flex;
