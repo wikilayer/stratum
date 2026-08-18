@@ -51,6 +51,19 @@
     }
     .brand:hover { text-decoration: none; }
 
+    /* The page's own head: its title and the strip of views, above
+     * both columns rather than inside the left one. The sidebar holds
+     * what is about this page, so it has to start under that strip;
+     * starting level with the title makes it read as a column of the
+     * whole wiki standing beside the page. Same width and inner edge
+     * as the content below it. */
+    .page-head-row {
+        max-width: var(--content-max);
+        margin: 0 auto;
+        padding: var(--space-6) var(--space-6) 0;
+    }
+    .page-head-row + .content > main { padding-top: var(--space-5); }
+
     .content {
         display: flex;
         min-height: calc(100vh - var(--header-h));

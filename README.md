@@ -95,6 +95,21 @@ Two-column page with a fixed-width side rail and a fluid main column. Below 720p
 </div>
 ```
 
+### `.page-head-row`
+
+The page's own head, above both columns: its title and the strip of views. The sidebar holds what is about the page, so it has to begin under that strip; starting level with the title makes it read as a column of the whole site standing beside the page. Same width and inner edge as the content below, and it pulls the main column's top padding in so the two do not double up.
+
+```html
+<div class="page-head-row">
+  <h1>Page title</h1>
+  <nav class="nav-tabs">…</nav>
+</div>
+<div class="content">
+  <main>…</main>
+  <aside>…</aside>
+</div>
+```
+
 ### `.bar-main`
 
 A group inside `body > header` that ends where the main column ends, so a control pushed to its end (`.push-end`) lines up with the sidebar's edge rather than floating over the text. The bar itself already shares the content column's outer and inner edges, so the brand sits over the page title.
@@ -324,9 +339,14 @@ Click-to-reveal menu built on `<details>`. The header avatar dropdown is the can
 
 Items line up with the section labels above them. Add `.dropdown-choice` to the panel when the menu is a set of mutually exclusive choices with one of them current (the language being read, the role a member holds): it reserves room for the check-mark on every item, so marking one does not shift its label. A plain list of links takes no such indent.
 
+The toggle's disclosure arrow is the sprite's `chevron-down` at icon size, the same mark a collapsible sidebar section uses, so the two read as one language on a screen that shows both.
+
 ```html
 <details class="menu-host">
-  <summary class="menu-toggle">…</summary>
+  <summary class="menu-toggle">
+    Русский
+    <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#chevron-down"/></svg>
+  </summary>
   <div class="dropdown" role="menu">
     <a class="item" href="…">Settings</a>
     <div class="dropdown-section">

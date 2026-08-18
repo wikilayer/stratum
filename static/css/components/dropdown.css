@@ -15,14 +15,12 @@
     .menu-toggle:hover { background: var(--bg-hover); }
     .menu-host[open] .menu-toggle { background: var(--bg-hover); }
 
-    /* The disclosure arrow reads as a hint, not as decoration: at
-     * 0.7em it collapsed to a couple of pixels beside a small label
-     * and looked like dirt on the screen. */
-    .caret {
-        color: var(--fg-muted);
-        font-size: 0.85em;
-        line-height: 1;
-    }
+    /* The disclosure arrow is the sprite's chevron-down at icon size,
+     * the same mark a collapsible section in the sidebar uses. A text
+     * caret was tried and it renders as a few pixels of grey beside a
+     * label, unrecognisable next to the real chevron on the same
+     * screen. */
+    .menu-toggle > .icon:last-child { color: var(--fg-muted); }
 
     .dropdown {
         position: absolute;
