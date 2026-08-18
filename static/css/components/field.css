@@ -95,6 +95,19 @@
         font-size: var(--text-sm);
     }
 
+    /* A field sized by the room it is given rather than by the browser's
+     * default twenty-odd characters: for a search box in a bar, where
+     * what should set the width is the space between the controls on
+     * either side of it. The cap stops it from swallowing a wide bar.
+     * Goes on the wrapper (the <form>, usually), not on the input. */
+    .input-fill {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        max-width: 24rem;
+    }
+    .input-fill > input { flex: 1; min-width: 0; }
+
     .row input:focus,
     .row select:focus,
     .field input:focus,

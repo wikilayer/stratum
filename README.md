@@ -97,7 +97,7 @@ Two-column page with a fixed-width side rail and a fluid main column. Below 720p
 
 ### `.page-head-row`
 
-The page's own head, above both columns: its title and the strip of views. The sidebar holds what is about the page, so it has to begin under that strip; starting level with the title makes it read as a column of the whole site standing beside the page. Same width and inner edge as the content below, and it pulls the main column's top padding in so the two do not double up.
+The page's own head, above both columns: its title and the strip of views. The sidebar holds what is about the page, so it has to begin under that strip; starting level with the title makes it read as a column of the whole site standing beside the page. Same width and inner edge as the content below, and it pulls every column's top padding in so the head's own spacing is not doubled and both columns start on the same line.
 
 ```html
 <div class="page-head-row">
@@ -191,6 +191,14 @@ Form primitives.
 Inputs / selects inside `.row` and `.field` get the framework's text-input look automatically. Custom `<select>` chevron is painted with two CSS gradients so it follows the theme.
 
 `.input-sm` is the same field one step down in padding and type, for a bar or a toolbar whose row height is fixed.
+
+`.input-fill` goes on the wrapper of a field that should be sized by the room it is given rather than by the browser's default width — a search box in a bar, where what sets the width is the space between the controls on either side of it. It stops growing at 24rem so it cannot swallow a wide bar.
+
+```html
+<form class="input-fill push-end" role="search" action="/search">
+  <input class="input input-sm" type="search" name="q" placeholder="Search this wiki" autocomplete="off">
+</form>
+```
 
 `.input-expand` is a field that costs an icon's width until someone wants it, for a bar with room for an icon but not for an input. Wrap a `<label for=>` holding the icon and the input; the label focuses the input with no script, `:focus-within` opens it, and a typed query keeps it open so a result page still shows what was asked. Give the label a `.visually-hidden` name, since an icon alone names nothing.
 

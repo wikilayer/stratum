@@ -387,6 +387,16 @@
     </div>
 
     <div class="ds-example">
+      <p class="muted"><code>.input-fill</code> takes the width its row leaves it, up to 24rem. Paired with <code>.push-end</code> it lands on the trailing edge of the group it sits in.</p>
+      <div class="cluster nowrap">
+        <span class="muted">Wiki</span>
+        <form class="input-fill push-end" role="search" action="#forms">
+          <input class="input input-sm" type="search" name="q" placeholder="Search this wiki" autocomplete="off">
+        </form>
+      </div>
+    </div>
+
+    <div class="ds-example">
       <p class="muted"><code>.input-expand</code> costs an icon's width until someone wants it. Click the magnifier, or tab to it: the label focuses the input with no script, and a typed query keeps the field open.</p>
       <form class="input-expand" role="search" action="#forms">
         <label for="ds-expand"><svg class="icon" aria-hidden="true"><use href="#search"/></svg><span class="visually-hidden">Search</span></label>

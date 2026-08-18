@@ -13,7 +13,10 @@
      */
     .entry > :first-child { margin-top: 0; }
     .entry > :last-child  { margin-bottom: 0; }
-    .entry h2, .entry h3, .entry h4 { margin-bottom: var(--space-2); }
+    /* No top margin either: a heading inside an entry never opens a
+     * section, so the prose gap above it would only tear it away from
+     * the crumb trail or label that introduces it. */
+    .entry h2, .entry h3, .entry h4 { margin: 0 0 var(--space-2); }
     .entry p { margin: 0; }
     .entry-meta {
         margin-top: var(--space-2);

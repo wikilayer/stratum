@@ -116,7 +116,7 @@
         --shadow-md: 0 6px 18px rgba(0,0,0,0.10);
 
         --header-h:    56px;
-        --aside-w:     240px;
+        --aside-w:     256px;
         --leftnav-w:   220px;
         --content-max: 1100px;
         /* Comfortable line length for running text: about 80
