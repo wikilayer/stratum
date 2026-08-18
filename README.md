@@ -275,7 +275,7 @@ A title row that draws the line under itself, so whatever shares the row sits on
 
 ### `.nav-tabs`, `.nav-tabs-icon`, `.nav-tabs-flush`
 
-Links to views of one subject. `aria-current` marks the current view and is what draws the underline; nothing else has to change per view. Use `page` for a view of the page you are on and `true` for a section you are inside, such as a gear leading to settings you already have open. A tab sizes to its content, so it carries a label, an icon, or both, and a strip survives a label translated into a longer word. Given a column narrower than its tabs, the strip takes a second row rather than running off the screen.
+Links to views of one subject. `aria-current` marks the current view and is what draws the underline; nothing else has to change per view. Use `page` for a view of the page you are on and `true` for a section you are inside, such as a gear leading to settings you already have open. A tab sizes to its content, so it carries a label, an icon, or both, and a strip survives a label translated into a longer word. Given a column narrower than its tabs, the strip takes a second row rather than running off the screen. The strip also owns the space under itself, so the view it introduces does not begin on its own rule; inside `body > header` that margin is dropped, because there the strip is one control on a fixed-height row.
 
 Add `.nav-tabs-icon` for a strip whose whole label is an icon: it squares the targets. An icon alone names nothing, so give every such tab a `title` and an `aria-label`.
 
@@ -305,6 +305,8 @@ Carries no outer margin, so it sits equally well above a page body or inside a f
 ### `.menu-host`, `.menu-toggle`, `.dropdown`
 
 Click-to-reveal menu built on `<details>`. The header avatar dropdown is the canonical use; the panel inside hosts `.dropdown .item` rows and optional `.dropdown-section` blocks.
+
+Items line up with the section labels above them. Add `.dropdown-choice` to the panel when the menu is a set of mutually exclusive choices with one of them current (the language being read, the role a member holds): it reserves room for the check-mark on every item, so marking one does not shift its label. A plain list of links takes no such indent.
 
 ```html
 <details class="menu-host">

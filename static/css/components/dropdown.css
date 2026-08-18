@@ -39,13 +39,15 @@
     }
     /* .item works on both <a> and <button>. The button props peel
      * off UA defaults so the two render identically inside the
-     * panel. The left padding reserves room for the check-mark
-     * glyph so current and non-current items stay aligned. */
+     * panel. Items line up with the section labels above them;
+     * room for a check-mark is reserved by .dropdown-choice, and
+     * only there, so a plain list of links is not indented past a
+     * column of ticks it will never have. */
     .dropdown .item {
         position: relative;
         display: block;
         width: 100%;
-        padding: var(--space-2) var(--space-4) var(--space-2) var(--space-7);
+        padding: var(--space-2) var(--space-4);
         color: var(--fg);
         font-size: var(--text-sm);
         background: transparent;
@@ -58,10 +60,14 @@
         background: var(--bg-hover);
         text-decoration: none;
     }
-    /* aria-current="true" → leading check. The space is already
-     * reserved on every item so toggling current doesn't shift
-     * the label. */
-    .dropdown .item[aria-current="true"]::before {
+    /* A menu of mutually exclusive choices, one of them current: the
+     * language being read, the role a member holds. Every item makes
+     * room for the check so marking one does not shift its label,
+     * which is why the reservation lives here and not on .item. */
+    .dropdown-choice .item {
+        padding-left: var(--space-7);
+    }
+    .dropdown-choice .item[aria-current="true"]::before {
         content: "✓";
         position: absolute;
         left: var(--space-3);

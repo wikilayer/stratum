@@ -13,7 +13,14 @@
         flex-wrap: wrap;
         gap: var(--space-1);
         border-bottom: 1px solid var(--border);
+        /* The strip introduces what follows it, so it owns the space
+         * between the two. Without it the first line of the view sits
+         * on the strip's own rule. */
+        margin-bottom: var(--space-5);
     }
+    /* In a bar the strip is one control among several on a fixed-height
+     * row, and a bottom margin there would push it off centre. */
+    body > header .nav-tabs { margin-bottom: 0; }
     .nav-tabs a,
     .nav-tabs .menu-toggle {
         display: inline-flex;
