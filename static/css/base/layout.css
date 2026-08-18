@@ -31,8 +31,15 @@
      * pressed. What the trail drops before it clips is the page's
      * call; see .wide-only. */
     body > header > * { flex-wrap: nowrap; }
-    body > header > .breadcrumb { min-width: 0; }
     body > header > :last-child { flex-shrink: 0; }
+    /* The trail in the bar is the page's address rather than a caption
+     * on something else, so it is read at full strength and only the
+     * separators step back. */
+    body > header .breadcrumb {
+        flex-wrap: nowrap;
+        min-width: 0;
+        color: var(--fg);
+    }
 
     /* A group in the bar that ends where the main column ends, so a
      * control pushed to its end lands on the sidebar's edge instead of

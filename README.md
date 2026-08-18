@@ -333,6 +333,8 @@ A `.menu-host` disclosure may sit in the strip alongside the links, for a view t
 
 Carries no outer margin, so it sits equally well above a page body or inside a fixed-height bar where a bottom margin would push it off centre. Whatever places it owns the spacing.
 
+A flex row of its own with a tight gap: the separator is a hairline between two names, not a word, and a trail set with word-wide gaps reads as a row of unrelated links. The links inherit their colour instead of setting one, so the place the trail sits decides how loudly it speaks — the bar reads its trail at full strength (`body > header .breadcrumb`), while the same trail labelling a row in a list stays out of the way of the row's own name. A `.brand` inside a trail takes the trail's size and keeps only its weight; a line whose parts differ in size jumps in height as the eye runs along it.
+
 ```html
 <nav class="breadcrumb">
   <a href="/">home</a><span class="sep">/</span>
