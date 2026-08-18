@@ -38,6 +38,11 @@
      * margins an h2 brings would stack on top of the row's gap. */
     .row-label {
         margin: 0;
+        /* Its own line box, not the one the element it is worn by would
+         * have had: a heading sets tighter leading than a label, and a
+         * field labelled by one would then sit a few pixels higher than
+         * the field beside it. */
+        line-height: var(--leading-normal);
         font-weight: var(--weight-semibold);
         font-size: var(--text-base);
         color: var(--fg);
