@@ -61,7 +61,7 @@ Highlights:
 | `--text-xs … --text-4xl` | Type scale (1.25 ratio, body 17px) |
 | `--space-1 … --space-8` | 4-step spacing scale, in `rem` |
 | `--radius-sm/md/lg/pill` | Corner radii |
-| `--header-h`, `--aside-w`, `--content-max` | Page-shell sizes |
+| `--header-h`, `--aside-w`, `--content-max`, `--measure-prose` | Page-shell sizes, and the line length running text is capped at |
 | `--duration-fast`, `--easing-out` | Motion |
 
 ## Base layer

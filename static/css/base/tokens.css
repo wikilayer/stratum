@@ -119,6 +119,9 @@
         --aside-w:     240px;
         --leftnav-w:   220px;
         --content-max: 1100px;
+        /* Comfortable line length for running text: about 80
+         * characters at the body size. */
+        --measure-prose: 42em;
 
         --duration-fast: 120ms;
         --easing-out:    cubic-bezier(0.2, 0, 0, 1);
