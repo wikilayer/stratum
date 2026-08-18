@@ -435,6 +435,8 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.text-center`, `.text-start`, `.text-end` | `text-align`, the logical pair following writing direction (RTL-safe) |
 | `.text-left`, `.text-right` | `text-align`, physical, for alignment that must not flip in RTL |
 | `.stack > * + *` | vertical rhythm via margin-top (lobotomized owl) |
+| `.stack-lg`      | the same stack at a wider rhythm, for rows tall enough that the default gap stops reading as a gap. Add beside `.stack` |
+| `.measure`, `.measure-prose` | a ceiling on a block's width: the form column, or the reading measure an `<article>` already keeps |
 | `.cluster`       | horizontal flex with gap and wrap |
 | `.inline-form`   | `display: inline` for inline POST forms |
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |

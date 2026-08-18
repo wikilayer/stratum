@@ -3,6 +3,10 @@
     .empty { color: var(--fg-muted); font-style: italic; }
     .inline-form { display: inline; }
     .stack > * + * { margin-top: var(--space-4); }
+    /* Same stack at a wider rhythm, for rows tall enough that the
+     * default gap stops reading as a gap: multi-line search hits, cards,
+     * anything where one item runs to several lines. */
+    .stack-lg > * + * { margin-top: var(--space-6); }
     /* When .stack carries a list, strip the bullets / numbers and
      * the user-agent left padding so the items align with the
      * surrounding prose. Common case is "row per entry" layouts
@@ -106,6 +110,11 @@
      * non-form section (members list, fact panel, etc.) from
      * stretching to the full main column on wide screens. */
     .measure { max-width: 32em; }
+    /* The reading measure an <article> already keeps. For a block of
+     * running text outside one — a list of search hits, a feed — so it
+     * sets to the same line length as the prose elsewhere on the site
+     * instead of to whatever the column happens to be. */
+    .measure-prose { max-width: var(--measure-prose); }
 
     /* Push one item to the end of its row, leaving the rest where they
      * are. Logical, not left-and-right: in a right-to-left script the
