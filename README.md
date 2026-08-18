@@ -395,6 +395,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.inline-form`   | `display: inline` for inline POST forms |
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
 | `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>`. Applies automatically to all `h1`/`h2` inside an `<article>` so rendered markdown gets the rule for free |
+| `.push-end`     | push one item to the end of its row, logically: in a right-to-left script the end is the left edge |
 | `.eyebrow`       | small uppercase muted label — sidebar section titles, dropdown labels, and other "small caps over a list" places |
 | `.section-title` | heading of a section on a working page (settings, a roster, a panel of controls). The `h1..h6` scale is set for prose, where an `h2` introduces paragraphs; on a page of forms it lands within a few pixels of the `h1` and everything reads as equals. Keep the heading element for the outline, add this for the size |
 | `.visually-hidden` | there for a screen reader, gone for the eye. The name of a control whose visible label is an icon |

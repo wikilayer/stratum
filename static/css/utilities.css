@@ -107,6 +107,13 @@
      * stretching to the full main column on wide screens. */
     .measure { max-width: 32em; }
 
+    /* Push one item to the end of its row, leaving the rest where they
+     * are. Logical, not left-and-right: in a right-to-left script the
+     * end of the row is its left edge, and a control that means "at
+     * the end" has to move with the text direction rather than against
+     * it. .ml-auto is the physical form, for the rare case where a
+     * thing genuinely belongs on the left whatever the script. */
+    .push-end { margin-inline-start: auto; }
     .ml-auto { margin-left: auto; }
 
     /* Spin in place. Pair with an icon for an in-progress indicator. */
