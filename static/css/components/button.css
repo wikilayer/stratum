@@ -72,6 +72,32 @@
         width: 100%;
     }
 
+    /* A lone control in a bar whose whole label is an icon: a gear
+     * beside the name of what it configures, a toolbar action. Not a
+     * tab — a tab belongs to a strip of alternatives and is underlined
+     * to say which of them you are in, and a single control has nothing
+     * to be one of. So being the current place is said in colour, and
+     * the icon never grows a line under it.
+     *
+     * Square target, quiet by default, full strength once it is hovered
+     * or is where the reader already is. Give it an aria-label: an icon
+     * on its own names nothing. */
+    .icon-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1;
+        padding: var(--space-2);
+        border-radius: var(--radius-md);
+        color: var(--fg-muted);
+    }
+    .icon-link:hover {
+        color: var(--fg);
+        background: var(--bg-hover);
+        text-decoration: none;
+    }
+    .icon-link[aria-current] { color: var(--fg); }
+
     /* × dismiss button — close modals, clear a selection chip,
      * dismiss a toast, etc. Plain background, big × glyph, picks up
      * fg colour on hover. */
