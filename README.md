@@ -191,6 +191,10 @@ Pure-CSS, radio-driven. Up to four tabs out of the box; extend the selector pair
 
 Inline message block. Variants: `.alert-error`, `.alert-success`. Always left-aligned (won't inherit `.text-center`). Use `.alert-success` as a one-shot banner after a redirect — same shape, no separate primitive needed.
 
+### `.saved-note`
+
+Confirmation of one control, beside that control: `<span class="saved-note" role="status">Saved</span>` next to the select or checkbox that changed. A page-wide `.alert-success` answers for the page, which is the wrong size and the wrong place for a setting that [saves on change](#javascript-helpers) two screens further down. Fades out on its own after a few seconds, because a note that stays reads as a state rather than as an answer to what just happened; `prefers-reduced-motion` keeps it still and visible.
+
 ### `.modal`
 
 Dialog box on top of a backdrop. Built on the native `<dialog>` element — ESC closes, click on backdrop closes (wired by `modal.js`), focus trapped, no scroll-lock gymnastics. Three sub-zones: header / body / footer.
