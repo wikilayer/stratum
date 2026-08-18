@@ -15,9 +15,12 @@
     .menu-toggle:hover { background: var(--bg-hover); }
     .menu-host[open] .menu-toggle { background: var(--bg-hover); }
 
+    /* The disclosure arrow reads as a hint, not as decoration: at
+     * 0.7em it collapsed to a couple of pixels beside a small label
+     * and looked like dirt on the screen. */
     .caret {
         color: var(--fg-muted);
-        font-size: 0.7em;
+        font-size: 0.85em;
         line-height: 1;
     }
 

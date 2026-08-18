@@ -8,6 +8,6 @@
     }
     .breadcrumb a { color: var(--fg-muted); }
     .breadcrumb a:hover { color: var(--accent); }
-    .breadcrumb .sep { margin: 0 var(--space-2); }
+    .breadcrumb .sep { margin: 0 var(--space-1); color: var(--fg-subtle); }
     .breadcrumb .current { color: var(--fg); }
 }

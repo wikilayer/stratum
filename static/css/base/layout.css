@@ -7,7 +7,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 var(--space-5);
+        /* The bar lines up with the column below it: same outer edge as
+         * the content, same inner edge as the text inside it. Without
+         * this the brand sits at the window's edge while the title it
+         * belongs over starts a hundred pixels in, and nothing in the
+         * bar can be aligned to anything on the page. */
+        padding-block: 0;
+        padding-inline: max(var(--space-5), calc((100% - var(--content-max)) / 2 + var(--space-6)));
         background: var(--header-bg);
         backdrop-filter: saturate(180%) blur(8px);
         -webkit-backdrop-filter: saturate(180%) blur(8px);
@@ -27,6 +33,15 @@
     body > header > * { flex-wrap: nowrap; }
     body > header > .breadcrumb { min-width: 0; }
     body > header > :last-child { flex-shrink: 0; }
+
+    /* A group in the bar that ends where the main column ends, so a
+     * control pushed to its end lands on the sidebar's edge instead of
+     * floating somewhere over the text. Pairs with .push-end. */
+    .bar-main {
+        width: calc(var(--content-max) - var(--aside-w) - var(--space-6));
+        max-width: 100%;
+        min-width: 0;
+    }
 
     .brand {
         font-weight: var(--weight-bold);

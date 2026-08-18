@@ -95,6 +95,20 @@ Two-column page with a fixed-width side rail and a fluid main column. Below 720p
 </div>
 ```
 
+### `.bar-main`
+
+A group inside `body > header` that ends where the main column ends, so a control pushed to its end (`.push-end`) lines up with the sidebar's edge rather than floating over the text. The bar itself already shares the content column's outer and inner edges, so the brand sits over the page title.
+
+```html
+<header>
+  <div class="cluster nowrap bar-main">
+    <nav class="breadcrumb">…</nav>
+    <form role="search" class="push-end">…</form>
+  </div>
+  <div class="cluster">…the reader's own controls…</div>
+</header>
+```
+
 ### `nav.leftnav`
 
 Sticky left rail next to `<main>`, mirror of the right `<aside>` rail. Use for dashboard navigation, section links, anything always-visible left of the content. Stacks above main on mobile. `.rail-section` works inside either rail.
