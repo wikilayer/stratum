@@ -16,4 +16,29 @@
         color: var(--success-fg);
         border-color: var(--success-border);
     }
+
+    /* Confirmation of one control, beside that control. A banner at the
+     * top of the page answers for the page; a setting that saves on
+     * change was a gesture in one spot, and the answer belongs in the
+     * same spot at the size of the gesture. It fades out on its own,
+     * because a note that stays reads as a state rather than as an
+     * answer to what just happened. */
+    .saved-note {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        font-size: var(--text-sm);
+        color: var(--success-fg);
+        animation: saved-note-fade 4s var(--easing-out) forwards;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .saved-note { animation: none; }
+    }
+}
+
+@keyframes saved-note-fade {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    75%  { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
 }
