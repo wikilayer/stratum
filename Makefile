@@ -1,6 +1,9 @@
 .PHONY: format lint lint-tools test-build test build icons-sync design-system tidy
 
-STATICCHECK_VERSION ?= v0.8.0
+# Held one release behind the version the applications use: theirs
+# needs a newer Go than this module asks of the projects that embed it,
+# and a linter is no reason to raise that floor.
+STATICCHECK_VERSION ?= v0.7.0
 
 format:
 	gofmt -w .
