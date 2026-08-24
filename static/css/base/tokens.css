@@ -119,8 +119,12 @@
         --leftnav-w:   220px;
         --content-max: 1100px;
         /* Comfortable line length for running text: about 80
-         * characters at the body size. */
+         * characters at the body size. --measure-form is the narrower
+         * one a form, a dialog or a column of controls reads at, where
+         * a full line of prose would put the label and its field too
+         * far apart. */
         --measure-prose: 42em;
+        --measure-form:  32em;
 
         --duration-fast: 120ms;
         --easing-out:    cubic-bezier(0.2, 0, 0, 1);

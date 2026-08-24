@@ -109,7 +109,7 @@
      * No centring, no flex layer, just a ceiling. Use to keep a
      * non-form section (members list, fact panel, etc.) from
      * stretching to the full main column on wide screens. */
-    .measure { max-width: 32em; }
+    .measure { max-width: var(--measure-form); }
     /* The reading measure an <article> keeps, for running text outside
      * one: a list of search hits, a feed. */
     .measure-prose { max-width: var(--measure-prose); }

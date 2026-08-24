@@ -6,7 +6,7 @@
         color: var(--fg);
         padding: 0;
         box-shadow: var(--shadow-md);
-        max-width: 32em;
+        max-width: var(--measure-form);
         width: calc(100% - var(--space-5) * 2);
         /* Override native <dialog>'s overflow:auto so absolutely-
          * positioned children (e.g. an autocomplete popover) can
@@ -29,8 +29,9 @@
     }
     .modal-title { margin: 0; font-size: var(--text-lg); }
 
+    /* Rhythm between what the body holds is .stack's, so a body with
+     * more than one thing in it carries that class too. */
     .modal-body   { padding: var(--space-5); }
-    .modal-body > * + * { margin-top: var(--space-4); }
     .modal-footer {
         display: flex;
         justify-content: flex-end;

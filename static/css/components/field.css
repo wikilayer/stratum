@@ -1,25 +1,4 @@
 @layer components {
-    /* No top margin: a form is normally the first thing in its column,
-     * and how far that starts from the top is the column's padding to
-     * decide. See `main > :first-child` in layout.css, which cannot
-     * reach this one from an earlier layer. */
-    .form-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 200px;
-        gap: var(--space-7);
-        align-items: start;
-    }
-    .form-layout-main {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-5);
-        max-width: 32em;
-    }
-    .form-layout-aside {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-3);
-    }
     .form-actions {
         margin-top: var(--space-2);
     }
@@ -70,12 +49,9 @@
         gap: var(--space-2);
     }
 
-    .row input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
-    .row input:not([type]),
-    .row select,
-    .field input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
-    .field input:not([type]),
-    .field select,
+    :is(.row, .field) input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
+    :is(.row, .field) input:not([type]),
+    :is(.row, .field) select,
     .input {
         padding: var(--space-2) var(--space-3);
         border: 1px solid var(--border);
@@ -105,10 +81,7 @@
     }
     .input-fill > input { flex: 1; min-width: 0; }
 
-    .row input:focus,
-    .row select:focus,
-    .field input:focus,
-    .field select:focus,
+    :is(.row, .field) :is(input, select):focus,
     .input:focus {
         outline: none;
         border-color: var(--accent);
@@ -119,17 +92,11 @@
      * control when validation fails; the red border outlives
      * the focus ring, and the .form-error message below
      * carries the wording. */
-    .row input[aria-invalid="true"],
-    .row select[aria-invalid="true"],
-    .field input[aria-invalid="true"],
-    .field select[aria-invalid="true"],
+    :is(.row, .field) :is(input, select)[aria-invalid="true"],
     .input[aria-invalid="true"] {
         border-color: var(--danger);
     }
-    .row input[aria-invalid="true"]:focus,
-    .row select[aria-invalid="true"]:focus,
-    .field input[aria-invalid="true"]:focus,
-    .field select[aria-invalid="true"]:focus,
+    :is(.row, .field) :is(input, select)[aria-invalid="true"]:focus,
     .input[aria-invalid="true"]:focus {
         border-color: var(--danger);
         box-shadow: 0 0 0 3px var(--danger-bg);
@@ -173,8 +140,7 @@
         white-space: nowrap;
         user-select: none;
     }
-    .row .input-group > input,
-    .field .input-group > input,
+    :is(.row, .field) .input-group > input,
     .input-group > input {
         padding: var(--space-2) var(--space-3);
         border: 0;
@@ -185,8 +151,7 @@
         flex: 1;
         min-width: 0;
     }
-    .row .input-group > input:focus,
-    .field .input-group > input:focus,
+    :is(.row, .field) .input-group > input:focus,
     .input-group > input:focus {
         outline: none;
         box-shadow: none;
@@ -286,16 +251,5 @@
         padding-inline: var(--space-3);
         border-color: var(--border);
         background: var(--bg);
-    }
-
-    @media (max-width: 720px) {
-        .form-layout {
-            grid-template-columns: 1fr;
-            gap: var(--space-5);
-        }
-        .form-layout-aside {
-            order: -1;
-            align-items: flex-start;
-        }
     }
 }

@@ -136,8 +136,8 @@
         margin-right: auto;
     }
     .column        { max-width: 38em; }
-    .column-narrow { max-width: 32em; }
-    .column-wide   { max-width: 720px; }
+    .column-narrow { max-width: var(--measure-form); }
+    .column-wide   { max-width: var(--measure-prose); }
 
     /* Phone / narrow tablet: stack <main> and the page rail. The
      * desktop layout is two columns with a sticky sidebar; on a
@@ -180,23 +180,33 @@
         }
     }
 
-    /* Two-column split with a fixed-width side rail and a fluid main
-     * column. Below 720px collapses to a single stack with the side
-     * moved on top. */
+    /* Two columns: the content, and a fixed-width side for whatever
+     * stands beside it -- a picture of what the form edits, a list of
+     * what the page is about. --side-w sets that width, .split-side-
+     * first puts the side on the leading edge. Below 720px it becomes
+     * one column with the side on top, whichever edge it sat on. */
     .split {
+        --side-w: 14rem;
         display: grid;
-        grid-template-columns: 280px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) var(--side-w);
         gap: var(--space-7);
         align-items: start;
-        margin-top: var(--space-5);
     }
+    .split-side-first {
+        grid-template-columns: var(--side-w) minmax(0, 1fr);
+    }
+    .split-main {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+    }
+    .split-main > h1:first-child,
+    .split-main > h2:first-child { margin-top: 0; }
     .split-side {
         display: flex;
         flex-direction: column;
         gap: var(--space-3);
     }
-    .split-main > h1:first-child,
-    .split-main > h2:first-child { margin-top: 0; }
 
     @media (max-width: 720px) {
         .split {

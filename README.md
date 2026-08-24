@@ -66,7 +66,7 @@ Highlights:
 | `--text-xs … --text-4xl` | Type scale (1.25 ratio, body 17px) |
 | `--space-1 … --space-8` | 4-step spacing scale, in `rem` |
 | `--radius-sm/md/lg/pill` | Corner radii |
-| `--header-h`, `--aside-w`, `--content-max`, `--measure-prose` | Page-shell sizes, and the line length running text is capped at |
+| `--header-h`, `--aside-w`, `--content-max`, `--measure-prose`, `--measure-form` | Page-shell sizes, and the two line lengths content is capped at: running text, and a column of controls |
 | `--duration-fast`, `--easing-out` | Motion |
 
 ## Base layer
@@ -84,20 +84,20 @@ Sits above tokens, below components. Three files:
 Reading-width columns, centred. Pick one when a page wants to constrain its content to a single readable line.
 
 ```html
-<section class="column-narrow">…</section>     <!-- 32em — auth, dialogs -->
+<section class="column-narrow">…</section>     <!-- --measure-form, 32em — auth, dialogs -->
 <section class="column">…</section>             <!-- 38em — onboarding, prose -->
-<article class="column-wide">…</article>        <!-- 720px — legal docs -->
+<article class="column-wide">…</article>        <!-- --measure-prose, 42em — legal docs -->
 ```
 
-### `.split`, `.split-side`, `.split-main`
+### `.split`, `.split-main`, `.split-side`, `.split-side-first`
 
-Two-column page with a fixed-width side rail and a fluid main column. Below 720px collapses to one stack with the side moved on top.
+Two columns: the content, and a fixed-width side for whatever stands beside it — a picture of what a form edits, a profile beside a list. Set `--side-w` to change that width (default `14rem`); add `.split-side-first` to put the side on the leading edge. Below 720px it becomes one stack with the side on top, whichever edge it sat on. Cap the main column's line length with `.measure` where it holds a form.
 
 ```html
-<div class="split">
-  <aside class="split-side">…</aside>
-  <section class="split-main">…</section>
-</div>
+<form class="split">
+  <div class="split-main measure">…</div>
+  <div class="split-side">…</div>
+</form>
 ```
 
 ### `.page-head-row`
@@ -197,7 +197,7 @@ Form primitives.
 
 `.row-inline-list` / `.row-inline` render a read-only `<dl>` of `Label: value` rows.
 
-`.form-layout` / `.form-layout-main` / `.form-layout-aside` is a two-column form: the fields, and a fixed-width slot beside them for what the form is about, a picture or a preview.
+A form that wants something beside it, a picture or a preview, is a `.split` and needs no form-specific layout of its own.
 
 Inputs / selects inside `.row` and `.field` get the framework's text-input look automatically. Custom `<select>` chevron is painted with two CSS gradients so it follows the theme.
 
