@@ -1,7 +1,7 @@
 @layer components {
     .avatar {
-        width: 30px;
-        height: 30px;
+        width: 1.875rem;
+        height: 1.875rem;
         border-radius: 50%;
         background: var(--bg-active);
         color: var(--fg);
@@ -46,8 +46,8 @@
     /* Size modifiers. Font-size scales with the circle so initials
      * look balanced at every size. */
     .avatar-lg {
-        width: 160px;
-        height: 160px;
+        width: 10rem;
+        height: 10rem;
         font-size: 3.75rem;
     }
 
@@ -68,8 +68,8 @@
     .avatar-frame > .menu-host > .menu-toggle {
         background: var(--bg-elevated);
         border: 1px solid var(--border);
-        width: 28px;
-        height: 28px;
+        width: 1.75rem;
+        height: 1.75rem;
         padding: 0;
         border-radius: 50%;
         justify-content: center;

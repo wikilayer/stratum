@@ -114,10 +114,14 @@
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
         --shadow-md: 0 6px 18px rgba(0,0,0,0.10);
 
-        --header-h:    56px;
-        --aside-w:     256px;
-        --leftnav-w:   220px;
-        --content-max: 1100px;
+        /* In rem for the same reason as the spacing scale: a reader who
+         * sets a larger font gets a bar tall enough to hold it and
+         * columns wide enough to set type in, instead of chrome that
+         * stays put while its contents outgrow it. */
+        --header-h:    3.5rem;
+        --aside-w:     16rem;
+        --leftnav-w:   13.75rem;
+        --content-max: 68.75rem;
         /* Comfortable line length for running text: about 80
          * characters at the body size. --measure-form is the narrower
          * one a form, a dialog or a column of controls reads at, where

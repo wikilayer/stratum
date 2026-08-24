@@ -8,14 +8,14 @@
     .map > iframe {
         display: block;
         width: 100%;
-        height: 320px;
+        height: 20rem;
         border: 0;
     }
     .map-caption {
         padding: var(--space-2) var(--space-3);
         background: var(--bg-subtle);
         color: var(--fg-muted);
-        font-size: 0.9em;
+        font-size: var(--text-sm);
         border-top: 1px solid var(--border-muted);
     }
 }
