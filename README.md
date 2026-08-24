@@ -18,6 +18,8 @@ Most CSS frameworks are either heavy (Bootstrap, Tailwind — with their own too
 import "github.com/wikilayer/stratum"
 ```
 
+Pin a version — `go get github.com/wikilayer/stratum@v0.1.0`. Before 1.0 a minor bump may rename or remove a class; [CHANGELOG.md](CHANGELOG.md) names the markup to change each time.
+
 Mount the static FS under `/static/` (use it directly, or layer your own files on top via `fs.FS` composition):
 
 ```go
@@ -552,6 +554,7 @@ stratum/
 ├── go.mod
 ├── Makefile                ← icons-sync, design-system targets
 ├── README.md
+├── CHANGELOG.md            ← what each version changed, and what to change in your markup
 ├── CLAUDE.md               ← notes for assistants working on this package
 ├── static/
 │   ├── style.css           ← entry: @layer order + @imports
