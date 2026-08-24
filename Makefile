@@ -1,4 +1,6 @@
-.PHONY: format lint test-build test build icons-sync design-system tidy
+.PHONY: format lint lint-tools test-build test build icons-sync design-system tidy
+
+STATICCHECK_VERSION ?= v0.8.0
 
 format:
 	gofmt -w .
@@ -7,6 +9,9 @@ lint:
 	go vet ./...
 	gofmt -l . | (! grep .)
 	staticcheck ./...
+
+lint-tools:
+	go install honnef.co/go/tools/cmd/staticcheck@$(STATICCHECK_VERSION)
 
 # Compile package and test code without running anything.
 test-build:

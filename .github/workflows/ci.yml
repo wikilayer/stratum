@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - run: make lint-tools
+
+      - run: make lint
+
+      # The tests read the stylesheets: that every one declares its
+      # layer, that the two theme palettes match, that the asset list
+      # and the entry sheet agree. A push that breaks one of those
+      # breaks every page of every consumer, quietly.
+      - run: make test
