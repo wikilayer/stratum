@@ -4,6 +4,12 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.1.1 — 2026-08-24
+
+### Fixed
+
+- A `.block-id` longer than its 3em gutter wrapped, and at this line height the second line landed back on the first, so a five-digit id read as one smudge. It now runs left into the empty margin instead. No markup change.
+
 ## 0.1.0 — 2026-08-24
 
 The first tagged release. There is no previous tag, so this entry is written for anyone who pinned a commit instead. It covers everything since [`df118a6`](https://github.com/wikilayer/stratum/commit/df118a6) (18 August 2026), and two renames from earlier in August that reach a pin older than that: `.page-tabs` became `.nav-tabs`, and `.caret` was dropped for the sprite's `chevron-down` icon at `.icon` size, which is what a disclosure arrow is drawn with now. For anything before that, read `github.com/wikilayer/stratum/compare/<your-pin>...v0.1.0`.
