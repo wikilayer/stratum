@@ -20,8 +20,6 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
     }
-    .data-table tr.is-revoked td { color: var(--fg-muted); }
-
     /* Lead column that stays put while a wide table scrolls sideways
      * inside a .scroll-x, so the row keeps its label. Pinned cells
      * need an opaque fill of their own, since the default is
@@ -57,8 +55,7 @@
         border-right: 1px solid var(--border);
     }
 
-    /* Definition-list "meta" — used by the read-only metadata block
-     * (provider/created) on Settings. */
+    /* Definition-list "meta" — a read-only block of label/value pairs. */
     .meta {
         display: grid;
         grid-template-columns: max-content 1fr;

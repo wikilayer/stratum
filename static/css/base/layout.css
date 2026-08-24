@@ -90,8 +90,8 @@
     main > :first-child { margin-top: 0; }
 
     /* Scoped to direct children of .content so an <aside> nested
-     * inside a form (e.g., the avatar slot on /settings) doesn't
-     * inherit the page-rail width / border / sticky positioning. */
+     * inside a form doesn't inherit the page rail's width, border and
+     * sticky positioning. */
     .content > aside {
         width: var(--aside-w);
         border-left: 1px solid var(--border);
@@ -181,9 +181,8 @@
     }
 
     /* Two-column split with a fixed-width side rail and a fluid main
-     * column. Used on /owner:N and anywhere else we want a sidebar
-     * left of the content. Below 720px collapses to a single stack
-     * with the side moved on top. */
+     * column. Below 720px collapses to a single stack with the side
+     * moved on top. */
     .split {
         display: grid;
         grid-template-columns: 280px minmax(0, 1fr);

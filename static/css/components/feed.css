@@ -29,19 +29,17 @@
         border-radius: var(--radius-sm);
         white-space: nowrap;
     }
-    /* Action variants keyed by the operation label the data carries —
-     * here that's the Postgres trigger op (INSERT/UPDATE/DELETE). The
-     * .feed-action wrapper is generic; the suffix matches whatever
-     * label the caller wants to colour. */
-    .feed-action-INSERT {
+    /* What an entry did, in the three colours a log of changes needs:
+     * something appeared, something changed, something went. */
+    .feed-action-add {
         background: var(--success-bg);
         color: var(--success-fg);
     }
-    .feed-action-UPDATE {
+    .feed-action-edit {
         background: var(--bg-active);
         color: var(--fg-muted);
     }
-    .feed-action-DELETE {
+    .feed-action-remove {
         background: var(--danger-bg);
         color: var(--danger-fg);
     }

@@ -20,7 +20,6 @@
         --accent-bg:    #ddf4ff;
 
         --danger:       #cf222e;
-        --danger-hover: #a40e26;
         --danger-bg:    #ffebe9;
         --danger-fg:    #82071e;
 
@@ -146,7 +145,6 @@
         --accent-bg:    #0c2d6b;
 
         --danger:       #f85149;
-        --danger-hover: #ff6a5c;
         --danger-bg:    #311419;
         --danger-fg:    #ff7b72;
 
@@ -217,7 +215,6 @@
             --accent-bg:    #0c2d6b;
 
             --danger:       #f85149;
-            --danger-hover: #ff6a5c;
             --danger-bg:    #311419;
             --danger-fg:    #ff7b72;
 
@@ -235,6 +232,9 @@
             --callout-important: #a371f7;
             --callout-warning:   #d29922;
             --callout-caution:   #f85149;
+
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.40);
+            --shadow-md: 0 6px 18px rgba(0,0,0,0.50);
 
             --avatar-fg: #ffffff;
             --avatar-c0:  oklch(50% 0.13 25);

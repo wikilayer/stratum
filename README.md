@@ -4,7 +4,7 @@
 
 **A minimal CSS framework designed to embed into Go projects.**
 
-Tokens, a layered cascade, ~20 components, an icon sprite, and two tiny vanilla-JS helpers — vendored as a single Go module. A Go server gets a styled UI by importing the package, mounting one `fs.FS`, and linking one stylesheet. No npm, no build step, no preprocessor.
+Tokens, a layered cascade, ~20 components, an icon sprite, and a handful of tiny vanilla-JS helpers — vendored as a single Go module. A Go server gets a styled UI by importing the package, mounting one `fs.FS`, and linking one stylesheet. No npm, no build step, no preprocessor.
 
 Native CSS Custom Properties + `@layer` + a sprinkle of `color-mix()`. Works in any browser that ships `@layer` (Chrome 99 / Firefox 97 / Safari 15.4 — 2022+).
 
@@ -31,9 +31,14 @@ Link from your base template:
 <link rel="stylesheet" href="/static/style.css">
 <script src="/static/theme.js" defer></script>
 <script src="/static/copy.js" defer></script>
+<script src="/static/dropdown.js" defer></script>
+<script src="/static/modal.js" defer></script>
+<script src="/static/rail.js" defer></script>
+<script src="/static/toc.js" defer></script>
+<script src="/static/autosubmit.js" defer></script>
 ```
 
-That's it. Everything else is plain HTML + classes.
+That's it. Everything else is plain HTML + classes. Each helper is optional and independent of the others; link the ones whose components the page uses.
 
 ## Cascade order (`@layer`)
 
@@ -174,7 +179,7 @@ Modifiers stack. Use `<a>` for navigation, `<button>` for actions. Icons go inli
 </a>
 ```
 
-### `.row`, `.field`, `.input`, `.choice-group`
+### `.row`, `.field`, `.input`
 
 Form primitives.
 
@@ -192,9 +197,7 @@ Form primitives.
 
 `.row-inline-list` / `.row-inline` render a read-only `<dl>` of `Label: value` rows.
 
-`.choice-group` / `.choice` / `.choice-name` / `.choice-desc` is a fieldset of mutually-exclusive radios, each option a clickable card with icon + name + description. Selected state uses `:has(input:checked)`.
-
-`.form-layout` / `.form-layout-main` / `.form-layout-aside` is a generic two-column form (main + 200px sidebar slot) — used on `/settings` for the avatar.
+`.form-layout` / `.form-layout-main` / `.form-layout-aside` is a two-column form: the fields, and a fixed-width slot beside them for what the form is about, a picture or a preview.
 
 Inputs / selects inside `.row` and `.field` get the framework's text-input look automatically. Custom `<select>` chevron is painted with two CSS gradients so it follows the theme.
 
@@ -221,16 +224,18 @@ Inputs / selects inside `.row` and `.field` get the framework's text-input look 
 
 Pure-CSS, radio-driven. Up to four tabs out of the box; extend the selector pairs in `tabs.css` for more.
 
+Which tab shows is read from position, not from the ids: the Nth radio pairs with the Nth label and the Nth panel, so the ids are yours to name and a page may carry two tab groups. Panels are `<section>` and the bar is a `<div>`, which is what keeps the bar out of the panel count; a panel rendered as a `<div>` will not show.
+
 ```html
 <div class="tabs">
-  <input type="radio" id="tab-1" name="my-tabs" checked>
-  <input type="radio" id="tab-2" name="my-tabs">
+  <input type="radio" id="login-oauth" name="my-tabs" checked>
+  <input type="radio" id="login-password" name="my-tabs">
   <div class="tabs-bar" role="tablist">
-    <label for="tab-1" role="tab">First</label>
-    <label for="tab-2" role="tab">Second</label>
+    <label for="login-oauth" role="tab">First</label>
+    <label for="login-password" role="tab">Second</label>
   </div>
-  <div class="tab-panel-1" role="tabpanel">…</div>
-  <div class="tab-panel-2" role="tabpanel">…</div>
+  <section class="tab-panel" role="tabpanel">…</section>
+  <section class="tab-panel" role="tabpanel">…</section>
 </div>
 ```
 
@@ -395,7 +400,7 @@ Canonical composition: drop a `.switch` and a `.url-pill` into a `.dropdown` und
 
 ### `.feed`, `.feed-item`, `.feed-time`, `.feed-actor`, `.feed-action`, `.feed-target`
 
-Flat list of timestamped activity entries. `.feed-action` carries a coloured tag — variants by suffix (`feed-action-INSERT`, `…-UPDATE`, `…-DELETE`; rename in your CSS if your domain uses different verbs). `.feed-target-gone` strikes through a target whose object no longer exists.
+Flat list of timestamped activity entries. `.feed-action` carries a coloured tag saying what the entry did: `.feed-action-add`, `.feed-action-edit`, `.feed-action-remove`. Map your own verbs onto those three; the words the reader sees are yours, the colours are what the three mean. `.feed-target-gone` strikes through a target whose object no longer exists.
 
 ### `.data-table`, `.meta`
 
@@ -500,8 +505,11 @@ License: outline icons are Lucide / Feather (ISC + MIT subset). Brand icons are 
 - `copy.js` — wires every `.copy-btn` inside a `.url-pill`. Copies the `<code>` value to clipboard, swaps the button label to `data-label-copied`, then back after 1500ms. Localised labels stay in templates, not in JS.
 - `modal.js` — wires `[data-modal-open="ID"]` triggers and `[data-modal-close]` close-buttons. Uses native `<dialog>.showModal()` / `.close()`; adds click-on-backdrop-to-close on top of what the platform gives you for free.
 - `autosubmit.js` — submits a `form[data-autosubmit]` as soon as a `select`, checkbox or radio inside it changes, so a one-field setting needs no Save button. Text inputs are ignored on purpose: every keystroke is a change. Further changes are ignored until the page navigates, so a second choice cannot race the first.
+- `dropdown.js` — closes every open `details.menu-host` when the pointer goes down outside it. Native `<details>` only closes on its own summary, and a menu that stays open after a click elsewhere reads as stuck.
+- `rail.js` — remembers whether each `details.rail-section` is open in a `rail-state` cookie. The server reads that cookie and renders the `open` attribute, so a reader's choice survives the next page without a flash.
+- `toc.js` — keeps a `details.toc-section` expanded on a wide screen and collapsed on a narrow one, where an expanded link list would push the article below the fold. Follows the breakpoint on load and on resize; a reader's own toggle stands until the breakpoint is crossed.
 
-All are zero-dependency, ~30 lines each, safe to load with `defer`.
+All are zero-dependency, ~30 lines each, safe to load with `defer`. Each is optional: the page works without it, one affordance quieter.
 
 ## Adding a component
 
@@ -531,7 +539,7 @@ Things this framework deliberately doesn't do:
 
 - **No preprocessors.** Native CSS only. If you reach for Sass, the rule isn't generic enough.
 - **No build step.** A single static folder. Stylesheets are minified in memory when the package initialises, so the comments explaining each rule cost their editor nothing and the browser nothing either; every other asset is served exactly as it sits on disk. Nothing to run, nothing generated to keep in sync.
-- **No JavaScript framework.** Two tiny `.js` files, both vanilla, both optional.
+- **No JavaScript framework.** A handful of tiny `.js` files, all vanilla, all optional.
 - **No `!important`, no `id` selectors, no deep nesting.** Specificity stays flat so utilities reliably override components.
 - **No page-specific classes.** If a name only fits one page (`.login`, `.profile-grid`, `.consent-actions`), it's the wrong abstraction. Compose pages from the primitives above.
 
@@ -548,9 +556,7 @@ stratum/
 ├── static/
 │   ├── style.css           ← entry: @layer order + @imports
 │   ├── icons.{svg,txt,LICENSE.txt}
-│   ├── theme.js
-│   ├── copy.js
-│   ├── modal.js
+│   ├── {theme,copy,dropdown,modal,rail,toc,autosubmit}.js
 │   └── css/
 │       ├── base/{tokens,reset,typography,layout}.css
 │       ├── components/*.css

@@ -1,6 +1,6 @@
 // Package stratum is a minimal CSS framework designed to embed into
 // Go projects. Tokens, a layered cascade, ~20 components, an icon
-// sprite, and two tiny vanilla-JS helpers — vendored as a Go module
+// sprite, and a few tiny vanilla-JS helpers — vendored as a Go module
 // so a server gets a styled UI by mounting one fs.FS and linking one
 // stylesheet. No npm, no build step, no preprocessor.
 //
@@ -25,8 +25,8 @@ var embedded embed.FS
 
 // Static is the embedded asset tree rooted at static/. Mount it under
 // /static/ (or wherever) on your HTTP server, and link the produced
-// URLs from your templates: /static/style.css, /static/icons.svg,
-// /static/theme.js, /static/copy.js.
+// URLs from your templates: /static/style.css, /static/icons.svg, and
+// whichever of the .js helpers the page's components use.
 //
 // Stylesheets are served minified: the sources carry the reasoning
 // behind each rule, which is worth its bytes to whoever edits them and

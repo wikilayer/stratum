@@ -529,21 +529,21 @@
 
   <section class="ds-section" id="tabs">
     <h2>Tabs</h2>
-    <p>Pure-CSS, radio-driven. Switches panels in place without navigating, which is what separates it from <a href="#nav-tabs">navigation tabs</a>. Convention: radio ids <code>tab-1</code>, <code>tab-2</code>, …; matching panels <code>tab-panel-1</code>, etc. Up to four out of the box.</p>
+    <p>Pure-CSS, radio-driven. Switches panels in place without navigating, which is what separates it from <a href="#nav-tabs">navigation tabs</a>. The Nth radio pairs with the Nth label and the Nth <code>section.tab-panel</code> by position, so the ids are yours to name. Up to four out of the box.</p>
 
     <div class="ds-example">
       <div class="tabs">
-        <input type="radio" id="tab-1" name="ds-tabs" checked>
-        <input type="radio" id="tab-2" name="ds-tabs">
-        <input type="radio" id="tab-3" name="ds-tabs">
+        <input type="radio" id="ds-tab-first" name="ds-tabs" checked>
+        <input type="radio" id="ds-tab-second" name="ds-tabs">
+        <input type="radio" id="ds-tab-third" name="ds-tabs">
         <div class="tabs-bar" role="tablist">
-          <label for="tab-1" role="tab">First</label>
-          <label for="tab-2" role="tab">Second</label>
-          <label for="tab-3" role="tab">Third</label>
+          <label for="ds-tab-first" role="tab">First</label>
+          <label for="ds-tab-second" role="tab">Second</label>
+          <label for="ds-tab-third" role="tab">Third</label>
         </div>
-        <div class="tab-panel-1" role="tabpanel"><p>Panel one. Click a tab to switch.</p></div>
-        <div class="tab-panel-2" role="tabpanel"><p>Panel two.</p></div>
-        <div class="tab-panel-3" role="tabpanel"><p>Panel three.</p></div>
+        <section class="tab-panel" role="tabpanel"><p>Panel one. Click a tab to switch.</p></section>
+        <section class="tab-panel" role="tabpanel"><p>Panel two.</p></section>
+        <section class="tab-panel" role="tabpanel"><p>Panel three.</p></section>
       </div>
     </div>
   </section>
