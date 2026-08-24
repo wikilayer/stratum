@@ -6,7 +6,12 @@
     body {
         display: flex;
         flex-direction: column;
+        /* dvh over vh: on a phone vh is the viewport with the address
+         * bar retracted, so a page that fits the screen would still
+         * scroll by the height of that bar. vh first for the browsers
+         * that never learnt dvh. */
         min-height: 100vh;
+        min-height: 100dvh;
     }
 
     /* Site chrome — scoped to direct child of body so a <header>

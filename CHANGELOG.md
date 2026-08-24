@@ -1,21 +1,71 @@
 # Changelog
 
-Stratum is a small CSS framework for the pages a Go server renders: tokens, layout, about twenty components and an icon sprite. It ships as a Go module holding one `fs.FS` you mount on a route and link stylesheets from; there is no build step and no CSS of your own. See the [README](README.md) for wiring it up and the [design-system reference](https://wikilayer.github.io/stratum/) for the markup each component takes.
+Stratum is a small CSS framework for the pages a Go server renders: tokens, layout, about twenty components and an icon sprite. It ships as a Go module holding one `fs.FS` you mount on a route and link stylesheets from; there is no build step, and a consuming page is meant to reach its whole look through these class names rather than write a stylesheet of its own. See the [README](README.md) for wiring it up and the [design-system reference](https://wikilayer.github.io/stratum/) for the markup each component takes.
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
 ## 0.2.0 — 2026-08-25
 
+The changes below are silent: no page fails to render, it lays out differently.
+
+All of it turns on the shell this framework assumes, so here it is stated once: `<body>` holds the site's chrome and one `.content` element, `.content` being the centred frame that holds `<main>` and any rail beside it. `body > header` is the top bar, `body > footer` from this release the closing strip, and `.content` the column between them. What you work on is the template that writes your `<body>` tag and everything it puts directly inside it.
+
+Before upgrading, screenshot each of your templates. One of the effects below shows up on nothing but a before-and-after comparison, and taking the "before" once is cheaper than re-pinning 0.1.1 to get it back.
+
+None of this adds a stylesheet or a mount point. It all ships in `css/base/layout.css`, which `style.css` already imports and `CSSAssets` already lists, `CSSAssets` being the slice of stylesheet paths a host iterates to link them itself.
+
 ### Added
 
-- **`body > footer`**, the closing strip: quiet type on the same edges as the bar at the top, a rule above it, links carrying the strip's colour. Put it last inside `<body>` and compose the row from `.cluster` as usual. Both full-window demos in the reference now carry one.
+- **`body > footer`, the closing strip.** If your pages already end with a `<footer>` there, read the Changed entry below first: this claims it. A `<footer>` that is a direct child of `<body>` renders as site chrome: 15px type (`--text-sm`) in the muted foreground (`--fg-muted`), 24px above and below (`--space-5`), a 1px `--border-muted` rule on top, and links inheriting the strip's colour instead of the link colour, going to full-strength `--fg` on hover and keeping the framework's focus ring. Its horizontal padding is the one `body > header` uses, `max(var(--space-5), calc((100% - var(--content-max)) / 2 + var(--space-6)))`, where `--space-6` is 2rem: 24px on a narrow window, and from a little before `--content-max` onward an inset that aligns the strip with the text inside the content column rather than with the column's own edge, 2rem further out. The `100%` is the body's content width, not the window's, so a scrollbar shifts it by its own width. Override `--content-max` above both of them, on `:root` or a shared ancestor, and the bar and the strip move together; set on the footer it moves the strip alone. `--space-5` is the vertical padding too, so changing it there moves the strip's left edge off the bar's on a narrow window.
+
+  ```html
+  <body>
+    <header>…</header>
+    <div class="content">…</div>
+    <footer>
+      <div class="cluster">
+        <span>An example site</span>
+        <a href="/source">Source</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </footer>
+  </body>
+  ```
+
+  The two full-window shell demos in the [reference](https://wikilayer.github.io/stratum/) each carry that markup, rendered.
 
 ### Changed
 
-- **`<body>` is a flex column of full window height, and `.content` takes the height left over.** This is what puts a footer on the floor of a page too short to reach it. Two things follow for pages built before this release, both visible rather than fatal:
+- **A `<footer>` already sitting directly inside `<body>` picks up that strip**, wanted or not: its type shrinks to 15px, its colour dims, a 1px rule appears above it. Check the ones your pages carry. The selector is `body > footer` and nothing else, so a footer inside a card, a modal or `<main>` keeps its own shape, and wrapping yours in a `<div>` is how a page opts out of the strip entirely.
 
-  - A page whose `<body>` holds an element that relied on normal flow beside another — a floated block, two blocks meant to sit inline — now gets them stacked. Direct children of `<body>` are flex items.
-  - `.content` no longer sets `min-height: calc(100vh - var(--header-h))`. Any page that leaned on that number for its own height should say so itself. In exchange, a page carrying a `.page-head-row` is no longer taller than the window by the height of that row, which had been showing up as a scrollbar on pages with nothing to scroll.
+  Redefining `--text-sm`, `--fg-muted`, `--border-muted` or `--space-5` on the footer element re-sizes, re-colours or re-spaces the strip, `--border-muted: transparent` included, which leaves the border in place, invisible, still holding its 1px of height. They are the ordinary tokens, not footer-scoped ones, so every descendant that reads them follows: a `.fine-print` line inside a footer whose `--fg-muted` you changed changes with it.
+
+- **`<body>` is a flex column of at least window height** (`min-height: 100vh` and then `min-height: 100dvh`, the second winning wherever it parses, so a page longer than the window still scrolls the way it did and a phone's retracting address bar does not add a screenful), **and `.content` takes the height left over** (`flex: 1`, which is `1 1 0%`: in a column that basis supersedes a `height` you set on `.content` yourself, while a `min-height` of yours still clamps it from below, and its automatic minimum keeps it from shrinking below its content until you say `min-height: 0` or give it an `overflow` other than `visible`). That is what rests the footer on the floor of a page too short to reach it. `.content` has to stay a direct child of `<body>` for that: it is the flex item being stretched.
+
+  Every in-flow direct child of `<body>` on every page is a flex item now, whether or not that page has a `.content` or a footer. A child with `position: absolute` or `fixed` — an overlay, a toast, the usual absolutely-positioned skip link — is out of flow and so not a flex item, and none of the six points below reach it. A `display: contents` wrapper is the opposite case and worth checking: it generates no box of its own, so its children become the flex items, one per child.
+
+  There is nothing to grep for here, but the list is one line in the console of any page:
+
+  ```js
+  [...document.body.children].map(n => [n.tagName, n.className, getComputedStyle(n).position])
+  ```
+
+  For every row that is not `absolute` or `fixed`, six things follow:
+
+  - Two children that used to sit side by side, a pair meant to be inline, stack instead. Wrap that pair, and only that pair, in a `<div>` of your own: inside it they are back in normal flow, and the wrapper takes their place in the column. Do not wrap `.content` along with them.
+  - A child that used to be only as wide as its contents — a bare `<table>`, `<img>` or `<button>` sitting straight in `<body>` — now spans the full width, because a flex column stretches its items across. Give it `align-self: start` to keep the old width; on an `<img>` that also restores the height its aspect ratio had been growing along with the width.
+  - `float` stops applying to such a child at all, because a flex item is never floated. Same wrapper, same reason.
+  - Margins between body children no longer collapse, into each other or through the body's own edge, so two stacked blocks that each carried a positive vertical margin now sit the sum of both apart rather than the larger of the two. This is the one that hides: nothing looks broken, the page has simply loosened, which is why the screenshots above are worth taking. The fix is to drop the margin on one of the two.
+  - An inline element left in the flow straight inside `<body>` is blockified as a flex item, so it takes a line of its own. Wrap it to keep it inline with what it sat next to.
+  - Bare text sitting straight in `<body>`, outside any element, becomes an anonymous flex item on its own line. Wrap it in a `<p>` if its position mattered. Whitespace alone does not, so indentation in your template costs nothing.
+
+  Two things that read like they should change and don't: a body child with a width of its own keeps that width, and `margin-inline: auto` still centres it. The column adds no `gap` of its own, so the only new space between children is the uncollapsed margin above, and `body > header` keeps its height and its sticky behaviour as a flex item.
+
+  `.content` no longer carries `min-height: calc(100vh - var(--header-h))`, because taking the leftover height of a full-window column already does what that number did, and that line alone needs no action. A `.content` nested inside something else — a `<main>`, a wrapper `<div>` — is not the flex item and does not stretch. Hoist it to be a direct child of `<body>`: giving the wrapper `flex: 1` stretches the wrapper and leaves `.content` sized to its content inside it. On a page built without `.content`, the six points above apply the same way, and nothing stretches: the footer follows the content instead of resting on the floor of the window. Give whichever block should absorb the slack `flex: 1` to get that behaviour back.
+
+### Fixed
+
+- A page carrying a `.page-head-row`, the band holding a page's title and its row of `.nav-tabs` above `.content`, was taller than the window by the height of that band, so a page with nothing to scroll still scrolled by that much. What fixes it is `.content` losing its own `min-height: calc(100vh - var(--header-h))`, a subtraction that counted the top bar and not the band; the column above sizes the page instead, and a page whose content is shorter than the window is exactly as tall as the window. The reset this framework ships keeps `<body>` free of margin, which is what the last part depends on: a margin of your own there is outside the `100dvh` and brings the overflow back. Padding and a border are not, since the reset also sets `box-sizing: border-box`, and they sit inside it.
 
 ## 0.1.1 — 2026-08-24
 
