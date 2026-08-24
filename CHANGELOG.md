@@ -4,6 +4,12 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.2.1 — 2026-08-25
+
+### Fixed
+
+- `.page-head-row` collapsed to the width of its own text in 0.2.0, taking the page title and its tabs to the middle of the window. It centred itself with `margin: 0 auto` and let the page decide its width, which works in normal flow and does not in the flex column 0.2.0 gave `<body>`: auto margins on a flex item absorb the free space, and an item that named no width of its own shrank to its content. It now sets `width: 100%` and the band is a row across the page again. No markup change; if you copied the pattern onto a body child of your own, it needs the same line.
+
 ## 0.2.0 — 2026-08-25
 
 The changes below are silent: no page fails to render, it lays out differently.
@@ -59,7 +65,7 @@ None of this adds a stylesheet or a mount point. It all ships in `css/base/layou
   - An inline element left in the flow straight inside `<body>` is blockified as a flex item, so it takes a line of its own. Wrap it to keep it inline with what it sat next to.
   - Bare text sitting straight in `<body>`, outside any element, becomes an anonymous flex item on its own line. Wrap it in a `<p>` if its position mattered. Whitespace alone does not, so indentation in your template costs nothing.
 
-  Two things that read like they should change and don't: a body child with a width of its own keeps that width, and `margin-inline: auto` still centres it. The column adds no `gap` of its own, so the only new space between children is the uncollapsed margin above, and `body > header` keeps its height and its sticky behaviour as a flex item.
+  Watch the auto-margin case in particular: a body child that centred itself with `margin-inline: auto` and took its width from the page now shrinks to its content, because auto margins on a flex item absorb the free space instead of leaving it to the item. Give such a child `width: 100%` and it claims the width first, centring what is left over. A child with a width of its own keeps it and stays centred as before. The column adds no `gap` of its own, so the only new space between children is the uncollapsed margin above, and `body > header` keeps its height and its sticky behaviour as a flex item.
 
   `.content` no longer carries `min-height: calc(100vh - var(--header-h))`, because taking the leftover height of a full-window column already does what that number did, and that line alone needs no action. A `.content` nested inside something else — a `<main>`, a wrapper `<div>` — is not the flex item and does not stretch. Hoist it to be a direct child of `<body>`: giving the wrapper `flex: 1` stretches the wrapper and leaves `.content` sized to its content inside it. On a page built without `.content`, the six points above apply the same way, and nothing stretches: the footer follows the content instead of resting on the floor of the window. Give whichever block should absorb the slack `flex: 1` to get that behaviour back.
 

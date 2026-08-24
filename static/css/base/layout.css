@@ -76,6 +76,11 @@
      * the title reads as a column of the whole site beside the page. */
     .page-head-row {
         max-width: var(--content-max);
+        /* Auto margins on a flex item eat the free space themselves, and
+         * an item that hands its width to them shrinks to its text. The
+         * band is a row across the page, so it claims the width first
+         * and centres what is left over. */
+        width: 100%;
         margin: 0 auto;
         padding: var(--space-6) var(--space-6) 0;
     }
