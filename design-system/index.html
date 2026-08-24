@@ -210,7 +210,7 @@
 
   <section class="ds-section" id="layout">
     <h2>Layout</h2>
-    <p>The app shell: top bar with the brand and profile menu; a content frame underneath; an optional aside on the right of long-form pages.</p>
+    <p>The app shell: top bar with the brand and profile menu; a content frame underneath; an optional aside on the right of long-form pages; an optional closing strip at the bottom.</p>
 
     <div class="ds-example">
       <p class="muted">Top bar — <code>body &gt; header</code> with <code>.brand</code> and a profile menu (here without a signed-in user).</p>
@@ -223,6 +223,10 @@
           <p class="muted">Page content goes here.</p>
         </div>
       </div>
+    </div>
+
+    <div class="ds-example">
+      <p class="muted">Closing strip — <code>body &gt; footer</code>, last child of <code>&lt;body&gt;</code>, quiet type on the same edges as the bar above. It rests on the window's floor when the page is too short to reach it. Both demos below carry one.</p>
     </div>
 
     <div class="ds-example">

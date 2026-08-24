@@ -1,4 +1,14 @@
 @layer layout {
+    /* The page is a column filling the window: bar, head, content, and
+     * whatever the site closes with. A footer then rests on the floor
+     * of a short page instead of below it, and a page carrying a head
+     * row stops being a window-and-a-bit tall. */
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
     /* Site chrome — scoped to direct child of body so a <header>
      * nested inside main (e.g. the .page-head with h1 + actions)
      * doesn't inherit the sticky-top, fixed-height, padded-row look. */
@@ -73,11 +83,30 @@
 
     .content {
         display: flex;
-        min-height: calc(100vh - var(--header-h));
+        /* Takes the height the column has left, which is what pushes a
+         * footer down to the window's floor on a page too short to
+         * reach it. */
+        flex: 1;
         max-width: var(--content-max);
         margin: 0 auto;
         width: 100%;
     }
+
+    /* The other end of the site chrome: a quiet strip closing the page,
+     * on the same edges as the bar at the top. Scoped to a direct child
+     * of body so a <footer> inside a card or a modal keeps its own
+     * shape. */
+    body > footer {
+        padding-block: var(--space-5);
+        padding-inline: max(var(--space-5), calc((100% - var(--content-max)) / 2 + var(--space-6)));
+        border-top: 1px solid var(--border-muted);
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+    }
+    /* The links here are the strip, not accents in a sentence: they
+     * carry its colour and answer on hover. */
+    body > footer a { color: inherit; }
+    body > footer a:hover { color: var(--fg); }
 
     main {
         flex: 1;

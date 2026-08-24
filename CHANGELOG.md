@@ -4,6 +4,19 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.2.0 — 2026-08-25
+
+### Added
+
+- **`body > footer`**, the closing strip: quiet type on the same edges as the bar at the top, a rule above it, links carrying the strip's colour. Put it last inside `<body>` and compose the row from `.cluster` as usual. Both full-window demos in the reference now carry one.
+
+### Changed
+
+- **`<body>` is a flex column of full window height, and `.content` takes the height left over.** This is what puts a footer on the floor of a page too short to reach it. Two things follow for pages built before this release, both visible rather than fatal:
+
+  - A page whose `<body>` holds an element that relied on normal flow beside another — a floated block, two blocks meant to sit inline — now gets them stacked. Direct children of `<body>` are flex items.
+  - `.content` no longer sets `min-height: calc(100vh - var(--header-h))`. Any page that leaned on that number for its own height should say so itself. In exchange, a page carrying a `.page-head-row` is no longer taller than the window by the height of that row, which had been showing up as a scrollbar on pages with nothing to scroll.
+
 ## 0.1.1 — 2026-08-24
 
 ### Fixed
