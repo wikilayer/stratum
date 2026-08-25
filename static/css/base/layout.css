@@ -198,10 +198,12 @@
             width: auto;
             align-self: stretch;
             border-left: none;
-            border-bottom: 1px solid var(--border);
+            border-bottom: none;
             position: static;
             max-height: none;
-            padding: var(--space-4);
+            /* Same side padding as the column below, so one left edge
+             * runs down the screen instead of two. */
+            padding: var(--space-5) var(--space-6);
         }
         /* leftnav sits at the very top on mobile — it's the
          * navigation rail. Lower order than aside so when both
@@ -212,10 +214,22 @@
             width: auto;
             align-self: stretch;
             border-right: none;
-            border-bottom: 1px solid var(--border);
+            border-bottom: none;
             position: static;
             max-height: none;
-            padding: var(--space-4);
+            padding: var(--space-5) var(--space-6);
+        }
+        /* The dividing line is drawn inside the padding rather than as
+         * a border on the box: a border spans the screen while every
+         * other rule on the page — under the tabs, under a heading —
+         * stops at the column's edge. */
+        .content > aside::after,
+        .content > nav.leftnav::after {
+            content: "";
+            display: block;
+            height: 1px;
+            margin-top: var(--space-5);
+            background: var(--border);
         }
     }
 
