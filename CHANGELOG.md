@@ -4,6 +4,12 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.2.3 — 2026-08-26
+
+### Fixed
+
+- The bar at the top and the strip at the bottom sat on 1.5rem of side padding on a phone while `<main>` between them sat on 2rem, so the brand, the breadcrumb trail and the footer links all began a few pixels left of every line of text on the page. Both now take the column's own gutter as their floor; above the width where the centring calc takes over nothing changes. No markup change.
+
 ## 0.2.2 — 2026-08-26
 
 ### Fixed

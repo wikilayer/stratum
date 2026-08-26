@@ -22,10 +22,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* Same outer edge as the content and same inner edge as the text
-         * inside it, so anything in the bar can align to the page. */
+        /* Same inner edge as the text below it, so anything in the bar
+         * aligns to the page. The floor is the column's own gutter, not
+         * a smaller one: below the width where the calc takes over, a
+         * smaller floor puts the bar a few pixels left of every line of
+         * text on the page, and the screen grows a second left edge. */
         padding-block: 0;
-        padding-inline: max(var(--space-5), calc((100% - var(--content-max)) / 2 + var(--space-6)));
+        padding-inline: max(var(--space-6), calc((100% - var(--content-max)) / 2 + var(--space-6)));
         background: var(--header-bg);
         backdrop-filter: saturate(180%) blur(8px);
         -webkit-backdrop-filter: saturate(180%) blur(8px);
@@ -108,7 +111,7 @@
      * shape. */
     body > footer {
         padding-block: var(--space-5);
-        padding-inline: max(var(--space-5), calc((100% - var(--content-max)) / 2 + var(--space-6)));
+        padding-inline: max(var(--space-6), calc((100% - var(--content-max)) / 2 + var(--space-6)));
         border-top: 1px solid var(--border-muted);
         color: var(--fg-muted);
         font-size: var(--text-sm);
