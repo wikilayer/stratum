@@ -4,6 +4,18 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.2.5 — 2026-08-28
+
+### Added
+
+- `.cluster-center`, beside `.cluster-spread` and `.cluster-baseline`: the row centred in what holds it. For a row that is the whole of its container rather than one side of it — a strip of links closing a page, a pair of store badges — where against the left edge the first item runs under the rounded corner of a phone screen.
+
+## 0.2.4 — 2026-08-28
+
+### Added
+
+- The Apple mark in the icon sprite, beside the GitHub and Google ones, for a row of sign-in buttons that names all three.
+
 ## 0.2.3 — 2026-08-26
 
 ### Fixed

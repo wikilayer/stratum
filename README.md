@@ -455,6 +455,7 @@ Single-purpose helpers in `static/css/utilities.css`. Add new ones sparingly —
 | `.stack-lg`      | the same stack at a wider rhythm, for rows tall enough that the default gap stops reading as a gap. Add beside `.stack` |
 | `.measure`, `.measure-prose` | a ceiling on a block's width: the form column, or the reading measure an `<article>` already keeps |
 | `.cluster`       | horizontal flex with gap and wrap |
+| `.cluster-center` | the row centred in what holds it, for a row that is the whole of its container rather than one side of it. A strip of links closing a page belongs to the page, not to its left edge, and against that edge the first of them runs under the rounded corner of a phone screen. Add beside `.cluster` |
 | `.inline-form`   | `display: inline` for inline POST forms |
 | `.icon`          | 1em-square inline SVG, follows `currentColor` |
 | `.h-rule`        | thin baseline rule under a heading (Wikipedia / MDN look). Headings are clean by default — opt in per `<h1>`/`<h2>`. Applies automatically to all `h1`/`h2` inside an `<article>` so rendered markdown gets the rule for free |
