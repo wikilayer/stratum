@@ -4,6 +4,12 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.3.1 — 2026-09-01
+
+### Fixed
+
+- Removed `toc.js`. It changed a server-rendered `<details>` state after first paint according to viewport width, moving the article and creating cumulative layout shift. TOC state now belongs entirely to the server-rendered `open` attribute and the existing `rail.js` preference cookie.
+
 ## 0.3.0 — 2026-09-01
 
 ### Added

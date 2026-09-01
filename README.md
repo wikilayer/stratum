@@ -504,7 +504,6 @@ License: outline icons are Lucide / Feather (ISC + MIT subset). Brand icons are 
 - `autosubmit.js` — submits a `form[data-autosubmit]` as soon as a `select`, checkbox or radio inside it changes, so a one-field setting needs no Save button. Text inputs are ignored on purpose: every keystroke is a change. Further changes are ignored until the page navigates, so a second choice cannot race the first.
 - `dropdown.js` — closes every open `details.menu-host` when the pointer goes down outside it. Native `<details>` only closes on its own summary, and a menu that stays open after a click elsewhere reads as stuck.
 - `rail.js` — remembers whether each `details.rail-section` is open in a `rail-state` cookie. The server reads that cookie and renders the `open` attribute, so a reader's choice survives the next page without a flash.
-- `toc.js` — keeps a `details.toc-section` expanded on a wide screen and collapsed on a narrow one, where an expanded link list would push the article below the fold. Follows the breakpoint on load and on resize; a reader's own toggle stands until the breakpoint is crossed.
 
 All are zero-dependency, ~30 lines each, safe to load with `defer`. Each is optional: the page works without it, one affordance quieter.
 

@@ -73,7 +73,6 @@ var jsAssets = []string{
 	"copy.js",
 	"modal.js",
 	"dropdown.js",
-	"toc.js",
 	"rail.js",
 	"autosubmit.js",
 }
