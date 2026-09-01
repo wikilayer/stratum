@@ -4,6 +4,18 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
 
+## 0.3.0 — 2026-09-01
+
+### Added
+
+- `stratum.css`, a single minified stylesheet assembled in memory from the framework's layered source files. It replaces the former browser-side `@import` fan-out with one request while keeping the readable source tree as the only source of truth.
+- `stratum.js`, a single minified bundle of the framework's independent browser helpers. Individual minified helpers remain available for narrow pages that need only one behaviour.
+
+### Changed
+
+- Consumers now link `stratum.css` and `stratum.js`. The former `style.css`, `CSSAssets`, and `CSSLayerOrder` surfaces have been removed; this is an intentional pre-1.0 cleanup while WikiLayer is the only consumer.
+- JavaScript served through `Static` is now minified in memory alongside CSS.
+
 ## 0.2.5 — 2026-08-28
 
 ### Added

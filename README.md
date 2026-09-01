@@ -30,17 +30,11 @@ http.Handle("/static/*", http.StripPrefix("/static/",
 Link from your base template:
 
 ```html
-<link rel="stylesheet" href="/static/style.css">
-<script src="/static/theme.js" defer></script>
-<script src="/static/copy.js" defer></script>
-<script src="/static/dropdown.js" defer></script>
-<script src="/static/modal.js" defer></script>
-<script src="/static/rail.js" defer></script>
-<script src="/static/toc.js" defer></script>
-<script src="/static/autosubmit.js" defer></script>
+<link rel="stylesheet" href="/static/stratum.css">
+<script src="/static/stratum.js" defer></script>
 ```
 
-That's it. Everything else is plain HTML + classes. Each helper is optional and independent of the others; link the ones whose components the page uses.
+That's it. Everything else is plain HTML + classes. `stratum.css` is assembled and minified in memory when the Go package initializes, so it contains no `@import` fan-out. `stratum.js` does the same for the independent browser helpers. A narrow page may still link an individual minified helper such as `theme.js` instead.
 
 ## Cascade order (`@layer`)
 
@@ -48,7 +42,7 @@ That's it. Everything else is plain HTML + classes. Each helper is optional and 
 reset → tokens → base → layout → components → utilities
 ```
 
-Declared in `static/style.css`. Every rule in the framework is wrapped in its layer. Layers later in the list win in the cascade — so utilities can always override a component, components can always override base typography, and so on.
+Declared in `static/stratum.css`. Every rule in the framework is wrapped in its layer. Layers later in the list win in the cascade — so utilities can always override a component, components can always override base typography, and so on.
 
 ## Tokens
 
@@ -517,7 +511,7 @@ All are zero-dependency, ~30 lines each, safe to load with `defer`. Each is opti
 ## Adding a component
 
 1. New file in `static/css/components/<name>.css`. Wrap rules in `@layer components { … }`. Keep selectors flat — no `id` selectors, no deep nesting.
-2. `@import` it from `static/style.css` in the components block.
+2. `@import` it from `static/stratum.css` in the components block.
 3. Document the markup convention in this README under Components.
 4. Add a live example to `design-system/index.html`.
 5. Re-check imports use generic class names. If the name only fits one page of one app, you missed an abstraction — pick a shape-based or role-based name instead.
@@ -558,7 +552,7 @@ stratum/
 ├── CHANGELOG.md            ← what each version changed, and what to change in your markup
 ├── CLAUDE.md               ← notes for assistants working on this package
 ├── static/
-│   ├── style.css           ← entry: @layer order + @imports
+│   ├── stratum.css         ← source manifest; bundled by Static
 │   ├── icons.{svg,txt,LICENSE.txt}
 │   ├── {theme,copy,dropdown,modal,rail,toc,autosubmit}.js
 │   └── css/

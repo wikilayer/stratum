@@ -18,7 +18,7 @@ func TestMinify_StylesheetsLoseTheirProse(t *testing.T) {
 	source := mustSub(embedded, "static")
 
 	var served, raw int
-	for _, name := range CSSAssets {
+	for _, name := range cssAssets {
 		body, err := fs.ReadFile(Static, name)
 		if err != nil {
 			t.Fatalf("%s: %v", name, err)
@@ -43,9 +43,72 @@ func TestMinify_StylesheetsLoseTheirProse(t *testing.T) {
 	}
 }
 
-// TestMinify_LeavesEverythingElseAlone: only stylesheets are rewritten.
-// The icon sprite and the scripts go out byte for byte, so a sprite id
-// or a script's behaviour cannot change under the consumer's feet.
+// The public stylesheet is a real bundle, not an @import entrypoint.
+// One link must produce one request while preserving the manifest's
+// cascade order from the first source through the last.
+func TestMinify_StyleIsOneBundle(t *testing.T) {
+	body, err := fs.ReadFile(Static, "stratum.css")
+	if err != nil {
+		t.Fatal(err)
+	}
+	css := string(body)
+	if strings.Contains(css, "@import") {
+		t.Error("stratum.css still contains @import and fans out into more requests")
+	}
+	if !strings.HasPrefix(css, cssLayerOrder) {
+		t.Errorf("stratum.css does not open with the layer order: %q", css[:min(len(css), 80)])
+	}
+	first, err := fs.ReadFile(Static, cssAssets[0])
+	if err != nil {
+		t.Fatal(err)
+	}
+	last, err := fs.ReadFile(Static, cssAssets[len(cssAssets)-1])
+	if err != nil {
+		t.Fatal(err)
+	}
+	firstAt := strings.Index(css, string(first))
+	lastAt := strings.Index(css, string(last))
+	if firstAt < 0 || lastAt < 0 || firstAt >= lastAt {
+		t.Errorf("stratum.css does not preserve manifest order: first=%d last=%d", firstAt, lastAt)
+	}
+}
+
+// Scripts keep their readable sources in the repository but leave the
+// embedded filesystem minified. The framework bundle is the same helpers
+// concatenated in manifest order, so consumers need one script request.
+func TestMinify_ScriptsAndBundle(t *testing.T) {
+	source := mustSub(embedded, "static")
+	bundle, err := fs.ReadFile(Static, "stratum.js")
+	if err != nil {
+		t.Fatal(err)
+	}
+	joined := string(bundle)
+	lastAt := -1
+	for _, name := range jsAssets {
+		served, err := fs.ReadFile(Static, name)
+		if err != nil {
+			t.Fatalf("%s: %v", name, err)
+		}
+		raw, err := fs.ReadFile(source, name)
+		if err != nil {
+			t.Fatalf("%s: %v", name, err)
+		}
+		if strings.Contains(string(served), "//") || strings.Contains(string(served), "/*") {
+			t.Errorf("%s: comment survived minification", name)
+		}
+		if len(served) >= len(raw) {
+			t.Errorf("%s: minified %d bytes is not smaller than source %d", name, len(served), len(raw))
+		}
+		at := strings.Index(joined, string(served))
+		if at < 0 || at <= lastAt {
+			t.Errorf("%s is missing or out of order in stratum.js: at=%d after=%d", name, at, lastAt)
+		}
+		lastAt = at
+	}
+}
+
+// TestMinify_LeavesEverythingElseAlone: only stylesheets and scripts are
+// rewritten. Images and the icon sprite still go out byte for byte.
 func TestMinify_LeavesEverythingElseAlone(t *testing.T) {
 	source := mustSub(embedded, "static")
 
@@ -53,7 +116,7 @@ func TestMinify_LeavesEverythingElseAlone(t *testing.T) {
 		if err != nil {
 			return err
 		}
-		if d.IsDir() || strings.HasSuffix(name, ".css") {
+		if d.IsDir() || strings.HasSuffix(name, ".css") || strings.HasSuffix(name, ".js") {
 			return nil
 		}
 		want, err := fs.ReadFile(source, name)
@@ -98,6 +161,26 @@ func TestMinify_ServesOverHTTP(t *testing.T) {
 	}
 	if got := res.Header.Get("Content-Length"); got != strconv.Itoa(n) {
 		t.Errorf("Content-Length header %q against %d bytes sent", got, n)
+	}
+
+	for _, tc := range []struct {
+		path        string
+		contentType string
+	}{
+		{"/stratum.css", "text/css"},
+		{"/stratum.js", "text/javascript"},
+	} {
+		res, err := http.Get(srv.URL + tc.path)
+		if err != nil {
+			t.Fatal(err)
+		}
+		_ = res.Body.Close()
+		if res.StatusCode != http.StatusOK {
+			t.Errorf("GET %s: %d", tc.path, res.StatusCode)
+		}
+		if !strings.HasPrefix(res.Header.Get("Content-Type"), tc.contentType) {
+			t.Errorf("GET %s: Content-Type %q", tc.path, res.Header.Get("Content-Type"))
+		}
 	}
 
 	missing, err := http.Get(srv.URL + "/css/nothing-here.css")

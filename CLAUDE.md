@@ -16,9 +16,9 @@ When you reach for a new class name, ask: "what would this be called if the same
 
 1. **CSS comments stay short.** Prose (why a component exists, how to use it, markup conventions) lives in `README.md`. Inline CSS comments are reserved for one-line WHYs that aren't obvious from the rule itself.
 2. **Every colour / spacing / radius / size goes through `var(--…)`** from `static/css/base/tokens.css`. A hex literal in a component rule is a bug — extend the tokens.
-3. **`@layer` cascade order** is declared in `static/style.css`: `reset, tokens, base, layout, components, utilities`. Wrap every rule in its layer. Don't reorder.
+3. **`@layer` cascade order** is declared in `static/stratum.css`: `reset, tokens, base, layout, components, utilities`. Wrap every rule in its layer. Don't reorder.
 4. **No preprocessors.** Native CSS Custom Properties + `@layer` + a sprinkle of `color-mix()`. Browser baseline: anything that ships `@layer` (Chrome 99 / Firefox 97 / Safari 15.4).
-5. **One `<link rel="stylesheet">` in the consumer template** → `style.css`. It `@import`s the rest; HTTP/2 multiplexing handles the fan-out.
+5. **One `<link rel="stylesheet">` in the consumer template** → `stratum.css`. `Static` assembles it from that file's source manifest in memory, so the browser sees no `@import` fan-out.
 
 ## Layout
 
@@ -32,7 +32,7 @@ stratum/
 ├── CLAUDE.md               ← this file
 ├── .github/workflows/      ← Pages deploy
 ├── static/
-│   ├── style.css           ← @layer order + @imports, no prose
+│   ├── stratum.css         ← source manifest; Static serves its bundled form
 │   ├── icons.svg / icons.txt / icons.LICENSE.txt
 │   ├── theme.js            ← theme switcher (cookie + data-theme)
 │   ├── copy.js             ← copy-to-clipboard for .url-pill
@@ -49,7 +49,7 @@ stratum/
 ## Adding a component
 
 1. New file `static/css/components/<name>.css`. Wrap rules in `@layer components { … }`. Use a generic, shape-or-role-based name.
-2. `@import` it from `static/style.css` in the components block.
+2. `@import` it from `static/stratum.css` in the components block.
 3. Document the markup convention in `README.md` (Components section).
 4. Add a live example in `design-system/index.html`.
 
@@ -72,7 +72,7 @@ In templates: `<svg class="icon"><use href="/static/icons.svg#<name>"/></svg>`.
 - Don't introduce CSS classes named after a single consumer page (`.login`, `.consent-actions`, `.profile-grid`, etc.). See the prime directive.
 - Don't use `!important`, `id` selectors, or deep nesting. Keep specificity flat so utilities reliably override components.
 - Don't hand-edit `static/icons.svg` — it's regenerated from the manifest.
-- Don't add a build step, npm package, or CSS preprocessor. Native everything. Stylesheets are minified in memory at package init (`minify.go`), which is why comments in CSS cost nothing at runtime and why there is no generated copy to keep in sync.
+- Don't add a build step, npm package, or CSS preprocessor. Native everything. CSS and JavaScript are bundled/minified in memory at package init (`minify.go`), which is why comments cost nothing at runtime and why there is no generated copy to keep in sync.
 - Don't write Russian (or any non-English) in committed files. Public repo, English only.
 
 ## How consumers wire it up
@@ -84,11 +84,11 @@ http.Handle("/static/*", http.StripPrefix("/static/",
     http.FileServer(http.FS(stratum.Static))))
 ```
 
-Templates link `/static/style.css`, `/static/icons.svg#<name>`, `/static/theme.js`, `/static/copy.js`. If the consumer also serves its own files at `/static/`, compose two `fs.FS` together (mergedFS pattern — local files win on collision, missing names fall through to stratum).
+Templates link `/static/stratum.css`, `/static/icons.svg#<name>`, and `/static/stratum.js`. A narrow surface can link only the individual helper it uses. If the consumer also serves its own files at `/static/`, compose two `fs.FS` together (mergedFS pattern — local files win on collision, missing names fall through to stratum).
 
 ## GitHub Pages
 
-`design-system/index.html` is the human-readable spec. The workflow at `.github/workflows/pages.yml` builds a `dist/` containing both `design-system/` and `static/` (so the relative `../static/style.css` link inside `index.html` resolves), and publishes via `actions/deploy-pages`. The `dist/index.html` at the root is a tiny redirect to `design-system/`.
+`design-system/index.html` is the human-readable spec. The workflow at `.github/workflows/pages.yml` builds a `dist/` containing both `design-system/` and `static/` (so the relative `../static/stratum.css` link inside `index.html` resolves), and publishes via `actions/deploy-pages`. The `dist/index.html` at the root is a tiny redirect to `design-system/`.
 
 To enable the first time:
 ```bash

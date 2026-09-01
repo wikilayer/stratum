@@ -39,12 +39,12 @@ func TestCSS_KeepsSpecificityFlat(t *testing.T) {
 // order, so a stylesheet that forgets its @layer silently wins against
 // the whole framework and against the consumer's own layers.
 func TestCSS_EveryStylesheetDeclaresItsLayer(t *testing.T) {
-	layers := strings.Split(strings.TrimSuffix(strings.TrimPrefix(CSSLayerOrder, "@layer "), ";"), ", ")
+	layers := strings.Split(strings.TrimSuffix(strings.TrimPrefix(cssLayerOrder, "@layer "), ";"), ", ")
 	forEachStylesheet(t, func(t *testing.T, path, css string) {
-		// style.css is the entry: it declares the order of the layers
+		// stratum.css is the entry: it declares the order of the layers
 		// and imports the sheets that fill them, and TestLayerOrder-
 		// IsDeclaredTheSameBothWays holds it to that.
-		if path == "style.css" {
+		if path == "stratum.css" {
 			return
 		}
 		for _, layer := range layers {

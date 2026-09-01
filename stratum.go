@@ -11,7 +11,7 @@
 //	http.Handle("/static/*", http.StripPrefix("/static/",
 //	    http.FileServer(http.FS(stratum.Static))))
 //
-// Then link /static/style.css from your template. See README and the
+// Then link /static/stratum.css from your template. See README and the
 // design-system reference at https://wikilayer.github.io/stratum/.
 package stratum
 
@@ -25,24 +25,17 @@ var embedded embed.FS
 
 // Static is the embedded asset tree rooted at static/. Mount it under
 // /static/ (or wherever) on your HTTP server, and link the produced
-// URLs from your templates: /static/style.css, /static/icons.svg, and
-// whichever of the .js helpers the page's components use.
+// URLs from your templates: /static/stratum.css, /static/icons.svg, and
+// /static/stratum.js (or an individual helper on a narrow page).
 //
-// Stylesheets are served minified: the sources carry the reasoning
-// behind each rule, which is worth its bytes to whoever edits them and
-// nothing at all to a browser.
+// Stylesheets and scripts are served minified: the sources carry the
+// reasoning behind each rule and helper, which is worth its bytes to
+// whoever edits them and nothing at all to a browser. stratum.css and
+// stratum.js are true one-request bundles.
 var Static = newMinifiedFS(mustSub(embedded, "static"))
 
-// CSSAssets lists every CSS file in the bundle in cascade order. Hosts
-// can either link static/style.css (one request that chains N more
-// @import requests, all render-blocking and serial) or iterate this
-// slice to emit N parallel <link rel="stylesheet"> tags — the latter
-// is dramatically faster on cold loads with HTTP/2 multiplexing.
-//
-// When iterating, also inline CSSLayerOrder in a <style> block before
-// the first <link> so layer precedence is fixed regardless of which
-// stylesheet finishes loading first.
-var CSSAssets = []string{
+// cssAssets lists every CSS source in bundle order.
+var cssAssets = []string{
 	"css/base/tokens.css",
 	"css/base/reset.css",
 	"css/base/typography.css",
@@ -72,11 +65,21 @@ var CSSAssets = []string{
 	"css/utilities.css",
 }
 
-// CSSLayerOrder is the @layer declaration that needs to ship before
-// any of the CSSAssets so the cascade resolves deterministically. Drop
-// it into a tiny inline <style> in <head> to avoid taking another
-// network round-trip just to declare layer precedence.
-const CSSLayerOrder = "@layer reset, tokens, base, layout, components, utilities;"
+// jsAssets lists the independent browser helpers in bundle order.
+// Each source remains addressable on its own for a page that needs one
+// behaviour; Static also serves their concatenation as stratum.js.
+var jsAssets = []string{
+	"theme.js",
+	"copy.js",
+	"modal.js",
+	"dropdown.js",
+	"toc.js",
+	"rail.js",
+	"autosubmit.js",
+}
+
+// cssLayerOrder is the cascade declaration prepended to stratum.css.
+const cssLayerOrder = "@layer reset, tokens, base, layout, components, utilities;"
 
 func mustSub(f fs.FS, dir string) fs.FS {
 	sub, err := fs.Sub(f, dir)

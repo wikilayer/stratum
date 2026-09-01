@@ -6,26 +6,24 @@ import (
 	"testing"
 )
 
-// A stylesheet is registered in two places: style.css, which a host
-// may link on its own, and CSSAssets, which a host iterates to link
-// them in parallel. A component reaching only one of them is styled
-// for half the hosts, and the half that misses out is the
-// design-system reference, which is where the framework is read.
+// The source manifest and the in-memory bundle list the same sheets in
+// the same order, so the design-system reference and consumers see the
+// same cascade.
 func TestStyleEntryAndAssetListAgree(t *testing.T) {
-	entry := readCSS(t, "style.css")
+	entry := readCSS(t, "stratum.css")
 
 	var imported []string
 	for _, m := range regexp.MustCompile(`@import url\("([^"]+)"\)`).FindAllStringSubmatch(entry, -1) {
 		imported = append(imported, m[1])
 	}
 
-	if len(imported) != len(CSSAssets) {
-		t.Fatalf("style.css imports %d stylesheets, CSSAssets lists %d", len(imported), len(CSSAssets))
+	if len(imported) != len(cssAssets) {
+		t.Fatalf("stratum.css imports %d stylesheets, cssAssets lists %d", len(imported), len(cssAssets))
 	}
 	for i, path := range imported {
-		if path != CSSAssets[i] {
-			t.Errorf("stylesheet %d: style.css has %q, CSSAssets has %q -- cascade order differs between the two ways in",
-				i, path, CSSAssets[i])
+		if path != cssAssets[i] {
+			t.Errorf("stylesheet %d: stratum.css has %q, cssAssets has %q -- cascade order differs between source and bundle",
+				i, path, cssAssets[i])
 		}
 	}
 }
@@ -34,10 +32,10 @@ func TestStyleEntryAndAssetListAgree(t *testing.T) {
 // that inlines the constant while the file says something else gets a
 // cascade that depends on which stylesheet finishes loading first.
 func TestLayerOrderIsDeclaredTheSameBothWays(t *testing.T) {
-	entry := readCSS(t, "style.css")
+	entry := readCSS(t, "stratum.css")
 	first, _, _ := strings.Cut(entry, "\n")
 
-	if strings.TrimSpace(first) != CSSLayerOrder {
-		t.Errorf("style.css opens with %q, CSSLayerOrder is %q", strings.TrimSpace(first), CSSLayerOrder)
+	if strings.TrimSpace(first) != cssLayerOrder {
+		t.Errorf("stratum.css opens with %q, cssLayerOrder is %q", strings.TrimSpace(first), cssLayerOrder)
 	}
 }
