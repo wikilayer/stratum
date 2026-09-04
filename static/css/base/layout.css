@@ -91,7 +91,7 @@
      * own padding they begin at different heights and read as two
      * unrelated pages. */
     .page-head-row + .content > :where(main, aside, nav.leftnav) {
-        padding-top: var(--space-5);
+        padding-top: var(--space-6);
     }
 
     .content {
