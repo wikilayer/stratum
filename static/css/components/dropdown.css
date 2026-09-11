@@ -65,13 +65,17 @@
      * language being read, the role a member holds. Every item makes
      * room for the check so marking one does not shift its label,
      * which is why the reservation lives here and not on .item. */
+    /* The column is the item's own left padding, the mark, and the gap
+     * to the label, added up rather than guessed at: the mark then sits
+     * as far from the panel edge as the label does on the other side,
+     * and closer to the word it belongs to than to that edge. */
     .dropdown-choice .item {
-        padding-left: var(--space-7);
+        padding-left: calc(var(--space-4) + 1em + var(--space-2));
     }
     .dropdown-choice .item[aria-current="true"]::before {
         content: "✓";
         position: absolute;
-        left: var(--space-3);
+        left: var(--space-4);
         top: 50%;
         transform: translateY(-50%);
         color: var(--fg-muted);
@@ -81,7 +85,7 @@
      * kinds line up down one edge instead of down two. */
     .dropdown-choice .item > .icon:first-child {
         position: absolute;
-        left: var(--space-3);
+        left: var(--space-4);
         top: 50%;
         transform: translateY(-50%);
         color: var(--fg-muted);
