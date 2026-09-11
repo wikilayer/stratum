@@ -27,6 +27,8 @@ ellipsis
 loader-circle
 search
 share-2
+trash-2
+crown
 
 # Brand icons — Simple Icons (CC0).
 github | https://cdn.jsdelivr.net/npm/simple-icons/icons/github.svg

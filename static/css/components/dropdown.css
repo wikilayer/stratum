@@ -76,6 +76,23 @@
         transform: translateY(-50%);
         color: var(--fg-muted);
     }
+    /* An item that does something rather than picking something has no
+     * check to show; a leading icon takes the same column, so the two
+     * kinds line up down one edge instead of down two. */
+    .dropdown-choice .item > .icon:first-child {
+        position: absolute;
+        left: var(--space-3);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--fg-muted);
+    }
+    /* A rule between two runs of items. .dropdown-section carries its
+     * own padding, which insets an item away from the edge it spans. */
+    .dropdown-separator {
+        height: 1px;
+        margin: var(--space-1) 0;
+        background: var(--border-muted);
+    }
     .dropdown-section {
         border-top: 1px solid var(--border-muted);
         padding: var(--space-3) var(--space-4);

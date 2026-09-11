@@ -358,6 +358,8 @@ Click-to-reveal menu built on `<details>`. The header avatar dropdown is the can
 
 Items line up with the section labels above them. Add `.dropdown-choice` to the panel when the menu is a set of mutually exclusive choices with one of them current (the language being read, the role a member holds): it reserves room for the check-mark on every item, so marking one does not shift its label. A plain list of links takes no such indent.
 
+A choice panel often ends with an item that does something rather than picking something: remove, hand over, sign out. Give such an item a leading `.icon` and it takes the column the check-mark would have, so both kinds line up down one edge. Set the two runs apart with `.dropdown-separator`, a plain rule — `.dropdown-section` pads its contents, which insets an item away from the edge it is meant to span.
+
 The toggle's disclosure arrow is the sprite's `chevron-down` at icon size, the same mark a collapsible sidebar section uses, so the two read as one language on a screen that shows both.
 
 ```html
@@ -366,8 +368,14 @@ The toggle's disclosure arrow is the sprite's `chevron-down` at icon size, the s
     Русский
     <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#chevron-down"/></svg>
   </summary>
-  <div class="dropdown" role="menu">
-    <a class="item" href="…">Settings</a>
+  <div class="dropdown dropdown-choice" role="menu">
+    <button class="item" aria-current="true">Editor</button>
+    <button class="item">Viewer</button>
+    <div class="dropdown-separator" role="separator"></div>
+    <button class="item">
+      <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#trash-2"/></svg>
+      Remove
+    </button>
     <div class="dropdown-section">
       <div class="label">Theme</div>
       <div class="segmented">…</div>
