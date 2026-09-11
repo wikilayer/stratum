@@ -106,7 +106,13 @@
         text-decoration: none;
         min-width: 0;
     }
-    .row-list-item-link:hover { text-decoration: underline; }
+    /* The rule is drawn across the whole inline box, avatar included,
+     * so it crosses the circle and strikes the initial inside it.
+     * Underline the row's own children instead, and leave out the
+     * marks that are pictures rather than words. */
+    .row-list-item-link:hover > *:not(.avatar):not(.icon) {
+        text-decoration: underline;
+    }
     .row-list-item-meta {
         margin-left: auto;
         color: var(--fg-muted);
