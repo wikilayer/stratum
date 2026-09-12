@@ -358,6 +358,8 @@ Click-to-reveal menu built on `<details>`. The header avatar dropdown is the can
 
 Items line up with the section labels above them. Add `.dropdown-choice` to the panel when the menu is a set of mutually exclusive choices with one of them current (the language being read, the role a member holds): it reserves room for the check-mark on every item, so marking one does not shift its label. A plain list of links takes no such indent.
 
+A panel calling itself `role="menu"` promises a shape a screen reader reads by: give every item a role of its own. An item that picks one of a set is `role="menuitemradio"`, and says which is current with `aria-checked="true"` — the check-mark is drawn from that attribute, so it is what marks the choice rather than a class. Write `aria-checked="false"` on the rest: without it a reader hears that the item is selectable and never that it is not selected. An item that does something is `role="menuitem"`. `aria-current` belongs to a link saying which view you are on, not to a choice in a menu.
+
 A choice panel often ends with an item that does something rather than picking something: remove, hand over, sign out. Give such an item a leading `.icon` and it takes the column the check-mark would have, so both kinds line up down one edge. Set the two runs apart with `.dropdown-separator`, a plain rule — `.dropdown-section` pads its contents, which insets an item away from the edge it is meant to span.
 
 The toggle's disclosure arrow is the sprite's `chevron-down` at icon size, the same mark a collapsible sidebar section uses, so the two read as one language on a screen that shows both.
@@ -369,10 +371,10 @@ The toggle's disclosure arrow is the sprite's `chevron-down` at icon size, the s
     <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#chevron-down"/></svg>
   </summary>
   <div class="dropdown dropdown-choice" role="menu">
-    <button class="item" aria-current="true">Editor</button>
-    <button class="item">Viewer</button>
+    <button class="item" role="menuitemradio" aria-checked="true">Editor</button>
+    <button class="item" role="menuitemradio" aria-checked="false">Viewer</button>
     <div class="dropdown-separator" role="separator"></div>
-    <button class="item">
+    <button class="item" role="menuitem">
       <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#trash-2"/></svg>
       Remove
     </button>

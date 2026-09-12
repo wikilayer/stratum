@@ -2,25 +2,95 @@
 
 Stratum is a small CSS framework for the pages a Go server renders: tokens, layout, about twenty components and an icon sprite. It ships as a Go module holding one `fs.FS` you mount on a route and link stylesheets from; there is no build step, and a consuming page is meant to reach its whole look through these class names rather than write a stylesheet of its own. See the [README](README.md) for wiring it up and the [design-system reference](https://wikilayer.github.io/stratum/) for the markup each component takes.
 
-Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 a minor bump may rename or remove a class; every such change is listed here with the markup to change.
+Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
-## 0.3.1 — 2026-09-01
+## 0.4.0 — 2026-09-12
 
-### Fixed
-
-- Removed `toc.js`. It changed a server-rendered `<details>` state after first paint according to viewport width, moving the article and creating cumulative layout shift. TOC state now belongs entirely to the server-rendered `open` attribute and the existing `rail.js` preference cookie.
-
-## 0.3.0 — 2026-09-01
-
-### Added
-
-- `stratum.css`, a single minified stylesheet assembled in memory from the framework's layered source files. It replaces the former browser-side `@import` fan-out with one request while keeping the readable source tree as the only source of truth.
-- `stratum.js`, a single minified bundle of the framework's independent browser helpers. Individual minified helpers remain available for narrow pages that need only one behaviour.
+**Not drop-in.** Every item in a `role="menu"` panel needs a role, and a choice panel marks its current item with `aria-checked` instead of `aria-current`. Until you change it, the check-mark stops being drawn.
 
 ### Changed
 
-- Consumers now link `stratum.css` and `stratum.js`. The former `style.css`, `CSSAssets`, and `CSSLayerOrder` surfaces have been removed; this is an intentional pre-1.0 cleanup while WikiLayer is the only consumer.
-- JavaScript served through `Static` is now minified in memory alongside CSS.
+- A panel that says `role="menu"` promises a shape a screen reader reads by, and its items were plain buttons carrying no role: the menu was announced as holding nothing, and each item as a stray control. Give an item that picks one of a set `role="menuitemradio"`, an item that does something `role="menuitem"`, and say which choice is current with `aria-checked="true"` — `aria-current` marks which view a link leads to, and means nothing here. Write `aria-checked="false"` on the choices that are not current: without it a reader is told an item is selectable and never told it is not selected.
+
+  The check-mark is drawn from `aria-checked="true"`, where it used to be drawn from `aria-current="true"`, so a panel left as it was shows no mark at all.
+
+  ```html
+  <div class="dropdown dropdown-choice" role="menu">
+    <button class="item" role="menuitemradio" aria-checked="true">Editor</button>
+    <button class="item" role="menuitemradio" aria-checked="false">Viewer</button>
+    <div class="dropdown-separator" role="separator"></div>
+    <button class="item" role="menuitem">
+      <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#trash-2"/></svg>
+      Remove
+    </button>
+  </div>
+  ```
+
+## 0.3.4 — 2026-09-11
+
+### Changed
+
+- In a `.dropdown-choice` panel the check-mark, any leading `.icon`, and every item's label sit `--space-4` (1rem) from the panel edge instead of `--space-3` (0.75rem), so the mark stands as far from that edge as the label does from the other one. This touches every choice panel, not only the ones using the leading icon 0.3.3 added, and nothing needs editing either way. For the leading icon it is the release that makes it sit right: 0.3.3 alone puts it visibly too close to the edge.
+
+## 0.3.3 — 2026-09-11
+
+**Not drop-in.** The row-list fix below needs a change to your markup; without it those links lose their hover underline. The leading icon this release adds is misplaced until 0.3.4, so take the two together.
+
+### Added
+
+- `.dropdown-choice` keeps a column on every item for the check-mark that marks the current choice. An item may now put an `.icon` in that column instead, so an item that does something — remove, hand over, sign out — begins at the same edge as the items that choose.
+- `.dropdown-separator`, new in this version, is a one-pixel rule you place between two items. It is for setting an acting item apart from the choices above it; `.dropdown-section`, which was the only grouping there was, indents what it holds and so would push that item in from the edge the others span.
+
+  ```html
+  <div class="dropdown dropdown-choice" role="menu">
+    <button class="item" aria-current="true">Editor</button>
+    <button class="item">Viewer</button>
+    <div class="dropdown-separator" role="separator"></div>
+    <button class="item">
+      <svg class="icon" aria-hidden="true"><use href="/static/icons.svg#trash-2"/></svg>
+      Remove
+    </button>
+  </div>
+  ```
+
+- `trash-2` and `crown` join the icon sprite: a bin for removing somebody, a crown for making somebody the owner.
+
+### Fixed
+
+- `.row-list-item-link:hover` drew its underline across the whole link, avatar included, so the rule crossed the circle and struck the initial inside it. The underline is now drawn on the link's child elements, leaving out `.avatar` and `.icon`. **Every such link needs its text inside an element** — a bare text node is not a child and gets no underline at all, avatar or no avatar:
+
+  ```html
+  <a class="row-list-item-link" href="…">
+    <span class="avatar">A</span>
+    <span>A Reader</span>
+  </a>
+  ```
+
+## 0.3.2 — 2026-09-04
+
+### Changed
+
+- Where a `.content` follows a `.page-head-row`, the gap between the two grows from `--space-5` (1.5rem) to `--space-6` (2rem), so the head and what hangs below it read as one page rather than two. Affects only pages using `.page-head-row`; everything else is unchanged, and nothing needs editing.
+
+## 0.3.1 — 2026-09-01
+
+### Removed
+
+- `toc.js` is gone; **delete any `<script>` tag pointing at it**, or every page render asks for a file that is no longer served. It changed a `<details>` state after first paint according to viewport width, moving the article and creating cumulative layout shift.
+
+  Whether a section starts open is now your server's decision, taken at render time: set the `open` attribute yourself. `rail.js` keeps the reader's choice in a cookie named `rail-state`, holding `name:1` or `name:0` per section, comma-separated, where the name is each `<details class="rail-section">`'s own `data-rail-section`. Read that cookie and render `open` from it. If you relied on toc.js to open the contents on a wide screen, that behaviour is gone and there is no client-side replacement: decide it on the server or leave the sections closed.
+
+## 0.3.0 — 2026-09-01
+
+**Not drop-in.** Link `stratum.css` and `stratum.js`, and stop using the Go surfaces removed below, or the build stops compiling.
+
+### Added
+
+- `stratum.css` is the whole framework in one stylesheet, and `stratum.js` the whole of its browser helpers in one script: link those two and a page makes one request for each instead of a chain of `@import`. The separate minified helpers are still served for a page that wants only one behaviour.
+
+### Removed
+
+- `style.css`, and the exported `CSSAssets` and `CSSLayerOrder`. Anything in your Go code naming either stops compiling; link `stratum.css` instead. A pre-1.0 cleanup, taken while WikiLayer is the only consumer.
 
 ## 0.2.5 — 2026-08-28
 

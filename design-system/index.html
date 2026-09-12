@@ -814,15 +814,15 @@
               <svg class="icon" aria-hidden="true"><use href="#chevron-down"/></svg>
             </summary>
             <div class="dropdown dropdown-choice" role="menu">
-              <button type="button" class="item">Admin</button>
-              <button type="button" class="item" aria-current="true">Editor</button>
-              <button type="button" class="item">Viewer</button>
+              <button type="button" class="item" role="menuitemradio" aria-checked="false">Admin</button>
+              <button type="button" class="item" role="menuitemradio" aria-checked="true">Editor</button>
+              <button type="button" class="item" role="menuitemradio" aria-checked="false">Viewer</button>
               <div class="dropdown-separator" role="separator"></div>
-              <button type="button" class="item">
+              <button type="button" class="item" role="menuitem">
                 <svg class="icon" aria-hidden="true"><use href="#crown"/></svg>
                 Make owner
               </button>
-              <button type="button" class="item">
+              <button type="button" class="item" role="menuitem">
                 <svg class="icon" aria-hidden="true"><use href="#trash-2"/></svg>
                 Remove
               </button>
@@ -840,11 +840,11 @@
               <svg class="icon" aria-hidden="true"><use href="#chevron-down"/></svg>
             </summary>
             <div class="dropdown dropdown-choice" role="menu">
-              <button type="button" class="item">Admin</button>
-              <button type="button" class="item">Editor</button>
-              <button type="button" class="item" aria-current="true">Viewer</button>
+              <button type="button" class="item" role="menuitemradio" aria-checked="false">Admin</button>
+              <button type="button" class="item" role="menuitemradio" aria-checked="false">Editor</button>
+              <button type="button" class="item" role="menuitemradio" aria-checked="true">Viewer</button>
               <div class="dropdown-separator" role="separator"></div>
-              <button type="button" class="item">
+              <button type="button" class="item" role="menuitem">
                 <svg class="icon" aria-hidden="true"><use href="#trash-2"/></svg>
                 Remove
               </button>
@@ -1058,8 +1058,8 @@
           <svg class="icon" aria-hidden="true"><use href="#chevron-down"/></svg>
         </summary>
         <div class="dropdown dropdown-choice" role="menu">
-          <a class="item" href="#responsive-labels" aria-current="true">Українська</a>
-          <a class="item" href="#responsive-labels">English</a>
+          <a class="item" href="#responsive-labels" role="menuitemradio" aria-checked="true">Українська</a>
+          <a class="item" href="#responsive-labels" role="menuitemradio" aria-checked="false">English</a>
         </div>
       </details>
     </div>

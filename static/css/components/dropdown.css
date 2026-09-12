@@ -72,7 +72,7 @@
     .dropdown-choice .item {
         padding-left: calc(var(--space-4) + 1em + var(--space-2));
     }
-    .dropdown-choice .item[aria-current="true"]::before {
+    .dropdown-choice .item[aria-checked="true"]::before {
         content: "✓";
         position: absolute;
         left: var(--space-4);
