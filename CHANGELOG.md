@@ -6,13 +6,29 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a
 
 ## 0.4.0 — 2026-09-12
 
-**Not drop-in.** Every item in a `role="menu"` panel needs a role, and a choice panel marks its current item with `aria-checked` instead of `aria-current`. Until you change it, the check-mark stops being drawn.
+**Not drop-in.** Two edits to your markup, and they are independent of each other.
+
+**Every `.dropdown-choice` panel**, whether or not it says `role="menu"`: the check-mark is drawn from `aria-checked="true"` where it used to be drawn from `aria-current="true"`. The selector is `.dropdown-choice .item[aria-checked="true"]`, so the attribute alone brings the mark back; the roles below have nothing to do with it. Swap the attribute and delete the old one — a leftover `aria-current` in a menu is read out as a claim about which view you are on.
+
+**Every panel that says `role="menu"`**: give each `.item` a role. This changes nothing you can see, and everything a screen reader hears.
 
 ### Changed
 
-- A panel that says `role="menu"` promises a shape a screen reader reads by, and its items were plain buttons carrying no role: the menu was announced as holding nothing, and each item as a stray control. Give an item that picks one of a set `role="menuitemradio"`, an item that does something `role="menuitem"`, and say which choice is current with `aria-checked="true"` — `aria-current` marks which view a link leads to, and means nothing here. Write `aria-checked="false"` on the choices that are not current: without it a reader is told an item is selectable and never told it is not selected.
+- A panel that says `role="menu"` promises a shape a screen reader reads by, and its items were plain buttons carrying no role: the menu was announced as holding nothing, and each item as a stray control. Give an item that picks one of a set `role="menuitemradio"`, an item that does something `role="menuitem"`, and write `aria-checked="false"` on the choices that are not current — without it a reader is told an item is selectable and never told it is not selected. A `.dropdown-separator` is not an item and takes `role="separator"`.
 
-  The check-mark is drawn from `aria-checked="true"`, where it used to be drawn from `aria-current="true"`, so a panel left as it was shows no mark at all.
+  Before, and after:
+
+  ```html
+  <button class="item" aria-current="true">Editor</button>
+  <button class="item">Viewer</button>
+  ```
+
+  ```html
+  <button class="item" role="menuitemradio" aria-checked="true">Editor</button>
+  <button class="item" role="menuitemradio" aria-checked="false">Viewer</button>
+  ```
+
+  A whole panel, choices and an acting item either side of a separator:
 
   ```html
   <div class="dropdown dropdown-choice" role="menu">
