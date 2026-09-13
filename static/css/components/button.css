@@ -106,6 +106,22 @@
     }
     .button-close:hover { color: var(--fg); }
 
+    /* An action that reads as a line of text rather than a control:
+     * a rare one, sat beside prose or a field of metadata, that would
+     * be shouting as a button. It is a <button> because it acts rather
+     * than leads somewhere, and it wears a link's clothes because that
+     * is the weight it deserves. */
+    .link-button {
+        background: none;
+        border: 0;
+        padding: 0;
+        font: inherit;
+        color: var(--fg-muted);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .link-button:hover { color: var(--fg); }
+
     /* Specialised compact button used inside .url-pill. Different
      * shape (smaller, success-tinted on confirmation) than the
      * primary button shape, so its own component. */

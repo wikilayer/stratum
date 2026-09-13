@@ -167,6 +167,12 @@ Modifiers stack. Use `<a>` for navigation, `<button>` for actions. Icons go inli
 </div>
 ```
 
+`.link-button` is an action that reads as a line of text: muted, underlined, no box. Use it where a rare action sits among prose or beside a field of metadata and a button would shout — deleting an account from its settings page, say. It stays a `<button>` because it acts rather than leads somewhere; an action styled as an `<a href>` is one a reader can open in a new tab and never reach.
+
+```html
+<dd>25 April 2026 · <button type="button" class="link-button" data-modal-open="…">Delete account</button></dd>
+```
+
 `.icon-link` is a lone control in a bar whose whole label is an icon — a gear beside the name of what it configures, a toolbar action. Not a tab: a tab belongs to a strip of alternatives and is underlined to say which of them you are in, and a single control has nothing to be one of, so `aria-current` here is said in colour and the icon never grows a line under it. Give it an `aria-label`; an icon on its own names nothing.
 
 ```html

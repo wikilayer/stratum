@@ -4,6 +4,16 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.1 — 2026-09-13
+
+### Added
+
+- `.link-button`: an action that reads as a line of text — muted, underlined, no box — for the rare one that sits beside prose or a field of metadata and would shout as a button. It stays a `<button>`, because an action dressed as an `<a href>` is one a reader can open in a new tab and never reach.
+
+  ```html
+  <dd>25 April 2026 · <button type="button" class="link-button">Delete account</button></dd>
+  ```
+
 ## 0.4.0 — 2026-09-12
 
 **Not drop-in.** Two edits to your markup, and they are independent of each other.
