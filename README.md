@@ -579,3 +579,11 @@ stratum/
 └── cmd/
     └── icons/              ← icon-sprite generator (Lucide + Simple Icons)
 ```
+
+## Lines of Code
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/loc-history-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset=".github/loc-history-light.svg">
+  <img src=".github/loc-history.svg" alt="Lines of code over time">
+</picture>
