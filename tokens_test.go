@@ -35,9 +35,6 @@ func TestDarkPaletteIsTheSameBothWaysIn(t *testing.T) {
 	}
 }
 
-// readCSS reads a stylesheet from the source tree rather than through
-// Static, which serves it minified: what is checked here is how the
-// rule is written, and minifying drops the very spelling that is.
 func readCSS(t *testing.T, path string) string {
 	t.Helper()
 	b, err := os.ReadFile(filepath.Join("static", path))
@@ -47,10 +44,6 @@ func readCSS(t *testing.T, path string) string {
 	return string(b)
 }
 
-// tokensIn returns the custom properties the rule with this selector
-// declares, by taking the text between its opening brace and the
-// matching close. Nothing nests inside these blocks, so a brace count
-// is enough to read them without a CSS parser.
 func tokensIn(t *testing.T, css, selector string) map[string]string {
 	t.Helper()
 	at := strings.Index(css, selector)

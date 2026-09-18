@@ -8,14 +8,6 @@ import (
 	"golang.org/x/net/html"
 )
 
-// A panel that calls itself role="menu" promises a shape a screen
-// reader relies on: its items are menuitems, and a set of mutually
-// exclusive choices says which one is current with aria-checked on a
-// menuitemradio. A button with no role inside a menu is announced as
-// nothing in particular, and aria-current is not what a reader listens
-// for there. The design-system page is the markup consumers copy, so
-// it is what these read.
-
 func designSystemPage(t *testing.T) *html.Node {
 	t.Helper()
 	f, err := os.Open("design-system/index.html")

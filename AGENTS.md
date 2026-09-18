@@ -29,7 +29,7 @@ stratum/
 ├── go.mod
 ├── Makefile                ← icons-sync, design-system targets
 ├── README.md               ← user-facing docs
-├── CLAUDE.md               ← this file
+├── AGENTS.md               ← this file
 ├── .github/workflows/      ← Pages deploy
 ├── static/
 │   ├── stratum.css         ← source manifest; Static serves its bundled form
@@ -95,13 +95,6 @@ To enable the first time:
 gh api repos/wikilayer/stratum/pages -X POST -f build_type=workflow
 ```
 
-## Tagging a release
+## Releasing
 
-When the API is stable enough that a consumer can drop the `replace` directive:
-
-```bash
-git tag v0.1.0
-git push --tags
-```
-
-Consumers then `go get github.com/wikilayer/stratum@v0.1.0` and remove their local `replace`.
+Releases are made only by `.github/workflows/release.yml`. Run the workflow with a version without the `v` prefix after CI on `main` is green. The workflow repeats `make build` and creates the GitHub release and tag; do not tag or publish locally.

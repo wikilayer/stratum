@@ -1,5 +1,5 @@
 // Package stratum is a minimal CSS framework designed to embed into
-// Go projects. Tokens, a layered cascade, ~20 components, an icon
+// Go projects. Tokens, a layered cascade, reusable components, an icon
 // sprite, and a few tiny vanilla-JS helpers — vendored as a Go module
 // so a server gets a styled UI by mounting one fs.FS and linking one
 // stylesheet. No npm, no build step, no preprocessor.
@@ -34,7 +34,6 @@ var embedded embed.FS
 // stratum.js are true one-request bundles.
 var Static = newMinifiedFS(mustSub(embedded, "static"))
 
-// cssAssets lists every CSS source in bundle order.
 var cssAssets = []string{
 	"css/base/tokens.css",
 	"css/base/reset.css",
@@ -65,9 +64,6 @@ var cssAssets = []string{
 	"css/utilities.css",
 }
 
-// jsAssets lists the independent browser helpers in bundle order.
-// Each source remains addressable on its own for a page that needs one
-// behaviour; Static also serves their concatenation as stratum.js.
 var jsAssets = []string{
 	"theme.js",
 	"copy.js",
@@ -77,7 +73,6 @@ var jsAssets = []string{
 	"autosubmit.js",
 }
 
-// cssLayerOrder is the cascade declaration prepended to stratum.css.
 const cssLayerOrder = "@layer reset, tokens, base, layout, components, utilities;"
 
 func mustSub(f fs.FS, dir string) fs.FS {

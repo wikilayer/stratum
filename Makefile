@@ -1,14 +1,23 @@
-.PHONY: format lint lint-tools test-build test build icons-sync design-system tidy
+.DEFAULT_GOAL := build
 
-# Held one release behind the version the applications use: theirs
-# needs a newer Go than this module asks of the projects that embed it,
-# and a linter is no reason to raise that floor.
-STATICCHECK_VERSION ?= v0.7.0
+.PHONY: install-tools format lint comments test-build test build icons-sync design-system tidy
+
+STATICCHECK_VERSION ?= v0.8.1
+COMMENTCENSOR_VERSION ?= v0.3.2
+COMMENTCENSOR_ENV = .build/commentcensor
+COMMENTCENSOR = $(COMMENTCENSOR_ENV)/bin/commentcensor
+
+install-tools: lint-tools
+	python3 -m venv $(COMMENTCENSOR_ENV)
+	$(COMMENTCENSOR_ENV)/bin/pip install --quiet --upgrade git+https://github.com/botforge-pro/commentcensor.git@$(COMMENTCENSOR_VERSION)
 
 format:
 	gofmt -w .
 
-lint:
+comments:
+	$(COMMENTCENSOR) *.go
+
+lint: comments
 	go vet ./...
 	gofmt -l . | (! grep .)
 	staticcheck ./...
@@ -24,7 +33,7 @@ test-build:
 test:
 	go test ./...
 
-build:
+build: lint test-build test
 	go build ./...
 
 # Regenerate static/icons.svg from static/icons.txt by pulling each

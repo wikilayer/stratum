@@ -21,12 +21,6 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      - run: make lint-tools
+      - run: make install-tools
 
-      - run: make lint
-
-      # The tests read the stylesheets: that every one declares its
-      # layer, that the two theme palettes match, that the asset list
-      # and the entry sheet agree. A push that breaks one of those
-      # breaks every page of every consumer, quietly.
-      - run: make test
+      - run: make build

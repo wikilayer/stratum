@@ -25,11 +25,9 @@ func TestCSS_KeepsSpecificityFlat(t *testing.T) {
 			if strings.Contains(code, "!important") {
 				t.Errorf("%s:%d: !important -- a consumer cannot override this from their own sheet", path, i+1)
 			}
-			// Only the selector half of a line can carry one: a
-			// property value may hold a colour like #0d1117.
-			selector, _, isRule := strings.Cut(code, "{")
-			if isRule && idSelector.MatchString(selector) {
-				t.Errorf("%s:%d: id selector in %q -- outranks every class a consumer could write", path, i+1, strings.TrimSpace(selector))
+			selectorBeforeOpeningBrace, _, isRule := strings.Cut(code, "{")
+			if isRule && idSelector.MatchString(selectorBeforeOpeningBrace) {
+				t.Errorf("%s:%d: id selector in %q -- outranks every class a consumer could write", path, i+1, strings.TrimSpace(selectorBeforeOpeningBrace))
 			}
 		}
 	})
@@ -41,9 +39,6 @@ func TestCSS_KeepsSpecificityFlat(t *testing.T) {
 func TestCSS_EveryStylesheetDeclaresItsLayer(t *testing.T) {
 	layers := strings.Split(strings.TrimSuffix(strings.TrimPrefix(cssLayerOrder, "@layer "), ";"), ", ")
 	forEachStylesheet(t, func(t *testing.T, path, css string) {
-		// stratum.css is the entry: it declares the order of the layers
-		// and imports the sheets that fill them, and TestLayerOrder-
-		// IsDeclaredTheSameBothWays holds it to that.
 		if path == "stratum.css" {
 			return
 		}
@@ -96,9 +91,6 @@ func TestCSS_NamesNoApplication(t *testing.T) {
 	})
 }
 
-// forEachStylesheet runs the check over every .css file in the source
-// tree, read from disk rather than through Static, which serves them
-// minified: what is checked here is how a rule is written.
 func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string)) {
 	t.Helper()
 	err := fs.WalkDir(os.DirFS("static"), ".", func(path string, d fs.DirEntry, err error) error {

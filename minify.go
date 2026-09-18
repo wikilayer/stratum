@@ -11,17 +11,6 @@ import (
 	"github.com/tdewolff/minify/v2/js"
 )
 
-// minifiedFS serves CSS and JavaScript with comments and whitespace
-// removed. It also replaces the stylesheet entrypoint with a true CSS
-// bundle and provides the framework helpers together as stratum.js.
-//
-// The prose in these stylesheets is written for whoever edits them and
-// runs to roughly two thirds of every file; a browser pays for it on
-// each cold load and reads none of it. Minifying happens once, when the
-// package initialises, rather than in a build step: a generated copy in
-// the repository is a second source of truth that a forgotten
-// regeneration silently ships stale, and a consumer would have no way
-// to tell.
 type minifiedFS struct {
 	source    fs.FS
 	processed map[string][]byte
@@ -60,9 +49,6 @@ func newMinifiedFS(source fs.FS) fs.FS {
 		out.processed[name] = buf.Bytes()
 		return nil
 	})
-	// A stylesheet the minifier rejects is a stylesheet no browser will
-	// read either, so it fails the process that embeds it rather than
-	// reaching a page.
 	if err != nil {
 		panic("stratum: minify assets: " + err.Error())
 	}
@@ -148,8 +134,6 @@ type minifiedInfo struct {
 func (i minifiedInfo) Name() string { return i.name }
 func (i minifiedInfo) Size() int64  { return i.size }
 
-// Compile-time proof that a minified tree still answers everything
-// http.FileServer and fs.WalkDir ask of it.
 var (
 	_ fs.ReadDirFS = (*minifiedFS)(nil)
 	_ fs.StatFS    = (*minifiedFS)(nil)

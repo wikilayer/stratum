@@ -1,8 +1,12 @@
 # Changelog
 
-Stratum is a small CSS framework for the pages a Go server renders: tokens, layout, about twenty components and an icon sprite. It ships as a Go module holding one `fs.FS` you mount on a route and link stylesheets from; there is no build step, and a consuming page is meant to reach its whole look through these class names rather than write a stylesheet of its own. See the [README](README.md) for wiring it up and the [design-system reference](https://wikilayer.github.io/stratum/) for the markup each component takes.
+Stratum is a small CSS framework for the pages a Go server renders: tokens, layout, reusable components and an icon sprite. It ships as a Go module holding one `fs.FS` you mount on a route and link stylesheets from; there is no build step, and a consuming page is meant to reach its whole look through these class names rather than write a stylesheet of its own. See the [README](README.md) for wiring it up and the [design-system reference](https://wikilayer.github.io/stratum/) for the markup each component takes.
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
+
+## 0.4.2 — 2026-09-18
+
+No runtime changes. The public documentation now points at the current release and Go Reference, and the repository checks documentation comments as part of its complete build.
 
 ## 0.4.1 — 2026-09-13
 

@@ -1,16 +1,19 @@
 # stratum
 
-### → [Live design-system reference](https://wikilayer.github.io/stratum/)
+[![CI](https://github.com/wikilayer/stratum/actions/workflows/ci.yml/badge.svg)](https://github.com/wikilayer/stratum/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/wikilayer/stratum.svg)](https://pkg.go.dev/github.com/wikilayer/stratum)
+
+[→ Live design-system reference](https://wikilayer.github.io/stratum/)
 
 **A minimal CSS framework designed to embed into Go projects.**
 
-Tokens, a layered cascade, ~20 components, an icon sprite, and a handful of tiny vanilla-JS helpers — vendored as a single Go module. A Go server gets a styled UI by importing the package, mounting one `fs.FS`, and linking one stylesheet. No npm, no build step, no preprocessor.
+Tokens, a layered cascade, reusable components, an icon sprite, and a handful of tiny vanilla-JS helpers — vendored as a single Go module. A Go server gets a styled UI by importing the package, mounting one `fs.FS`, and linking one stylesheet. No npm, no build step, no preprocessor.
 
 Native CSS Custom Properties + `@layer` + a sprinkle of `color-mix()`. Works in any browser that ships `@layer` (Chrome 99 / Firefox 97 / Safari 15.4 — 2022+).
 
 ## Why it exists
 
-Most CSS frameworks are either heavy (Bootstrap, Tailwind — with their own toolchain) or drop-in single-stylesheet kits (Pico, Simple.css) that stop short of components. Stratum sits in between: ~20 tiny components, plus tokens and utilities, sized for an internal app or a side-project where shipping a Node toolchain alongside a single Go binary is wrong. The design-system page is the spec — if you can't build a new page out of what's documented there, the answer is to add a primitive, not a page-specific class.
+Most CSS frameworks are either heavy (Bootstrap, Tailwind — with their own toolchain) or drop-in single-stylesheet kits (Pico, Simple.css) that stop short of components. Stratum sits in between: small components, tokens, and utilities, sized for an internal app or a side-project where shipping a Node toolchain alongside a single Go binary is wrong. The design-system page is the spec — if you can't build a new page out of what's documented there, the answer is to add a primitive, not a page-specific class.
 
 ## Install (Go)
 
@@ -18,7 +21,7 @@ Most CSS frameworks are either heavy (Bootstrap, Tailwind — with their own too
 import "github.com/wikilayer/stratum"
 ```
 
-Pin a version — `go get github.com/wikilayer/stratum@v0.1.0`. Before 1.0 a minor bump may rename or remove a class; [CHANGELOG.md](CHANGELOG.md) names the markup to change each time.
+Pin a version — `go get github.com/wikilayer/stratum@v0.4.2`. Before 1.0 a release may rename or remove a class; [CHANGELOG.md](CHANGELOG.md) names the markup to change each time.
 
 Mount the static FS under `/static/` (use it directly, or layer your own files on top via `fs.FS` composition):
 
@@ -545,6 +548,21 @@ make design-system   # opens it in the default browser
 
 If you add a primitive and don't add an example here, future-you will reinvent it. Update the page.
 
+## Documentation
+
+The exported Go surface is published in the [Go Reference](https://pkg.go.dev/github.com/wikilayer/stratum). The [live design-system reference](https://wikilayer.github.io/stratum/) documents the CSS classes, markup, icons, and browser helpers.
+
+## Development
+
+```sh
+make test-build  # compile the package and tests
+make test        # test bundles, CSS contracts, and reference markup
+make lint        # commentcensor, go vet, gofmt, and staticcheck
+make build       # run every check and build the package
+```
+
+Releases are published by the repository's [Release workflow](https://github.com/wikilayer/stratum/actions/workflows/release.yml), after it repeats the complete build.
+
 ## Constraints
 
 Things this framework deliberately doesn't do:
@@ -554,31 +572,6 @@ Things this framework deliberately doesn't do:
 - **No JavaScript framework.** A handful of tiny `.js` files, all vanilla, all optional.
 - **No `!important`, no `id` selectors, no deep nesting.** Specificity stays flat so utilities reliably override components.
 - **No page-specific classes.** If a name only fits one page (`.login`, `.profile-grid`, `.consent-actions`), it's the wrong abstraction. Compose pages from the primitives above.
-
-## Layout
-
-```
-stratum/
-├── stratum.go              ← exports Static fs.FS and the asset manifest
-├── minify.go               ← strips CSS comments on the way out
-├── go.mod
-├── Makefile                ← icons-sync, design-system targets
-├── README.md
-├── CHANGELOG.md            ← what each version changed, and what to change in your markup
-├── CLAUDE.md               ← notes for assistants working on this package
-├── static/
-│   ├── stratum.css         ← source manifest; bundled by Static
-│   ├── icons.{svg,txt,LICENSE.txt}
-│   ├── {theme,copy,dropdown,modal,rail,toc,autosubmit}.js
-│   └── css/
-│       ├── base/{tokens,reset,typography,layout}.css
-│       ├── components/*.css
-│       └── utilities.css
-├── design-system/
-│   └── index.html          ← live reference, file://-friendly
-└── cmd/
-    └── icons/              ← icon-sprite generator (Lucide + Simple Icons)
-```
 
 ## Lines of Code
 
