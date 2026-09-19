@@ -465,9 +465,9 @@ Pinned cells paint an opaque fill because a transparent one would let the scroll
 
 Right-rail widgets — table of contents with active-link highlight, recent-activity list with title + relative time.
 
-`.tree-nav` is a nested navigation list. Child lists are indented behind a
-muted vertical guide; render only the open path when the full tree is too long
-to scan. Mark the current link with `aria-current="page"` as for any rail list.
+`.tree-nav` is a nested navigation list. Child lists use the same indentation
+as `.toc`; render only the open path when the full tree is too long to scan.
+Mark the current link with `aria-current="page"` as for any rail list.
 
 ```html
 <nav class="leftnav tree-nav">

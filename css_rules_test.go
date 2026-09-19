@@ -91,6 +91,16 @@ func TestCSS_NamesNoApplication(t *testing.T) {
 	})
 }
 
+func TestCSS_TreeNavigationNestsInEitherRail(t *testing.T) {
+	css := readCSS(t, "css/components/rail.css")
+	if !strings.Contains(css, ":where(.content > aside, .content > nav.leftnav) ul") {
+		t.Fatal("rail list reset must stay less specific than nested navigation in either rail")
+	}
+	if !strings.Contains(css, ".toc ul ul,\n    .tree-nav ul ul") {
+		t.Fatal("tree navigation and the table of contents must share their nested-list shape")
+	}
+}
+
 func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string)) {
 	t.Helper()
 	err := fs.WalkDir(os.DirFS("static"), ".", func(path string, d fs.DirEntry, err error) error {
