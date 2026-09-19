@@ -49,6 +49,10 @@
         color: var(--fg);
         border-bottom-color: var(--accent);
     }
+    .nav-tabs a[aria-current],
+    .nav-tabs .menu-host[open] > .menu-toggle {
+        background: var(--bg-hover);
+    }
 
     /* A menu in the strip is a flex box of its own so its summary
      * stretches to the row's height. Left to itself the summary is as
