@@ -40,6 +40,7 @@
     .nav-tabs a:hover,
     .nav-tabs .menu-toggle:hover {
         color: var(--fg);
+        background: var(--bg-hover);
         text-decoration: none;
     }
     /* Any aria-current marks the tab, not only "page": a strip whose
@@ -61,8 +62,8 @@
     .nav-tabs .menu-host { display: flex; }
 
     /* Square targets for tabs whose whole label is an icon. */
-    .nav-tabs-icon a,
-    .nav-tabs-icon .menu-toggle {
+    .nav-tabs-icon a:has(> .icon:only-child),
+    .nav-tabs-icon .menu-toggle:has(> .icon:only-child) {
         aspect-ratio: 1;
         padding: var(--space-2);
     }

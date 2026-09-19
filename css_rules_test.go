@@ -117,6 +117,22 @@ func TestCSS_CurrentTabAndOpenMenuShareSelectedSurface(t *testing.T) {
 	}
 }
 
+func TestCSS_TabLinksAndMenuTogglesShareHoverSurface(t *testing.T) {
+	css := readCSS(t, "css/components/nav-tabs.css")
+	if !strings.Contains(css, ".nav-tabs a:hover,\n    .nav-tabs .menu-toggle:hover") ||
+		!strings.Contains(css, "background: var(--bg-hover)") {
+		t.Fatal("tab links and menu toggles must share their hover surface")
+	}
+}
+
+func TestCSS_IconTabsSquareOnlyIconLabels(t *testing.T) {
+	css := readCSS(t, "css/components/nav-tabs.css")
+	if !strings.Contains(css, ".nav-tabs-icon a:has(> .icon:only-child),") ||
+		!strings.Contains(css, ".nav-tabs-icon .menu-toggle:has(> .icon:only-child)") {
+		t.Fatal("an icon tab strip must leave text labels sized to their content")
+	}
+}
+
 func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string)) {
 	t.Helper()
 	err := fs.WalkDir(os.DirFS("static"), ".", func(path string, d fs.DirEntry, err error) error {
