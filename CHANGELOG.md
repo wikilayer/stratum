@@ -4,6 +4,13 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.5 — 2026-09-20
+
+### Changed
+
+- `.content-with-head` now drops an absent `nav.leftnav` from its grid instead of reserving an empty leading column. The same document shell therefore covers pages with and without leading navigation.
+- The three-column page shell grows to `76rem` before it stops, giving the reading column its full `--measure-prose` width while keeping both navigation columns fixed.
+
 ## 0.4.2 — 2026-09-18
 
 No runtime changes. The public documentation now points at the current release and Go Reference, and the repository checks documentation comments as part of its complete build.
