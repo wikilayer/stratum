@@ -193,6 +193,21 @@
         grid-column: 2 / 4;
     }
 
+    .leftnav-drawer-head { display: none; }
+    .content > nav.leftnav[popover] {
+        display: block;
+        inset: auto;
+        margin: 0;
+        width: auto;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        padding: var(--space-6);
+        border: 0;
+        background: var(--bg);
+        color: inherit;
+    }
+
     @media (max-width: 68.75rem) {
         .content > aside,
         .content-with-head > .page-head-row {
@@ -285,6 +300,49 @@
         .content-with-head > aside { grid-row: 3; }
         .content-with-head > main { grid-row: 4; }
 
+    }
+
+    @media (min-width: 721px) and (max-width: 960px) {
+        .content-with-head {
+            grid-template-columns: minmax(0, 1fr) var(--aside-w);
+        }
+        .content-with-head > .page-head-row { grid-column: 1 / 3; }
+        .content-with-head > main { grid-column: 1; }
+        .content-with-head > aside { grid-column: 2; }
+        .content-with-head:not(:has(> aside)) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        .content-with-head:not(:has(> aside)) > .page-head-row,
+        .content-with-head:not(:has(> aside)) > main { grid-column: 1; }
+    }
+
+    @media (max-width: 960px) {
+        .leftnav-drawer-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+        .leftnav-drawer-head .eyebrow { margin: 0; }
+        .content > nav.leftnav[popover]:not(:popover-open) { display: none; }
+        .content > nav.leftnav[popover]:popover-open {
+            display: block;
+            position: fixed;
+            inset: 0 auto 0 0;
+            width: min(18rem, calc(100vw - var(--space-6)));
+            height: 100dvh;
+            max-height: none;
+            padding: var(--space-6);
+            overflow-y: auto;
+            border: 0;
+            border-right: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .content > nav.leftnav[popover]:popover-open::after { display: none; }
+        .content > nav.leftnav[popover]::backdrop {
+            background: rgb(0 0 0 / 45%);
+        }
     }
 
     /* Two columns: the content, and a fixed-width side for whatever

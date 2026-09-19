@@ -17,6 +17,8 @@ copy
 sun
 moon
 monitor
+menu
+x
 history
 settings
 archive

@@ -92,6 +92,20 @@
     }
     .icon-link[aria-current] { color: var(--fg); }
 
+    /* The leading navigation control belongs to the compact shell.
+     * Layout moves its rail into a popover at this breakpoint; keeping
+     * the button state in the component layer prevents the base button
+     * display from accidentally revealing it on wide screens. */
+    .button.leftnav-toggle { display: none; }
+    .button.leftnav-toggle,
+    .button.leftnav-close {
+        inline-size: 2.75rem;
+        block-size: 2.75rem;
+    }
+    @media (max-width: 960px) {
+        .button.leftnav-toggle { display: inline-flex; }
+    }
+
     /* × dismiss button — close modals, clear a selection chip,
      * dismiss a toast, etc. Plain background, big × glyph, picks up
      * fg colour on hover. */
