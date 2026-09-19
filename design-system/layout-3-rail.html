@@ -6,21 +6,26 @@
   <title>3-rail shell — stratum</title>
 
   <!-- Real shell, not framed: use this page to see how leftnav +
-       main + aside behave at every viewport. Resize the window to
-       cross the 720px breakpoint and watch both rails stack above
-       main, leftnav first. -->
+       main + aside behave at every viewport. -->
   <link rel="stylesheet" href="../static/stratum.css">
 </head>
 <body>
 
 <header>
-  <a class="brand" href="index.html">stratum.example</a>
+  <div class="cluster nowrap">
+    <button class="button icon-link leftnav-toggle" type="button" popovertarget="demo-leftnav" aria-label="Open navigation"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+    <a class="brand" href="index.html">stratum.example</a>
+  </div>
   <a class="button button-ghost" href="index.html">Back to index</a>
 </header>
 
 <div class="content content-with-head">
 
-  <nav class="leftnav tree-nav" aria-label="Sections">
+  <nav id="demo-leftnav" class="leftnav tree-nav" aria-label="Sections" popover>
+    <div class="leftnav-drawer-head">
+      <span class="eyebrow">Navigation</span>
+      <button class="button icon-link leftnav-close" type="button" popovertarget="demo-leftnav" popovertargetaction="hide" aria-label="Close navigation"><svg class="icon" aria-hidden="true"><use href="#x"/></svg></button>
+    </div>
     <section class="rail-section">
       <h3 class="eyebrow">My recent</h3>
       <ul>
@@ -63,9 +68,8 @@
     <p>
       This page is the canonical demo for the <code>.content &gt;
       nav.leftnav</code> rail next to <code>.content &gt; aside</code>.
-      Three sticky rails on desktop; on viewports below 720px both
-      rails stack above <code>&lt;main&gt;</code> — left nav first,
-      aside second.
+      Three rails on desktop; when there is no room for all three,
+      the left navigation moves behind the menu in the top bar.
     </p>
     <h2 id="markup">Markup</h2>
     <pre><code>&lt;div class="content"&gt;
@@ -142,8 +146,13 @@
   <symbol id="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
   <symbol id="ellipsis" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
 </svg>
 
 <script src="../static/rail.js" defer></script>
+<script>
+  if (location.hash === "#leftnav-open") document.getElementById("demo-leftnav").showPopover();
+</script>
 </body>
 </html>
