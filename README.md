@@ -114,6 +114,22 @@ The page's own head, above both columns: its title and the strip of views. The s
 </div>
 ```
 
+### `.content-with-head`
+
+A three-column content frame where the left navigation belongs to the whole
+surface, while the page head belongs to the main and right columns. The left
+rail spans both rows; the right rail begins below the page head. Without an
+`<aside>`, `<main>` takes both columns. Below 720px the frame becomes one stack.
+
+```html
+<div class="content content-with-head">
+  <nav class="leftnav">…whole-surface navigation…</nav>
+  <div class="page-head-row">…page title and views…</div>
+  <main>…page content…</main>
+  <aside>…things about this page…</aside>
+</div>
+```
+
 ### `.bar-main`
 
 A group inside `body > header` that ends where the main column ends, so a control pushed to its end (`.push-end`) lines up with the sidebar's edge rather than floating over the text. The bar itself already shares the content column's outer and inner edges, so the brand sits over the page title.
