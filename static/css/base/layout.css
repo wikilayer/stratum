@@ -201,7 +201,7 @@
         width: auto;
         height: auto;
         max-width: none;
-        max-height: none;
+        max-height: calc(100vh - var(--header-h));
         padding: var(--space-6);
         border: 0;
         background: var(--bg);
