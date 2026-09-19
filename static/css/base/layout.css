@@ -168,6 +168,33 @@
         overflow-y: auto;
     }
 
+    /* A left rail spanning a page head and the two page columns. */
+    .content-with-head {
+        display: grid;
+        grid-template-columns: var(--leftnav-w) minmax(0, 1fr) var(--aside-w);
+        align-items: start;
+    }
+    .content-with-head > nav.leftnav {
+        grid-column: 1;
+        grid-row: 1 / 3;
+    }
+    .content-with-head > .page-head-row {
+        grid-column: 2 / 4;
+        grid-row: 1;
+        max-width: none;
+    }
+    .content-with-head > main {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    .content-with-head > aside {
+        grid-column: 3;
+        grid-row: 2;
+    }
+    .content-with-head:not(:has(> aside)) > main {
+        grid-column: 2 / 4;
+    }
+
     /* Reading-width columns inside main. Pages that want their own
      * narrow centred shape (login, consent, legal, MCP onboarding)
      * pick a size and stop. No page-specific wrapper class. */
@@ -234,6 +261,21 @@
             margin-top: var(--space-5);
             background: var(--border);
         }
+
+        .content-with-head {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        .content-with-head > nav.leftnav,
+        .content-with-head > .page-head-row,
+        .content-with-head > main,
+        .content-with-head > aside,
+        .content-with-head:not(:has(> aside)) > main {
+            grid-column: 1;
+        }
+        .content-with-head > nav.leftnav { grid-row: 1; }
+        .content-with-head > .page-head-row { grid-row: 2; }
+        .content-with-head > aside { grid-row: 3; }
+        .content-with-head > main { grid-row: 4; }
     }
 
     /* Two columns: the content, and a fixed-width side for whatever
