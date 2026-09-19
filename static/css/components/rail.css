@@ -1,14 +1,11 @@
 @layer components {
-    /* Tight spacing for headings + lists in either page rail.
-     * Split into two selectors (rather than :is(...)) so the
-     * specificity stays at one class + one element, matching the
-     * .toc ul ul override below — otherwise nav.leftnav's class
-     * specificity bumps the rule above .toc ul ul, and nested TOC
-     * lists render flat. */
-    .content > aside h3,
-    .content > nav.leftnav h3 { margin: 0 0 var(--space-3) 0; }
-    .content > aside ul,
-    .content > nav.leftnav ul { list-style: none; padding: 0; margin: 0 0 var(--space-5) 0; }
+    /* :where keeps the rail reset below each nested-list component. */
+    :where(.content > aside, .content > nav.leftnav) h3 { margin: 0 0 var(--space-3) 0; }
+    :where(.content > aside, .content > nav.leftnav) ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 var(--space-5) 0;
+    }
 
     /* Collapsible sidebar block. <details> + <summary> wrapping the
      * eyebrow heading; chevron rotates on open. Pair with rail.js to
@@ -73,14 +70,8 @@
     }
 
     .toc ul { list-style: none; padding: 0; margin: 0; }
-    .toc ul ul { padding-left: var(--space-3); margin-bottom: 0; }
-
-    .tree-nav ul { list-style: none; padding: 0; margin: 0; }
-    .tree-nav ul ul {
-        padding-left: var(--space-3);
-        margin: 0 0 var(--space-1) var(--space-2);
-        border-left: 1px solid var(--border-muted);
-    }
+    .toc ul ul,
+    .tree-nav ul ul { padding-left: var(--space-3); margin-bottom: 0; }
     /* A contents entry is a rail entry that also marks the section
      * being read. Type, padding and hover are the rail's, which is the
      * more specific of the two rules and carried them anyway. */
