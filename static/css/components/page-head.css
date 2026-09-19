@@ -3,6 +3,7 @@
      * the line drawn under both so a flush tab strip can overlap it. */
     .page-head {
         display: flex;
+        flex-wrap: wrap;
         align-items: end;
         justify-content: space-between;
         gap: var(--space-3);
@@ -10,8 +11,16 @@
         margin-bottom: var(--space-5);
     }
     .page-head h1 {
+        min-width: 0;
         margin: 0;
         padding: 0 0 var(--space-2) 0;
     }
-    .page-head .nav-tabs { align-items: flex-end; }
+    .page-head .nav-tabs { margin-inline-start: auto; }
+    .content-with-head > .page-head-row {
+        border-bottom: 1px solid var(--border);
+    }
+    .content-with-head > .page-head-row .page-head {
+        border-bottom: 0;
+        margin-bottom: 0;
+    }
 }

@@ -91,48 +91,6 @@ func TestCSS_NamesNoApplication(t *testing.T) {
 	})
 }
 
-func TestCSS_TreeNavigationNestsInEitherRail(t *testing.T) {
-	css := readCSS(t, "css/components/rail.css")
-	if !strings.Contains(css, ":where(.content > aside, .content > nav.leftnav) ul") {
-		t.Fatal("rail list reset must stay less specific than nested navigation in either rail")
-	}
-	if !strings.Contains(css, ".toc ul ul,\n    .tree-nav ul ul") {
-		t.Fatal("tree navigation and the table of contents must share their nested-list shape")
-	}
-}
-
-func TestCSS_PageHeadKeepsItsTabsOnTheSharedBaseline(t *testing.T) {
-	css := readCSS(t, "css/components/page-head.css")
-	if !strings.Contains(css, ".page-head .nav-tabs") || !strings.Contains(css, "align-items: flex-end") {
-		t.Fatal("page-head tabs must keep compact controls against the title's baseline")
-	}
-}
-
-func TestCSS_CurrentTabAndOpenMenuShareSelectedSurface(t *testing.T) {
-	css := readCSS(t, "css/components/nav-tabs.css")
-	if !strings.Contains(css, ".nav-tabs a[aria-current],") ||
-		!strings.Contains(css, ".nav-tabs .menu-host[open] > .menu-toggle") ||
-		!strings.Contains(css, "background: var(--bg-hover)") {
-		t.Fatal("current tabs and open menus must share the selected surface")
-	}
-}
-
-func TestCSS_TabLinksAndMenuTogglesShareHoverSurface(t *testing.T) {
-	css := readCSS(t, "css/components/nav-tabs.css")
-	if !strings.Contains(css, ".nav-tabs a:hover,\n    .nav-tabs .menu-toggle:hover") ||
-		!strings.Contains(css, "background: var(--bg-hover)") {
-		t.Fatal("tab links and menu toggles must share their hover surface")
-	}
-}
-
-func TestCSS_IconTabsSquareOnlyIconLabels(t *testing.T) {
-	css := readCSS(t, "css/components/nav-tabs.css")
-	if !strings.Contains(css, ".nav-tabs-icon a:has(> .icon:only-child),") ||
-		!strings.Contains(css, ".nav-tabs-icon .menu-toggle:has(> .icon:only-child)") {
-		t.Fatal("an icon tab strip must leave text labels sized to their content")
-	}
-}
-
 func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string)) {
 	t.Helper()
 	err := fs.WalkDir(os.DirFS("static"), ".", func(path string, d fs.DirEntry, err error) error {

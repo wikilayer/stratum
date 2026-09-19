@@ -62,9 +62,9 @@
     .nav-tabs .menu-host { display: flex; }
 
     /* Square targets for tabs whose whole label is an icon. */
-    .nav-tabs-icon a:has(> .icon:only-child),
-    .nav-tabs-icon .menu-toggle:has(> .icon:only-child) {
-        aspect-ratio: 1;
+    .nav-tabs-icon .icon-only {
+        inline-size: calc(1lh + var(--space-2) + var(--space-2));
+        flex: 0 0 calc(1lh + var(--space-2) + var(--space-2));
         padding: var(--space-2);
     }
 
