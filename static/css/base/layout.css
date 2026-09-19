@@ -193,6 +193,30 @@
         grid-column: 2 / 4;
     }
 
+    /* The head is part of the document grid whether or not that
+     * document has leading navigation. Do not leave a ghost left
+     * column behind when nav.leftnav is absent: main keeps its prose
+     * measure, while the shell itself becomes the ordinary main +
+     * aside pair. */
+    .content-with-head:not(:has(> nav.leftnav)) {
+        grid-template-columns: minmax(0, 1fr) var(--aside-w);
+    }
+    .content-with-head:not(:has(> nav.leftnav)) > .page-head-row {
+        grid-column: 1 / 3;
+    }
+    .content-with-head:not(:has(> nav.leftnav)) > main {
+        grid-column: 1;
+    }
+    .content-with-head:not(:has(> nav.leftnav)) > aside {
+        grid-column: 2;
+    }
+    .content-with-head:not(:has(> nav.leftnav)):not(:has(> aside)) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .content-with-head:not(:has(> nav.leftnav)):not(:has(> aside)) > :where(.page-head-row, main) {
+        grid-column: 1;
+    }
+
     .leftnav-drawer-head { display: none; }
     .content > nav.leftnav[popover] {
         display: block;
@@ -208,7 +232,7 @@
         color: inherit;
     }
 
-    @media (max-width: 68.75rem) {
+    @media (max-width: 76rem) {
         .content > aside,
         .content-with-head > .page-head-row {
             padding-inline-end: var(--space-6);
