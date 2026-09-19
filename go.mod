@@ -1,6 +1,6 @@
 module github.com/wikilayer/stratum
 
-go 1.26.0
+go 1.27.1
 
 require (
 	github.com/tdewolff/minify/v2 v2.24.17
