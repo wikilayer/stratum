@@ -137,11 +137,8 @@
     .content > aside {
         width: var(--aside-w);
         border-left: 1px solid var(--border);
-        /* Small gap off the dividing line, the page's gutter outside:
-         * the rail is the last column, so its outer edge is the page's
-         * and lines up with everything else ending there. */
         padding-block: var(--space-6);
-        padding-inline: var(--space-4) var(--space-6);
+        padding-inline: var(--space-6) 0;
         flex-shrink: 0;
         position: sticky;
         top: var(--header-h);
@@ -159,7 +156,7 @@
         width: var(--leftnav-w);
         border-right: 1px solid var(--border);
         padding-block: var(--space-6);
-        padding-inline: var(--space-6) var(--space-4);
+        padding-inline: var(--space-6);
         flex-shrink: 0;
         position: sticky;
         top: var(--header-h);
@@ -182,6 +179,7 @@
         grid-column: 2 / 4;
         grid-row: 1;
         max-width: none;
+        padding-inline-end: 0;
     }
     .content-with-head > main {
         grid-column: 2;
@@ -193,6 +191,13 @@
     }
     .content-with-head:not(:has(> aside)) > main {
         grid-column: 2 / 4;
+    }
+
+    @media (max-width: 68.75rem) {
+        .content > aside,
+        .content-with-head > .page-head-row {
+            padding-inline-end: var(--space-6);
+        }
     }
 
     /* Reading-width columns inside main. Pages that want their own
@@ -273,9 +278,13 @@
             grid-column: 1;
         }
         .content-with-head > nav.leftnav { grid-row: 1; }
-        .content-with-head > .page-head-row { grid-row: 2; }
+        .content-with-head > .page-head-row {
+            grid-row: 2;
+            padding-inline-end: var(--space-6);
+        }
         .content-with-head > aside { grid-row: 3; }
         .content-with-head > main { grid-row: 4; }
+
     }
 
     /* Two columns: the content, and a fixed-width side for whatever
