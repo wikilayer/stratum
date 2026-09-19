@@ -461,9 +461,24 @@ Modifiers on a `<table>` inside a `.scroll-x`: the lead column stays pinned whil
 
 Pinned cells paint an opaque fill because a transparent one would let the scrolled content read through: `--row-fill` if the row declares one (that is how `article table` carries its header and zebra shading), `--bg` otherwise. The table also switches to separated borders: a collapsed border belongs to the table rather than the cell, so it would stay behind while the cell sticks and leave a 1px seam for the scrolled text to show through.
 
-### `.toc`, `.toc-link`, `.recent`
+### `.toc`, `.toc-link`, `.tree-nav`, `.recent`
 
 Right-rail widgets — table of contents with active-link highlight, recent-activity list with title + relative time.
+
+`.tree-nav` is a nested navigation list. Child lists are indented behind a
+muted vertical guide; render only the open path when the full tree is too long
+to scan. Mark the current link with `aria-current="page"` as for any rail list.
+
+```html
+<nav class="leftnav tree-nav">
+  <ul>
+    <li><a href="/guide">Guide</a>
+      <ul><li><a href="/guide/install" aria-current="page">Install</a></li></ul>
+    </li>
+    <li><a href="/reference">Reference</a></li>
+  </ul>
+</nav>
+```
 
 ### `.block`, `.block-id`
 
