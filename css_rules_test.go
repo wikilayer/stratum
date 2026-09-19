@@ -101,6 +101,13 @@ func TestCSS_TreeNavigationNestsInEitherRail(t *testing.T) {
 	}
 }
 
+func TestCSS_PageHeadKeepsItsTabsOnTheSharedBaseline(t *testing.T) {
+	css := readCSS(t, "css/components/page-head.css")
+	if !strings.Contains(css, ".page-head .nav-tabs") || !strings.Contains(css, "align-items: flex-end") {
+		t.Fatal("page-head tabs must keep compact controls against the title's baseline")
+	}
+}
+
 func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string)) {
 	t.Helper()
 	err := fs.WalkDir(os.DirFS("static"), ".", func(path string, d fs.DirEntry, err error) error {

@@ -345,6 +345,8 @@ Copy-this-code block — a `<code>` value paired with a compact `.copy-btn` (wir
 ### `.page-head`
 
 A title row that draws the line under itself, so whatever shares the row sits on that line. Pair it with `.nav-tabs.nav-tabs-flush`, or with any other cluster of controls.
+Controls in a nested `.nav-tabs` keep their own compact height and sit against
+the shared baseline instead of stretching to the title's height.
 
 ### `.nav-tabs`, `.nav-tabs-icon`, `.nav-tabs-flush`
 
