@@ -13,4 +13,5 @@
         margin: 0;
         padding: 0 0 var(--space-2) 0;
     }
+    .page-head .nav-tabs { align-items: flex-end; }
 }
