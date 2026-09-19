@@ -108,6 +108,15 @@ func TestCSS_PageHeadKeepsItsTabsOnTheSharedBaseline(t *testing.T) {
 	}
 }
 
+func TestCSS_CurrentTabAndOpenMenuShareSelectedSurface(t *testing.T) {
+	css := readCSS(t, "css/components/nav-tabs.css")
+	if !strings.Contains(css, ".nav-tabs a[aria-current],") ||
+		!strings.Contains(css, ".nav-tabs .menu-host[open] > .menu-toggle") ||
+		!strings.Contains(css, "background: var(--bg-hover)") {
+		t.Fatal("current tabs and open menus must share the selected surface")
+	}
+}
+
 func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string)) {
 	t.Helper()
 	err := fs.WalkDir(os.DirFS("static"), ".", func(path string, d fs.DirEntry, err error) error {
