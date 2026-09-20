@@ -170,6 +170,7 @@
         display: grid;
         grid-template-columns: var(--leftnav-w) minmax(0, 1fr) var(--aside-w);
         align-items: start;
+        align-content: start;
     }
     .content-with-head > nav.leftnav {
         grid-column: 1;
