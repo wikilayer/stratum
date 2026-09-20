@@ -169,12 +169,14 @@
     .content-with-head {
         display: grid;
         grid-template-columns: var(--leftnav-w) minmax(0, 1fr) var(--aside-w);
+        grid-template-rows: auto minmax(0, 1fr);
         align-items: start;
         align-content: start;
     }
     .content-with-head > nav.leftnav {
         grid-column: 1;
         grid-row: 1 / 3;
+        align-self: stretch;
     }
     .content-with-head > .page-head-row {
         grid-column: 2 / 4;
@@ -189,6 +191,7 @@
     .content-with-head > aside {
         grid-column: 3;
         grid-row: 2;
+        align-self: stretch;
     }
     .content-with-head:not(:has(> aside)) > main {
         grid-column: 2 / 4;
