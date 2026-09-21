@@ -109,4 +109,14 @@
         border: 1px solid var(--border);
         border-radius: var(--radius-md);
     }
+
+    .article-footer {
+        margin-top: var(--space-7);
+        padding-top: var(--space-4);
+        border-top: 1px solid var(--border-muted);
+    }
+    .article-footer .fine-print {
+        margin-top: var(--space-3);
+        text-align: left;
+    }
 }
