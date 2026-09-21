@@ -321,13 +321,17 @@ Round chip with initials, or `<img class="avatar">` for a Gravatar.
 
 ### `.tag`, `.tag-cN`, `.tag-row`
 
-Small coloured label (a node tag, a status marker). `.tag` is the shape; `.tag-cN` (N = 0..7) picks one of 8 palette hues. The hue is the ink for text and border, the fill is a themed tint of it, so a tag stays legible in both themes with no per-tag override. Wrap a trailing cluster in `.tag-row` to sit it beside a heading.
+Small coloured label (a node tag, a status marker). `.tag` is the shape; `.tag-cN` (N = 0..7) picks one of 8 palette hues. The hue is the ink for text and border, the fill is a themed tint of it, so a tag stays legible in both themes with no per-tag override. Wrap a trailing cluster in `.tag-row` to sit it beside a heading. In an article H2, wrap the title in `.heading-text` when the accent rule should stop before the trailing tags.
 
 ```html
 <h3>How we write code<span class="tag-row">
   <span class="tag tag-c0">for-agent</span>
   <span class="tag tag-c1">checklist</span>
 </span></h3>
+
+<h2><span class="heading-text">Construction</span><sup class="tag-row">
+  <span class="tag tag-c3">engineering</span>
+</sup></h2>
 ```
 
 ### `.url-pill`

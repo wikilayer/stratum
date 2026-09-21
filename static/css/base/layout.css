@@ -159,11 +159,10 @@
         padding-block: var(--space-6);
         padding-inline: var(--space-6);
         flex-shrink: 0;
-        position: sticky;
-        top: var(--header-h);
+        position: relative;
         align-self: flex-start;
-        max-height: calc(100vh - var(--header-h));
-        overflow-y: auto;
+        max-height: none;
+        overflow-y: visible;
     }
 
     /* A left rail spanning a page head and the two page columns. */
@@ -243,7 +242,7 @@
         width: auto;
         height: auto;
         max-width: none;
-        max-height: calc(100vh - var(--header-h));
+        max-height: none;
         padding: var(--space-6);
         border: 0;
         background: var(--bg);

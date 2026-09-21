@@ -4,6 +4,21 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.10 — 2026-09-21
+
+Drop-in. Existing markup keeps working. The optional `.heading-text` wrapper
+limits an article H2 accent rule to its title when tags follow it.
+
+### Added
+
+- Article H2 headings use a thicker accent rule that ends with the title instead of crossing the reading column.
+- `.heading-text` lets that rule stop before a trailing `.tag-row`.
+
+### Fixed
+
+- Long page titles stay inside the reading column instead of colliding with the language and page controls.
+- Long left navigation columns grow with the document instead of becoming clipped nested scrollers.
+
 ## 0.4.9 — 2026-09-21
 
 Drop-in. No markup or consumer CSS change is required.

@@ -23,4 +23,12 @@
         border-bottom: 0;
         margin-bottom: 0;
     }
+    .content-with-head:has(> aside) > .page-head-row .page-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) var(--aside-w);
+        column-gap: var(--rail-gutter);
+    }
+    .content-with-head:has(> aside) > .page-head-row .nav-tabs {
+        justify-self: stretch;
+    }
 }
