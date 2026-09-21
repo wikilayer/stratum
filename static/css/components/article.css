@@ -115,8 +115,4 @@
         padding-top: var(--space-4);
         border-top: 1px solid var(--border-muted);
     }
-    .article-footer .fine-print {
-        margin-top: var(--space-3);
-        text-align: left;
-    }
 }
