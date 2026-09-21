@@ -4,6 +4,8 @@ import (
 	"io/fs"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 // TestCSSAssetsResolve checks every entry in cssAssets actually opens
@@ -41,9 +43,7 @@ func TestCSSAssetsCoverComponents(t *testing.T) {
 		}
 		return nil
 	})
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 }
 
 // Every framework helper belongs to the one-request bundle. A new script
@@ -66,7 +66,5 @@ func TestJSAssetsCoverScripts(t *testing.T) {
 		}
 		return nil
 	})
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 }

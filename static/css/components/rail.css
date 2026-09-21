@@ -46,6 +46,7 @@
         line-height: 1.35;
         padding: var(--space-1) var(--space-2);
         margin-left: calc(var(--space-2) * -1);
+        border-left: 2px solid transparent;
         border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
         color: var(--fg);
     }
@@ -60,6 +61,7 @@
      * "you're here" cue for the TOC's same-page scroll target.
      */
     .rail-section li a[aria-current] {
+        border-left-color: var(--accent);
         color: var(--accent);
         background: var(--bg-hover);
     }
@@ -81,6 +83,36 @@
         color: var(--accent);
         background: var(--bg-hover);
     }
+
+    .rail-identity {
+        display: block;
+        margin-bottom: var(--space-6);
+        color: var(--fg);
+    }
+    .rail-identity:hover { text-decoration: none; }
+    .rail-identity-mark {
+        display: flex;
+        width: 100%;
+        aspect-ratio: 1;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        font-size: var(--text-4xl);
+        font-weight: var(--weight-bold);
+        line-height: 1;
+    }
+    img.rail-identity-mark {
+        object-fit: cover;
+    }
+    .rail-identity-name {
+        display: block;
+        margin-top: var(--space-3);
+        font-size: var(--text-lg);
+        font-weight: var(--weight-semibold);
+        line-height: var(--leading-tight);
+    }
+    .rail-identity:hover .rail-identity-name { text-decoration: underline; }
 
     .recent li { border-radius: var(--radius-sm); }
     .recent li:hover { background: var(--bg-hover); }

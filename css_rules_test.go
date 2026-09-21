@@ -7,6 +7,8 @@ import (
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 // What the framework promises about its own stylesheets, checked
@@ -104,7 +106,5 @@ func forEachStylesheet(t *testing.T, check func(t *testing.T, path, css string))
 		t.Run(path, func(t *testing.T) { check(t, path, string(b)) })
 		return nil
 	})
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 }

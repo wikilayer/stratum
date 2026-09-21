@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 // TestMinify_StylesheetsLoseTheirProse: the served CSS carries no
@@ -20,13 +22,9 @@ func TestMinify_StylesheetsLoseTheirProse(t *testing.T) {
 	var served, raw int
 	for _, name := range cssAssets {
 		body, err := fs.ReadFile(Static, name)
-		if err != nil {
-			t.Fatalf("%s: %v", name, err)
-		}
+		require.NoError(t, err, name)
 		original, err := fs.ReadFile(source, name)
-		if err != nil {
-			t.Fatalf("%s: %v", name, err)
-		}
+		require.NoError(t, err, name)
 		served += len(body)
 		raw += len(original)
 
@@ -48,9 +46,7 @@ func TestMinify_StylesheetsLoseTheirProse(t *testing.T) {
 // cascade order from the first source through the last.
 func TestMinify_StyleIsOneBundle(t *testing.T) {
 	body, err := fs.ReadFile(Static, "stratum.css")
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	css := string(body)
 	if strings.Contains(css, "@import") {
 		t.Error("stratum.css still contains @import and fans out into more requests")
@@ -59,13 +55,9 @@ func TestMinify_StyleIsOneBundle(t *testing.T) {
 		t.Errorf("stratum.css does not open with the layer order: %q", css[:min(len(css), 80)])
 	}
 	first, err := fs.ReadFile(Static, cssAssets[0])
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	last, err := fs.ReadFile(Static, cssAssets[len(cssAssets)-1])
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	firstAt := strings.Index(css, string(first))
 	lastAt := strings.Index(css, string(last))
 	if firstAt < 0 || lastAt < 0 || firstAt >= lastAt {
@@ -79,20 +71,14 @@ func TestMinify_StyleIsOneBundle(t *testing.T) {
 func TestMinify_ScriptsAndBundle(t *testing.T) {
 	source := mustSub(embedded, "static")
 	bundle, err := fs.ReadFile(Static, "stratum.js")
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	joined := string(bundle)
 	lastAt := -1
 	for _, name := range jsAssets {
 		served, err := fs.ReadFile(Static, name)
-		if err != nil {
-			t.Fatalf("%s: %v", name, err)
-		}
+		require.NoError(t, err, name)
 		raw, err := fs.ReadFile(source, name)
-		if err != nil {
-			t.Fatalf("%s: %v", name, err)
-		}
+		require.NoError(t, err, name)
 		if strings.Contains(string(served), "//") || strings.Contains(string(served), "/*") {
 			t.Errorf("%s: comment survived minification", name)
 		}
@@ -111,9 +97,7 @@ func TestMinify_ScriptsAndBundle(t *testing.T) {
 // open state after first paint: that moves the article and creates CLS.
 func TestBundleDoesNotRewriteDetailsOpenState(t *testing.T) {
 	bundle, err := fs.ReadFile(Static, "stratum.js")
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	js := string(bundle)
 	for _, mutation := range []string{"matchMedia", "toc-section"} {
 		if strings.Contains(js, mutation) {
@@ -147,9 +131,7 @@ func TestMinify_LeavesEverythingElseAlone(t *testing.T) {
 		}
 		return nil
 	})
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 }
 
 // TestMinify_ServesOverHTTP: the tree still answers what a file server
@@ -161,14 +143,10 @@ func TestMinify_ServesOverHTTP(t *testing.T) {
 	defer srv.Close()
 
 	res, err := http.Get(srv.URL + "/css/utilities.css")
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	defer res.Body.Close()
 
-	if res.StatusCode != http.StatusOK {
-		t.Fatalf("GET css/utilities.css: %d", res.StatusCode)
-	}
+	require.Equal(t, http.StatusOK, res.StatusCode, "GET css/utilities.css")
 	body := make([]byte, res.ContentLength+1)
 	n, _ := io.ReadFull(res.Body, body)
 	if int64(n) != res.ContentLength {
@@ -186,9 +164,7 @@ func TestMinify_ServesOverHTTP(t *testing.T) {
 		{"/stratum.js", "text/javascript"},
 	} {
 		res, err := http.Get(srv.URL + tc.path)
-		if err != nil {
-			t.Fatal(err)
-		}
+		require.NoError(t, err)
 		_ = res.Body.Close()
 		if res.StatusCode != http.StatusOK {
 			t.Errorf("GET %s: %d", tc.path, res.StatusCode)
@@ -199,9 +175,7 @@ func TestMinify_ServesOverHTTP(t *testing.T) {
 	}
 
 	missing, err := http.Get(srv.URL + "/css/nothing-here.css")
-	if err != nil {
-		t.Fatal(err)
-	}
+	require.NoError(t, err)
 	defer missing.Body.Close()
 	if missing.StatusCode != http.StatusNotFound {
 		t.Errorf("missing stylesheet: got %d, want 404", missing.StatusCode)

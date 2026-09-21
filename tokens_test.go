@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 // A theme has two ways in: the attribute a reader sets by hand, and
@@ -38,22 +40,16 @@ func TestDarkPaletteIsTheSameBothWaysIn(t *testing.T) {
 func readCSS(t *testing.T, path string) string {
 	t.Helper()
 	b, err := os.ReadFile(filepath.Join("static", path))
-	if err != nil {
-		t.Fatalf("read %s: %v", path, err)
-	}
+	require.NoErrorf(t, err, "read %s", path)
 	return string(b)
 }
 
 func tokensIn(t *testing.T, css, selector string) map[string]string {
 	t.Helper()
 	at := strings.Index(css, selector)
-	if at < 0 {
-		t.Fatalf("no rule for %s", selector)
-	}
+	require.GreaterOrEqualf(t, at, 0, "no rule for %s", selector)
 	open := strings.Index(css[at:], "{")
-	if open < 0 {
-		t.Fatalf("%s opens no block", selector)
-	}
+	require.GreaterOrEqualf(t, open, 0, "%s opens no block", selector)
 	body := css[at+open+1:]
 	depth := 1
 	end := 0
@@ -69,9 +65,7 @@ func tokensIn(t *testing.T, css, selector string) map[string]string {
 			break
 		}
 	}
-	if end == 0 {
-		t.Fatalf("%s never closes", selector)
-	}
+	require.NotZerof(t, end, "%s never closes", selector)
 
 	out := map[string]string{}
 	for _, line := range strings.Split(body[:end], "\n") {

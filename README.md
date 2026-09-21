@@ -482,6 +482,20 @@ Mark the current link with `aria-current="page"` as for any rail list.
 </nav>
 ```
 
+### `.rail-identity`, `.rail-identity-mark`, `.rail-identity-name`
+
+A linked identity at the top of a navigation rail. The square mark fills the
+rail width; use an image when there is one, or initials with an `.avatar-cN`
+colour when there is not. The mark and name belong inside the same link so
+either one leads home.
+
+```html
+<a class="rail-identity" href="/">
+  <span class="rail-identity-mark avatar-c7">HI</span>
+  <span class="rail-identity-name">House of the Inner Wind</span>
+</a>
+```
+
 ### `.block`, `.block-id`
 
 Addressable section inside long-form content. `<section class="block" id="…">` carries `scroll-margin-top` matching the sticky header; `.block-id` is the gutter `#`-link rendered by markdown post-processing.

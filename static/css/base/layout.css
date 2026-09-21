@@ -138,7 +138,8 @@
         width: var(--aside-w);
         border-left: 1px solid var(--border);
         padding-block: var(--space-6);
-        padding-inline: var(--space-6) 0;
+        padding-inline-start: var(--rail-gutter);
+        padding-inline-end: 0;
         flex-shrink: 0;
         position: sticky;
         top: var(--header-h);
@@ -187,11 +188,15 @@
     .content-with-head > main {
         grid-column: 2;
         grid-row: 2;
+        padding-inline-end: var(--rail-gutter);
     }
     .content-with-head > aside {
         grid-column: 3;
         grid-row: 2;
         align-self: stretch;
+    }
+    .content-with-head > :is(main, aside) {
+        padding-block-start: var(--rail-gutter);
     }
     .content-with-head:not(:has(> aside)) > main {
         grid-column: 2 / 4;
@@ -219,6 +224,15 @@
     }
     .content-with-head:not(:has(> nav.leftnav)):not(:has(> aside)) > :where(.page-head-row, main) {
         grid-column: 1;
+    }
+
+    @media (min-width: 961px) {
+        .content-with-head:has(> nav.leftnav) > nav.leftnav {
+            padding-inline-end: var(--rail-gutter);
+        }
+        .content-with-head:has(> nav.leftnav) > :where(.page-head-row, main) {
+            padding-inline-start: 0;
+        }
     }
 
     .leftnav-drawer-head { display: none; }

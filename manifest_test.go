@@ -4,6 +4,8 @@ import (
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 // The source manifest and the in-memory bundle list the same sheets in
@@ -17,9 +19,7 @@ func TestStyleEntryAndAssetListAgree(t *testing.T) {
 		imported = append(imported, m[1])
 	}
 
-	if len(imported) != len(cssAssets) {
-		t.Fatalf("stratum.css imports %d stylesheets, cssAssets lists %d", len(imported), len(cssAssets))
-	}
+	require.Len(t, imported, len(cssAssets), "stratum.css and cssAssets list different numbers of stylesheets")
 	for i, path := range imported {
 		if path != cssAssets[i] {
 			t.Errorf("stylesheet %d: stratum.css has %q, cssAssets has %q -- cascade order differs between source and bundle",

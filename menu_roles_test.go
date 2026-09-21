@@ -5,20 +5,17 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/stretchr/testify/require"
 	"golang.org/x/net/html"
 )
 
 func designSystemPage(t *testing.T) *html.Node {
 	t.Helper()
 	f, err := os.Open("design-system/index.html")
-	if err != nil {
-		t.Fatalf("open the design-system page: %v", err)
-	}
+	require.NoError(t, err, "open the design-system page")
 	defer f.Close()
 	page, err := html.Parse(f)
-	if err != nil {
-		t.Fatalf("parse the design-system page: %v", err)
-	}
+	require.NoError(t, err, "parse the design-system page")
 	return page
 }
 
@@ -71,9 +68,7 @@ func TestMenu_EveryItemSaysItIsOne(t *testing.T) {
 				attrOf(item, "role"))
 		}
 	})
-	if seen == 0 {
-		t.Fatal("no menu items found, so this test read nothing")
-	}
+	require.NotZero(t, seen, "no menu items found, so this test read nothing")
 }
 
 func TestMenu_ACurrentChoiceIsCheckedRatherThanCurrent(t *testing.T) {
@@ -95,7 +90,5 @@ func TestMenu_ACurrentChoiceIsCheckedRatherThanCurrent(t *testing.T) {
 				attrOf(item, "aria-checked"))
 		}
 	})
-	if radios == 0 {
-		t.Fatal("no choice items found, so this test read nothing")
-	}
+	require.NotZero(t, radios, "no choice items found, so this test read nothing")
 }

@@ -4,6 +4,22 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.8 — 2026-09-21
+
+Drop-in. Existing markup keeps working. Visually verify pages where a
+`.content-with-head` directly contains `nav.leftnav`, `main` and `aside`,
+because their gutters are now shared and slightly tighter.
+
+### Added
+
+- `.rail-identity`, `.rail-identity-mark` and `.rail-identity-name` form a linked identity above a navigation rail. The square mark accepts either an image or coloured initials, and the name below it leads home through the same link.
+- `--rail-gutter` controls the space between document columns and below their shared page head. Its default is `1.5rem`.
+
+### Fixed
+
+- A current navigation-rail link marked with `aria-current` now carries the same accent bar as the active table-of-contents link.
+- In the three-rail shell, the page title and article now start at the left edge of their horizontal rule, while the article and right rail share the same top gutter.
+
 ## 0.4.7 — 2026-09-20
 
 ### Fixed
