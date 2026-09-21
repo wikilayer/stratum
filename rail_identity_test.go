@@ -28,6 +28,7 @@ func TestRailIdentity_ReservesAFullWidthSquareForAnImageOrInitials(t *testing.T)
 	for _, want := range []string{
 		".rail-identity-mark",
 		"width: 100%",
+		"height: auto",
 		"aspect-ratio: 1",
 		"img.rail-identity-mark",
 		"object-fit: cover",

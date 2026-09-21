@@ -93,6 +93,7 @@
     .rail-identity-mark {
         display: flex;
         width: 100%;
+        height: auto;
         aspect-ratio: 1;
         align-items: center;
         justify-content: center;
