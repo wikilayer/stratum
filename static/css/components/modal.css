@@ -31,11 +31,8 @@
 
     /* Rhythm between what the body holds is .stack's, so a body with
      * more than one thing in it carries that class too. */
-    .modal-body   { padding: var(--space-5); }
-    .modal-body-compact { padding-block-start: var(--space-4); }
-    .modal-compact :where(.modal-header, .modal-footer) {
-        padding-block: var(--space-2);
-    }
+    .modal-body { padding: var(--space-5); }
+    .modal-body .field { max-width: none; }
     .modal-footer {
         display: flex;
         justify-content: flex-end;

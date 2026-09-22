@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modal examples — stratum</title>
+  <link rel="stylesheet" href="../static/stratum.css">
+  <style>
+    body { max-width: var(--measure-prose); margin: 0 auto; padding: var(--space-5); }
+    main { padding-block: var(--space-6); }
+  </style>
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">stratum.example</a>
+  <a class="button button-ghost" href="index.html#modal">Back to reference</a>
+</header>
+
+<main class="stack-lg">
+  <div>
+    <h1 class="section-title">Modal examples</h1>
+    <p class="muted">Every dialog uses the same base <code>.modal</code>. Header, body and footer each have the same padding on all four sides.</p>
+  </div>
+
+  <section class="stack">
+    <h2 class="section-title">Short message</h2>
+    <button class="button button-primary" data-modal-open="message-modal">Open message</button>
+  </section>
+
+  <section class="stack">
+    <h2 class="section-title">Form</h2>
+    <button class="button button-primary" data-modal-open="form-modal">Open form</button>
+  </section>
+
+  <section class="stack">
+    <h2 class="section-title">Long form</h2>
+    <button class="button button-primary" data-modal-open="long-modal">Open long form</button>
+  </section>
+</main>
+
+<dialog id="message-modal" class="modal">
+  <header class="modal-header">
+    <p class="modal-title">Archive page?</p>
+    <button class="button-close" data-modal-close aria-label="Close">×</button>
+  </header>
+  <div class="modal-body">
+    <p>The page leaves navigation but remains available in its history.</p>
+  </div>
+  <footer class="modal-footer">
+    <button class="button" data-modal-close>Cancel</button>
+    <button class="button button-primary" data-modal-close>Archive</button>
+  </footer>
+</dialog>
+
+<dialog id="form-modal" class="modal">
+  <header class="modal-header">
+    <p class="modal-title">Edit block №211</p>
+    <button class="button-close" data-modal-close aria-label="Close">×</button>
+  </header>
+  <div class="modal-body stack">
+    <label class="field">
+      <span>Title</span>
+      <input type="text" value="Walls that remember">
+    </label>
+    <label class="field">
+      <span>Text</span>
+      <textarea rows="7">A short body with enough text to show the field padding.</textarea>
+    </label>
+  </div>
+  <footer class="modal-footer">
+    <span class="muted">62/64000</span>
+    <button class="button push-end" data-modal-close>Cancel</button>
+    <button class="button button-primary" data-modal-close>Save</button>
+  </footer>
+</dialog>
+
+<dialog id="long-modal" class="modal">
+  <header class="modal-header">
+    <p class="modal-title">Edit page №210</p>
+    <button class="button-close" data-modal-close aria-label="Close">×</button>
+  </header>
+  <div class="modal-body stack">
+    <label class="field">
+      <span>Title</span>
+      <input type="text" value="A long page">
+    </label>
+    <label class="field">
+      <span>Text</span>
+      <textarea rows="15">This taller field exercises the same modal at a height close to the viewport.
+
+The dialog keeps one spacing rule instead of introducing a compact variant for a particular screen.
+
+Its footer remains visible below the body and carries the same padding as the other two zones.</textarea>
+    </label>
+  </div>
+  <footer class="modal-footer">
+    <span class="muted">237/600</span>
+    <button class="button push-end" data-modal-close>Cancel</button>
+    <button class="button button-primary" data-modal-close>Save</button>
+  </footer>
+</dialog>
+
+<script src="../static/modal.js"></script>
+</body>
+</html>

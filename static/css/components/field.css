@@ -52,6 +52,7 @@
     :is(.row, .field) input:where([type="text"], [type="password"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
     :is(.row, .field) input:not([type]),
     :is(.row, .field) select,
+    :is(.row, .field) textarea,
     .input {
         padding: var(--space-2) var(--space-3);
         border: 1px solid var(--border);
@@ -81,7 +82,7 @@
     }
     .input-fill > input { flex: 1; min-width: 0; }
 
-    :is(.row, .field) :is(input, select):focus,
+    :is(.row, .field) :is(input, select, textarea):focus,
     .input:focus {
         outline: none;
         border-color: var(--accent);
@@ -92,11 +93,11 @@
      * control when validation fails; the red border outlives
      * the focus ring, and the .form-error message below
      * carries the wording. */
-    :is(.row, .field) :is(input, select)[aria-invalid="true"],
+    :is(.row, .field) :is(input, select, textarea)[aria-invalid="true"],
     .input[aria-invalid="true"] {
         border-color: var(--danger);
     }
-    :is(.row, .field) :is(input, select)[aria-invalid="true"]:focus,
+    :is(.row, .field) :is(input, select, textarea)[aria-invalid="true"]:focus,
     .input[aria-invalid="true"]:focus {
         border-color: var(--danger);
         box-shadow: 0 0 0 3px var(--danger-bg);

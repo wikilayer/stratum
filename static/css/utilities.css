@@ -3,6 +3,7 @@
     .empty { color: var(--fg-muted); font-style: italic; }
     .inline-form { display: inline; }
     .stack > * + * { margin-top: var(--space-4); }
+    .stack > .field { margin-bottom: 0; }
     /* Same stack at a wider rhythm, for rows tall enough that the
      * default gap stops reading as a gap: multi-line search hits, cards,
      * anything where one item runs to several lines. */
