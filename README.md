@@ -200,6 +200,18 @@ Modifiers stack. Use `<a>` for navigation, `<button>` for actions. Icons go inli
 </a>
 ```
 
+`.editable-heading` joins a heading and its edit mark into one target. Put the
+class and the interaction on their common wrapper: clicking anywhere over the
+title or mark then performs the same action, while the heading remains the
+document heading. Use `.editable-mark` on the icon so it scales with the title.
+
+```html
+<div class="editable-heading" role="button" tabindex="0" aria-label="Edit section">
+  <h2><span class="heading-text">A section</span></h2>
+  <svg class="editable-mark" aria-hidden="true"><use href="/static/icons.svg#pencil"/></svg>
+</div>
+```
+
 ### `.row`, `.field`, `.input`
 
 Form primitives.
@@ -289,6 +301,11 @@ Dialog box on top of a backdrop. Built on the native `<dialog>` element — ESC 
 ```
 
 `data-modal-open="ID"` on any clickable opens the dialog with that id. `data-modal-close` on any clickable inside the dialog closes it. Load `/static/modal.js` once on the page.
+
+Add `.modal-body-compact` when the first field should begin at the tighter
+header-to-content rhythm; the side and bottom padding stay unchanged.
+Add `.modal-compact` to the dialog when both its header and footer need the
+compact vertical rhythm; their inline padding stays unchanged.
 
 ### `.callout`
 

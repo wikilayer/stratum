@@ -25,10 +25,42 @@
     }
     .content-with-head:has(> aside) > .page-head-row .page-head {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) var(--aside-w);
+        grid-template-columns: minmax(0, 1fr) minmax(var(--aside-w), max-content);
         column-gap: var(--rail-gutter);
     }
     .content-with-head:has(> aside) > .page-head-row .nav-tabs {
         justify-self: stretch;
+    }
+
+    .editable-heading {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        width: fit-content;
+        max-width: 100%;
+        cursor: pointer;
+    }
+    :where(article, .block) > .editable-heading {
+        margin-block: var(--space-6) var(--space-3);
+    }
+    :where(article, .block) > .editable-heading > :is(h2, h3, h4, h5, h6) {
+        margin: 0;
+    }
+    .editable-heading:has(> h2) { font-size: var(--text-3xl); }
+    .editable-heading:has(> h3) { font-size: var(--text-2xl); }
+    .editable-heading:has(> h4) { font-size: var(--text-xl); }
+    .editable-heading:has(> h5) { font-size: var(--text-lg); }
+    .editable-heading:has(> h6) { font-size: var(--text-base); }
+    .editable-heading:hover,
+    .editable-heading:focus-visible { color: var(--accent); }
+    .editable-heading:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: var(--space-1);
+    }
+    .editable-heading > .editable-mark {
+        display: inline-block;
+        flex: none;
+        width: 1ex;
+        height: 1ex;
     }
 }

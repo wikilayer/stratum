@@ -72,18 +72,22 @@
      * The stronger accent belongs to the rule alone, which ends with the
      * heading instead of spanning the reading column. */
     article > h2,
-    .block > h2 {
+    .block > h2,
+    article > .editable-heading > h2,
+    .block > .editable-heading > h2 {
         width: fit-content;
         max-width: 100%;
         padding-bottom: var(--space-1);
         border-bottom: 3px solid color-mix(in srgb, var(--accent) 45%, var(--border));
     }
     article > h2:has(> .heading-text),
-    .block > h2:has(> .heading-text) {
+    .block > h2:has(> .heading-text),
+    article > .editable-heading > h2:has(> .heading-text),
+    .block > .editable-heading > h2:has(> .heading-text) {
         padding-bottom: 0;
         border-bottom: 0;
     }
-    :where(article > h2, .block > h2) > .heading-text {
+    :where(article > h2, .block > h2, article > .editable-heading > h2, .block > .editable-heading > h2) > .heading-text {
         display: inline-block;
         padding-bottom: var(--space-1);
         border-bottom: 3px solid color-mix(in srgb, var(--accent) 45%, var(--border));
