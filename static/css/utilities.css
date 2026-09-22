@@ -2,12 +2,12 @@
     .muted { color: var(--fg-muted); }
     .empty { color: var(--fg-muted); font-style: italic; }
     .inline-form { display: inline; }
-    .stack > * + * { margin-top: var(--space-4); }
+    .stack > :not([hidden]) ~ :not([hidden]) { margin-top: var(--space-4); }
     .stack > .field { margin-bottom: 0; }
     /* Same stack at a wider rhythm, for rows tall enough that the
      * default gap stops reading as a gap: multi-line search hits, cards,
      * anything where one item runs to several lines. */
-    .stack-lg > * + * { margin-top: var(--space-6); }
+    .stack-lg > :not([hidden]) ~ :not([hidden]) { margin-top: var(--space-6); }
     /* When .stack carries a list, strip the bullets / numbers and
      * the user-agent left padding so the items align with the
      * surrounding prose. Common case is "row per entry" layouts
