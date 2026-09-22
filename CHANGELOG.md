@@ -6,7 +6,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a
 
 ## 0.4.18 — 2026-09-22
 
-Drop-in. Existing markup keeps working.
+**Not drop-in.** Remove `.block-id` elements: Stratum no longer provides a visible gutter permalink component. Keep the address on the `.block` itself if fragments still need to resolve.
 
 ### Added
 
@@ -15,6 +15,10 @@ Drop-in. Existing markup keeps working.
 ### Changed
 
 - `.rail-identity-mark` uses the same 4:3 artwork proportion as wiki cards instead of forcing a square. Images continue to fill the frame with `object-fit: cover`, so their edges may be cropped; existing markup keeps working.
+
+### Removed
+
+- `.block-id` and its layout-specific exceptions. Whether an addressable section exposes a permalink is a product decision, not something Stratum infers from the surrounding page shell.
 
 ## 0.4.17 — 2026-09-22
 

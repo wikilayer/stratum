@@ -512,9 +512,9 @@ either one leads home.
 </a>
 ```
 
-### `.block`, `.block-id`
+### `.block`
 
-Addressable section inside long-form content. `<section class="block" id="…">` carries `scroll-margin-top` matching the sticky header; `.block-id` is the gutter `#`-link rendered by markdown post-processing.
+Addressable section inside long-form content. `<section class="block" id="…">` carries `scroll-margin-top` matching the sticky header.
 
 ## Utilities
 
