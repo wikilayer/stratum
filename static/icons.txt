@@ -25,6 +25,7 @@ archive
 chevron-down
 chevron-right
 eye
+pencil
 ellipsis
 loader-circle
 search

@@ -4,6 +4,20 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.14 — 2026-09-22
+
+Drop-in. Existing markup keeps working.
+
+### Added
+
+- `.editable-heading` makes a heading and its pencil mark one accessible edit target, with the mark sized to the lowercase letters at every heading level.
+- `.modal-compact` and `.modal-body-compact` provide tighter dialog chrome and body spacing.
+- The icon sprite includes the Lucide `pencil` icon.
+
+### Fixed
+
+- Page controls beside a right rail take the width they need and grow into the title column instead of wrapping onto a second row.
+
 ## 0.4.10 — 2026-09-21
 
 Drop-in. Existing markup keeps working. The optional `.heading-text` wrapper
