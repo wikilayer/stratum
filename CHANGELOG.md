@@ -4,6 +4,18 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.18 — 2026-09-22
+
+Drop-in. Existing markup keeps working.
+
+### Added
+
+- `.wiki-card-mark` presents wiki artwork or initials as a compact 4:3 thumbnail in a horizontal card.
+
+### Changed
+
+- `.rail-identity-mark` uses the same 4:3 artwork proportion as wiki cards instead of forcing a square.
+
 ## 0.4.17 — 2026-09-22
 
 Drop-in. Existing markup keeps working.

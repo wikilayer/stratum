@@ -31,4 +31,14 @@
         border-color: var(--accent);
         text-decoration: none;
     }
+
+    /* Compact wiki artwork for a horizontal card. It reuses the avatar
+     * renderer's image-or-initials markup without inheriting its circle. */
+    .avatar.wiki-card-mark {
+        width: 4rem;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: var(--radius-sm);
+        font-size: var(--text-lg);
+    }
 }

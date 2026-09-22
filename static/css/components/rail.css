@@ -94,7 +94,7 @@
         display: flex;
         width: 100%;
         height: auto;
-        aspect-ratio: 1;
+        aspect-ratio: 4 / 3;
         align-items: center;
         justify-content: center;
         overflow: hidden;
