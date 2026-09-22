@@ -43,6 +43,10 @@
     :where(article, .block) > .editable-heading {
         margin-block: var(--space-6) var(--space-3);
     }
+    article > .block:first-child > .editable-heading:first-child,
+    article > .block:first-child > .block-id + .editable-heading {
+        margin-top: 0;
+    }
     :where(article, .block) > .editable-heading > :is(h2, h3, h4, h5, h6) {
         margin: 0;
     }
