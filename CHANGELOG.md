@@ -10,11 +10,11 @@ Drop-in. Existing markup keeps working.
 
 ### Added
 
-- `.wiki-card-mark` presents wiki artwork or initials as a compact 4:3 thumbnail in a horizontal card.
+- `.wiki-card-mark` turns the existing image-or-initials element into a compact 4:3 thumbnail for a horizontal card; no consumer CSS is required.
 
 ### Changed
 
-- `.rail-identity-mark` uses the same 4:3 artwork proportion as wiki cards instead of forcing a square.
+- `.rail-identity-mark` uses the same 4:3 artwork proportion as wiki cards instead of forcing a square. Images continue to fill the frame with `object-fit: cover`, so their edges may be cropped; existing markup keeps working.
 
 ## 0.4.17 — 2026-09-22
 
