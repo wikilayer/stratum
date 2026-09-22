@@ -302,11 +302,6 @@ Dialog box on top of a backdrop. Built on the native `<dialog>` element — ESC 
 
 `data-modal-open="ID"` on any clickable opens the dialog with that id. `data-modal-close` on any clickable inside the dialog closes it. Load `/static/modal.js` once on the page.
 
-Add `.modal-body-compact` when the first field should begin at the tighter
-header-to-content rhythm; the side and bottom padding stay unchanged.
-Add `.modal-compact` to the dialog when both its header and footer need the
-compact vertical rhythm; their inline padding stays unchanged.
-
 ### `.callout`
 
 GitHub-flavoured callouts (`> [!NOTE]` rendered from markdown). Variants: `.callout-note`, `.callout-tip`, `.callout-important`, `.callout-warning`, `.callout-caution`. Wrap the title in `.callout-title` with an icon.

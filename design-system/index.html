@@ -591,11 +591,12 @@
   <section class="ds-section" id="modal">
     <h2>Modal</h2>
     <p>Native <code>&lt;dialog&gt;</code> with the framework's chrome. <code>data-modal-open="ID"</code> on any clickable opens the dialog with that id; <code>data-modal-close</code> closes the surrounding dialog. ESC closes for free; clicking the backdrop closes via <code>modal.js</code>.</p>
+    <p><a href="modals.html">Open the page with every modal example →</a></p>
 
     <div class="ds-example">
       <button class="button button-primary" data-modal-open="ds-modal-demo">Open modal</button>
 
-      <dialog id="ds-modal-demo" class="modal modal-compact">
+      <dialog id="ds-modal-demo" class="modal">
         <header class="modal-header">
           <p class="modal-title">Add member</p>
           <button class="button-close" data-modal-close aria-label="Close">×</button>

@@ -4,6 +4,20 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.15 — 2026-09-22
+
+Drop-in. Existing markup keeps working.
+
+### Changed
+
+- Modal headers and footers share the same compact vertical rhythm, while modal bodies keep equal padding on all sides.
+- Fields fill a modal body, and a stack owns the spacing between its fields instead of adding the field margin twice.
+- Textareas inside `.row` or `.field` receive the same theme-aware treatment as other controls.
+
+### Added
+
+- The design system includes a standalone page exercising short, form and long-form modals.
+
 ## 0.4.14 — 2026-09-22
 
 Drop-in. Existing markup keeps working.
