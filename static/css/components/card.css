@@ -15,6 +15,12 @@
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: var(--space-4);
     }
+    .card-grid > li {
+        display: flex;
+    }
+    .card-grid > li > .card {
+        flex: 1;
+    }
 
     /* When the entire card is a link: the <a> wears .card.card-link
      * directly. Layout becomes a flex row (icon + label), the colour
