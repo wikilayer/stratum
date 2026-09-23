@@ -4,6 +4,18 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.22 — 2026-09-23
+
+Drop-in. Existing markup keeps working, but the look changes: visually verify pages with an `.article-footer`, and `.content-with-head` pages without an `<aside>`.
+
+### Changed
+
+- `.article-footer`, the closing band after an `<article>`, no longer draws a horizontal divider line above its content; it keeps its top margin. It was made to hold `.sequence-nav`, whose previous and next links already sit in bordered boxes, and the line above them added nothing. A footer holding other content loses the line too; restore it with `border-top: 1px solid var(--border-muted); padding-top: var(--space-4);` on your own class.
+
+### Fixed
+
+- In the `.content-with-head` layout without an `<aside>` (no right column), the `<main>` column's right edge now lines up with the right end of the title's horizontal rule. It used to stop one `--rail-gutter` short, so the main column is now that much wider.
+
 ## 0.4.21 — 2026-09-23
 
 Drop-in. Existing markup keeps working.

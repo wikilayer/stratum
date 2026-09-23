@@ -75,7 +75,5 @@
 
     .article-footer {
         margin-top: var(--space-7);
-        padding-top: var(--space-4);
-        border-top: 1px solid var(--border-muted);
     }
 }

@@ -200,6 +200,7 @@
     }
     .content-with-head:not(:has(> aside)) > main {
         grid-column: 2 / 4;
+        padding-inline-end: 0;
     }
 
     /* The head is part of the document grid whether or not that
@@ -252,7 +253,8 @@
 
     @media (max-width: 76rem) {
         .content > aside,
-        .content-with-head > .page-head-row {
+        .content-with-head > .page-head-row,
+        .content-with-head:not(:has(> aside)) > main {
             padding-inline-end: var(--space-6);
         }
     }
