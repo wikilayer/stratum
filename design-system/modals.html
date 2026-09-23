@@ -1,16 +1,10 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modal examples — stratum</title>
-  <link rel="stylesheet" href="../static/stratum.css">
+{{define "head-extra"}}
   <style>
     body { max-width: var(--measure-prose); margin: 0 auto; padding: var(--space-5); }
     main { padding-block: var(--space-6); }
   </style>
-</head>
-<body>
+{{end}}
+{{template "document-head" "Modal examples — stratum"}}
 <header>
   <a class="brand" href="index.html">stratum.example</a>
   <a class="button button-ghost" href="index.html#modal">Back to reference</a>
@@ -69,7 +63,7 @@
     </label>
   </div>
   <footer class="modal-footer">
-    <span class="muted">62/64000</span>
+    <span class="muted">62/32000</span>
     <button class="button push-end" data-modal-close>Cancel</button>
     <button class="button button-primary" data-modal-close>Save</button>
   </footer>
@@ -101,6 +95,5 @@ Its footer remains visible below the body and carries the same padding as the ot
   </footer>
 </dialog>
 
-<script src="../static/modal.js"></script>
-</body>
-</html>
+<script src="{{asset "modal.js"}}"></script>
+{{template "document-end"}}

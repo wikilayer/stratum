@@ -40,9 +40,9 @@ stratum/
 │       ├── base/           ← reset, tokens, typography, layout
 │       ├── components/     ← one file per component
 │       └── utilities.css
-├── design-system/
-│   └── index.html          ← standalone showcase, opens via file://
+├── design-system/          ← Go templates and their demo assets
 └── cmd/
+    ├── design-system/      ← local server and GitHub Pages renderer
     └── icons/              ← icon-sprite generator (Lucide + Simple Icons)
 ```
 
@@ -88,7 +88,7 @@ Templates link `/static/stratum.css`, `/static/icons.svg#<name>`, and `/static/s
 
 ## GitHub Pages
 
-`design-system/index.html` is the human-readable spec. The workflow at `.github/workflows/pages.yml` builds a `dist/` containing both `design-system/` and `static/` (so the relative `../static/stratum.css` link inside `index.html` resolves), and publishes via `actions/deploy-pages`. The `dist/index.html` at the root is a tiny redirect to `design-system/`.
+`design-system/index.html` is the human-readable spec. `cmd/design-system` renders the templates for both the local server and GitHub Pages, keeping the two views identical. The Pages workflow publishes its `dist/` output.
 
 To enable the first time:
 ```bash

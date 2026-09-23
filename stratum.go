@@ -54,6 +54,7 @@ var cssAssets = []string{
 	"css/components/switch.css",
 	"css/components/rail.css",
 	"css/components/article.css",
+	"css/components/sequence-nav.css",
 	"css/components/page-head.css",
 	"css/components/nav-tabs.css",
 	"css/components/tabs.css",
@@ -70,6 +71,7 @@ var jsAssets = []string{
 	"modal.js",
 	"dropdown.js",
 	"rail.js",
+	"tree.js",
 	"autosubmit.js",
 }
 

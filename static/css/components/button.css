@@ -104,6 +104,14 @@
     }
     @media (max-width: 960px) {
         .button.leftnav-toggle { display: inline-flex; }
+        .button.leftnav-toggle,
+        .button.leftnav-close {
+            /* The glyph, rather than its larger hit target, shares the
+             * column's leading edge. The close control occupies the same
+             * point in the open drawer, so reopening and dismissing are
+             * one reversible gesture. */
+            margin-inline-start: calc((2.75rem - var(--space-5)) / -2);
+        }
     }
 
     /* × dismiss button — close modals, clear a selection chip,

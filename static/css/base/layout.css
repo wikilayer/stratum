@@ -325,7 +325,8 @@
         }
 
         .content-with-head {
-            grid-template-columns: minmax(0, 1fr);
+            display: flex;
+            flex-direction: column;
         }
         .content-with-head > nav.leftnav,
         .content-with-head > .page-head-row,
@@ -333,6 +334,9 @@
         .content-with-head > aside,
         .content-with-head:not(:has(> aside)) > main {
             grid-column: 1;
+        }
+        .content-with-head > :where(.page-head-row, main, aside) {
+            width: 100%;
         }
         .content-with-head > nav.leftnav { grid-row: 1; }
         .content-with-head > .page-head-row {
@@ -362,11 +366,13 @@
         .leftnav-drawer-head {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             gap: var(--space-3);
+            height: var(--header-h);
             margin-bottom: var(--space-5);
         }
         .leftnav-drawer-head .eyebrow { margin: 0; }
+        .leftnav-drawer-head .leftnav-close { order: -1; }
         .content > nav.leftnav[popover]:not(:popover-open) { display: none; }
         .content > nav.leftnav[popover]:popover-open {
             display: block;
@@ -375,7 +381,7 @@
             width: min(18rem, calc(100vw - var(--space-6)));
             height: 100dvh;
             max-height: none;
-            padding: var(--space-6);
+            padding: 0 var(--space-6) var(--space-6);
             overflow-y: auto;
             border: 0;
             border-right: 1px solid var(--border);

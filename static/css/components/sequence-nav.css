@@ -1,0 +1,43 @@
+@layer components {
+    .sequence-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-3);
+    }
+
+    .sequence-nav > a {
+        min-width: 0;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+        padding: var(--space-3);
+        color: var(--fg);
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-lg);
+    }
+    .sequence-nav > a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+        text-decoration: none;
+    }
+    .sequence-nav > [rel="prev"] { grid-column: 1; }
+    .sequence-nav > [rel="next"] {
+        grid-column: 2;
+        text-align: end;
+    }
+
+    .sequence-nav-title {
+        min-width: 0;
+        flex: 1;
+        display: -webkit-box;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    .sequence-nav-arrow {
+        flex: none;
+        color: var(--fg-muted);
+    }
+}

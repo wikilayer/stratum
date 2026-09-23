@@ -1,0 +1,15 @@
+{{define "document-head"}}<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.}}</title>
+  <link rel="stylesheet" href="{{asset "stratum.css"}}">
+  {{template "head-extra" .}}
+</head>
+<body>
+{{end}}
+{{define "head-extra"}}{{end}}
+{{define "document-end"}}</body>
+</html>
+{{end}}

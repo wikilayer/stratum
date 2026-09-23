@@ -23,25 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: true
+
       - uses: actions/configure-pages@v6
 
-      # Build dist/ so the design-system page works under the /stratum/
-      # Pages root with no path-rewriting:
-      #   /                   → tiny redirect to /design-system/
-      #   /design-system/     → design-system/index.html
-      #   /static/            → static/ (the relative ../static/ links resolve)
       - name: Build dist
-        run: |
-          mkdir -p dist
-          cp -r design-system dist/design-system
-          cp -r static        dist/static
-          cat > dist/index.html <<'HTML'
-          <!doctype html>
-          <meta charset="utf-8">
-          <title>stratum — design system</title>
-          <meta http-equiv="refresh" content="0; url=design-system/">
-          <link rel="canonical" href="design-system/">
-          HTML
+        run: make design-system-build
 
       - uses: actions/upload-pages-artifact@v5
         with:

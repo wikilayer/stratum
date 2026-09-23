@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-.PHONY: install-tools format lint comments test-build test build icons-sync design-system tidy
+.PHONY: install-tools format lint comments test-build test build icons-sync design-system design-system-build tidy
 
 STATICCHECK_VERSION ?= v0.8.1
 COMMENTCENSOR_VERSION ?= v0.3.2
@@ -42,10 +42,13 @@ build: lint test-build test
 icons-sync:
 	go run ./cmd/icons
 
-# Open the standalone design-system reference in the default browser.
-# It uses file:// — no server needed.
+# Serve the design-system reference and open it in the default browser.
 design-system:
-	open design-system/index.html
+	go run ./cmd/design-system -open
+
+# Render the same templates and assets for GitHub Pages.
+design-system-build:
+	go run ./cmd/design-system -build
 
 tidy:
 	go mod tidy

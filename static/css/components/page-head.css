@@ -32,6 +32,21 @@
         justify-self: stretch;
     }
 
+    /* On a narrow screen the title needs the whole line. Keeping the
+     * actions as its second grid column makes both unusable: a long title
+     * falls to one word per line while the controls collide with it. The
+     * actions retain their own row and .push-end can still align a leading
+     * menu with the controls at the trailing edge. */
+    @media (max-width: 720px) {
+        .content-with-head:has(> aside) > .page-head-row .page-head {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        .content-with-head:has(> aside) > .page-head-row .nav-tabs {
+            grid-column: 1;
+            min-width: 0;
+        }
+    }
+
     .editable-heading {
         display: flex;
         align-items: center;

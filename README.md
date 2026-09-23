@@ -338,6 +338,26 @@ the title wraps, later lines use the body's full width.
 </ul>
 ```
 
+### `.sequence-nav`, `.sequence-nav-title`, `.sequence-nav-arrow`
+
+A pair of equal-width links for moving backward and forward through a
+sequence. Titles occupy at most two lines; arrows keep their own space. Keep
+both columns present even when one neighbour is absent: `rel="prev"` occupies
+the first column and `rel="next"` the second.
+
+```html
+<nav class="sequence-nav" aria-label="Page sequence">
+  <a rel="prev" href="…">
+    <span class="sequence-nav-arrow" aria-hidden="true">←</span>
+    <span class="sequence-nav-title">Previous item</span>
+  </a>
+  <a rel="next" href="…">
+    <span class="sequence-nav-title">Next item</span>
+    <span class="sequence-nav-arrow" aria-hidden="true">→</span>
+  </a>
+</nav>
+```
+
 ### `.avatar`, `.avatar-lg`
 
 Round chip with initials, or `<img class="avatar">` for a Gravatar.
@@ -495,16 +515,26 @@ Pinned cells paint an opaque fill because a transparent one would let the scroll
 Right-rail widgets — table of contents with active-link highlight, recent-activity list with title + relative time.
 
 `.tree-nav` is a nested navigation list. Child lists use the same indentation
-as `.toc`; render only the open path when the full tree is too long to scan.
+as `.toc`. A branch row pairs its page link with a `.tree-nav-toggle`; the
+button's `aria-expanded` state and the child list's `hidden` attribute describe
+the initial state. Load `tree.js` to fold and unfold branches without navigating.
+The application should initially open only the current path: its ancestors and,
+when the current item is itself a branch, the current item.
 Mark the current link with `aria-current="page"` as for any rail list.
 
 ```html
 <nav class="leftnav tree-nav">
   <ul>
-    <li><a href="/guide">Guide</a>
-      <ul><li><a href="/guide/install" aria-current="page">Install</a></li></ul>
+    <li>
+      <div class="tree-nav-row">
+        <button class="tree-nav-toggle" type="button" aria-expanded="true"
+                aria-controls="guide-pages" aria-label="Collapse Guide"
+                data-label-expand="Expand Guide" data-label-collapse="Collapse Guide"></button>
+        <a href="/guide">Guide</a>
+      </div>
+      <ul id="guide-pages"><li><a href="/guide/install" aria-current="page">Install</a></li></ul>
     </li>
-    <li><a href="/reference">Reference</a></li>
+    <li><div class="tree-nav-row"><span class="tree-nav-placeholder"></span><a href="/reference">Reference</a></div></li>
   </ul>
 </nav>
 ```
@@ -614,10 +644,11 @@ All are zero-dependency, ~30 lines each, safe to load with `defer`. Each is opti
 
 ## Design system
 
-`design-system/index.html` is a standalone reference — opens with `file://`, no server needed. It lives next to the framework so any change to a primitive can be sanity-checked alongside the docs in seconds.
+The files in `design-system/` are Go templates rendered by the same command locally and on GitHub Pages. The local server mounts the bundled `stratum.Static`, so the reference exercises the same one-request CSS and JavaScript assets as a consumer. HTML and assets use ETags with revalidation, preventing stale CSS without downloading unchanged files again.
 
 ```bash
-make design-system   # opens it in the default browser
+make design-system         # serves and opens the reference
+make design-system-build   # renders dist/ for GitHub Pages
 ```
 
 If you add a primitive and don't add an example here, future-you will reinvent it. Update the page.

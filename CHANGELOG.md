@@ -4,6 +4,21 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.21 — 2026-09-23
+
+Drop-in. Existing markup keeps working.
+
+### Added
+
+- `.tree-nav` renders nested, animated navigation with compact indentation, one disclosure chevron per expandable row and the standard accent bar on the active link.
+- `.sequence-nav` keeps previous and next document links in equal halves and clamps long titles to two lines; when one neighbour is absent, its half remains empty.
+- The design-system reference includes complete three-rail and modal examples.
+
+### Fixed
+
+- Three-rail documents stop the reading column from collapsing at narrow widths, and the mobile navigation control stays under the pointer when its drawer opens.
+- Modal fields follow the active colour theme; modal headers and footers use the same height and the same padding on both sides.
+
 ## 0.4.20 — 2026-09-23
 
 Drop-in. Existing markup keeps working.
