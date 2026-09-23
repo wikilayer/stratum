@@ -276,6 +276,28 @@ Which tab shows is read from position, not from the ids: the Nth radio pairs wit
 
 Inline message block. Variants: `.alert-error`, `.alert-success`. Always left-aligned (won't inherit `.text-center`). Use `.alert-success` as a one-shot banner after a redirect — same shape, no separate primitive needed.
 
+### `.app-prompt`
+
+A bottom-fixed mobile prompt for continuing the current page in a native app. The helper detects iOS and Android, remembers dismissal for seven days by default, and can copy the browser's path, query, and fragment to the link's host. The destination host and wording belong to the consumer.
+
+```html
+<aside class="app-prompt" data-app-prompt data-dismiss-key="my-app" hidden
+       aria-label="Open this page in the app">
+  <img class="app-prompt-icon" src="/app-icon.png" alt="">
+  <span class="app-prompt-copy">
+    <span class="app-prompt-title">Example App</span>
+    <span class="app-prompt-subtitle">Better in the app</span>
+  </span>
+  <a class="button button-primary app-prompt-action" href="https://go.example"
+     data-app-prompt-link data-current-location>Open</a>
+  <button class="button icon-link app-prompt-dismiss" type="button"
+          data-app-prompt-dismiss aria-label="Dismiss for seven days">…</button>
+</aside>
+<script src="/static/app-prompt.js" defer></script>
+```
+
+Set `data-platform="ios"` or `data-platform="android"` on the prompt to force a platform in a demo. Limit eligible platforms with the space-separated `data-platforms` attribute, change the retention period with `data-dismiss-days`, and use a distinct `data-dismiss-key` for each app. Omit `data-current-location` when the server already supplies the complete destination URL.
+
 ### `.saved-note`
 
 Confirmation of one control, beside that control: `<span class="saved-note" role="status">Saved</span>` next to the select or checkbox that changed. A page-wide `.alert-success` answers for the page, which is the wrong size and the wrong place for a setting that [saves on change](#javascript-helpers) two screens further down. Fades out on its own after a few seconds, because a note that stays reads as a state rather than as an answer to what just happened; `prefers-reduced-motion` keeps it still and visible.

@@ -62,6 +62,7 @@ var cssAssets = []string{
 	"css/components/modal.css",
 	"css/components/feed.css",
 	"css/components/entry.css",
+	"css/components/app-prompt.css",
 	"css/utilities.css",
 }
 
@@ -73,6 +74,7 @@ var jsAssets = []string{
 	"rail.js",
 	"tree.js",
 	"autosubmit.js",
+	"app-prompt.js",
 }
 
 const cssLayerOrder = "@layer reset, tokens, base, layout, components, utilities;"

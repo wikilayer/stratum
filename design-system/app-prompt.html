@@ -1,0 +1,44 @@
+{{template "document-head" "App prompt — stratum"}}
+
+<header>
+  <a class="brand" href="index.html">stratum.example</a>
+  <a class="button button-ghost" href="index.html">Back to index</a>
+</header>
+
+<main class="column-wide stack">
+  <h1>App prompt</h1>
+  <p>
+    This page forces the iOS platform so the prompt remains testable in a desktop browser.
+    In normal use the helper shows it only on iOS and Android.
+  </p>
+  <p>
+    The primary link copies this page's path, query, and fragment to another host.
+    Dismissing the prompt stores an expiry for seven days. Clear this origin's local storage
+    to show it again immediately.
+  </p>
+  <h2 id="destination">Current-page destination</h2>
+  <p>Scroll this page to verify that the prompt remains attached to the bottom edge.</p>
+  <div class="stack" aria-hidden="true">
+    <p>Filler content keeps the page taller than a mobile viewport.</p>
+    <p>Filler content keeps the page taller than a mobile viewport.</p>
+    <p>Filler content keeps the page taller than a mobile viewport.</p>
+    <p>Filler content keeps the page taller than a mobile viewport.</p>
+    <p>Filler content keeps the page taller than a mobile viewport.</p>
+    <p>Filler content keeps the page taller than a mobile viewport.</p>
+  </div>
+</main>
+
+<aside class="app-prompt" data-app-prompt data-platform="ios" data-dismiss-key="design-system-app" data-dismiss-days="7" hidden aria-label="Open this page in the app">
+  <span class="app-prompt-icon avatar-c7" aria-hidden="true">EA</span>
+  <span class="app-prompt-copy">
+    <span class="app-prompt-title">Example App</span>
+    <span class="app-prompt-subtitle">Better in the app</span>
+  </span>
+  <a class="button button-primary app-prompt-action" href="https://go.example" data-app-prompt-link data-current-location>Open</a>
+  <button class="button icon-link app-prompt-dismiss" type="button" data-app-prompt-dismiss aria-label="Dismiss for seven days">
+    <svg class="icon" aria-hidden="true"><use href="{{asset "icons.svg"}}#x"/></svg>
+  </button>
+</aside>
+
+<script src="{{asset "app-prompt.js"}}" defer></script>
+{{template "document-end"}}

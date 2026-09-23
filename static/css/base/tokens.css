@@ -111,6 +111,7 @@
         --radius-md:   6px;
         --radius-lg:  10px;
         --radius-pill: 999px;
+        --hairline: 1px;
 
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
         --shadow-md: 0 6px 18px rgba(0,0,0,0.10);
@@ -120,6 +121,7 @@
          * columns wide enough to set type in, instead of chrome that
          * stays put while its contents outgrow it. */
         --header-h:    3.5rem;
+        --control-touch: 2.75rem;
         --aside-w:     16rem;
         --leftnav-w:   13.75rem;
         --rail-gutter: 1.75rem;
@@ -134,6 +136,7 @@
 
         --duration-fast: 120ms;
         --easing-out:    cubic-bezier(0.2, 0, 0, 1);
+        --z-overlay:     30;
     }
 
     html[data-theme="dark"] {

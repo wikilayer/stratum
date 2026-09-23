@@ -99,8 +99,8 @@
     .button.leftnav-toggle { display: none; }
     .button.leftnav-toggle,
     .button.leftnav-close {
-        inline-size: 2.75rem;
-        block-size: 2.75rem;
+        inline-size: var(--control-touch);
+        block-size: var(--control-touch);
     }
     @media (max-width: 960px) {
         .button.leftnav-toggle { display: inline-flex; }
@@ -110,7 +110,7 @@
              * column's leading edge. The close control occupies the same
              * point in the open drawer, so reopening and dismissing are
              * one reversible gesture. */
-            margin-inline-start: calc((2.75rem - var(--space-5)) / -2);
+            margin-inline-start: calc((var(--control-touch) - var(--space-5)) / -2);
         }
     }
 
