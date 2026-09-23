@@ -926,25 +926,43 @@
       </div>
     </div>
 
-    <h3>Wiki cards</h3>
-    <p>A wiki card keeps its 4:3 artwork in the same row as the visibility and title.</p>
+    <h3>Media cards</h3>
+    <p>Artwork or initials fill a 4:3 area above a body row. The row may pair a status icon with a title that wraps.</p>
     <div class="ds-example">
       <ul class="card-grid">
         <li>
-          <a class="card card-link" href="#">
-            <span class="avatar wiki-card-mark avatar-c5">WL</span>
-            <span class="cluster nowrap">
+          <a class="card card-link media-card" href="#">
+            <span class="avatar media-card-visual avatar-c5">WL</span>
+            <span class="media-card-body">
               <svg class="icon" aria-label="public"><use href="#globe"/></svg>
-              Wiki with initials
+              Initials instead of artwork
             </span>
           </a>
         </li>
         <li>
-          <a class="card card-link" href="#">
-            <img class="avatar wiki-card-mark" alt="" src="lighthouse.svg">
-            <span class="cluster nowrap">
+          <a class="card card-link media-card" href="#">
+            <img class="avatar media-card-visual" alt="" src="lighthouse.svg">
+            <span class="media-card-body">
               <svg class="icon" aria-label="private"><use href="#lock"/></svg>
-              Wiki with artwork
+              Card with artwork
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="card card-link media-card" href="#">
+            <span class="avatar media-card-visual avatar-c2">LA</span>
+            <span class="media-card-body">
+              <svg class="icon" aria-label="private"><use href="#lock"/></svg>
+              A long title that wraps onto another line without moving its status icon above the text
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="card card-link media-card" href="#">
+            <img class="avatar media-card-visual" alt="" src="lighthouse.svg">
+            <span class="media-card-body">
+              <svg class="icon" aria-label="public"><use href="#globe"/></svg>
+              Another state using the same generic card
             </span>
           </a>
         </li>

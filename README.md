@@ -321,9 +321,20 @@ Embedded location iframe (rendered from `> [!MAP]` blockquotes in markdown). The
 
 Bordered surface for grouped content. `.card-grid` lays cards in a responsive grid. Add `.card-link` to an `<a>` that wraps the whole card — it gets the flex-row layout, link colour, and accent border on hover.
 
+Add `.media-card` when a linked card leads with artwork. The visual fills a
+4:3 area above `.media-card-body`; it may be an image or an `.avatar` carrying
+initials. Images crop to fill that area. A leading status icon stays inline with the title's first line; when
+the title wraps, later lines use the body's full width.
+
 ```html
 <ul class="card-grid">
   <li><a class="card card-link" href="…"><svg class="icon">…</svg> Title</a></li>
+  <li>
+    <a class="card card-link media-card" href="…">
+      <img class="avatar media-card-visual" src="…" alt="">
+      <span class="media-card-body"><svg class="icon">…</svg> A title</span>
+    </a>
+  </li>
 </ul>
 ```
 

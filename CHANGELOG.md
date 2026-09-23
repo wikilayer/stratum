@@ -4,6 +4,23 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.19 — 2026-09-23
+
+**Not drop-in.** Replace `.wiki-card-mark` with the generic media-card structure: put `.media-card` on the linked card, `.media-card-visual` on its 4:3 image or initials, and wrap the inline icon and title in `.media-card-body`.
+
+### Added
+
+- `.media-card`, `.media-card-visual` and `.media-card-body` form a vertical linked card whose artwork or initials sit above an inline status icon and wrapping title.
+- The design-system card section shows initials, artwork, long-title and alternate-state media cards.
+
+### Changed
+
+- Avatar colour slot 2 uses the shared yellow palette in both themes and keeps dark ink for contrast.
+
+### Removed
+
+- `.wiki-card-mark`, which described one consumer instead of a reusable component.
+
 ## 0.4.18 — 2026-09-23
 
 **Not drop-in.** Remove `.block-id` elements: Stratum no longer provides a visible gutter permalink component. Keep the address on the `.block` itself if fragments still need to resolve.

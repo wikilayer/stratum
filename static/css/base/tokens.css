@@ -38,7 +38,8 @@
         --avatar-fg: #1f2328;
         --avatar-c0:  oklch(78% 0.13 25);
         --avatar-c1:  oklch(80% 0.13 55);
-        --avatar-c2:  oklch(85% 0.13 90);
+        --avatar-c2:  #efca61;
+        --avatar-c2-fg: #1f2328;
         --avatar-c3:  oklch(85% 0.15 130);
         --avatar-c4:  oklch(82% 0.13 160);
         --avatar-c5:  oklch(82% 0.10 200);
@@ -182,7 +183,8 @@
         --avatar-fg: #ffffff;
         --avatar-c0:  oklch(50% 0.13 25);
         --avatar-c1:  oklch(50% 0.13 55);
-        --avatar-c2:  oklch(50% 0.13 90);
+        --avatar-c2:  #deba50;
+        --avatar-c2-fg: #1f2328;
         --avatar-c3:  oklch(50% 0.15 130);
         --avatar-c4:  oklch(50% 0.13 160);
         --avatar-c5:  oklch(50% 0.10 200);
@@ -248,7 +250,8 @@
             --avatar-fg: #ffffff;
             --avatar-c0:  oklch(50% 0.13 25);
             --avatar-c1:  oklch(50% 0.13 55);
-            --avatar-c2:  oklch(50% 0.13 90);
+            --avatar-c2:  #deba50;
+            --avatar-c2-fg: #1f2328;
             --avatar-c3:  oklch(50% 0.15 130);
             --avatar-c4:  oklch(50% 0.13 160);
             --avatar-c5:  oklch(50% 0.10 200);

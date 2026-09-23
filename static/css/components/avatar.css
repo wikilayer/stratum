@@ -24,7 +24,7 @@
      * indigo, lavender, purple, rose. */
     .avatar-c0  { background: var(--avatar-c0);  color: var(--avatar-fg); }
     .avatar-c1  { background: var(--avatar-c1);  color: var(--avatar-fg); }
-    .avatar-c2  { background: var(--avatar-c2);  color: var(--avatar-fg); }
+    .avatar-c2  { background: var(--avatar-c2);  color: var(--avatar-c2-fg); }
     .avatar-c3  { background: var(--avatar-c3);  color: var(--avatar-fg); }
     .avatar-c4  { background: var(--avatar-c4);  color: var(--avatar-fg); }
     .avatar-c5  { background: var(--avatar-c5);  color: var(--avatar-fg); }

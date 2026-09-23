@@ -32,13 +32,25 @@
         text-decoration: none;
     }
 
-    /* Compact wiki artwork for a horizontal card. It reuses the avatar
-     * renderer's image-or-initials markup without inheriting its circle. */
-    .avatar.wiki-card-mark {
-        width: 4rem;
+    a.media-card {
+        display: block;
+        padding: 0;
+        overflow: hidden;
+    }
+    .media-card-visual {
+        display: block;
+        width: 100%;
         height: auto;
         aspect-ratio: 4 / 3;
-        border-radius: var(--radius-sm);
-        font-size: var(--text-lg);
+        border-radius: 0;
+        object-fit: cover;
+    }
+    .avatar.media-card-visual {
+        display: flex;
+        font-size: var(--text-4xl);
+    }
+    .media-card-body {
+        display: block;
+        padding: var(--space-4);
     }
 }

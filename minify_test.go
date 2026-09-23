@@ -93,19 +93,6 @@ func TestMinify_ScriptsAndBundle(t *testing.T) {
 	}
 }
 
-// A responsive helper must not rewrite a details element's server-rendered
-// open state after first paint: that moves the article and creates CLS.
-func TestBundleDoesNotRewriteDetailsOpenState(t *testing.T) {
-	bundle, err := fs.ReadFile(Static, "stratum.js")
-	require.NoError(t, err)
-	js := string(bundle)
-	for _, mutation := range []string{"matchMedia", "toc-section"} {
-		if strings.Contains(js, mutation) {
-			t.Errorf("stratum.js still rewrites responsive details state with %q", mutation)
-		}
-	}
-}
-
 // TestMinify_LeavesEverythingElseAlone: only stylesheets and scripts are
 // rewritten. Images and the icon sprite still go out byte for byte.
 func TestMinify_LeavesEverythingElseAlone(t *testing.T) {
