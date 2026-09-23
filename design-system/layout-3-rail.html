@@ -31,7 +31,7 @@
             <li>
               <div class="tree-nav-row">
                 <button class="tree-nav-toggle" type="button" aria-expanded="true" aria-controls="demo-serbia" aria-label="Collapse Serbia" data-label-expand="Expand Serbia" data-label-collapse="Collapse Serbia"></button>
-                <a href="#">Serbia</a>
+                <a id="demo-serbia-link" href="#">Serbia</a>
               </div>
               <ul id="demo-serbia">
                 <li><div class="tree-nav-row"><span class="tree-nav-placeholder"></span><a href="#" aria-current="page">Belgrade</a></div></li>
@@ -170,6 +170,22 @@
 <script>
   if (location.hash === "#leftnav-open" && matchMedia("(max-width: 960px)").matches) {
     document.getElementById("demo-leftnav").showPopover();
+  }
+
+  document.getElementById("demo-leftnav").addEventListener("click", function (event) {
+    var link = event.target.closest(".tree-nav-row > a");
+    if (!link) return;
+
+    event.preventDefault();
+    this.querySelectorAll('[aria-current="page"]').forEach(function (current) {
+      current.removeAttribute("aria-current");
+    });
+    link.setAttribute("aria-current", "page");
+  });
+
+  if (new URLSearchParams(location.search).has("active-parent")) {
+    document.querySelector('[aria-current="page"]').removeAttribute("aria-current");
+    document.getElementById("demo-serbia-link").setAttribute("aria-current", "page");
   }
 </script>
 {{template "document-end"}}

@@ -85,6 +85,22 @@
         margin-left: 0;
         padding-left: var(--space-2);
     }
+    .tree-nav-row:has(> .tree-nav-toggle):has(> a:hover),
+    .tree-nav-row:has(> .tree-nav-toggle:hover),
+    .tree-nav-row:has(> .tree-nav-toggle):has(> a[aria-current]) {
+        margin-left: calc(var(--space-2) * -1);
+        padding-left: var(--space-2);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        background: var(--bg-hover);
+    }
+    .tree-nav-row:has(> .tree-nav-toggle):has(> a[aria-current]) {
+        box-shadow: inset 2px 0 var(--accent);
+    }
+    .tree-nav-row:has(> .tree-nav-toggle):has(> a[aria-current]) > a[aria-current] {
+        border-left-color: transparent;
+        border-radius: 0;
+        background: transparent;
+    }
     .tree-nav ul[data-tree-animating] { overflow: hidden; }
     .tree-nav-toggle,
     .tree-nav-placeholder {

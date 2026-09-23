@@ -521,6 +521,9 @@ the initial state. Load `tree.js` to fold and unfold branches without navigating
 The application should initially open only the current path: its ancestors and,
 when the current item is itself a branch, the current item.
 Mark the current link with `aria-current="page"` as for any rail list.
+For a branch, the active background and hover target include its disclosure
+control. A leaf starts at its link instead of reserving an empty control slot.
+The accent edge stays on the navigation's outer side in both cases.
 
 ```html
 <nav class="leftnav tree-nav">

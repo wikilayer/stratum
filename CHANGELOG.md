@@ -4,6 +4,15 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.23 — 2026-09-23
+
+Drop-in. Existing tree navigation markup keeps working.
+
+### Changed
+
+- An active or hovered branch in `.tree-nav` now highlights the whole row, including its disclosure control. Leaf links keep their compact highlight and do not reserve an empty control slot.
+- The three-rail example lets each navigation link become current in place, including a three-level branch, so active branch and leaf states can be inspected without leaving the page.
+
 ## 0.4.22 — 2026-09-23
 
 Drop-in. Existing markup keeps working, but the look changes: visually verify pages with an `.article-footer`, and `.content-with-head` pages without an `<aside>`.
