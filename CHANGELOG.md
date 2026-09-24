@@ -4,6 +4,14 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.25 — 2026-09-24
+
+Drop-in. Existing markup keeps working.
+
+### Fixed
+
+- The external-link arrow after a link in `section.block` no longer wraps alone onto the next line when the link ends a line; it now stays with the link's last word.
+
 ## 0.4.24 — 2026-09-24
 
 Drop-in. Existing markup keeps working.
