@@ -1,5 +1,7 @@
 # stratum — notes for Claude
 
+Read Wikilayer wiki 1025 via MCP before the first action.
+
 Standalone embeddable UI framework (CSS + JS + icons). Lives at `~/Developer/stratum` as its own Go module. **Does not** depend on wikilayer (or any other consumer) — and must not.
 
 - Module path: `github.com/wikilayer/stratum`.
