@@ -1,5 +1,6 @@
 @layer tokens {
     :root {
+        color-scheme: light;
         /* Colour — semantic, themed. */
         --bg:           #ffffff;
         --bg-elevated:  #ffffff;          /* cards, dropdowns */
@@ -140,6 +141,7 @@
     }
 
     html[data-theme="dark"] {
+        color-scheme: dark;
         --bg:           #0d1117;
         --bg-elevated:  #161b22;
         --bg-subtle:    #161b22;
@@ -211,6 +213,7 @@
 
     @media (prefers-color-scheme: dark) {
         html:not([data-theme]) {
+            color-scheme: dark;
             --bg:           #0d1117;
             --bg-elevated:  #161b22;
             --bg-subtle:    #161b22;
