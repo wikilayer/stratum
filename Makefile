@@ -4,6 +4,12 @@
 
 STATICCHECK_VERSION ?= v0.8.1
 
+# The Go that go.mod names, which is the one CI installs, rather than
+# whatever Homebrew last upgraded to: a newer local Go can write export
+# data the pinned staticcheck cannot read, and lint then fails here only.
+GOTOOLCHAIN ?= go$(shell awk '$$1 == "go" { print $$2 }' go.mod)
+export GOTOOLCHAIN
+
 install-tools: lint-tools
 	python3 -m pip install --quiet --upgrade git+https://github.com/botforge-pro/commentcensor.git
 
