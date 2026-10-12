@@ -11,11 +11,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// What the framework promises about its own stylesheets, checked
-// against them rather than left to whoever edits one next. A consumer
-// overrides a component from its own sheet, and every one of these
-// keeps that possible.
-
 // Specificity stays flat, or a utility stops being able to override a
 // component and the consumer's own rule stops being able to override
 // either. An id selector and an !important each end that.
