@@ -8,15 +8,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestCSSAssetsResolve(t *testing.T) {
-	for _, name := range cssAssets {
-		f, err := Static.Open(name)
-		if err != nil {
-			t.Errorf("cssAssets entry %q, renamed or removed without the manifest following: %v", name, err)
-			continue
-		}
-		_ = f.Close()
-	}
+func TestBundle_RefusesAListedFileThatIsGone(t *testing.T) {
+	_, err := joinAssets("", []string{"css/kept.css", "css/removed.css"}, "\n",
+		map[string][]byte{"css/kept.css": []byte("a{}")})
+	require.ErrorContains(t, err, "css/removed.css",
+		"a stylesheet removed without the list following drops out of the bundle, and every page loses its rules unannounced")
 }
 
 func TestCSSAssetsCoverComponents(t *testing.T) {

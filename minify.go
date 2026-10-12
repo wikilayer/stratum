@@ -2,6 +2,7 @@ package stratum
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"io/fs"
 	"path"
@@ -52,20 +53,31 @@ func newMinifiedFS(source fs.FS) fs.FS {
 	if err != nil {
 		panic("stratum: minify assets: " + err.Error())
 	}
-	styles := joinAssets(cssLayerOrder, cssAssets, "\n", out.processed)
+	styles, err := joinAssets(cssLayerOrder, cssAssets, "\n", out.processed)
+	if err != nil {
+		panic("stratum: bundle stratum.css: " + err.Error())
+	}
+	scripts, err := joinAssets("", jsAssets, ";\n", out.processed)
+	if err != nil {
+		panic("stratum: bundle stratum.js: " + err.Error())
+	}
 	out.processed["stratum.css"] = styles
-	out.processed["stratum.js"] = joinAssets("", jsAssets, ";\n", out.processed)
+	out.processed["stratum.js"] = scripts
 	return out
 }
 
-func joinAssets(prefix string, names []string, separator string, assets map[string][]byte) []byte {
+func joinAssets(prefix string, names []string, separator string, assets map[string][]byte) ([]byte, error) {
 	var out bytes.Buffer
 	out.WriteString(prefix)
 	for _, name := range names {
+		body, ok := assets[name]
+		if !ok {
+			return nil, fmt.Errorf("%s is listed but not among the static files", name)
+		}
 		out.WriteString(separator)
-		out.Write(assets[name])
+		out.Write(body)
 	}
-	return out.Bytes()
+	return out.Bytes(), nil
 }
 
 func (m *minifiedFS) Open(name string) (fs.File, error) {
