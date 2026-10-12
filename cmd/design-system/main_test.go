@@ -63,6 +63,12 @@ func TestBuildDiscoversPagesAndCopiesAssets(t *testing.T) {
 	_, err = os.Stat(filepath.Join(destination, "design-system", sharedLayout))
 	require.ErrorIs(t, err, fs.ErrNotExist)
 
+	root, err := os.ReadFile(filepath.Join(destination, "index.html"))
+	require.NoError(t, err)
+	require.Contains(t, string(root), `<meta http-equiv="refresh" content="0; url=design-system/">`,
+		"the site's root sends a reader on to the reference, which lives one directory down")
+	require.Contains(t, string(root), `<link rel="canonical" href="design-system/">`)
+
 	gotAsset, err := os.ReadFile(filepath.Join(destination, "static", "stratum.css"))
 	require.NoError(t, err)
 	wantAsset, err := fs.ReadFile(stratum.Static, "stratum.css")

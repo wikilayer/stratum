@@ -4,6 +4,7 @@ package main
 import (
 	"bytes"
 	"crypto/sha256"
+	_ "embed"
 	"encoding/hex"
 	"errors"
 	"flag"
@@ -177,13 +178,11 @@ func build(source fs.FS, destination string) error {
 	if err := copyFS(stratum.Static, filepath.Join(destination, "static")); err != nil {
 		return err
 	}
-	return writeFile(filepath.Join(destination, "index.html"), []byte(`<!doctype html>
-<meta charset="utf-8">
-<title>stratum — design system</title>
-<meta http-equiv="refresh" content="0; url=design-system/">
-<link rel="canonical" href="design-system/">
-`))
+	return writeFile(filepath.Join(destination, "index.html"), redirectPage)
 }
+
+//go:embed redirect.html
+var redirectPage []byte
 
 func copyFS(source fs.FS, destination string) error {
 	return fs.WalkDir(source, ".", func(name string, entry fs.DirEntry, walkErr error) error {
