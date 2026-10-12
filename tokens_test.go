@@ -9,11 +9,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// A theme has two ways in: the attribute a reader sets by hand, and
-// the media query that follows their system. Both name the same
-// palette and are written out separately, so the pair drifts silently
-// -- the shadows did, and the reader who never touched the switch got
-// the light ones on a dark background.
 func TestDarkPaletteIsTheSameBothWaysIn(t *testing.T) {
 	css := readCSS(t, "css/base/tokens.css")
 

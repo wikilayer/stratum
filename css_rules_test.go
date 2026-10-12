@@ -11,9 +11,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Specificity stays flat, or a utility stops being able to override a
-// component and the consumer's own rule stops being able to override
-// either. An id selector and an !important each end that.
 func TestCSS_KeepsSpecificityFlat(t *testing.T) {
 	idSelector := regexp.MustCompile(`(^|[\s,>+~])#[a-zA-Z]`)
 	forEachStylesheet(t, func(t *testing.T, path, css string) {
@@ -30,9 +27,6 @@ func TestCSS_KeepsSpecificityFlat(t *testing.T) {
 	})
 }
 
-// A rule outside a layer beats every rule inside one, whatever the
-// order, so a stylesheet that forgets its @layer silently wins against
-// the whole framework and against the consumer's own layers.
 func TestCSS_EveryStylesheetDeclaresItsLayer(t *testing.T) {
 	layers := strings.Split(strings.TrimSuffix(strings.TrimPrefix(cssLayerOrder, "@layer "), ";"), ", ")
 	forEachStylesheet(t, func(t *testing.T, path, css string) {
@@ -44,13 +38,10 @@ func TestCSS_EveryStylesheetDeclaresItsLayer(t *testing.T) {
 				return
 			}
 		}
-		t.Errorf("%s puts its rules in no layer, so they outrank every layered rule in the framework", path)
+		t.Errorf("%s puts its rules in no layer, so they outrank every layered rule in the framework and in the consumer's own layers, whatever the order", path)
 	})
 }
 
-// A var() naming a property nothing declares resolves to nothing, and
-// the rule holding it does nothing -- silently, which is how a token
-// removed from tokens.css leaves a component unstyled.
 func TestCSS_EveryCustomPropertyUsedIsDeclared(t *testing.T) {
 	declared := map[string]bool{}
 	used := map[string]string{}
@@ -68,14 +59,11 @@ func TestCSS_EveryCustomPropertyUsedIsDeclared(t *testing.T) {
 
 	for name, path := range used {
 		if !declared[name] {
-			t.Errorf("%s reads %s, which no stylesheet declares", path, name)
+			t.Errorf("%s reads %s, which no stylesheet declares, so the rule holding it silently does nothing", path, name)
 		}
 	}
 }
 
-// The framework describes itself and never the applications built on
-// it: a class or a comment naming one is a copy of that application's
-// vocabulary, kept here where it goes stale unseen.
 func TestCSS_NamesNoApplication(t *testing.T) {
 	forbidden := []string{"wikilayer", "/settings", "/manage", "/owner", "/login"}
 	forEachStylesheet(t, func(t *testing.T, path, css string) {

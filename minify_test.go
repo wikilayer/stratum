@@ -12,10 +12,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestMinify_StylesheetsLoseTheirProse: the served CSS carries no
-// comments and is materially smaller than the source, which is the
-// whole point; and it still contains the rules, so "smaller" was not
-// achieved by serving nothing.
 func TestMinify_StylesheetsLoseTheirProse(t *testing.T) {
 	source := mustSub(embedded, "static")
 
@@ -41,9 +37,6 @@ func TestMinify_StylesheetsLoseTheirProse(t *testing.T) {
 	}
 }
 
-// The public stylesheet is a real bundle, not an @import entrypoint.
-// One link must produce one request while preserving the manifest's
-// cascade order from the first source through the last.
 func TestMinify_StyleIsOneBundle(t *testing.T) {
 	body, err := fs.ReadFile(Static, "stratum.css")
 	require.NoError(t, err)
@@ -65,9 +58,6 @@ func TestMinify_StyleIsOneBundle(t *testing.T) {
 	}
 }
 
-// Scripts keep their readable sources in the repository but leave the
-// embedded filesystem minified. The framework bundle is the same helpers
-// concatenated in manifest order, so consumers need one script request.
 func TestMinify_ScriptsAndBundle(t *testing.T) {
 	source := mustSub(embedded, "static")
 	bundle, err := fs.ReadFile(Static, "stratum.js")
@@ -87,14 +77,12 @@ func TestMinify_ScriptsAndBundle(t *testing.T) {
 		}
 		at := strings.Index(joined, string(served))
 		if at < 0 || at <= lastAt {
-			t.Errorf("%s is missing or out of order in stratum.js: at=%d after=%d", name, at, lastAt)
+			t.Errorf("%s is missing or out of order in stratum.js, the one script a consumer requests: at=%d after=%d", name, at, lastAt)
 		}
 		lastAt = at
 	}
 }
 
-// TestMinify_LeavesEverythingElseAlone: only stylesheets and scripts are
-// rewritten. Images and the icon sprite still go out byte for byte.
 func TestMinify_LeavesEverythingElseAlone(t *testing.T) {
 	source := mustSub(embedded, "static")
 
@@ -121,10 +109,6 @@ func TestMinify_LeavesEverythingElseAlone(t *testing.T) {
 	require.NoError(t, err)
 }
 
-// TestMinify_ServesOverHTTP: the tree still answers what a file server
-// asks of it. A stylesheet's Content-Length has to be the length of
-// what is actually sent, or the browser waits for bytes that never
-// arrive; directories still list; a missing name is still a 404.
 func TestMinify_ServesOverHTTP(t *testing.T) {
 	srv := httptest.NewServer(http.FileServer(http.FS(Static)))
 	defer srv.Close()
@@ -137,7 +121,7 @@ func TestMinify_ServesOverHTTP(t *testing.T) {
 	body := make([]byte, res.ContentLength+1)
 	n, _ := io.ReadFull(res.Body, body)
 	if int64(n) != res.ContentLength {
-		t.Errorf("Content-Length says %d, body is %d bytes", res.ContentLength, n)
+		t.Errorf("Content-Length says %d, body is %d bytes, so the browser waits for bytes that never arrive", res.ContentLength, n)
 	}
 	if got := res.Header.Get("Content-Length"); got != strconv.Itoa(n) {
 		t.Errorf("Content-Length header %q against %d bytes sent", got, n)
