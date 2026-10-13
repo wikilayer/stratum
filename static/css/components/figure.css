@@ -4,7 +4,7 @@
     .figure-aside {
         float: right;
         clear: right;
-        width: min(18rem, 45%);
+        width: min(var(--measure-aside), 45%);
         margin: var(--space-1) 0 var(--space-4) var(--space-5);
         border: 1px solid var(--border-muted);
         border-radius: var(--radius-md);

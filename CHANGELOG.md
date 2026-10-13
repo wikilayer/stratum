@@ -4,6 +4,18 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.28 — 2026-10-14
+
+Drop-in. Existing markup keeps working; a wide table or code block may now be wider.
+
+### Changed
+
+- An `<article>` holds a column of text with room for a picture beside it, `--measure-prose` plus `--measure-aside`. The line length now limits the running text itself (paragraphs, lists, quotes, `.callout` and `.map`), so a `.figure-aside` sits right beside the text instead of at the edge of a column that leaves a gap, and a table or code block may use the article's whole width.
+
+### Added
+
+- `--measure-aside`, the width of a picture set beside the text.
+
 ## 0.4.27 — 2026-10-14
 
 Drop-in. Existing markup keeps working.

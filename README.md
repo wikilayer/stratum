@@ -341,7 +341,7 @@ Embedded location iframe (rendered from `> [!MAP]` blockquotes in markdown). The
 
 ### `.figure-aside`
 
-A picture set beside the text, the way an encyclopedia places a thumbnail: floated to the right at most 18rem wide, the text wrapping on its left, with an optional caption strip below. Below 720px it takes the full line. Wrap the image in a link to the full-size picture so a click opens it. An `<article>` contains its floats, so a picture beside the last paragraph stays inside it.
+A picture set beside the text, the way an encyclopedia places a thumbnail: floated to the right at most `--measure-aside` wide, in the room an `<article>` keeps beside its text, the text wrapping on its left, with an optional caption strip below. Below 720px it takes the full line. Wrap the image in a link to the full-size picture so a click opens it. An `<article>` contains its floats, so a picture beside the last paragraph stays inside it.
 
 ```html
 <figure class="figure-aside">

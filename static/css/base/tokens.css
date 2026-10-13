@@ -134,6 +134,7 @@
          * far apart. */
         --measure-prose: 42em;
         --measure-form:  32em;
+        --measure-aside: 18rem;
 
         --duration-fast: 120ms;
         --easing-out:    cubic-bezier(0.2, 0, 0, 1);

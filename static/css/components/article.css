@@ -1,13 +1,16 @@
 @layer components {
-    /* One line length whatever the page around it does: without this the
-     * same text runs at 90 characters beside a sidebar and 130 without
-     * one. Tables and figures opt out, sized by their content. */
+    /* An article is a column of text with room for a picture beside it.
+     * The line length belongs to the running text, the same whatever the
+     * page around it does: without it the same text runs at 90
+     * characters beside a sidebar and 130 without one. A table, code or
+     * a picture beside the text is not read line by line and may use
+     * the article's whole width. */
     article {
+        max-width: calc(var(--measure-prose) + var(--space-5) + var(--measure-aside));
+    }
+    article :where(p, ul, ol, dl, blockquote, .callout, .map) {
         max-width: var(--measure-prose);
     }
-    article table,
-    article pre,
-    article .scroll-x { max-width: none; }
 
     /* The article holds its own floats, so a picture beside its last
      * paragraph does not hang into whatever follows the article. */
