@@ -9,6 +9,14 @@
     article pre,
     article .scroll-x { max-width: none; }
 
+    /* The article holds its own floats, so a picture beside its last
+     * paragraph does not hang into whatever follows the article. */
+    article::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
     .block {
         position: relative;
         scroll-margin-top: calc(var(--header-h) + var(--space-3));

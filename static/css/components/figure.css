@@ -1,0 +1,35 @@
+@layer components {
+    /* A picture beside the text rather than across it: the text wraps on
+     * its left, and on a phone, too narrow to share, it takes the line. */
+    .figure-aside {
+        float: right;
+        clear: right;
+        width: min(18rem, 45%);
+        margin: var(--space-1) 0 var(--space-4) var(--space-5);
+        border: 1px solid var(--border-muted);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        background: var(--bg-subtle);
+    }
+    .figure-aside > a { display: block; }
+    .figure-aside img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 0;
+        border-radius: 0;
+    }
+    .figure-aside figcaption {
+        padding: var(--space-2) var(--space-3);
+        color: var(--fg-muted);
+        font-size: var(--text-sm);
+        line-height: var(--leading-snug);
+    }
+    @media (max-width: 720px) {
+        .figure-aside {
+            float: none;
+            width: auto;
+            margin: var(--space-4) 0;
+        }
+    }
+}

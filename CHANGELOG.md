@@ -4,6 +4,27 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.27 — 2026-10-14
+
+Drop-in. Existing markup keeps working.
+
+### Added
+
+- `.figure-aside` sets a picture beside the text, floated right at most 18rem wide with an optional caption strip, and across the full line below 720px.
+
+### Changed
+
+- An `<article>` contains its own floats, so a picture floated beside its last paragraph no longer hangs into what follows.
+
+## 0.4.26 — 2026-10-08
+
+Drop-in. Existing markup keeps working.
+
+### Fixed
+
+- The browser draws its own controls, such as a checkbox or a date field, in the colours of the theme that is on, not light on the dark theme.
+- A date field has the same field styling as every other typed input.
+
 ## 0.4.25 — 2026-09-24
 
 Drop-in. Existing markup keeps working.

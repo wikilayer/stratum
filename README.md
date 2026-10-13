@@ -339,6 +339,17 @@ Embedded location iframe (rendered from `> [!MAP]` blockquotes in markdown). The
 </div>
 ```
 
+### `.figure-aside`
+
+A picture set beside the text, the way an encyclopedia places a thumbnail: floated to the right at most 18rem wide, the text wrapping on its left, with an optional caption strip below. Below 720px it takes the full line. Wrap the image in a link to the full-size picture so a click opens it. An `<article>` contains its floats, so a picture beside the last paragraph stays inside it.
+
+```html
+<figure class="figure-aside">
+  <a href="/pictures/tower.jpg"><img src="/pictures/tower.jpg" alt="A masonry lighthouse tower"></a>
+  <figcaption>A wave-swept tower on the <a href="/reefs">Bell Rock</a>.</figcaption>
+</figure>
+```
+
 ### `.card`, `.card-grid`, `.card-link`
 
 Bordered surface for grouped content. `.card-grid` lays cards in a responsive grid and keeps cards in the same row equal in height. Add `.card-link` to an `<a>` that wraps the whole card — it gets the flex-row layout, link colour, and accent border on hover.
