@@ -12,6 +12,9 @@
         background: var(--bg-subtle);
     }
     .figure-aside > a { display: block; }
+    /* The figure clips its corners, so a ring drawn outside the link
+     * would be cut away; draw it inside. */
+    .figure-aside > a:focus-visible { outline-offset: -2px; }
     .figure-aside img {
         display: block;
         width: 100%;
@@ -24,6 +27,7 @@
         color: var(--fg-muted);
         font-size: var(--text-sm);
         line-height: var(--leading-snug);
+        overflow-wrap: anywhere;
     }
     @media (max-width: 720px) {
         .figure-aside {

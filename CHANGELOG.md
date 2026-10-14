@@ -4,6 +4,15 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.29 — 2026-10-14
+
+Drop-in: existing markup keeps working.
+
+### Fixed
+
+- The focus ring on the link around a `.figure-aside` picture is now drawn inside the picture. Before, the figure's rounded corners cut it away, so a keyboard user could not see that the picture was focused.
+- A long word without spaces in a `.figure-aside` caption, such as a file name, now wraps instead of running past the edge and being cut off.
+
 ## 0.4.28 — 2026-10-14
 
 Drop-in: existing markup keeps working. Look over pages with a wide table or code block in an `<article>`: on a wide screen they now render wider.
