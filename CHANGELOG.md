@@ -6,15 +6,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a
 
 ## 0.4.28 — 2026-10-14
 
-Drop-in. Existing markup keeps working; a wide table or code block may now be wider.
+Drop-in: existing markup keeps working. Look over pages with a wide table or code block in an `<article>`: on a wide screen they now render wider.
 
 ### Changed
 
-- An `<article>` holds a column of text with room for a picture beside it, `--measure-prose` plus `--measure-aside`. The line length now limits the running text itself (paragraphs, lists, quotes, `.callout` and `.map`), so a `.figure-aside` sits right beside the text instead of at the edge of a column that leaves a gap, and a table or code block may use the article's whole width.
+- Paragraphs, lists, quotes, `.callout` and `.map` inside an `<article>` are now at most `--measure-prose` (42em) wide each, instead of the whole `<article>`. The `<article>` itself may now be `--measure-prose` + 1.5rem + `--measure-aside` wide, still no wider than its container. Until 0.4.28 a `.figure-aside` floated to the right edge of a 42em article and left a gap between it and short lines of text; now it sits right next to the text. Tables and code blocks, which had no width limit of their own, may use the wider article and scroll sideways less often.
 
 ### Added
 
-- `--measure-aside`, the width of a picture set beside the text.
+- `--measure-aside` (18rem): the width of a `.figure-aside`.
 
 ## 0.4.27 — 2026-10-14
 
@@ -22,11 +22,11 @@ Drop-in. Existing markup keeps working.
 
 ### Added
 
-- `.figure-aside` sets a picture beside the text, floated right at most 18rem wide with an optional caption strip, and across the full line below 720px.
+- `.figure-aside` on a `<figure>` floats a picture to the right of the text, like an encyclopedia thumbnail: its width is 18rem or 45% of the text column, whichever is smaller, and a `<figcaption>` inside it shows as a caption strip below the picture. Below 720px it stops floating and takes the full width. The markup is in the README.
 
 ### Changed
 
-- An `<article>` contains its own floats, so a picture floated beside its last paragraph no longer hangs into what follows.
+- An `<article>` now ends below everything floated inside it, so a floated picture beside its last paragraph no longer overlaps what follows the article. This applies to any float in an `<article>`, not only `.figure-aside`.
 
 ## 0.4.26 — 2026-10-08
 
@@ -34,7 +34,7 @@ Drop-in. Existing markup keeps working.
 
 ### Fixed
 
-- The browser draws its own controls, such as a checkbox or a date field, in the colours of the theme that is on, not light on the dark theme.
+- On the dark theme the browser draws its own controls, such as a checkbox or a date field, dark too, rather than light. Nothing to set on your side: stratum tells the browser which theme is on.
 - A date field has the same field styling as every other typed input.
 
 ## 0.4.25 — 2026-09-24
