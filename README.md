@@ -274,7 +274,7 @@ Which tab shows is read from position, not from the ids: the Nth radio pairs wit
 
 ### `.alert`
 
-Inline message block. Variants: `.alert-error`, `.alert-success`. Always left-aligned (won't inherit `.text-center`). Use `.alert-success` as a one-shot banner after a redirect — same shape, no separate primitive needed.
+Inline message block. Variants: `.alert-error`, `.alert-success`. Always left-aligned (won't inherit `.text-center`). Long URLs and words wrap within the block. Use `.alert-success` as a one-shot banner after a redirect — same shape, no separate primitive needed.
 
 ### `.app-prompt`
 

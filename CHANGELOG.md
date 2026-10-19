@@ -4,6 +4,14 @@ Stratum is a small CSS framework for the pages a Go server renders: tokens, layo
 
 Format: [Keep a Changelog](https://keepachangelog.com/). Versions are the tags a consumer pins with `go get github.com/wikilayer/stratum@vX.Y.Z`. Before 1.0 any release may rename or remove a class, or need a change to your markup, the patch digit included; a release that does opens with **Not drop-in** and says what to change.
 
+## 0.4.30 — 2026-10-19
+
+Drop-in: existing markup keeps working.
+
+### Fixed
+
+- Long URLs and words in `.alert` messages now wrap instead of overflowing the border on narrow screens.
+
 ## 0.4.29 — 2026-10-14
 
 Drop-in: existing markup keeps working.
