@@ -4,7 +4,7 @@ go 1.27.1
 
 require (
 	github.com/stretchr/testify v1.12.1
-	github.com/tdewolff/minify/v2 v2.24.23
+	github.com/tdewolff/minify/v2 v2.24.24
 	golang.org/x/net v0.61.0
 )
 
