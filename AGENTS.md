@@ -1,6 +1,7 @@
-# stratum — notes for Claude
+# stratum
 
-Read Wikilayer wiki 1025 via MCP before the first action.
+Before the first action read the whole wiki «Как мы пишем код»:
+wikilayer://wikilayer.org/smee-again/codestyle
 
 Standalone embeddable UI framework (CSS + JS + icons). Lives at `~/Developer/stratum` as its own Go module. **Does not** depend on wikilayer (or any other consumer) — and must not.
 
@@ -75,7 +76,6 @@ In templates: `<svg class="icon"><use href="/static/icons.svg#<name>"/></svg>`.
 - Don't use `!important`, `id` selectors, or deep nesting. Keep specificity flat so utilities reliably override components.
 - Don't hand-edit `static/icons.svg` — it's regenerated from the manifest.
 - Don't add a build step, npm package, or CSS preprocessor. Native everything. CSS and JavaScript are bundled/minified in memory at package init (`minify.go`), which is why comments cost nothing at runtime and why there is no generated copy to keep in sync.
-- Don't write Russian (or any non-English) in committed files. Public repo, English only.
 
 ## How consumers wire it up
 
